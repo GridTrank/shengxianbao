@@ -1,0 +1,89 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.page_wrap.data-v-dabf923c {
+  background-color: #fff;
+  min-height: calc( 100vh - 74px);
+  padding: 30rpx;
+}
+.page_wrap .page_type .txt.data-v-dabf923c {
+  color: #333;
+  font-size: 48rpx;
+  font-weight: bold;
+  position: relative;
+}
+.page_wrap .page_type .txt.data-v-dabf923c::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 92rpx;
+  height: 10rpx;
+  background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
+}
+.page_wrap .page_type .sub_txt.data-v-dabf923c {
+  font-size: 24rpx;
+  color: #666;
+}
+.page_wrap .page_type .sub_txt .change.data-v-dabf923c {
+  color: #FE5B07;
+}
+.page_wrap .input_wrap.data-v-dabf923c {
+  margin-top: 100rpx;
+}
+.page_wrap .input_wrap.data-v-dabf923c .u-input {
+  padding: 12rpx 0 !important;
+}
+.page_wrap .input_wrap.data-v-dabf923c .u-input__content__prefix-icon {
+  margin-right: 40rpx !important;
+}
+.page_wrap .input_wrap.data-v-dabf923c .input_item {
+  width: 100% !important;
+}
+.page_wrap .input_wrap.data-v-dabf923c .u-form-item__body__right__message {
+  margin: 0 !important;
+}
+.page_wrap .input_wrap .input_item .label.data-v-dabf923c {
+  color: #333;
+  font-size: 32rpx;
+}
+.page_wrap .input_wrap .input_item .iconfont.data-v-dabf923c {
+  color: #d1d1d1;
+}
+.page_wrap .input_wrap .input_item .get_code.data-v-dabf923c {
+  color: #FD4D00;
+  font-size: 28rpx;
+}
+.page_wrap .agreement.data-v-dabf923c {
+  margin-top: 100rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+.page_wrap .agreement image.data-v-dabf923c {
+  width: 34rpx;
+  margin-right: 10rpx;
+}
+.page_wrap .agreement .link.data-v-dabf923c {
+  color: #FE5B07;
+}
+.page_wrap .btn.data-v-dabf923c {
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: bold;
+  border-radius: 50rpx;
+  background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
+  margin-top: 28rpx;
+}
+.page_wrap .logo.data-v-dabf923c {
+  width: 344rpx;
+  margin: auto;
+  display: block;
+  margin-top: 60rpx;
+}
+

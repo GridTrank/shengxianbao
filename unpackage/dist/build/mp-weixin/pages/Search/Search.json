@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "搜索",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "history-list": "/pages/Search/histotyList",
+    "list": "/pages/Classify/list"
+  }
+}

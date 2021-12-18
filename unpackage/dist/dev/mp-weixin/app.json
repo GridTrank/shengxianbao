@@ -1,0 +1,113 @@
+{
+  "pages": [
+    "pages/Home/Home",
+    "pages/Classify/Classify",
+    "pages/QuickOrder/QuickOrder",
+    "pages/ShopCar/ShopCar",
+    "pages/User/User",
+    "pages/ProductDetail/ProductDetail",
+    "pages/Search/Search",
+    "pages/Login/Login",
+    "pages/Login/register",
+    "pages/Login/find",
+    "pages/Address/Address",
+    "pages/Address/AddressDetail",
+    "pages/ChooseAddress/index",
+    "pages/ChooseAddress/search",
+    "pages/ChooseAddress/cityList",
+    "pages/Order/Order",
+    "pages/Order/Detail",
+    "pages/ConfirmOrder/ConfirmOrder",
+    "pages/ConfirmOrder/GoodList"
+  ],
+  "subPackages": [
+    {
+      "root": "pagesA",
+      "pages": [
+        "SubAccount/SubAccount",
+        "SubAccount/AddOrEdit",
+        "AddGood/AddGood",
+        "AddGood/fillIn1",
+        "AddGood/fillIn2",
+        "CargoList/Index",
+        "CargoList/List",
+        "CargoList/Detail",
+        "CargoList/Add",
+        "CargoList/SelectGood",
+        "CargoList/Confirm",
+        "Balance/index",
+        "Balance/detail",
+        "Set/Set",
+        "Set/AccountSafe/index",
+        "Set/AccountSafe/changePhone",
+        "StockQuery/index",
+        "StockQuery/search"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uView",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#FE5B07",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/Home/Home",
+        "iconPath": "static/icon/tab1.png",
+        "selectedIconPath": "static/icon/tab1-a.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/Classify/Classify",
+        "iconPath": "static/icon/tab2.png",
+        "selectedIconPath": "static/icon/tab2-a.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/QuickOrder/QuickOrder",
+        "iconPath": "static/icon/tab3.png",
+        "selectedIconPath": "static/icon/tab3-a.png",
+        "text": "快捷下单"
+      },
+      {
+        "pagePath": "pages/ShopCar/ShopCar",
+        "iconPath": "static/icon/tab4.png",
+        "selectedIconPath": "static/icon/tab4-a.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/User/User",
+        "iconPath": "static/icon/tab5.png",
+        "selectedIconPath": "static/icon/tab5-a.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "preloadRule": {
+    "pages/Home/Home": {
+      "network": "all",
+      "packages": [
+        "pagesA"
+      ]
+    },
+    "pagesA/SubAccount/SubAccount": {
+      "network": "all",
+      "packages": [
+        "pagesA"
+      ]
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

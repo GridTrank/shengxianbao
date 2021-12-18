@@ -1,0 +1,12 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "首页",
+  "usingComponents": {
+    "page-header": "/components/page-header/page-header",
+    "product-list": "/components/product-list/product-list",
+    "banner": "/pages/Home/banner",
+    "module1": "/pages/Home/module1",
+    "module2": "/pages/Home/module2",
+    "module3": "/pages/Home/module3"
+  }
+}

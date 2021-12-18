@@ -1,0 +1,1 @@
+<view class="list row  data-v-800a3440"><block wx:for="{{10}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="item column mt30 data-v-800a3440"><image class="img data-v-800a3440" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png"></image><text class="name data-v-800a3440">名称</text></view></block></view>

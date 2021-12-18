@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "page-header": "/pages/ProductDetail/components/detail-page-header",
+    "mix-swiper": "/pages/ProductDetail/components/mix-swiper",
+    "bottom-operation": "/pages/ProductDetail/components/bottom-operation"
+  }
+}

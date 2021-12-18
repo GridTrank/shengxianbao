@@ -1,0 +1,116 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.page_wrap {
+  padding-top: 80rpx;
+  padding-bottom: 200rpx;
+}
+.page_wrap .tab_list {
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  width: 100%;
+  justify-content: space-around;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+.page_wrap .tab_list .tab_item {
+  color: #333;
+  font-size: 28rpx;
+}
+.page_wrap .tab_list .active_tab {
+  color: #FE5B07;
+  position: relative;
+}
+.page_wrap .tab_list .active_tab::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -20rpx;
+  width: 100%;
+  height: 4rpx;
+  background-color: #FE5B07;
+}
+.page_wrap .list .item {
+  background-color: #fff;
+  padding: 30rpx;
+}
+.page_wrap .list .item .item_top {
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #EEEEEE;
+}
+.page_wrap .list .item .item_top .left image {
+  width: 40rpx;
+  margin-right: 16rpx;
+}
+.page_wrap .list .item .item_top .left text {
+  color: #2F2F2F;
+  font-size: 28rpx;
+}
+.page_wrap .list .item .item_top .right {
+  color: #FE5B07;
+  font-size: 28rpx;
+}
+.page_wrap .list .item .item_info .labels text {
+  margin-right: 10rpx;
+  color: #fff;
+  font-size: 24rpx;
+  padding: 4rpx 6rpx;
+  background-color: #FE0707;
+  border-radius: 4rpx;
+}
+.page_wrap .list .item .item_info .time_price .time {
+  color: #2F2F2F;
+  font-size: 28rpx;
+}
+.page_wrap .list .item .item_info .time_price .price {
+  color: #333333;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.page_wrap .foot_wrap {
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #f1f1f1;
+}
+.page_wrap .foot_wrap .foot {
+  padding: 30rpx;
+}
+.page_wrap .foot_wrap .foot .left {
+  color: #333;
+  font-size: 22rpx;
+}
+.page_wrap .foot_wrap .foot .left image {
+  width: 40rpx;
+  margin-right: 16rpx;
+}
+.page_wrap .foot_wrap .foot .right .btn {
+  margin-left: 15rpx;
+  background: linear-gradient(90deg, #F43B3B 0%, #FF3033 100%);
+  color: #fff;
+  font-size: 28rpx;
+  width: 156rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 30rpx;
+}
+.page_wrap .add_btn {
+  position: fixed;
+  bottom: 200rpx;
+  right: 30rpx;
+  background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 70rpx;
+  color: #fff;
+  font-weight: bold;
+}
+

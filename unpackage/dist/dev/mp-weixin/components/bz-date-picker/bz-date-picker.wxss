@@ -1,0 +1,87 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+view.data-v-76607444, scroll-view.data-v-76607444, swiper-item.data-v-76607444 {
+  display: block;
+  flex-direction: column;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: auto;
+  align-items: stretch;
+  align-content: flex-start;
+}
+.data-v-76607444 .u-transition {
+  z-index: 998 !important;
+}
+.u-datetime-picker.data-v-76607444 {
+  position: relative;
+  z-index: 999;
+}
+.u-picker-view.data-v-76607444 {
+  height: 100%;
+  box-sizing: border-box;
+}
+.u-picker-header.data-v-76607444 {
+  width: 100%;
+  height: 90rpx;
+  padding: 0 40rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  background: #fff;
+  position: relative;
+}
+.u-picker-header.data-v-76607444::after {
+  content: '';
+  position: absolute;
+  border-bottom: 1rpx solid #eaeef1;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.u-picker__title.data-v-76607444 {
+  color: #606266;
+}
+.u-picker-body.data-v-76607444 {
+  width: 100%;
+  height: 500rpx;
+  overflow: hidden;
+  background-color: #fff;
+}
+.u-column-item.data-v-76607444 {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #606266;
+  padding: 0 8rpx;
+}
+.u-text.data-v-76607444 {
+  font-size: 24rpx;
+  padding-left: 8rpx;
+}
+.u-btn-picker.data-v-76607444 {
+  padding: 16rpx;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+}
+.u-opacity.data-v-76607444 {
+  opacity: 0.5;
+}
+.u-btn-picker--primary.data-v-76607444 {
+  color: #606266;
+}
+.u-btn-picker--tips.data-v-76607444 {
+  color: #FE5B07;
+}
+

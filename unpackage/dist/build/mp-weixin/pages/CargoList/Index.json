@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "j-picker": "/components/jPicker/jPicker",
+    "itmister-date-picker": "/components/itmister-date-picker/itmister-date-picker"
+  }
+}
