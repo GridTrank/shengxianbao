@@ -271,7 +271,34 @@
 						"navigationBarTitleText": "余额明细",
 						"enablePullDownRefresh": false
 					}
-				},{
+				}, {
+				"path": "Arrearages/index",
+				"style": {
+					"navigationBarTitleText": "欠款",
+					"enablePullDownRefresh": false
+				}
+			}, {
+				"path": "Coupon/index",
+				"style": {
+					"navigationBarTitleText": "优惠券",
+					"enablePullDownRefresh": false,
+					"app-plus": {
+						"titleNView": {
+							"buttons": [{
+								"text": "已失效",
+								"fontSize": "28upx",
+								"color": "#2F2F2F"
+							}]
+						}
+					}
+				}
+			}, {
+				"path": "Coupon/loseEfficacy",
+				"style": {
+					"navigationBarTitleText": "失效优惠券",
+					"enablePullDownRefresh": false
+				}
+			},{
 					"path" : "Set/Set",
 					"style" :                                                                                    
 					{
