@@ -60,14 +60,14 @@
 			.coupon {
 				display: flex;
 				justify-content: space-between;
-				overflow: hidden;
-				border-radius: 10px;
+				border-radius: 10upx;
 				height: 220upx;
 				margin-bottom: 26upx;
 			}
 	
 			.coupon_info {
 				flex:2;
+				border-radius: 10upx 0 0 10upx;
 				background-color: #fff;
 				position: relative;
 				flex-direction: row;
@@ -106,6 +106,7 @@
 			}
 	
 			.coupon-money {
+				border-radius: 0 10upx 10upx 0;
 				justify-content: center;
 				flex-shrink: 0;
 				width: 240upx;
@@ -116,7 +117,7 @@
 					content: "";
 					width: 20px;
 					height: 20px;
-					background-color: #F7F7F7;
+					background-color: #f2f2f2;
 					position: absolute;
 					left: -10px;
 					bottom:-10px;
@@ -127,7 +128,7 @@
 					content: "";
 					width: 20px;
 					height: 20px;
-					background-color: #F7F7F7;
+					background-color: #f2f2f2;
 					position: absolute;
 					left: -10px;
 					top:-10px;

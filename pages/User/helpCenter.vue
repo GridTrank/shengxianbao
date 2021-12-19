@@ -4,7 +4,7 @@
 			<text class="label_l">帮助中心</text>
 		</view>
 		<view class="list row mt30">
-			<view class="item column mt20" v-for="(item,index) in list" :key="index">
+			<view class="item column mt20" v-for="(item,index) in list" :key="index" @click="navTo(item.nav)">
 				<image :src="item.src" mode="widthFix"></image>
 				<text>{{item.label}}</text>
 			</view>
@@ -20,15 +20,19 @@
 					{
 						label:'售后规则',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/shouhou.png',	
+						nav:"/pagesA/Help/afterRules"
 					},{
 						label:'服务条款',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/tiaokuan.png',	
+						nav:"/pagesA/Help/userAgreement"
 					},{
 						label:'关于我们',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/guanyu.png',	
+						nav:"/pagesA/Help/about"
 					},{
 						label:'反馈建议',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/fankui.png',	
+						nav:"/pagesA/Help/feedback"
 					}
 				]
 			};

@@ -58,6 +58,9 @@
 			background: #FFFFFF;
 			z-index: 2;
 			box-shadow: 0px 0px 14upx 0px rgba(187, 187, 187, 0.5);
+			.icon-jinru{
+				font-size: 48upx;
+			}
 		}
 	}
 </style>

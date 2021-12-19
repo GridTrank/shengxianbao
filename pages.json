@@ -253,6 +253,42 @@
 					"enablePullDownRefresh": false
 				}
 			},{
+				"path": "Help/about",
+				"style": {
+					"navigationBarTitleText": "关于我们",
+					"enablePullDownRefresh": false
+				}
+			},{
+				"path": "Help/afterRules",
+				"style": {
+					"navigationBarTitleText": "售后规则",
+					"enablePullDownRefresh": false
+				}
+			},{
+				"path": "Help/businessLicense",
+				"style": {
+					"navigationBarTitleText": "营业执照",
+					"enablePullDownRefresh": false
+				}
+			},{
+				"path": "Help/userAgreement",
+				"style": {
+					"navigationBarTitleText": "用户协议",
+					"enablePullDownRefresh": false
+				}
+			},{
+				"path": "Help/feedback",
+				"style": {
+					"navigationBarTitleText": "反馈建议",
+					"enablePullDownRefresh": false
+				}
+			},{
+				"path": "Help/rule",
+				"style": {
+					"navigationBarTitleText": "规则",
+					"enablePullDownRefresh": false
+				}
+			},{
 				"path": "Set/Set",
 				"style": {
 					"navigationBarTitleText": "设置",
