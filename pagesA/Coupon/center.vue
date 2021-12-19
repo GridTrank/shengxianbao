@@ -1,7 +1,7 @@
 <template>
 	<view class="page_wrap ">
-		<CouponList></CouponList>
-		<view class="btn" @click="navTo('/pagesA/Coupon/center')">领券中心<span class="iconfont icon-jinru"></span></view>
+		<CouponList type="get"></CouponList>
+		<view class="btn" @click="navTo('/pages/Home/index')">返回商城订货<span class="iconfont icon-jinru"></span></view>
 	</view>
 </template>
 
@@ -17,9 +17,7 @@
 			CouponList
 		},
 		methods: {
-			onNavigationBarButtonTap(){
-				this.navTo('/pagesA/Coupon/loseEfficacy')
-			}
+
 		}
 	}
 </script>
