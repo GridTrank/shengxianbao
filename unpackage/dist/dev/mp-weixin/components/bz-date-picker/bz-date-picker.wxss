@@ -6,7 +6,6 @@
  */
 view.data-v-76607444, scroll-view.data-v-76607444, swiper-item.data-v-76607444 {
   display: block;
-  flex-direction: column;
   flex-shrink: 0;
   flex-grow: 0;
   flex-basis: auto;

@@ -286,7 +286,22 @@
 					"enablePullDownRefresh": false
 				}
 			}
-		]
+		    ,{
+                "path" : "StockManage/Index",
+                "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+            },{
+                "path" : "StockManage/Detail",
+                "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+            }
+        ]
 	}],
 	"preloadRule": {
 		"pages/Home/Home": {

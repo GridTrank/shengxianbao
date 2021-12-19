@@ -22,10 +22,11 @@
 
 <script>
 	export default{
-		data(){
-			return{
-				list:[
-					{
+		props:{
+			list:{
+				type:Array,
+				default:()=>{
+					return [{
 						label:'蔬菜',
 						childList:[
 							{label:'青菜',checked:false},
@@ -46,9 +47,13 @@
 							{label:'青菜',checked:false},
 							{label:'青菜',checked:false}
 						]
-					}
-					
-				],
+					}]
+				}
+			}
+		},
+		data(){
+			return{
+				
 			}
 		},
 		methods:{

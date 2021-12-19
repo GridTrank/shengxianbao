@@ -34,12 +34,12 @@
 		components:{list},
 		data() {
 			return {
-				pageType:'',
+				pageType:'search',
 				showFilter:false
 			};
 		},
 		onLoad(e) {
-			this.pageType=e.pageType
+			// this.pageType=e.pageType
 		},
 		methods:{
 			clickLeft(){

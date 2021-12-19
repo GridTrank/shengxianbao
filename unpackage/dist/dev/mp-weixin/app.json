@@ -39,14 +39,15 @@
         "Balance/detail",
         "Arrearages/index",
         "Coupon/index",
-        "Coupon/loseEfficacy",
         "Coupon/center",
         "Integral/detail",
         "Set/Set",
         "Set/AccountSafe/index",
         "Set/AccountSafe/changePhone",
         "StockQuery/index",
-        "StockQuery/search"
+        "StockQuery/search",
+        "StockManage/Index",
+        "StockManage/Detail"
       ]
     }
   ],
@@ -113,6 +114,5 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

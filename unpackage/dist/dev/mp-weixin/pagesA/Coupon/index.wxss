@@ -7,6 +7,9 @@
 .page_wrap.data-v-16c81dfd {
   padding-bottom: 120rpx;
 }
+.page_wrap .coupon_tab.data-v-16c81dfd {
+  background-color: #fff;
+}
 .page_wrap .btn.data-v-16c81dfd {
   width: 100%;
   position: fixed;

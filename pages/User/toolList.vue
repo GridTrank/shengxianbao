@@ -72,6 +72,14 @@
 						label:'领券中心',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/lingquan.png',
 						link:''
+					},{
+						label:'出库单',
+						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/tuihuo.png',
+						link:'/pagesA/StockManage/Index?pageType=out'
+					},{
+						label:'入库单',
+						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/tuihuo.png',
+						link:'/pagesA/StockManage/Index?pageType=in'
 					},
 					
 				]

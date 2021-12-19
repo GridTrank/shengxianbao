@@ -19,6 +19,7 @@
   flex: 2;
   background-color: #fff;
   position: relative;
+  flex-direction: row;
   padding: 26rpx 10rpx 26rpx 40rpx;
 }
 .coupon_wrap .coupon_info.data-v-c00e9c60::before {

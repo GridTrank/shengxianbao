@@ -70,6 +70,7 @@
 				flex:2;
 				background-color: #fff;
 				position: relative;
+				flex-direction: row;
 				&::before{
 					content: "";
 					border-right: 1px dashed #fff;
