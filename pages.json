@@ -238,24 +238,9 @@
 				"path": "Coupon/index",
 				"style": {
 					"navigationBarTitleText": "优惠券",
-					"enablePullDownRefresh": false,
-					"app-plus": {
-						"titleNView": {
-							"buttons": [{
-								"text": "已失效",
-								"fontSize": "28upx",
-								"color": "#2F2F2F"
-							}]
-						}
-					}
-				}
-			}, {
-				"path": "Coupon/loseEfficacy",
-				"style": {
-					"navigationBarTitleText": "失效优惠券",
 					"enablePullDownRefresh": false
 				}
-			}, {
+			},  {
 				"path": "Coupon/center",
 				"style": {
 					"navigationBarTitleText": "领券中心",

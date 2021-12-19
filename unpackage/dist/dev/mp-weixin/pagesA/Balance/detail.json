@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "余额明细",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "u-datetime-picker": "/uni_modules/uview-ui/components/u-datetime-picker/u-datetime-picker"
+  }
 }

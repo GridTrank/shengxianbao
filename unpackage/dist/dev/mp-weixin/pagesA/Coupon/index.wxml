@@ -1,0 +1,1 @@
+<view class="page_wrap  data-v-16c81dfd"><coupon-list vue-id="7b87baae-1" class="data-v-16c81dfd" bind:__l="__l"></coupon-list><view data-event-opts="{{[['tap',[['navTo',['/pagesA/Coupon/center']]]]]}}" class="btn data-v-16c81dfd" bindtap="__e">领券中心<label class="iconfont icon-jinru _span data-v-16c81dfd"></label></view></view>

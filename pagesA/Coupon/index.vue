@@ -1,6 +1,7 @@
 <template>
 	<view class="page_wrap ">
-		<CouponList></CouponList>
+		<u-tabs class="coupon_tab"  lineColor="#FE5B07" :activeStyle="{color: '#FE5B07',}" :list="list" @click="tab"></u-tabs>
+		<CouponList :type="couponTab" :state="activeTab"></CouponList>
 		<view class="btn" @click="navTo('/pagesA/Coupon/center')">领券中心<span class="iconfont icon-jinru"></span></view>
 	</view>
 </template>
@@ -10,7 +11,18 @@
 	export default {
 		data() {
 			return {
-
+				list: [{
+					name: '未使用',
+					type:'list'
+				}, {
+					name: '已使用',
+					type:'used'
+				}, {
+					name: '已过期',
+					type:'used'
+				}],
+				couponTab:'list',
+				activeTab:'已使用'
 			}
 		},
 		components:{
@@ -19,6 +31,10 @@
 		methods: {
 			onNavigationBarButtonTap(){
 				this.navTo('/pagesA/Coupon/loseEfficacy')
+			},
+			tab(item){
+				this.activeTab = item.name
+				this.couponTab=item.type
 			}
 		}
 	}
@@ -27,6 +43,9 @@
 <style scoped lang="scss">
 	.page_wrap {
 		padding-bottom: 120upx;
+		.coupon_tab {
+			background-color: #fff;
+		}
 		.btn{
 			width: 100%;
 			position: fixed;
