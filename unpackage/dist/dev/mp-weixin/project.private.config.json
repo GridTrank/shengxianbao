@@ -23,6 +23,12 @@
           "pathName": "pages/User/User",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pagesA/StockManage/SelectGood",
+          "pathName": "pagesA/StockManage/SelectGood",
+          "query": "pageType=out",
+          "scene": null
         }
       ]
     }

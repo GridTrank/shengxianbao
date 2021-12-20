@@ -4,14 +4,6 @@
  * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
-view, scroll-view, swiper-item {
-  display: block;
-  flex-shrink: 0;
-  flex-grow: 0;
-  flex-basis: auto;
-  align-items: stretch;
-  align-content: flex-start;
-}
 @font-face {
   font-family: 'uicon-iconfont';
   src: url("https://at.alicdn.com/t/font_2225171_8kdcwk4po24.ttf") format("truetype");

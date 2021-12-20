@@ -41,13 +41,21 @@
         "Coupon/index",
         "Coupon/center",
         "Integral/detail",
+        "Help/about",
+        "Help/afterRules",
+        "Help/businessLicense",
+        "Help/userAgreement",
+        "Help/feedback",
+        "Help/rule",
         "Set/Set",
         "Set/AccountSafe/index",
         "Set/AccountSafe/changePhone",
         "StockQuery/index",
         "StockQuery/search",
         "StockManage/Index",
-        "StockManage/Detail"
+        "StockManage/Detail",
+        "StockManage/AddPage1",
+        "StockManage/SelectGood"
       ]
     }
   ],
@@ -114,5 +122,6 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

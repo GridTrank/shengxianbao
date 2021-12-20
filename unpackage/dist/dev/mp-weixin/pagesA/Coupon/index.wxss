@@ -23,4 +23,7 @@
   z-index: 2;
   box-shadow: 0px 0px 14rpx 0px rgba(187, 187, 187, 0.5);
 }
+.page_wrap .btn .icon-jinru.data-v-16c81dfd {
+  font-size: 48rpx;
+}
 

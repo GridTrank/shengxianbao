@@ -7,7 +7,11 @@
 		></search-comprehensive>
 		
 		<view class="list">
-			<view class="item model-wrap" v-for="(item,index) in 6" :key="index">
+			<view 
+			class="item model-wrap" 
+			v-for="(item,index) in 6" 
+			@click="navTo('./Detail')"
+			:key="index">
 				<view class="top row jc_sb">
 					<view class="no f28-c333">	
 						<text class="iconfont icon-xuanze"></text>DD1234566
@@ -39,7 +43,7 @@
 			</view>
 		</view>
 		<!-- 新增按钮 -->
-		<view class="add_btn" @click="navTo('./Add?pageType='+pageType)">
+		<view class="add_btn" @click="navTo('./AddPage1?pageType='+pageType)">
 			+
 		</view>
 	</view>

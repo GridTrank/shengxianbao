@@ -20,49 +20,18 @@
   padding-top: 30rpx;
 }
 .page_wrap .goods {
-  padding: 30rpx 0;
   background-color: #fff;
-  border-radius: 8rpx;
 }
-.page_wrap .goods .title {
-  margin: 30rpx;
-}
-.page_wrap .goods .list .item {
+.page_wrap .goods .slot_wrap .item {
   border-bottom: 1px solid #E7E7E7;
-  padding-bottom: 30rpx;
 }
-.page_wrap .goods .list .item .item_wrap {
-  align-items: flex-start;
-  padding: 30rpx;
-}
-.page_wrap .goods .list .item .img {
-  width: 120rpx;
-  margin-right: 20rpx;
-}
-.page_wrap .goods .list .item .info {
-  width: 460rpx;
-}
-.page_wrap .goods .list .item .info .bao {
-  background-color: #fff4ed;
-  color: #FE5B07;
-  font-size: 20rpx;
-  border-radius: 2rpx;
-  padding: 0 4rpx;
-  margin-right: 10rpx;
-}
-.page_wrap .goods .list .item .info .num_util {
-  color: #FE5B07;
-}
-.page_wrap .goods .list .item .info .total {
+.page_wrap .goods .slot_wrap .total {
   color: #D30000;
   font-size: 24rpx;
   width: 100%;
   text-align: right;
   padding-top: 20rpx;
   border-top: 1px solid #E7E7E7;
-}
-.page_wrap .goods .statistics {
-  padding: 30rpx 30rpx 0 30rpx;
 }
 .page_wrap .btn_wrap {
   position: fixed;

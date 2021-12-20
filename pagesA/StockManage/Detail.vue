@@ -1,28 +1,60 @@
 <template>
 	<view class="page_wrap">
 		
-		<view class="list">
+		<view class="info_list mt20">
 			<view class="item row jc_sb">
 				<view class="left f28-c333">
-					出库仓库
+					{{pageTxt}}仓库
 				</view>
 				<view class="f28-c666">
 					仓库
 				</view>
 			</view>
+			<view class="item row jc_sb">
+				<view class="left f28-c333">
+					日期
+				</view>
+				<view class="f28-c666">
+					2021-12-20
+				</view>
+			</view>
+			<view class="item row jc_sb">
+				<view class="left f28-c333">
+					订单号
+				</view>
+				<view class="f28-c666">
+					123456
+				</view>
+			</view>
+			<view class="item row jc_sb">
+				<view class="left f28-c333">
+					状态
+				</view>
+				<view class="f28-c666">
+					待审核
+				</view>
+			</view>
 		</view>
-		
+		<view class="slot_wrap">
+			<detail-list :showEdit="showEdit"> </detail-list>
+		</view>
 		<view class="foot_btn row jc_sb">
 			<view class="nums row">
 				<view class="left row">
-					<view class="iconfont ">出库</view> 
-					<view>合计</view> 
+					{{pageTxt}}
 				</view>
 				<view class="right">3</view>
 			</view>
 			<view class="btns">
-				<text class="btn left">作废</text>
-				<text class="btn right">审核</text>
+				<text class="edit" @click="showEdit=true"><text class="iconfont icon-bianji"></text>编辑</text>
+				<template v-if="showEdit">
+					<text class="btn left" @click="showEdit=false">取消</text>
+					<text class="btn right" @click="submit(1)">保存</text>
+				</template>
+				<template v-else>
+					<text class="btn left" @click="submit(2)">作废</text>
+					<text class="btn right" @click="submit(3)">审核</text>
+				</template>
 			</view>
 		</view>
 		
@@ -35,7 +67,7 @@
 			return {
 				pageType:'',
 				pageTxt:'',
-			
+				showEdit:false
 			};
 		},
 		onLoad(e) {
@@ -54,7 +86,15 @@
 			
 		},
 		methods:{
-			
+			submit(val){
+				uni.showModal({
+					title:'提示',
+					content:'内容',
+					success:(res)=> {
+						console.log(res)
+					}
+				})
+			}
 		}
 	}
 </script>
@@ -62,7 +102,17 @@
 <style scoped lang="scss">
 .page_wrap{
 	padding-bottom: 200upx;
-	
+	.info_list{
+		background-color: #fff;
+		padding:0 30upx;
+		.item{
+			padding: 30upx 0;
+			border-bottom: 2upx solid #f1f1f1;
+			&:last-child{
+				border: none;
+			}
+		}
+	}
 	
 	.foot_btn{
 		width: 100%;
@@ -90,6 +140,11 @@
 		}
 		.btns{
 			margin-right: 30upx;
+			.edit{
+				margin-right: 60upx;
+				color: $base-color;
+				font-size: 28upx;
+			}
 			.btn{
 				width: 156upx;
 				height: 60upx;

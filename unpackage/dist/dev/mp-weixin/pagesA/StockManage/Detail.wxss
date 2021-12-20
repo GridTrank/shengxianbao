@@ -7,6 +7,17 @@
 .page_wrap.data-v-43d58b8e {
   padding-bottom: 200rpx;
 }
+.page_wrap .info_list.data-v-43d58b8e {
+  background-color: #fff;
+  padding: 0 30rpx;
+}
+.page_wrap .info_list .item.data-v-43d58b8e {
+  padding: 30rpx 0;
+  border-bottom: 2rpx solid #f1f1f1;
+}
+.page_wrap .info_list .item.data-v-43d58b8e:last-child {
+  border: none;
+}
 .page_wrap .foot_btn.data-v-43d58b8e {
   width: 100%;
   position: fixed;
@@ -34,6 +45,11 @@
 }
 .page_wrap .foot_btn .btns.data-v-43d58b8e {
   margin-right: 30rpx;
+}
+.page_wrap .foot_btn .btns .edit.data-v-43d58b8e {
+  margin-right: 60rpx;
+  color: #FE5B07;
+  font-size: 28rpx;
 }
 .page_wrap .foot_btn .btns .btn.data-v-43d58b8e {
   width: 156rpx;

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "选择商品",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "search-comprehensive": "/components/search-comprehensive/search-comprehensive",
+    "detail-list": "/components/detail-list/detail-list",
+    "uni-model": "/components/uniModel/uniModel",
+    "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup",
+    "filter-page": "/components/filter-page/filter-page"
+  }
+}

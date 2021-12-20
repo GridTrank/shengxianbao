@@ -117,6 +117,10 @@ page{
 	font-size: 24rpx;
 	color: #333;
 }
+.f28-c666{
+	font-size: 26rpx;
+	color: #666;
+}
 .f_dc{
 	color: #FE5B07;
 }
@@ -161,9 +165,9 @@ page{
 }
 @font-face {
   font-family: "iconfont"; /* Project id 2986659 */
-  src: url('//at.alicdn.com/t/font_2986659_xviivxdi8l.woff2?t=1639905328687') format('woff2'),
-       url('//at.alicdn.com/t/font_2986659_xviivxdi8l.woff?t=1639905328687') format('woff'),
-       url('//at.alicdn.com/t/font_2986659_xviivxdi8l.ttf?t=1639905328687') format('truetype');
+  src: url('//at.alicdn.com/t/font_2986659_0l592lfs6ak.woff2?t=1639995950132') format('woff2'),
+       url('//at.alicdn.com/t/font_2986659_0l592lfs6ak.woff?t=1639995950132') format('woff'),
+       url('//at.alicdn.com/t/font_2986659_0l592lfs6ak.ttf?t=1639995950132') format('truetype');
 }
 .iconfont {
   font-family: "iconfont" !important;
@@ -171,6 +175,12 @@ page{
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.icon-shanchu:before {
+  content: "\e8b6";
+}
+.icon-bianji:before {
+  content: "\e609";
 }
 .icon-weixuanze:before {
   content: "\e72f";
