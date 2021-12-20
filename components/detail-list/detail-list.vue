@@ -150,7 +150,7 @@
 				}
 				if(val=='two'){
 					uni.setStorageSync("stockData",this.dataList)
-					this.navTo('./AddPage1?pageType='+this.pageType)
+					this.navTo('./AddPage?pageType='+this.pageType)
 				}else if(val=='three'){
 					uni.showModal({
 						title:'提示',

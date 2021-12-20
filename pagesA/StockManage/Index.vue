@@ -43,7 +43,7 @@
 			</view>
 		</view>
 		<!-- 新增按钮 -->
-		<view class="add_btn" @click="navTo('./AddPage1?pageType='+pageType)">
+		<view class="add_btn" @click="navTo('./AddPage?pageType='+pageType)">
 			+
 		</view>
 	</view>
