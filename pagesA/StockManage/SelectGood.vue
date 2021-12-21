@@ -10,21 +10,10 @@
 		
 		<detail-list 
 		:pageType='pageType' 
+		:pageTxt="pageTxt"
 		nowParentPage='SelectGoopd'
 		:showEdit="showEdit">
 		</detail-list>
-		
-		
-
-		
-		<uniModel 
-		:show="showModel"
-		:title='modelTitle'
-		:subTitle="subTitle"
-		@confirmModel="confirmModel"
-		@cancelModel="cancelModel"
-		>
-		</uniModel>
 		
 		<u-popup :show="showFilter" mode="right" @close="showFilter=false">
 			<filter-page></filter-page>
@@ -42,7 +31,6 @@
 				showFilter:false,
 				modelTitle:'提示',
 				subTitle:'请输入商品数量',
-				showModel:false,
 				showEdit:false,
 				datas: [{
 						img: '../../static/goods_avatar.png',
@@ -64,14 +52,32 @@
 				isCut:true,
 				goodsIndex:'',
 				pageType:'',
+				pageTxt:'',
 			}
 		},
-		created() {
-			
-		},
 		onLoad(e) {
+			let barTitle
+			if(e.pageType=='out'){
+				barTitle='新增出库单'
+				this.pageTxt='出库'
+			}else if(e.pageType=='in'){
+				barTitle='新增入库单'
+				this.pageTxt='入库'
+			}else if(e.pageType=='overflow'){
+				barTitle='新增报溢单'
+				this.pageTxt='报溢'
+			}else if(e.pageType=='return'){
+				barTitle='新增退货单'
+				this.pageTxt='退货'
+			}else if(e.pageType=='inventory'){
+				barTitle='新增盘点单'
+				this.pageTxt='盘点'
+			}else if(e.pageType=='frmLoss'){
+				barTitle='新增报损单'
+				this.pageTxt='报损'
+			}
 			this.pageType=e.pageType
-		
+			
 		},
 		methods: {
 			
@@ -87,7 +93,7 @@
 		/deep/ .list{
 			padding: 0;
 			.info{
-				border-bottom: 2upx solid #f1f1f1;
+				// border-bottom: 2upx solid #f1f1f1;
 				padding-bottom: 20upx;
 			}
 			.bottom_wrap{

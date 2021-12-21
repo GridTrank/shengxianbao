@@ -9,12 +9,14 @@
 		<view class="list">
 			<view 
 			class="item model-wrap" 
-			v-for="(item,index) in 6" 
-			@click="navTo('./Detail')"
+			v-for="(item,index) in dataList" 
+			@click="navTo('./Detail?pageType='+pageType)"
 			:key="index">
 				<view class="top row jc_sb">
-					<view class="no f28-c333">	
-						<text class="iconfont icon-xuanze"></text>DD1234566
+					<view class="no f28-c333" @click.stop="checkedHandle(item)">	
+						<text v-if="item.checked==2" class="iconfont icon-xuanze"></text>
+						<text v-else class="iconfont icon-weixuanze"></text>
+						DD1234566
 					</view>
 					<view class="status">
 						待审核
@@ -27,15 +29,30 @@
 						<text class="price">¥39.00</text>
 					</view>
 				</view>
+				<view class="handle_wrap row">
+					<view class="handle_btn h1">
+						<text class="iconfont icon-shenhe"></text>审核
+					</view>
+					<view class="handle_btn h1" @click.stop="navTo('./Detail?pageType='+pageType+'&showEdit=true')">
+						<text class="iconfont icon-bianji"></text>修改
+					</view>
+					<view class="handle_btn h2">
+						<text class="iconfont icon-shanchu"></text>作废
+					</view>
+					<view class="handle_btn h1">
+						<text class="iconfont icon-dayin"></text>打印
+					</view>
+				</view>
 			</view>
 		</view>
 		<view class="foot_btn row jc_sb">
 			<view class="nums row">
-				<view class="left row">
-					<view class="iconfont icon-weixuanze"></view> 
+				<view class="left row" >
+					<view @click="selectAll(2)" v-if="total<dataList.length" class="iconfont icon-weixuanze"></view>
+					<view @click="selectAll(1)" v-else class="iconfont icon-xuanze"></view>
 					<view>合计</view> 
 				</view>
-				<view class="right">3</view>
+				<view class="right">{{total}}</view>
 			</view>
 			<view class="btns">
 				<text class="btn left">作废</text>
@@ -68,6 +85,13 @@
 					name: '已作废',
 					vlaue:3
 				}],
+				dataList:[
+					{checked:1},
+					{checked:1},
+					{checked:1},
+					{checked:1},
+				],
+				total:0
 			};
 		},
 		onLoad(e) {
@@ -75,19 +99,58 @@
 			if(e.pageType=='out'){
 				barTitle='出库单'
 				this.pageTxt='出库'
-			}else {
+			}else if(e.pageType=='in'){
 				barTitle='入库单'
 				this.pageTxt='入库'
+			}else if(e.pageType=='inventory'){
+				barTitle='盘点单'
+				this.pageTxt='盘点'
+			}else if(e.pageType=='frmLoss'){
+				barTitle='报损单'
+				this.pageTxt='报损'
+			}else if(e.pageType=='overflow'){
+				barTitle='报溢单'
+				this.pageTxt='报溢'
+			}else if(e.pageType=='return'){
+				barTitle='退货单'
+				this.pageTxt='退货'
 			}
+			
 			this.pageType=e.pageType
 			uni.setNavigationBarTitle({
 				title:barTitle
 			})
 			
 		},
+		computed:{
+			
+		},
 		methods:{
 			tab(item){
 				console.log(item)
+			},
+			checkedHandle(item){
+				let nums=0
+				item.checked=item.checked==1?2:1
+				this.dataList.forEach(item=>{
+					if(item.checked==2){
+						nums++
+					}
+				})
+				this.total=nums
+			},
+			selectAll(val){
+				console.log(this.dataList,this.total)
+				
+				if(val==1){
+					this.total=0
+				}else{
+					this.total=this.dataList.length
+				}
+				this.dataList.forEach(item=>{
+					item.checked=val
+				})
+				
 			}
 		}
 	}
@@ -108,10 +171,7 @@
 			background-color: #fff;
 			margin-bottom: 20upx;
 			.top{
-				.iconfont{
-					color:$base-color;
-					margin-right: 10upx;
-				}
+				
 				.status{
 					font-size: 28upx;
 					color: $base-color;
@@ -133,6 +193,25 @@
 					font-size: 36upx;
 				}
 			}
+			.handle_wrap{
+				justify-content: flex-end;
+				margin-top:20upx;
+				padding-top: 20upx;
+				border-top: 2upx solid #f1f1f1;
+				.handle_btn{
+					font-size: 28upx;
+					margin-left: 30upx;
+					text{
+						margin-right: 10upx;
+					}
+				}
+				.h1{
+					color: $base-color;
+				}
+				.h2{
+					color: #999;
+				}
+			}
 
 		}
 	}
@@ -150,10 +229,6 @@
 				color: #333;
 				font-size: 22upx;
 				margin-right: 20upx;
-				.iconfont{
-					color: #D7D7D7;
-					margin-right: 10upx;
-				}
 			}
 			.right{
 				color: $base-color;
@@ -194,6 +269,14 @@
 		font-size: 70upx;
 		color: #fff;
 		font-weight: bold;
+	}
+	.icon-xuanze{
+		color:$base-color;
+		margin-right: 10upx;
+	}
+	.icon-weixuanze{
+		color:#999;
+		margin-right: 10upx;
 	}
 }
 </style>

@@ -175,48 +175,7 @@
 					"navigationBarTitleText": "填写信息",
 					"enablePullDownRefresh": false
 				}
-			}, {
-				"path": "CargoList/Index",
-				"style": {
-					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
-				}
-
-			}, {
-				"path": "CargoList/List",
-				"style": {
-					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
-				}
-
-			}, {
-				"path": "CargoList/Detail",
-				"style": {
-					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
-				}
-
-			}, {
-				"path": "CargoList/Add",
-				"style": {
-					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
-				}
-
-			}, {
-				"path": "CargoList/SelectGood",
-				"style": {
-					"navigationBarTitleText": "选择商品",
-					"enablePullDownRefresh": false
-				}
-			}, {
-				"path": "CargoList/Confirm",
-				"style": {
-					"navigationBarTitleText": "选择商品",
-					"enablePullDownRefresh": false
-				}
-			},
-			{
+			},{
 				"path": "Balance/index",
 				"style": {
 					"navigationBarTitleText": "余额",

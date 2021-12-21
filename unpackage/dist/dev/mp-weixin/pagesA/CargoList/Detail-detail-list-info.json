@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "Detail-detail-list-info": "/pagesA/CargoList/Detail-detail-list-info",
-    "detail-list": "/components/detail-list/detail-list"
-  }
-}

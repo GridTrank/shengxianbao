@@ -24,10 +24,6 @@
   padding-bottom: 20rpx;
   border-bottom: 1px solid #f1f1f1;
 }
-.page_wrap .list .item .top .iconfont.data-v-6d9ae89a {
-  color: #FE5B07;
-  margin-right: 10rpx;
-}
 .page_wrap .list .item .top .status.data-v-6d9ae89a {
   font-size: 28rpx;
   color: #FE5B07;
@@ -45,6 +41,25 @@
   color: #FE5B07;
   font-size: 36rpx;
 }
+.page_wrap .list .item .handle_wrap.data-v-6d9ae89a {
+  justify-content: flex-end;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx solid #f1f1f1;
+}
+.page_wrap .list .item .handle_wrap .handle_btn.data-v-6d9ae89a {
+  font-size: 28rpx;
+  margin-left: 30rpx;
+}
+.page_wrap .list .item .handle_wrap .handle_btn text.data-v-6d9ae89a {
+  margin-right: 10rpx;
+}
+.page_wrap .list .item .handle_wrap .h1.data-v-6d9ae89a {
+  color: #FE5B07;
+}
+.page_wrap .list .item .handle_wrap .h2.data-v-6d9ae89a {
+  color: #999;
+}
 .page_wrap .foot_btn.data-v-6d9ae89a {
   width: 100%;
   position: fixed;
@@ -61,10 +76,6 @@
   color: #333;
   font-size: 22rpx;
   margin-right: 20rpx;
-}
-.page_wrap .foot_btn .nums .left .iconfont.data-v-6d9ae89a {
-  color: #D7D7D7;
-  margin-right: 10rpx;
 }
 .page_wrap .foot_btn .nums .right.data-v-6d9ae89a {
   color: #FE5B07;
@@ -103,5 +114,13 @@
   font-size: 70rpx;
   color: #fff;
   font-weight: bold;
+}
+.page_wrap .icon-xuanze.data-v-6d9ae89a {
+  color: #FE5B07;
+  margin-right: 10rpx;
+}
+.page_wrap .icon-weixuanze.data-v-6d9ae89a {
+  color: #999;
+  margin-right: 10rpx;
 }
 

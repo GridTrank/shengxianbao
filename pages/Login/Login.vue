@@ -1,45 +1,87 @@
 <template>
 	<view class="page_wrap">
-		
-		<view class="page_type mt40">
-			<view class="txt">登录</view>
-			<view class="sub_txt mt20"> 没有账号 ？<text class="change" @click="navTo('./register')">注册账号</text> </view>
-		</view>
 		<view class="input_wrap">
 			<u--form ref='form' :model="model" :rules="rules" >
-				<u-form-item prop="account">
-					<view class="input_item">
-						<view class="label">账号</view>
-						<u-input class="mt10" placeholder='请输入账号' border='bottom' v-model="model.account"></u-input>
-					</view>
-				</u-form-item>
-				<u-form-item prop="password">
-					<view class="input_item mt40">
-						<view class="label">密码</view>
-						<u-input type='password' class="mt10" placeholder='请输入密码' border='bottom' v-model="model.password">
-							<template slot="suffix">
-								<text class="forget" @click="navTo('./find')">忘记密码？</text>
-							</template>
-						</u-input>
-					</view>
-				</u-form-item>
+				<template v-if="loginType=='account'">
+					<u-form-item prop="account">
+						<view class="input_item">
+							<u-input  placeholder='请输入账号' border='bottom' v-model="model.account">
+								<template slot="prefix">
+									<text class="label" >账号</text>
+								</template>
+							</u-input>
+						</view>
+					</u-form-item>
+					<u-form-item prop="password">
+						<view class="input_item ">
+							<u-input type='password' placeholder='请输入密码' border='none' v-model="model.password">
+								<template slot="prefix">
+									<text class="label" >密码</text>
+								</template>
+								<template slot="suffix">
+									<text class="forget" @click="navTo('./find')">忘记密码？</text>
+								</template>
+							</u-input>
+						</view>
+					</u-form-item>
+				</template>
+				<template v-else>
+					<u-form-item prop="phone">
+						<view class="input_item">
+							<u-input max placeholder='请输入手机号' border='bottom' v-model="model.phone">
+								<template slot="prefix">
+									<text class="label" >手机号</text>
+								</template>
+							</u-input>
+						</view>
+					</u-form-item>
+					<u-form-item prop="code">
+						<view class="input_item ">
+							<u-input  placeholder='请输入验证码' border='none' v-model="model.code">
+								<template slot="prefix">
+									<text class="label">验证码</text>
+								</template>
+								<template slot="suffix">
+									<u-code
+										ref="uCode"
+										@change="codeChange"
+										seconds="60"
+										changeText="X秒重新获取"
+									></u-code>
+									<view class="get_code" @tap="getCode">
+										{{tips}}
+									</view>
+								</template>
+							</u-input>
+						</view>
+					</u-form-item>
+				</template>
+				
 			</u--form>
+			
+			<view class="agreement row">
+				<image 
+				@click="agreeHandle" 
+				:src="isAgree?
+				'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quanzhong%402x.png':
+				'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quan1%402x.png'" 
+				mode="widthFix">
+				</image>
+				<text>我已阅读并同意以下条款<text class="link">《好运来服务协议及隐私政策》》</text></text>
+			</view>
 		</view>
-		<view class="agreement row">
-			<image 
-			@click="agreeHandle" 
-			:src="isAgree?
-			'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quanzhong%402x.png':
-			'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quan1%402x.png'" 
-			mode="widthFix">
-			</image>
-			<text>已阅读并同意<text class="link">《升鲜宝使用协议》</text></text>
-		</view>
+		
 		
 		<view class="btn" @click="login">
 			登录
 		</view>
-		<image class="logo" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/sxb%402x.png" mode="widthFix"></image>
+		<view class="btn code" @click="changeLogin">
+			{{loginType=='account'?'验证码登录':'账号登录'}}
+		</view>
+		<view class="btn code" @click="navTo('./register')">
+			没有账号？去注册
+		</view>
+		
 	</view>
 </template>
 
@@ -56,7 +98,9 @@
 					password:[
 						{required:true,message:'请输入密码',trigger:'blur'}
 					]
-				}
+				},
+				tips:'',
+				loginType:'account'
 			};
 		},
 	
@@ -70,42 +114,32 @@
 				}).catch(errors => {
 					
 				})
-			}
+			},
+			changeLogin(){
+				this.loginType=this.loginType=='account'?'phone':'account'
+				console.log(this.loginType)
+			},
+			codeChange(text) {
+			  this.tips = text;
+			},
+			getCode() {
+			    if (this.$refs.uCode.canGetCode) {
+			        uni.$u.toast('验证码已发送');
+			        this.$refs.uCode.start();
+			    } else {
+					uni.$u.toast('倒计时结束后再发送');
+			    }
+			},
 		}
 	}
 </script>
 
 <style scoped lang="scss">
 .page_wrap{
-	background-color: #fff;
-	min-height: calc( 100vh - 74px );
-	padding: 30upx;
-	.page_type{
-		.txt{
-			color: #333;
-			font-size: 48upx;
-			font-weight: bold;
-			position: relative;
-			&::after{
-				content: "";
-				display: block;
-				position: absolute;
-				bottom: 0;
-				width: 92upx;
-				height: 10upx;
-				background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
-			}
-		}
-		.sub_txt{
-			font-size: 24upx;
-			color: #666;
-			.change{
-				color: $base-color;
-			}
-		}
-	}
+	margin-top: 30upx;
 	.input_wrap{
-		margin-top: 100upx;
+		padding: 30upx;
+		background-color: #fff;
 		/deep/ .u-input{
 			padding: 12upx 0 !important;
 		}
@@ -118,15 +152,20 @@
 			.label{
 				color: #333;
 				font-size: 32upx;
+				margin-right: 80upx;
 			}
 			.forget{
 				color: $base-color;
 				font-size: 28upx;
 			}
+			.get_code{
+				color: #FD4D00;
+				font-size: 28upx;
+			}
 		}
 	}
 	.agreement{
-		margin-top: 100upx;
+		margin-top: 80upx;
 		image{
 			width: 34upx;
 			margin-right: 10upx;
@@ -143,16 +182,18 @@
 		text-align: center;
 		color: #fff;
 		font-size: 36upx;
-		font-weight: bold;
 		border-radius: 50upx;
 		background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
-		margin-top: 28upx;
-	}
-	.logo{
-		width: 344upx;
 		margin: auto;
-		display: block;
-		margin-top: 60upx;
+		margin-top: 50upx;
+		width: 90%;
+		
 	}
+	.code{
+		color: #F87523;
+		background: #fff;
+		border:2upx solid #F87523
+	}
+	
 }
 </style>

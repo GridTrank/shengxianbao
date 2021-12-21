@@ -26,6 +26,7 @@
   padding: 30rpx 0;
   background-color: #fff;
   border-top: 1px solid #f1f1f1;
+  z-index: 111;
 }
 .page_wrap .foot_btn .nums.data-v-43d58b8e {
   margin-left: 30rpx;

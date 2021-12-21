@@ -29,6 +29,7 @@
 }
 .data_list .list .item .info.data-v-73a68aba {
   flex: 1;
+  position: relative;
 }
 .data_list .list .item .info .bao.data-v-73a68aba {
   background-color: #fff4ed;
@@ -48,6 +49,11 @@
   text-align: right;
   padding-top: 20rpx;
   border-top: 1px solid #E7E7E7;
+}
+.data_list .list .item .info .kucun.data-v-73a68aba {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 .data_list .list .item .bottom_wrap.data-v-73a68aba {
   background-color: #fff;
@@ -77,6 +83,7 @@
   left: 0;
   width: 100%;
   padding: 30rpx 0;
+  z-index: 111;
 }
 .data_list .foot_wrap .foot_con.data-v-73a68aba {
   padding: 0 30rpx;

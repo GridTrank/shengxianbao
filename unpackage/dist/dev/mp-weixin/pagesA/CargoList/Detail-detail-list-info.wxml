@@ -1,1 +1,0 @@
-<view class="num row jc_sb mt10"><text class="f24-c999">库存数量：10包</text><text class="f24-c999">{{pageTxt+"数量："}}<text class="num_util">1包</text></text></view><view class="total mt20">{{''+pageTxt+'金额:-￥10.00'}}</view>

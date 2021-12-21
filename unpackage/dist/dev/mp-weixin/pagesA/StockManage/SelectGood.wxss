@@ -11,7 +11,6 @@
   padding: 0;
 }
 .page_wrap.data-v-3a0ffc7e .list .info {
-  border-bottom: 2rpx solid #f1f1f1;
   padding-bottom: 20rpx;
 }
 .page_wrap.data-v-3a0ffc7e .list .bottom_wrap {

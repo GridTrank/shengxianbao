@@ -1,6 +1,5 @@
 <template>
 	<view class="page_wrap">
-		
 		<view class="info_list mt20">
 			<view class="item row jc_sb">
 				<view class="left f28-c333">
@@ -36,7 +35,10 @@
 			</view>
 		</view>
 		<view class="slot_wrap">
-			<detail-list :showEdit="showEdit"> </detail-list>
+			<detail-list 
+			:pageTxt="pageTxt"
+			nowParentPage="Detail"
+			:showEdit="showEdit"> </detail-list>
 		</view>
 		<view class="foot_btn row jc_sb">
 			<view class="nums row">
@@ -75,9 +77,24 @@
 			if(e.pageType=='out'){
 				barTitle='出库单详情'
 				this.pageTxt='出库'
-			}else {
+			}else if(e.pageType=='in'){
 				barTitle='入库单详情'
 				this.pageTxt='入库'
+			}else if(e.pageType=='inventory'){
+				barTitle='盘点单详情'
+				this.pageTxt='盘点'
+			}else if(e.pageType=='frmLoss'){
+				barTitle='报损单详情'
+				this.pageTxt='报损'
+			}else if(e.pageType=='overflow'){
+				barTitle='报溢单详情'
+				this.pageTxt='报溢'
+			}else if(e.pageType=='return'){
+				barTitle='退货单详情'
+				this.pageTxt='退货'
+			}
+			if(e.showEdit){
+				this.showEdit=true
 			}
 			this.pageType=e.pageType
 			uni.setNavigationBarTitle({
@@ -122,6 +139,7 @@
 		padding: 30upx 0;
 		background-color: #fff;
 		border-top: 1px solid #f1f1f1;
+		z-index: 111;
 		.nums{
 			margin-left: 30upx;
 			.left{

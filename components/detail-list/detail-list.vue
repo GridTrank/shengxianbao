@@ -22,11 +22,15 @@
 							<text class="bao">包</text>
 							<text class="f24-c999">￥10.00元/包</text>
 						</view>
+						
+						<view class="kucun" v-if="pageType=='inventory'">
+							库存
+						</view>
 					</view>
 				</view>
 				
 				<view class="mt10 bottom_wrap change row" v-if="showEdit || showEditSelf">
-					<text class="iconfont icon-shanchu"></text>
+					<text v-if="nowParentPage=='Detail'" class="iconfont icon-shanchu"></text>
 					<view class="row">
 						<change-num :index="index" @changeNumResult="changeNum1"></change-num> <text class="bg_style1">斤</text>
 					</view>
@@ -35,7 +39,7 @@
 					</view>
 				</view>
 				<view class="mt10 bottom_wrap row" v-if="showSummary">
-					<text class="f24-c333">出库：</text>
+					<text class="f24-c333">{{pageTxt}}：</text>
 					<text class="tip">{{item.sa}}斤({{item.sb}}包)</text>
 				</view>
 			</view>
@@ -43,22 +47,22 @@
 		
 		<view class="foot_wrap" >
 			<view class="foot_con row">
-				<view class="check_wrap">
+				<view class="check_wrap" v-if="nowParentPage!='AddPage'">
 					<view @click="selectAll(2)" v-if="total<dataList.length" class="iconfont icon-weixuanze"></view>
 					<view @click="selectAll(1)" v-else class="iconfont icon-xuanze"></view>
 				</view>
 				<view class="num_wrap row">
-					<text class="label">出库</text> <text class="value">{{total}}</text>
+					<text class="label">{{pageTxt}}</text> <text class="value">{{total}}</text>
 				</view>
 				<view class="btn_wrap row">
 					<view v-if="step=='one'" class="btn" @click="submit('one')">
-						出库
+						{{pageTxt}}
 					</view>
 					<view v-else-if="step=='two'" class="btn" @click="submit('two')">
 						保存
 					</view>
 					<view v-else-if="step=='three'" class="btn" @click="submit('three')">
-						结束出库
+						结束{{pageTxt}}
 					</view>
 				</view>
 			</view>
@@ -91,14 +95,28 @@
 			pageType:{
 				type:String,
 				default:''
+			},
+			pageTxt:{
+				type:String,
+				default:''
 			}
 		},
 		computed:{
 			showSummary(){
-				if(this.showEditSelf || this.showEdit || this.step=='one'){
-					return false
-				}else{
+				if( this.nowParentPage=='AddPage'){
 					return true
+				}else if(this.nowParentPage=='Detail' ){
+					if(this.showEdit){
+						return false
+					}else{
+						return true
+					}
+				}else{
+					if(this.showEditSelf || this.showEdit || this.step=='one'){
+						return false
+					}else{
+						return true
+					}
 				}
 			},
 			dataList:{
@@ -149,7 +167,13 @@
 					this.showEditSelf=false
 				}
 				if(val=='two'){
-					uni.setStorageSync("stockData",this.dataList)
+					let arr=[]
+					this.dataList.forEach(item=>{
+						if(item.checked==2){
+							arr.push(item)
+						}
+					})
+					uni.setStorageSync("stockData",arr)
 					this.navTo('./AddPage?pageType='+this.pageType)
 				}else if(val=='three'){
 					uni.showModal({
@@ -164,6 +188,11 @@
 				}
 			},
 			selectAll(val){
+				if(val==1){
+					this.total=0
+				}else{
+					this.total=this.dataList.length
+				}
 				this.dataList.forEach((item)=>{
 					item.checked=val
 				})
@@ -199,6 +228,7 @@
 				}
 				.info{
 					flex:1;
+					position: relative;
 					.bao{
 						background-color:#fff4ed;
 						color: $base-color;
@@ -217,6 +247,11 @@
 						text-align: right;
 						padding-top: 20upx;
 						border-top: 1px solid #E7E7E7;
+					}
+					.kucun{
+						position: absolute;
+						right: 0;
+						bottom: 0;
 					}
 				}
 				.bottom_wrap{
@@ -250,6 +285,7 @@
 			left: 0;
 			width: 100%;
 			padding: 30upx 0;
+			z-index: 111;
 			.foot_con{
 				padding:0 30upx;
 				.check_wrap{

@@ -4,7 +4,7 @@
   "usingComponents": {
     "u-input": "/uni_modules/uview-ui/components/u-input/u-input",
     "detail-list": "/components/detail-list/detail-list",
-    "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup",
+    "j-picker": "/components/jPicker/jPicker",
     "itmister-date-picker": "/components/itmister-date-picker/itmister-date-picker"
   }
 }

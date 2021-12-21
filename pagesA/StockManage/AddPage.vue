@@ -1,7 +1,7 @@
 <template>
 	<view class="page_wrap">
 		<view class="list mt20">
-			<view class="item row">
+			<view class="item row" @click="showPopHandle(1)">
 				<view class="left ">
 					{{pageTxt}}仓库
 				</view>
@@ -10,7 +10,7 @@
 					<text class="iconfont icon-jinru"></text>
 				</view>
 			</view>
-			<view class="item row" @click="showPopHandle(3)">
+			<view class="item row" @click="showPopHandle(2)">
 				<view class="left ">
 					日期
 				</view>
@@ -35,7 +35,9 @@
 		<view class="slot_wrap" v-if="stockData">
 			<detail-list
 			ref="detailList"
-			:pageType='pageType' 
+			:pageType='pageType'
+			:pageTxt="pageTxt"
+			nowParentPage="AddPage"
 			:datas="stockData"
 			>
 			</detail-list>
@@ -46,12 +48,17 @@
 			选择商品
 		</view>
 		
-		
-		
 		<!-- 弹出框 -->
-		<u-popup :show="showPop" mode="bottom"  @close="showPop=false">
+		<jPicker
+		ref='jPicker'
+		title='选择仓库'
+		:options="columns" 
+		valKey='value'
+		showKey="label"
+		@sure='confirm'
+		>
+		</jPicker>
 			
-		</u-popup>
 		<!-- 时间日期选择 -->
 		<itmister-date-picker ref="dateEl" @dateConfirm="dateConfirm"></itmister-date-picker>
 	</view>
@@ -68,7 +75,8 @@
 				pageType:'',
 				pageTxt:'',
 				remark:'',
-				stockData:null
+				stockData:null,
+				columns:[{label:'仓库1',value:1},{label:'仓库2',value:2}],
 			};
 		},
 		onLoad(e) {
@@ -85,17 +93,22 @@
 			}else if(e.pageType=='return'){
 				barTitle='新增退货单'
 				this.pageTxt='退货'
+			}else if(e.pageType=='inventory'){
+				barTitle='新增盘点单'
+				this.pageTxt='盘点'
+			}else if(e.pageType=='frmLoss'){
+				barTitle='新增报损单'
+				this.pageTxt='报损'
 			}
 			this.pageType=e.pageType
 			uni.setNavigationBarTitle({
 				title:barTitle
 			})
+			this.selectDate=date('Y-m-d',new Date().getTime())
+			
 			if(uni.getStorageSync('stockData')){
 				this.stockData=uni.getStorageSync('stockData')
-				// this.$refs.detailList.step='three'
 			}
-			
-			this.selectDate=date('Y-m-d',new Date().getTime())
 		},
 		mounted() {
 			if(uni.getStorageSync('stockData')){
@@ -104,15 +117,20 @@
 		},
 		methods:{
 			showPopHandle(val){
-				if(val==3){
+				if(val==2){
 					this.$refs.dateEl.show();
 				}else{
-					this.showPop=true
+					this.$refs.jPicker.pickerVisable=true
 				}
 			},
+			// 选择日期
 			dateConfirm(date){
 				console.log(date)
 			    this.selectDate = date;
+			},
+			// 选择仓库
+			confirm(e){
+				console.log(e)
 			}
 		},
 		
