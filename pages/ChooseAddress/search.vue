@@ -64,6 +64,7 @@
 			},
 			//搜索地址
 			searchList() {
+				// #ifdef MP
 				qqmapsdk.getSuggestion({
 					keyword: this.keyword,
 					policy: 1, //默认0，常规策略  policy=1：本策略主要用于收货地址、上门服务地址的填写，
@@ -77,9 +78,13 @@
 						this.list = [];
 					}
 				})
-				// let url=`https://apis.map.qq.com/ws/place/v1/suggestion?key=${config.qqmapWxKey}&region=${this.city || '全国'}&keyword=${this.keyword}&output=jsonp`
-				// this.$jsonp(url).then(res=>{})
-				
+				// #endif
+				// #ifdef H5
+				let url=`https://apis.map.qq.com/ws/place/v1/suggestion?key=${config.qqmapWxKey}&region=${this.city || '全国'}&keyword=${this.keyword}&output=jsonp`
+				this.$jsonp(url).then(res=>{
+					this.list = res.data;
+				})
+				// #endif
 			},
 			bindConfirm(e) {
 				this.keyword = e.detail.value;

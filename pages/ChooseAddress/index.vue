@@ -138,6 +138,7 @@
 				if(this.isSetTempAddress === 1){
 					return;
 				}
+				// #ifdef MP
 				qqmapsdk.reverseGeocoder({
 					location: {
 						latitude: this.position.latitude,
@@ -146,53 +147,60 @@
 					get_poi: 1,
 					poi_options: "page_size=30;page_index=1", 
 					success: res=> {
-						res.result.pois.forEach(poi=>{
-							if(!poi.ad_info){
-								poi.ad_info = {
-									adcode: poi.adcode,
-									city: poi.city,
-									district: poi.district,
-									province: poi.province
-								}
-							}
-						})
-						//有搜索结果时，手动追加到列表顶部
-						if(this.tempAddress){
-							if(this.tempAddress.title != res.result.pois[0].title){
-								if(!this.tempAddress.ad_info){
-									this.tempAddress.ad_info = {
-										adcode: this.tempAddress.adcode,
-										city: this.tempAddress.city,
-										district: this.tempAddress.district,
-										province: this.tempAddress.province
-									}
-								}
-								res.result.pois.unshift(this.tempAddress);
-							}
-							this.tempAddress = null;
-							this.isSetTempAddress = 1;
-							setTimeout(()=>{
-								this.isSetTempAddress = 0;
-							}, 500)
-						}
-						if (s) {
-							const ad_info = res.result.pois[0].ad_info;
-							this.curCity = ad_info.city || '';
-							res.result.pois[0].select = 1
-							this.list = res.result.pois;
-							this.checked = 0;
-						} else {
-							this.list = res.result.pois;
-						}
+						this.initRegion(s,res)
 					},
 					fail: err=> {
 						console.log(err)
 					}
 				})
-				// let url=`https://apis.map.qq.com/ws/geocoder/v1/?key=${config.qqmapWxKey}&location=${this.position.latitude},${this.position.longitude}&get_poi=1&output=jsonp`
-				// this.$jsonp(url).then(res=>{})
+				// #endif
 				
-
+				// #ifdef H5
+				let url=`https://apis.map.qq.com/ws/geocoder/v1/?key=${config.qqmapWxKey}&location=${this.position.latitude},${this.position.longitude}&get_poi=1&output=jsonp`
+				this.$jsonp(url).then(res=>{
+					this.initRegion(s,res)
+				})
+				// #endif
+			},
+			initRegion(s,res){
+				res.result.pois.forEach(poi=>{
+					if(!poi.ad_info){
+						poi.ad_info = {
+							adcode: poi.adcode,
+							city: poi.city,
+							district: poi.district,
+							province: poi.province
+						}
+					}
+				})
+				//有搜索结果时，手动追加到列表顶部
+				if(this.tempAddress){
+					if(this.tempAddress.title != res.result.pois[0].title){
+						if(!this.tempAddress.ad_info){
+							this.tempAddress.ad_info = {
+								adcode: this.tempAddress.adcode,
+								city: this.tempAddress.city,
+								district: this.tempAddress.district,
+								province: this.tempAddress.province
+							}
+						}
+						res.result.pois.unshift(this.tempAddress);
+					}
+					this.tempAddress = null;
+					this.isSetTempAddress = 1;
+					setTimeout(()=>{
+						this.isSetTempAddress = 0;
+					}, 500)
+				}
+				if (s) {
+					const ad_info = res.result.pois[0].ad_info;
+					this.curCity = ad_info.city || '';
+					res.result.pois[0].select = 1
+					this.list = res.result.pois;
+					this.checked = 0;
+				} else {
+					this.list = res.result.pois;
+				}
 			},
 			//地图区域改变
 			onRegionchange(e) {

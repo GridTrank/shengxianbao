@@ -13,9 +13,6 @@
 .page_wrap .input_wrap.data-v-566192be .u-form-item__body {
   padding: 0;
 }
-.page_wrap .input_wrap.data-v-566192be .input_item {
-  width: 100% !important;
-}
 .page_wrap .input_wrap.data-v-566192be .u-form-item__body__right__message {
   margin: 0 !important;
 }

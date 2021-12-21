@@ -186,7 +186,7 @@
 /*!************************************!*\
   !*** D:/工作/shengxianbao/config.js ***!
   \************************************/
-/*! no static exports found */function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var n={qqmapWxKey:"X4MBZ-NHR6K-N2ZJH-AOJMD-TZ2HT-PBFBB"};t.default=n},143:
+/*! no static exports found */function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var n={qqmapWxKey:"BWPBZ-UPPHD-DXF47-HQNX7-EVO4V-A6F7J"};t.default=n},143:
 /*!*********************************************************************!*\
   !*** D:/工作/shengxianbao/uni_modules/uview-ui/libs/mixin/mpShare.js ***!
   \*********************************************************************/

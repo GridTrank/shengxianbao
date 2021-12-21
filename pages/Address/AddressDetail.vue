@@ -124,9 +124,11 @@
 		/deep/ .u-form-item__body{
 			padding: 0;
 		}
+		/* #ifdef H5 */ 
 		/deep/ .input_item{
 			width: 100% !important;
 		}
+		/* #endif */ 
 		/deep/ .u-form-item__body__right__message{
 			margin:0 !important;		}
 		.input_item{
