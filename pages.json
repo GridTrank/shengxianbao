@@ -248,6 +248,12 @@
 					"enablePullDownRefresh": false
 				}
 			},{
+				"path": "Clientele/index",
+				"style": {
+					"navigationBarTitleText": "客户认证",
+					"enablePullDownRefresh": false
+				}
+			},{
 				"path": "Set/Set",
 				"style": {
 					"navigationBarTitleText": "设置",
