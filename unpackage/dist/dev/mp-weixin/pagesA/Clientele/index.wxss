@@ -1,0 +1,61 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.page_wrap.data-v-31a14092 {
+  padding-bottom: 250rpx;
+}
+.page_wrap .from_wrap .u-form-item.data-v-31a14092 {
+  padding: 0 30rpx;
+  background-color: #fff;
+}
+.page_wrap .from_wrap .upload_wrap.data-v-31a14092 {
+  width: 100%;
+  padding-bottom: 20rpx;
+}
+.page_wrap .from_wrap .textarea.data-v-31a14092 {
+  padding: 0;
+  width: 200rpx;
+}
+.page_wrap .from_wrap .upload_img.data-v-31a14092 {
+  width: 528rpx;
+  height: 320rpx;
+  border: 1px dashed #CECECE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #AAAAAA;
+  font-size: 28rpx;
+}
+.page_wrap .from_wrap .upload_img .upload_icon.data-v-31a14092 {
+  font-size: 60rpx;
+}
+.page_wrap .from_wrap .icon.data-v-31a14092 {
+  width: 28rpx;
+}
+.page_wrap .from_wrap .from_item.data-v-31a14092 {
+  height: 60rpx;
+}
+.page_wrap .btn_wrap.data-v-31a14092 {
+  position: fixed;
+  bottom: 0;
+  padding: 30rpx 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+}
+.page_wrap .btn_wrap .btn.data-v-31a14092 {
+  background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
+  width: 90%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  margin: auto;
+  border-radius: 48rpx;
+}
+
