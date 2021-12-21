@@ -70,6 +70,7 @@
 				border-radius: 10upx 0 0 10upx;
 				background-color: #fff;
 				position: relative;
+				flex-direction: row;
 				&::before{
 					content: "";
 					border-right: 1px dashed #fff;

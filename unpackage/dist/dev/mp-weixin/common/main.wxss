@@ -117,6 +117,10 @@ page{
 	font-size: 24rpx;
 	color: #333;
 }
+.f28-c666{
+	font-size: 26rpx;
+	color: #666;
+}
 .f_dc{
 	color: #FE5B07;
 }
@@ -161,9 +165,9 @@ page{
 }
 @font-face {
   font-family: "iconfont"; /* Project id 2986659 */
-  src: url('//at.alicdn.com/t/font_2986659_t1q5vf981k.woff2?t=1639364843810') format('woff2'),
-       url('//at.alicdn.com/t/font_2986659_t1q5vf981k.woff?t=1639364843810') format('woff'),
-       url('//at.alicdn.com/t/font_2986659_t1q5vf981k.ttf?t=1639364843810') format('truetype');
+  src: url('//at.alicdn.com/t/font_2986659_laxdupa1dce.woff2?t=1640065144609') format('woff2'),
+       url('//at.alicdn.com/t/font_2986659_laxdupa1dce.woff?t=1640065144609') format('woff'),
+       url('//at.alicdn.com/t/font_2986659_laxdupa1dce.ttf?t=1640065144609') format('truetype');
 }
 .iconfont {
   font-family: "iconfont" !important;
@@ -171,6 +175,24 @@ page{
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.icon-dayin:before {
+  content: "\e638";
+}
+.icon-shenhe:before {
+  content: "\e64b";
+}
+.icon-shanchu:before {
+  content: "\e8b6";
+}
+.icon-bianji:before {
+  content: "\e609";
+}
+.icon-weixuanze:before {
+  content: "\e72f";
+}
+.icon-xuanze:before {
+  content: "\e6c5";
 }
 .icon-shang:before {
   content: "\e619";

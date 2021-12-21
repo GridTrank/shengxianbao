@@ -36,34 +36,10 @@
 		</view>
 		
 		<view class="goods mt30">
-			<text class="f32-c333 title">商品明细</text>
-			<view class="list ">
-				<view class="item  mt30" v-for="(item,index) in 3" :key="index">
-					<view class="item_wrap row">
-						<image class="img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" mode="widthFix"></image>
-						<view class="info">
-							<view class="row jc_sb">
-								<text class="f28-c333">名称</text>
-								<text class="f24-c999">商品编号：123456</text>
-							</view>
-							<view class="desc mt10 f24-c999">
-								1包约125g
-							</view>
-							<view class="price mt10">
-								<text class="bao">包</text>
-								<text class="f24-c999">￥10.00元/包</text>
-							</view>
-							<view class="num row jc_sb mt10">
-								<text class="f24-c999">库存数量：10包</text>
-								<text class="f24-c999">{{pageTxt}}数量：<text class="num_util">1包</text></text>
-							</view>
-							<view class="total mt20">
-								{{pageTxt}}金额:-￥10.00
-							</view>
-						</view>
-					</view>
-				</view>
+			<view class="slot_wrap">
+				<detail-list ></detail-list>
 			</view>
+			
 			<view class="statistics">
 				<view class="s_item row jc_sb">
 					<text class="f28-c999">{{pageTxt}}商品</text>
@@ -139,53 +115,23 @@
 		}
 	}
 	.goods{
-		padding: 30upx 0;
 		background-color: #fff;
-		border-radius: 8upx;
-		.title{
-			margin: 30upx ;
-		}
-		.list{
-			.item{
+		.slot_wrap{
+			/deep/ .item{
 				border-bottom: 1px solid #E7E7E7;
-				padding-bottom: 30upx;
-				.item_wrap{
-					align-items: flex-start;
-					padding: 30upx;
-				}
-				.img{
-					width: 120upx;
-					margin-right: 20upx;
-				}
-				.info{
-					width: 460upx;
-					.bao{
-						background-color:#fff4ed;
-						color: $base-color;
-						font-size: 20upx;
-						border-radius: 2upx;
-						padding:0 4upx;
-						margin-right: 10upx;
-					}
-					.num_util{
-						color: $base-color;
-					}
-					.total{
-						color: #D30000;
-						font-size: 24upx;
-						width: 100%;
-						text-align: right;
-						padding-top: 20upx;
-						border-top: 1px solid #E7E7E7;
-					}
-				}
-				
+			} 
+			.total{
+				color: #D30000;
+				font-size: 24upx;
+				width: 100%;
+				text-align: right;
+				padding-top: 20upx;
+				border-top: 1px solid #E7E7E7;
 			}
 		}
-		.statistics{
-			padding: 30upx 30upx 0 30upx;
-		}
 	}
+	
+	
 	.btn_wrap{
 		position: fixed;
 		width: 100%;

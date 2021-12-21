@@ -29,24 +29,27 @@
         "AddGood/AddGood",
         "AddGood/fillIn1",
         "AddGood/fillIn2",
-        "CargoList/Index",
-        "CargoList/List",
-        "CargoList/Detail",
-        "CargoList/Add",
-        "CargoList/SelectGood",
-        "CargoList/Confirm",
         "Balance/index",
         "Balance/detail",
         "Arrearages/index",
         "Coupon/index",
-        "Coupon/loseEfficacy",
         "Coupon/center",
         "Integral/detail",
+        "Help/about",
+        "Help/afterRules",
+        "Help/businessLicense",
+        "Help/userAgreement",
+        "Help/feedback",
+        "Help/rule",
         "Set/Set",
         "Set/AccountSafe/index",
         "Set/AccountSafe/changePhone",
         "StockQuery/index",
-        "StockQuery/search"
+        "StockQuery/search",
+        "StockManage/Index",
+        "StockManage/Detail",
+        "StockManage/AddPage",
+        "StockManage/SelectGood"
       ]
     }
   ],
@@ -113,6 +116,5 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

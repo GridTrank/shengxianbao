@@ -1,85 +1,45 @@
 <template>
 	<view class="page_wrap">
-		<view class="page_type mt40">
-			<view class="txt">注册</view>
-			<view class="sub_txt mt20">已有账号 ？<text class="change" @click="navTo('back')">返回登录</text> </view>
-		</view>
 		<view class="input_wrap">
 			<u--form ref='form' :model="model" :rules="rules" >
-				<u-form-item prop="phone">
+				<u-form-item prop="account">
 					<view class="input_item">
-						<u-input max placeholder='请输入手机号码' border='bottom' v-model="model.phone">
+						<u-input  placeholder='请输入账号' border='bottom' v-model="model.account">
 							<template slot="prefix">
-								<text class="iconfont icon-shouji"></text>
+								<text class="label" >账号</text>
 							</template>
 						</u-input>
 					</view>
 				</u-form-item>
-				<u-form-item prop="code">
-					<view class="input_item ">
-						<u-input  placeholder='请输入验证码' border='bottom' v-model="model.code">
-							<template slot="prefix">
-								<text class="iconfont icon-yanzheng"></text>
-							</template>
-							<template slot="suffix">
-								<u-code
-									ref="uCode"
-									@change="codeChange"
-									seconds="60"
-									changeText="X秒重新获取"
-								></u-code>
-								<view class="get_code" @tap="getCode">
-									{{tips}}
-								</view>
-							</template>
-						</u-input>
-					</view>
-				</u-form-item>
-				
 				<u-form-item prop="password">
 					<view class="input_item ">
-						<u-input  placeholder='请输入密码' border='bottom' v-model="model.password">
+						<u-input type='password' placeholder='请输入密码' border='none' v-model="model.password">
 							<template slot="prefix">
-								<text class="iconfont icon-unlock-full"></text>
+								<text class="label" >密码</text>
 							</template>
 						</u-input>
 					</view>
 				</u-form-item>
-				
-				<u-form-item prop="password_">
-					<view class="input_item ">
-						<u-input  placeholder='确认密码' border='bottom' v-model="model.password_">
-							<template slot="prefix">
-								<text class="iconfont icon-unlock-full"></text>
-							</template>
-						</u-input>
-					</view>
-				</u-form-item>
-				<u-form-item >
-					<view class="input_item ">
-						<u-input  placeholder='邀请码(选填)' border='bottom' v-model="model.num">
-							<template slot="prefix">
-								<text class="iconfont icon-yaoqing"></text>
-							</template>
-						</u-input>
-					</view>
 				</u-form-item>
 			</u--form>
+			<view class="agreement row">
+				<image 
+				@click="agreeHandle" 
+				:src="isAgree?
+				'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quanzhong%402x.png':
+				'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quan1%402x.png'" 
+				mode="widthFix">
+				</image>
+				<text>我已阅读并同意以下条款<text class="link">《好运来服务协议及隐私政策》》</text></text>
+			</view>
 		</view>
-		<view class="agreement row">
-			<image 
-			@click="agreeHandle" 
-			:src="isAgree?
-			'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quanzhong%402x.png':
-			'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quan1%402x.png'" 
-			mode="widthFix">
-			</image>
-			<text>已阅读并同意<text class="link">《升鲜宝使用协议》</text></text>
-		</view>
+	
 		<view class="btn" @click="submit">
 			注册
 		</view>
-		<image class="logo" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/sxb%402x.png" mode="widthFix"></image>
+		<view class="btn code" @click="navTo('./Login')">
+			已有账号，去登录
+		</view>
 	</view>
 </template>
 
@@ -128,9 +88,10 @@
 				}
 				cb()
 			},
-			changeType(){
-				this.$emit('changeType','login')
+			agreeHandle(){
+				this.isAgree=!this.isAgree
 			},
+			
 			codeChange(text) {
 			  this.tips = text;
 			},
@@ -157,35 +118,10 @@
 
 <style scoped lang="scss">
 .page_wrap{
-	background-color: #fff;
-	min-height: calc( 100vh - 74px );
-	padding: 30upx;
-	.page_type{
-		.txt{
-			color: #333;
-			font-size: 48upx;
-			font-weight: bold;
-			position: relative;
-			&::after{
-				content: "";
-				display: block;
-				position: absolute;
-				bottom: 0;
-				width: 92upx;
-				height: 10upx;
-				background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
-			}
-		}
-		.sub_txt{
-			font-size: 24upx;
-			color: #666;
-			.change{
-				color: $base-color;
-			}
-		}
-	}
+	margin-top: 30upx;
 	.input_wrap{
-		margin-top: 100upx;
+		padding: 30upx;
+		background-color: #fff;
 		/deep/ .u-input{
 			padding: 12upx 0 !important;
 		}
@@ -202,6 +138,7 @@
 			.label{
 				color: #333;
 				font-size: 32upx;
+				margin-right: 80upx;
 			}
 			.iconfont{
 				color: #d1d1d1;
@@ -230,16 +167,17 @@
 		text-align: center;
 		color: #fff;
 		font-size: 36upx;
-		font-weight: bold;
 		border-radius: 50upx;
 		background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
-		margin-top: 28upx;
-	}
-	.logo{
-		width: 344upx;
 		margin: auto;
-		display: block;
-		margin-top: 60upx;
+		margin-top: 50upx;
+		width: 90%;
+		
+	}
+	.code{
+		color: #F87523;
+		background: #fff;
+		border:2upx solid #F87523
 	}
 	
 }

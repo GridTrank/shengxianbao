@@ -48,19 +48,19 @@
 					},{
 						label:'盘点单',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/pandian.png',
-						link:'/pagesA/CargoList/Index?pageType=inventory'
+						link:'/pagesA/StockManage/Index?pageType=inventory'
 					},{
 						label:'报损单',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/baousn.png',	
-						link:'/pagesA/CargoList/Index?pageType=frmLoss'
+						link:'/pagesA/StockManage/Index?pageType=frmLoss'
 					},{
 						label:'报溢单',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/baoy.png',
-						link:'/pagesA/CargoList/Index?pageType=overflow'
+						link:'/pagesA/StockManage/Index?pageType=overflow'
 					},{
 						label:'退货单',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/tuihuo.png',	
-						link:'/pagesA/CargoList/Index?pageType=return'
+						link:'/pagesA/StockManage/Index?pageType=return'
 					},{
 						label:'我的收藏',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/shoucang.png',	
@@ -72,6 +72,14 @@
 						label:'领券中心',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/lingquan.png',
 						link:''
+					},{
+						label:'出库单',
+						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/tuihuo.png',
+						link:'/pagesA/StockManage/Index?pageType=out'
+					},{
+						label:'入库单',
+						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/tuihuo.png',
+						link:'/pagesA/StockManage/Index?pageType=in'
 					},
 					
 				]

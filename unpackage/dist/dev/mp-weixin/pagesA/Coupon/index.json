@@ -2,6 +2,7 @@
   "navigationBarTitleText": "优惠券",
   "enablePullDownRefresh": false,
   "usingComponents": {
+    "u-tabs": "/uni_modules/uview-ui/components/u-tabs/u-tabs",
     "coupon-list": "/components/coupon-list/coupon-list"
   }
 }

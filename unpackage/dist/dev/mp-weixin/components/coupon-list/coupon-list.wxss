@@ -10,15 +10,16 @@
 .coupon_wrap .coupon.data-v-c00e9c60 {
   display: flex;
   justify-content: space-between;
-  overflow: hidden;
-  border-radius: 10px;
+  border-radius: 10rpx;
   height: 220rpx;
   margin-bottom: 26rpx;
 }
 .coupon_wrap .coupon_info.data-v-c00e9c60 {
   flex: 2;
+  border-radius: 10rpx 0 0 10rpx;
   background-color: #fff;
   position: relative;
+  flex-direction: row;
   padding: 26rpx 10rpx 26rpx 40rpx;
 }
 .coupon_wrap .coupon_info.data-v-c00e9c60::before {
@@ -49,6 +50,7 @@
   background-color: #fff;
 }
 .coupon_wrap .coupon-money.data-v-c00e9c60 {
+  border-radius: 0 10rpx 10rpx 0;
   justify-content: center;
   flex-shrink: 0;
   width: 240rpx;
@@ -60,7 +62,7 @@
   content: "";
   width: 20px;
   height: 20px;
-  background-color: #F7F7F7;
+  background-color: #f2f2f2;
   position: absolute;
   left: -10px;
   bottom: -10px;
@@ -71,7 +73,7 @@
   content: "";
   width: 20px;
   height: 20px;
-  background-color: #F7F7F7;
+  background-color: #f2f2f2;
   position: absolute;
   left: -10px;
   top: -10px;

@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.page_wrap.data-v-43d58b8e {
+  padding-bottom: 200rpx;
+}
+.page_wrap .info_list.data-v-43d58b8e {
+  background-color: #fff;
+  padding: 0 30rpx;
+}
+.page_wrap .info_list .item.data-v-43d58b8e {
+  padding: 30rpx 0;
+  border-bottom: 2rpx solid #f1f1f1;
+}
+.page_wrap .info_list .item.data-v-43d58b8e:last-child {
+  border: none;
+}
+.page_wrap .foot_btn.data-v-43d58b8e {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 30rpx 0;
+  background-color: #fff;
+  border-top: 1px solid #f1f1f1;
+  z-index: 111;
+}
+.page_wrap .foot_btn .nums.data-v-43d58b8e {
+  margin-left: 30rpx;
+}
+.page_wrap .foot_btn .nums .left.data-v-43d58b8e {
+  color: #333;
+  font-size: 22rpx;
+  margin-right: 20rpx;
+}
+.page_wrap .foot_btn .nums .left .iconfont.data-v-43d58b8e {
+  color: #D7D7D7;
+  margin-right: 10rpx;
+}
+.page_wrap .foot_btn .nums .right.data-v-43d58b8e {
+  color: #FE5B07;
+  font-size: 40rpx;
+}
+.page_wrap .foot_btn .btns.data-v-43d58b8e {
+  margin-right: 30rpx;
+}
+.page_wrap .foot_btn .btns .edit.data-v-43d58b8e {
+  margin-right: 60rpx;
+  color: #FE5B07;
+  font-size: 28rpx;
+}
+.page_wrap .foot_btn .btns .btn.data-v-43d58b8e {
+  width: 156rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  display: inline-block;
+}
+.page_wrap .foot_btn .btns .left.data-v-43d58b8e {
+  border: 1px solid #FE5B07;
+  color: #FE5B07;
+  margin-right: 20rpx;
+}
+.page_wrap .foot_btn .btns .right.data-v-43d58b8e {
+  background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
+  color: #fff;
+}
+

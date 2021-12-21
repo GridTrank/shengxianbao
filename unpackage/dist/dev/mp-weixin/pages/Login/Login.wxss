@@ -5,34 +5,11 @@
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
 .page_wrap.data-v-3a2da0cc {
-  background-color: #fff;
-  min-height: calc( 100vh - 74px);
-  padding: 30rpx;
-}
-.page_wrap .page_type .txt.data-v-3a2da0cc {
-  color: #333;
-  font-size: 48rpx;
-  font-weight: bold;
-  position: relative;
-}
-.page_wrap .page_type .txt.data-v-3a2da0cc::after {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0;
-  width: 92rpx;
-  height: 10rpx;
-  background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
-}
-.page_wrap .page_type .sub_txt.data-v-3a2da0cc {
-  font-size: 24rpx;
-  color: #666;
-}
-.page_wrap .page_type .sub_txt .change.data-v-3a2da0cc {
-  color: #FE5B07;
+  margin-top: 30rpx;
 }
 .page_wrap .input_wrap.data-v-3a2da0cc {
-  margin-top: 100rpx;
+  padding: 30rpx;
+  background-color: #fff;
 }
 .page_wrap .input_wrap.data-v-3a2da0cc .u-input {
   padding: 12rpx 0 !important;
@@ -46,13 +23,18 @@
 .page_wrap .input_wrap .input_item .label.data-v-3a2da0cc {
   color: #333;
   font-size: 32rpx;
+  margin-right: 80rpx;
 }
 .page_wrap .input_wrap .input_item .forget.data-v-3a2da0cc {
   color: #FE5B07;
   font-size: 28rpx;
 }
+.page_wrap .input_wrap .input_item .get_code.data-v-3a2da0cc {
+  color: #FD4D00;
+  font-size: 28rpx;
+}
 .page_wrap .agreement.data-v-3a2da0cc {
-  margin-top: 100rpx;
+  margin-top: 80rpx;
   color: #666;
   font-size: 24rpx;
 }
@@ -69,15 +51,15 @@
   text-align: center;
   color: #fff;
   font-size: 36rpx;
-  font-weight: bold;
   border-radius: 50rpx;
   background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
-  margin-top: 28rpx;
-}
-.page_wrap .logo.data-v-3a2da0cc {
-  width: 344rpx;
   margin: auto;
-  display: block;
-  margin-top: 60rpx;
+  margin-top: 50rpx;
+  width: 90%;
+}
+.page_wrap .code.data-v-3a2da0cc {
+  color: #F87523;
+  background: #fff;
+  border: 2rpx solid #F87523;
 }
 
