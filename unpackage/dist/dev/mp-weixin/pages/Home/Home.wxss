@@ -8,18 +8,16 @@
   background: #F5F5F5;
 }
 .page_wrap .container.data-v-2bc86734 {
-  background-repeat: no-repeat;
-  background-size: 100% 300rpx;
   padding: 10rpx 30rpx;
 }
 .page_wrap .container .search_wrap.data-v-2bc86734 {
-  width: 90%;
+  width: 95%;
   background-color: #fff;
   text-align: center;
   border-radius: 36rpx;
   height: 64rpx;
   line-height: 64rpx;
-  margin: 20rpx auto;
+  margin: 10rpx auto;
   color: #bbb;
   font-size: 24rpx;
 }

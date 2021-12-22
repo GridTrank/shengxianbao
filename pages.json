@@ -7,6 +7,9 @@
 		{
 			"path": "pages/Home/Home",
 			"style": {
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
 				"navigationBarTitleText": "首页"
 			}
 		}, {

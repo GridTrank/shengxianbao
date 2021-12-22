@@ -1,9 +1,21 @@
 <template>
 	<view class="page_wrap">
+		<!-- #ifdef H5 -->
+		<page-header 
+		:showAddress="true"
+		:showTel='true'
+		:showFillView="false"
+		:bgColor="bgColor"
+		></page-header>
+		<view class="bg"></view>
+		<!-- #endif -->
 		<view class="container">
+			
+			<!-- #ifdef MP -->
 			<view class="search_wrap" @click="navTo('/pages/Search/Search')">
 				<text class="iconfont icon-sousuo"></text>搜索
 			</view>
+			<!-- #endif -->
 			<banner></banner>
 			<view class="">
 				<view class="notice row mt30">
@@ -49,7 +61,18 @@
 		mixins: [homeMixin],
 		data(){
 			return {
+				bgColor:'transparent'
 			}
+		},
+		onPageScroll(res) {
+			console.log(res)
+			// #ifdef H5
+			if(res.scrollTop>50){
+				this.bgColor='#FF6105'
+			}else{
+				this.bgColor='transparent'
+			}
+			// #endif
 		}
 	}
 </script>
@@ -57,19 +80,23 @@
 <style scoped lang="scss">
 	.page_wrap{
 		background: #F5F5F5 ;
+		
 		.container{
-			// background-image: url('https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/bg2.png');
-			background-repeat: no-repeat;
-			background-size: 100% 300upx;
 			padding:10upx 30upx;
+			/* #ifdef H5*/
+			background-image: url('https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/bg2.png');
+			background-repeat: no-repeat;
+			background-size: 100% 320upx;
+			padding-top: 80upx;
+			/* #endif */ 
 			.search_wrap{
-				width: 90%;
+				width: 95%;
 				background-color: #fff;
 				text-align: center;
 				border-radius: 36upx;
 				height: 64upx;
 				line-height: 64upx;
-				margin:20upx auto;
+				margin:10upx auto;
 				color: #bbb;
 				font-size: 24upx;
 				text{
