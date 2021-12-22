@@ -30,7 +30,7 @@
 			<u-form-item label="详细地址" prop="userInfo.name" borderBottom ref="item1">
 				<u--textarea class="textarea" height="50" v-model="model1.userInfo.name" placeholder="请输入详细地址或直接定位"
 					border="none"></u--textarea>
-				<image class="icon" @click="navTo('/pages/Address/Address')" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/icon_region.png"
+				<image class="icon" @click="navTo('/pages/ChooseAddress/index')" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/icon_region.png"
 					mode="widthFix"></image>
 			</u-form-item>
 			<u-form-item label="收货时间" prop="userInfo.sex" @click="showSex = true; hideKeyboard()" ref="item1">
