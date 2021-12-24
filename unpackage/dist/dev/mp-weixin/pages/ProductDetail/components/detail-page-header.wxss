@@ -9,7 +9,9 @@
   left: 0;
   top: 0;
   z-index: 90;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
   width: 100%;
 }
 .btn.data-v-258ff370 {
@@ -29,7 +31,9 @@
   color: #fff;
 }
 .cen.data-v-258ff370 {
-  flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
   height: 100%;
   position: relative;
 }

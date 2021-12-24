@@ -17,7 +17,9 @@
 .page_wrap .list .item {
   padding: 40rpx 0;
   border-bottom: 1px solid #E1E1E1;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
 }
 .page_wrap .list .item .left {
   font-size: 30rpx;

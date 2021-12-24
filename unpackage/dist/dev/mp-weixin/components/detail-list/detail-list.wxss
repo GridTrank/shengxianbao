@@ -12,7 +12,9 @@
 }
 .data_list .list .item .item_wrap.data-v-73a68aba {
   background-color: #fff;
-  align-items: flex-start;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+          align-items: flex-start;
   padding: 30rpx;
 }
 .data_list .list .item .item_wrap .row .icon-weixuanze.data-v-73a68aba {
@@ -28,7 +30,9 @@
   margin-right: 30rpx;
 }
 .data_list .list .item .info.data-v-73a68aba {
-  flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
   position: relative;
 }
 .data_list .list .item .info .bao.data-v-73a68aba {
@@ -57,7 +61,9 @@
 }
 .data_list .list .item .bottom_wrap.data-v-73a68aba {
   background-color: #fff;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
   padding: 20rpx;
 }
 .data_list .list .item .bottom_wrap .tip.data-v-73a68aba {
@@ -74,7 +80,8 @@
   margin-left: 10rpx;
 }
 .data_list .list .item .change.data-v-73a68aba {
-  justify-content: space-around;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
 }
 .data_list .foot_wrap.data-v-73a68aba {
   position: fixed;
@@ -119,6 +126,7 @@
   width: 180rpx;
   height: 70rpx;
   border-radius: 35rpx;
+  background: -webkit-linear-gradient(337deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   text-align: center;
   line-height: 70rpx;

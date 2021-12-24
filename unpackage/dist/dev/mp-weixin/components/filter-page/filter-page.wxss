@@ -17,7 +17,8 @@
   padding-bottom: 30rpx;
 }
 .filter_wrap .child_list.data-v-617f100e {
-  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
 }
 .filter_wrap .child_list .child_item.data-v-617f100e {
   width: 166rpx;
@@ -62,6 +63,7 @@
 }
 .filter_wrap .btn_wrap .right.data-v-617f100e {
   color: #fff;
+  background: -webkit-linear-gradient(314deg, #F87523 0%, #FD1D20 100%);
   background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
 }
 

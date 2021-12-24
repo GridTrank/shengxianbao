@@ -53,6 +53,7 @@
   width: 180rpx;
   height: 70rpx;
   border-radius: 35rpx;
+  background: -webkit-linear-gradient(337deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   text-align: center;
   line-height: 70rpx;

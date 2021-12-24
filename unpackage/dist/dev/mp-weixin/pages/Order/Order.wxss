@@ -13,7 +13,8 @@
   top: 0rpx;
   background-color: #fff;
   width: 100%;
-  justify-content: space-around;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
   padding: 20rpx 0;
   border-bottom: 1px solid #f1f1f1;
 }

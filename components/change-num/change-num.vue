@@ -3,7 +3,7 @@
 		<view class="btn left" @click="change(1)">
 			-
 		</view>
-		<u-input placeholder='' border='none' v-model="num"></u-input>
+		<u-input border='none' v-model="num"></u-input>
 		<view class="btn right" @click="change(2)">
 			+
 		</view>

@@ -22,6 +22,7 @@
  */
 .u-fade-enter-active,
 .u-fade-leave-active {
+  -webkit-transition-property: opacity;
   transition-property: opacity;
 }
 .u-fade-enter,
@@ -36,6 +37,7 @@
 }
 .u-fade-zoom-enter-active,
 .u-fade-zoom-leave-active {
+  -webkit-transition-property: opacity, -webkit-transform;
   transition-property: opacity, -webkit-transform;
   transition-property: transform, opacity;
   transition-property: transform, opacity, -webkit-transform;
@@ -48,6 +50,7 @@
 .u-fade-right-leave-active,
 .u-fade-up-enter-active,
 .u-fade-up-leave-active {
+  -webkit-transition-property: opacity, -webkit-transform;
   transition-property: opacity, -webkit-transform;
   transition-property: opacity, transform;
   transition-property: opacity, transform, -webkit-transform;
@@ -84,6 +87,7 @@
 .u-slide-right-leave-active,
 .u-slide-up-enter-active,
 .u-slide-up-leave-active {
+  -webkit-transition-property: -webkit-transform;
   transition-property: -webkit-transform;
   transition-property: transform;
   transition-property: transform, -webkit-transform;
@@ -110,6 +114,7 @@
 }
 .u-zoom-enter-active,
 .u-zoom-leave-active {
+  -webkit-transition-property: -webkit-transform;
   transition-property: -webkit-transform;
   transition-property: transform;
   transition-property: transform, -webkit-transform;

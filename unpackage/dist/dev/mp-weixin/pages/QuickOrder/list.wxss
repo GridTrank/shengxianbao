@@ -5,6 +5,8 @@
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
 .info.data-v-f7c039fa {
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
   padding: 10rpx 30rpx 10rpx 50rpx;
 }
@@ -12,7 +14,8 @@
   width: 120rpx;
   height: 120rpx;
   margin-right: 40rpx;
-  flex-shrink: 0;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
 }
 .info .detail.data-v-f7c039fa {
   width: 350rpx;
@@ -39,6 +42,7 @@
   margin-right: 10rpx;
 }
 .spec .s_tit.data-v-f7c039fa {
+  background: -webkit-linear-gradient(337deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   padding: 4rpx 10rpx;
   color: #fff;
@@ -50,7 +54,9 @@
   font-size: 22rpx;
 }
 .price.data-v-f7c039fa {
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
   width: 100%;
   position: relative;
 }

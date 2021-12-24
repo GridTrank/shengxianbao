@@ -10,7 +10,9 @@
   min-height: 100vh;
 }
 .page_wrap .search_wrap.data-v-a2f84674 {
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
   position: fixed;
   top: 0rpx;
   left: 0;

@@ -50,7 +50,11 @@
         "StockManage/Index",
         "StockManage/Detail",
         "StockManage/AddPage",
-        "StockManage/SelectGood"
+        "StockManage/SelectGood",
+        "SourceManage/Index",
+        "SourceManage/List",
+        "SourceManage/Detail",
+        "Statistics/Index"
       ]
     }
   ],
@@ -117,6 +121,5 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

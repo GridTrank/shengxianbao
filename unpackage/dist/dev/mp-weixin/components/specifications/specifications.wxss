@@ -8,7 +8,9 @@
   padding: 30rpx;
 }
 .spec_wrap .con .info.data-v-dee78578 {
-  justify-content: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
   margin-bottom: 120rpx;
 }
 .spec_wrap .con .info image.data-v-dee78578 {

@@ -59,7 +59,9 @@
   color: #FE5B07;
 }
 .page_wrap .second.data-v-af5aa274 {
-  align-items: flex-start;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+          align-items: flex-start;
 }
 .page_wrap .pay_method .list.data-v-af5aa274 {
   padding: 30rpx 0;
@@ -84,7 +86,9 @@
   padding: 30rpx;
   font-size: 28rpx;
   color: #333;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
 }
 .page_wrap .pay_method .arrears .m.data-v-af5aa274 {
   color: #FE5B07;

@@ -1,0 +1,1 @@
+{"version":3,"sources":["uni-app:///main.js"],"names":["createPage","Page"],"mappings":";;;;wEAAA,qBACA,sBACA,sD,mDACAA,EAAWC,a","file":"pagesA/Statistics/Statistics.js","sourcesContent":["import 'uni-pages';\nimport Vue from 'vue'\nimport Page from './pagesA/Statistics/Statistics.vue'\ncreatePage(Page)"],"sourceRoot":""}

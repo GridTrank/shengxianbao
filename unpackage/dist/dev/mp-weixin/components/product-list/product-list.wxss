@@ -27,6 +27,7 @@
   margin-right: 10rpx;
 }
 .spec .s_tit.data-v-2fd7df04 {
+  background: -webkit-linear-gradient(337deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   padding: 4rpx 10rpx;
   color: #fff;
@@ -40,13 +41,20 @@
   font-size: 20rpx;
 }
 .price.data-v-2fd7df04 {
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
   width: 100%;
   position: relative;
 }
 .price .p_wrap.data-v-2fd7df04 {
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
 }
 .price .p_detail.data-v-2fd7df04 {
   color: #FE5B07;

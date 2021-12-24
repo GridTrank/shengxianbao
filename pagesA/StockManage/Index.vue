@@ -13,21 +13,44 @@
 			@click="navTo('./Detail?pageType='+pageType)"
 			:key="index">
 				<view class="top row jc_sb">
-					<view class="no f28-c333" @click.stop="checkedHandle(item)">	
-						<text v-if="item.checked==2" class="iconfont icon-xuanze"></text>
-						<text v-else class="iconfont icon-weixuanze"></text>
-						DD1234566
-					</view>
-					<view class="status">
-						待审核
-					</view>
+                    <template v-if="pageType=='turnover'">
+                        <text class="f28-c333">生鲜宝</text>
+                        <text class="status">待归还</text>
+                    </template>
+                    <template v-else>
+                        <view class="no f28-c333" @click.stop="checkedHandle(item)">	
+                            <text v-if="item.checked==2" class="iconfont icon-xuanze"></text>
+                            <text v-else class="iconfont icon-weixuanze"></text>
+                            DD1234566
+                        </view>
+                        <view class="status">
+                            待审核
+                        </view>
+                    </template>
 				</view>
 				<view class="detail"> 
-					<view class="label bg_style1">冷冻仓库</view>
-					<view class="row jc_sb mt30">
-						<text class="date f28-c333">2020-10-22 08:08:12</text>
-						<text class="price">¥39.00</text>
-					</view>
+                    <!-- 周转 -->
+                    <template v-if="pageType=='turnover'">
+                        <view class="row mt20">
+                            <text class="t1 f28-c999">单号</text>
+                            <text class="t2 f28-c333">1231 <text class="t2-1 f28-dc">¥2000.29</text> </text>
+                            <text class="t3 f24-c999">收到：123</text>
+                        </view>
+                        <view class="row mt30">
+                            <text class="t1 f28-c999">单号</text>
+                            <text class="t2 f28-c333">1231</text>
+                            <text class="t3 f24-c999">收到：123</text>
+                        </view>
+                    </template>
+                    
+                    <!-- 其他 -->
+                    <template v-else>
+                        <view class="label bg_style1">冷冻仓库</view>
+                        <view class="row jc_sb mt30">
+                        	<text class="date f28-c333">2020-10-22 08:08:12</text>
+                        	<text class="price">¥39.00</text>
+                        </view>
+                    </template>
 				</view>
 				<view class="handle_wrap row">
 					<view class="handle_btn h1">
@@ -114,8 +137,22 @@
 			}else if(e.pageType=='return'){
 				barTitle='退货单'
 				this.pageTxt='退货'
+			}else if(e.pageType=='turnover'){
+				barTitle='周转框'
+				this.pageTxt='周转'
+                this.list=[
+                    {
+                    	name: '全部',
+                    	vlaue:0
+                    }, {
+                    	name: '待归还',
+                    	vlaue:1
+                    }, {
+                    	name: '已归还',
+                    	vlaue:2
+                    }
+                ]
 			}
-			
 			this.pageType=e.pageType
 			uni.setNavigationBarTitle({
 				title:barTitle

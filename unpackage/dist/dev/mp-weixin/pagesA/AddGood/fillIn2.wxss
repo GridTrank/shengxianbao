@@ -45,7 +45,9 @@
 .page_wrap .list .item.data-v-24614d16 {
   padding: 40rpx 0;
   border-bottom: 1px solid #E1E1E1;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
 }
 .page_wrap .list .item .left.data-v-24614d16 {
   font-size: 30rpx;

@@ -5,7 +5,9 @@
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
 .history_list .his_tit.data-v-4d65e2fc {
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
 }
 .history_list .his_tit text.data-v-4d65e2fc {
   color: #242A36;
@@ -15,7 +17,8 @@
   width: 36rpx;
 }
 .history_list .list.data-v-4d65e2fc {
-  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
 }
 .history_list .list .item.data-v-4d65e2fc {
   padding: 0 15rpx;

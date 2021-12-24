@@ -36,8 +36,11 @@
   margin-bottom: 40rpx;
 }
 .page_wrap .list_wrap .list.data-v-5b6c643b {
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
 }
 .page_wrap .list_wrap .list .item.data-v-5b6c643b {
   width: 200rpx;
@@ -67,6 +70,7 @@
   background-color: #fff;
 }
 .page_wrap .btn_wrap .btn.data-v-5b6c643b {
+  background: -webkit-linear-gradient(337deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   width: 90%;
   height: 100rpx;

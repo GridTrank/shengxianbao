@@ -42,7 +42,9 @@
   font-size: 36rpx;
 }
 .page_wrap .list .item .handle_wrap.data-v-6d9ae89a {
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
   margin-top: 20rpx;
   padding-top: 20rpx;
   border-top: 2rpx solid #f1f1f1;
@@ -99,6 +101,7 @@
   margin-right: 20rpx;
 }
 .page_wrap .foot_btn .btns .right.data-v-6d9ae89a {
+  background: -webkit-linear-gradient(337deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   color: #fff;
 }
@@ -106,6 +109,7 @@
   position: fixed;
   bottom: 200rpx;
   right: 30rpx;
+  background: -webkit-linear-gradient(337deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   width: 100rpx;
   height: 100rpx;

@@ -317,8 +317,35 @@
 					"navigationBarTitleText": "选择商品",
 					"enablePullDownRefresh": false
 				}
+			}, {
+				"path": "SourceManage/Index",
+				"style": {
+					"navigationBarTitleText": "溯源",
+					"enablePullDownRefresh": false
+				}
+			}, {
+				"path": "SourceManage/List",
+				"style": {
+					"navigationBarTitleText": "溯源列表",
+					"enablePullDownRefresh": false
+				}
+			}, {
+				"path": "SourceManage/Detail",
+				"style": {
+					"navigationBarTitleText": "溯源详情",
+					"enablePullDownRefresh": false
+				}
 			}
-        ]
+            ,{
+                    "path" : "Statistics/Index",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "统计",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
 	}],
 	"preloadRule": {
 		"pages/Home/Home": {

@@ -29,6 +29,24 @@
           "pathName": "pagesA/StockManage/SelectGood",
           "query": "pageType=out",
           "scene": null
+        },
+        {
+          "name": "溯源",
+          "pathName": "pagesA/SourceManage/Index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "溯源详情",
+          "pathName": "pagesA/SourceManage/Detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesA/Statistics/Index",
+          "pathName": "pagesA/Statistics/Index",
+          "query": "",
+          "scene": null
         }
       ]
     }

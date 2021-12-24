@@ -10,7 +10,9 @@
   border-radius: 8rpx;
 }
 .wrap .label.data-v-64212cd7 {
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
 }
 .wrap .label .label_l.data-v-64212cd7 {
   font-size: 36rpx;
@@ -25,7 +27,9 @@
   margin-left: 10rpx;
 }
 .wrap .list.data-v-64212cd7 {
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
 }
 .wrap .list .item image.data-v-64212cd7 {
   width: 76rpx;

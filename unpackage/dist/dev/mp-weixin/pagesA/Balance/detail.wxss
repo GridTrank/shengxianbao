@@ -14,8 +14,12 @@
   background-size: cover;
 }
 .page_wrap .balance_wrap .balance_info .date_wrap.data-v-ab199a90 {
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
   padding: 24rpx 28rpx 28rpx;
   color: #fff;
   font-size: 24rpx;
@@ -45,7 +49,9 @@
 }
 .page_wrap .balance_wrap .balance_info .info .item.data-v-ab199a90 {
   position: relative;
-  flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
 }
 .page_wrap .balance_wrap .balance_info .info .item.data-v-ab199a90:after {
   content: "";

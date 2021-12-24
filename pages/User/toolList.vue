@@ -28,7 +28,7 @@
 					},{
 						label:'周转筐',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/zhouzhuan.png',	
-						link:''
+						link:'/pagesA/StockManage/Index?pageType=turnover'
 					},{
 						label:'套餐订单',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/taocan.png',	
@@ -40,7 +40,7 @@
 					},{
 						label:'溯源',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/suyuan.png',	
-						link:''
+						link:'/pagesA/SourceManage/Index'
 					},{
 						label:'库存查询',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/kucun.png',	
