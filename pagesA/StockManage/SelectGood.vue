@@ -75,7 +75,10 @@
 			}else if(e.pageType=='frmLoss'){
 				barTitle='新增报损单'
 				this.pageTxt='报损'
-			}
+			}else if(e.pageType=='offer'){
+                barTitle='新增报价单'
+                this.pageTxt='报价'
+            }
 			this.pageType=e.pageType
 			
 		},

@@ -83,7 +83,9 @@
 			</view>
 		</view>
 		<!-- 新增按钮 -->
-		<view class="add_btn" @click="navTo('./AddPage?pageType='+pageType)">
+		<view 
+        v-if="pageType!=='offer'"
+        class="add_btn" @click="navTo('./AddPage?pageType='+pageType)">
 			+
 		</view>
 	</view>
@@ -152,7 +154,10 @@
                     	vlaue:2
                     }
                 ]
-			}
+			}else if(e.pageType=='offer'){
+                barTitle='报价单'
+                this.pageTxt='报价'
+            }
 			this.pageType=e.pageType
 			uni.setNavigationBarTitle({
 				title:barTitle

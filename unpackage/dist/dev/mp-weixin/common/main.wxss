@@ -28,6 +28,10 @@ page{
 	-webkit-justify-content: space-between;
 	        justify-content: space-between;
 }
+.jc_sa{
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
+}
 .column{
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -194,12 +198,14 @@ page{
 .bg_style1{
 	color:#FE5B07;
 	background-color: #FFF9F3;
+    display: block;
+    text-align: center
 }
 @font-face {
   font-family: "iconfont"; /* Project id 2986659 */
-  src: url('//at.alicdn.com/t/font_2986659_laxdupa1dce.woff2?t=1640065144609') format('woff2'),
-       url('//at.alicdn.com/t/font_2986659_laxdupa1dce.woff?t=1640065144609') format('woff'),
-       url('//at.alicdn.com/t/font_2986659_laxdupa1dce.ttf?t=1640065144609') format('truetype');
+  src: url('//at.alicdn.com/t/font_2986659_geuylu65vjm.woff2?t=1640503375142') format('woff2'),
+       url('//at.alicdn.com/t/font_2986659_geuylu65vjm.woff?t=1640503375142') format('woff'),
+       url('//at.alicdn.com/t/font_2986659_geuylu65vjm.ttf?t=1640503375142') format('truetype');
 }
 .iconfont {
   font-family: "iconfont" !important;
@@ -207,6 +213,9 @@ page{
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.icon-tongji:before {
+  content: "\e656";
 }
 .icon-dayin:before {
   content: "\e638";

@@ -80,6 +80,18 @@
 						label:'入库单',
 						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/tuihuo.png',
 						link:'/pagesA/StockManage/Index?pageType=in'
+					},{
+						label:'报价单',
+						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/tuihuo.png',
+						link:'/pagesA/StockManage/Index?pageType=offer'
+					},{
+						label:'统计表',
+						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/tuihuo.png',
+						link:'/pagesA/Statistics/Index'
+					},{
+						label:'合同',
+						src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/tuihuo.png',
+						link:'/pagesA/Contract/Index'
 					},
 					
 				]

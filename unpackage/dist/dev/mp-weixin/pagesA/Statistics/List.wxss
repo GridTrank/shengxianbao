@@ -1,0 +1,60 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.page_wrap .tab_list.data-v-ce017ff4 {
+  background-color: #fff;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
+  padding: 20rpx 0;
+}
+.page_wrap .tab_list .tab_item.data-v-ce017ff4 {
+  color: #333;
+  font-size: 28rpx;
+  position: relative;
+  padding-bottom: 14rpx;
+}
+.page_wrap .tab_list .tab_active.data-v-ce017ff4 {
+  color: #FE5B07;
+  padding-bottom: 10rpx;
+  border-bottom: 4rpx solid #FE5B07;
+}
+.page_wrap .tab_list .date_active.data-v-ce017ff4 {
+  color: #FE5B07;
+}
+.page_wrap .date .tab_item.data-v-ce017ff4 {
+  padding: 0;
+}
+.page_wrap .data_wrap.data-v-ce017ff4 {
+  background-color: #fff;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
+  padding: 20rpx;
+}
+.page_wrap .data_wrap .data_item.data-v-ce017ff4 {
+  color: #FE5B07;
+}
+.page_wrap .data_wrap .data_item .t1.data-v-ce017ff4 {
+  font-size: 42rpx;
+}
+.page_wrap .data_wrap .data_item .t2.data-v-ce017ff4 {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+}
+.page_wrap .list .item.data-v-ce017ff4 {
+  background-color: #fff;
+  padding: 30rpx;
+  position: relative;
+}
+.page_wrap .list .item .row .bg_style1.data-v-ce017ff4 {
+  padding: 4rpx 12rpx;
+  margin-right: 10rpx;
+}
+.page_wrap .list .item .more.data-v-ce017ff4 {
+  position: absolute;
+  right: 30rpx;
+  bottom: 40rpx;
+}
+

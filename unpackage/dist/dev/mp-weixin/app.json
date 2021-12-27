@@ -54,7 +54,11 @@
         "SourceManage/Index",
         "SourceManage/List",
         "SourceManage/Detail",
-        "Statistics/Index"
+        "Statistics/Index",
+        "Statistics/List",
+        "Statistics/Screen",
+        "Contract/Index",
+        "Contract/Detail"
       ]
     }
   ],

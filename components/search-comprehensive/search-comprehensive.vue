@@ -47,7 +47,7 @@
 		},
 		methods:{
 			bindConfirm(){
-				
+				this.$emit('searchInput',this.keyWrod)
 			},
 			saoCode(){
 				uni.scanCode({

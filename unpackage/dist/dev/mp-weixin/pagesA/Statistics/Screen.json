@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "筛选",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "search-comprehensive": "/components/search-comprehensive/search-comprehensive",
+    "j-picker": "/components/jPicker/jPicker",
+    "itmister-date-picker": "/components/itmister-date-picker/itmister-date-picker"
+  }
+}

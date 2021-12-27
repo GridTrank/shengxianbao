@@ -337,15 +337,40 @@
 				}
 			}
             ,{
-                    "path" : "Statistics/Index",
-                    "style" :                                                                                    
-                {
+                "path" : "Statistics/Index",
+                    "style" :{
                     "navigationBarTitleText": "统计",
                     "enablePullDownRefresh": false
                 }
-                
+            },
+            {
+                "path" : "Statistics/List",
+                    "style" :{
+                    "navigationBarTitleText": "订货统计",
+                    "enablePullDownRefresh": false
                 }
-            ]
+            },
+            {
+                "path" : "Statistics/Screen",
+                    "style" :{
+                    "navigationBarTitleText": "筛选",
+                    "enablePullDownRefresh": false
+                }
+            },{
+                "path" : "Contract/Index",
+                    "style" :{
+                    "navigationBarTitleText": "合同列表",
+                    "enablePullDownRefresh": false
+                }
+            },{
+                "path" : "Contract/Detail",
+                    "style" :{
+                    "navigationBarTitleText": "合同详情",
+                    "enablePullDownRefresh": false
+                }
+            }
+            
+        ]
 	}],
 	"preloadRule": {
 		"pages/Home/Home": {

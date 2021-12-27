@@ -1,14 +1,18 @@
 <template>
 	<view class="page_wrap">
 		<view class="info_list mt20">
-			<view class="item row jc_sb">
-				<view class="left f28-c333">
-					{{pageTxt}}仓库
-				</view>
-				<view class="f28-c666">
-					仓库
-				</view>
-			</view>
+            <!-- 有仓库的 -->
+            <template v-if="pageType=='return' || pageType=='frmLoss' || pageType=='out' || pageType=='in'">
+                <view class="item row jc_sb">
+                	<view class="left f28-c333">
+                		{{pageTxt}}仓库
+                	</view>
+                	<view class="f28-c666">
+                		仓库
+                	</view>
+                </view>
+            </template>
+			
 			<view class="item row jc_sb">
 				<view class="left f28-c333">
 					日期
@@ -17,9 +21,10 @@
 					2021-12-20
 				</view>
 			</view>
+            
 			<view class="item row jc_sb">
 				<view class="left f28-c333">
-					订单号
+					单号
 				</view>
 				<view class="f28-c666">
 					123456
@@ -33,13 +38,30 @@
 					待审核
 				</view>
 			</view>
+            
+            <!-- 报价单 -->
+            <template v-if="pageType=='offer'">
+                <view class="item row jc_sb">
+                	<view class="left f28-c333">
+                		状态
+                	</view>
+                	<view class="f28-c666">
+                		待审核
+                	</view>
+                </view>
+            </template>
+            
+            
 		</view>
+        
 		<view class="slot_wrap">
 			<detail-list 
 			:pageTxt="pageTxt"
 			nowParentPage="Detail"
-			:showEdit="showEdit"> </detail-list>
+			:showEdit="showEdit"> 
+            </detail-list>
 		</view>
+        
 		<view class="foot_btn row jc_sb">
 			<view class="nums row">
 				<view class="left row">
@@ -92,7 +114,10 @@
 			}else if(e.pageType=='return'){
 				barTitle='退货单详情'
 				this.pageTxt='退货'
-			}
+			}else if(e.pageType=='offer'){
+                barTitle='报价单详情'
+                this.pageTxt='报价'
+            }
 			if(e.showEdit){
 				this.showEdit=true
 			}
