@@ -45,27 +45,31 @@
 			</view>
 		</view>
 		
+       
 		<view class="foot_wrap" >
-			<view class="foot_con row">
-				<view class="check_wrap" v-if="nowParentPage!='AddPage'">
-					<view @click="selectAll(2)" v-if="total<dataList.length" class="iconfont icon-weixuanze"></view>
-					<view @click="selectAll(1)" v-else class="iconfont icon-xuanze"></view>
-				</view>
-				<view class="num_wrap row">
-					<text class="label">{{pageTxt}}</text> <text class="value">{{total}}</text>
-				</view>
-				<view class="btn_wrap row">
-					<view v-if="step=='one'" class="btn" @click="submit('one')">
-						{{pageTxt}}
-					</view>
-					<view v-else-if="step=='two'" class="btn" @click="submit('two')">
-						保存
-					</view>
-					<view v-else-if="step=='three'" class="btn" @click="submit('three')">
-						结束{{pageTxt}}
-					</view>
-				</view>
-			</view>
+            <template v-if="pageType=='out' || pageType=='in' || pageType=='inventory' || pageType=='frmLoss' || pageType=='overflow' || pageType=='return'">
+                <view class="foot_con row">
+                	<view class="check_wrap" v-if="nowParentPage!='AddPage'">
+                		<view @click="selectAll(2)" v-if="total<dataList.length" class="iconfont icon-weixuanze"></view>
+                		<view @click="selectAll(1)" v-else class="iconfont icon-xuanze"></view>
+                	</view>
+                	<view class="num_wrap row">
+                		<text class="label">{{pageTxt}}</text> <text class="value">{{total}}</text>
+                	</view>
+                	<view class="btn_wrap row">
+                		<view v-if="step=='one'" class="btn" @click="submit('one')">
+                			{{pageTxt}}
+                		</view>
+                		<view v-else-if="step=='two'" class="btn" @click="submit('two')">
+                			保存
+                		</view>
+                		<view v-else-if="step=='three'" class="btn" @click="submit('three')">
+                			结束{{pageTxt}}
+                		</view>
+                	</view>
+                </view>
+            </template>
+			
 		</view>
 	</view>
 	

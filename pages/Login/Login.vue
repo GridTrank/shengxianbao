@@ -28,7 +28,7 @@
 				<template v-else>
 					<u-form-item prop="phone">
 						<view class="input_item">
-							<u-input max placeholder='请输入手机号' border='bottom' v-model="model.phone">
+							<u-input max placeholder='请输入手机号' border='bottom' v-model="model.mobile">
 								<template slot="prefix">
 									<text class="label" >手机号</text>
 								</template>
@@ -37,7 +37,7 @@
 					</u-form-item>
 					<u-form-item prop="code">
 						<view class="input_item ">
-							<u-input  placeholder='请输入验证码' border='none' v-model="model.code">
+							<u-input  placeholder='请输入验证码' border='none' v-model="model.smsCode">
 								<template slot="prefix">
 									<text class="label">验证码</text>
 								</template>
@@ -123,6 +123,10 @@
 			  this.tips = text;
 			},
 			getCode() {
+                this.$http('customer/getSmsCode',{mobile:this.model.mobile},'post').then(res=>{
+                    console.log(res)
+                })
+                return
 			    if (this.$refs.uCode.canGetCode) {
 			        uni.$u.toast('验证码已发送');
 			        this.$refs.uCode.start();

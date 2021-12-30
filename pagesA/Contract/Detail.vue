@@ -23,8 +23,9 @@
         <view class="info mt20">
             <view class="title f28-c333">合同附件</view>
             <view class="img_wrap row mt20">
-                <image class="img"
-                 @click="prevImg"
+                <image 
+                class="img"
+                @click="prevImg"
                 src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" mode=""></image>
             </view>
         </view>

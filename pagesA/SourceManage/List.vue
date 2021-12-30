@@ -12,10 +12,10 @@
                     <text class="f24-dc">名称</text>
                 </view>
                 <view class="type i2 bg_style1 mt10" >
-                    升鲜宝供应商
+                    好运邻里供应商
                 </view>
                 <view class="row f28-c333 i3 mt20">
-                    <text class="t1 ">升鲜宝检测机构</text>
+                    <text class="t1 ">好运邻里检测机构</text>
                     <text class="t2">余东升</text>
                 </view>
                 <view class="time f28-c333 mt20">

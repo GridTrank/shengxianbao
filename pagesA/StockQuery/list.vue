@@ -1,7 +1,9 @@
 <template>
 	<view class="list_wrap">
 		<view class="list " >
-			<view class="item row " v-for="(item,index) in 2" :key="index">
+			<view class="item row " 
+            @click="navTo('./Detail')"
+            v-for="(item,index) in 2" :key="index">
 				<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/taocan.png" mode="widthFix"></image>
 				<view class="info">
 					<view class="row jc_sb">

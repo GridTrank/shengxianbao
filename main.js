@@ -40,6 +40,9 @@ Vue.prototype.$util = {
 	date
 }
 
+import {request} from '@/common/js/request'
+Vue.prototype.$http=request
+
 import config from './config'
 Vue.prototype.$config = config
 

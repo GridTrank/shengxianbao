@@ -1,6 +1,6 @@
 <template>
 	<view class="page_wrap">
-		升鲜宝用户协议
+		好运邻里用户协议
 		
 	</view>
 </template>

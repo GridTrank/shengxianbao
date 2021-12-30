@@ -14,7 +14,7 @@
 			:key="index">
 				<view class="top row jc_sb">
                     <template v-if="pageType=='turnover'">
-                        <text class="f28-c333">生鲜宝</text>
+                        <text class="f28-c333">好运邻里</text>
                         <text class="status">待归还</text>
                     </template>
                     <template v-else>
@@ -33,8 +33,8 @@
                     <template v-if="pageType=='turnover'">
                         <view class="row mt20">
                             <text class="t1 f28-c999">单号</text>
-                            <text class="t2 f28-c333">1231 <text class="t2-1 f28-dc">¥2000.29</text> </text>
-                            <text class="t3 f24-c999">收到：123</text>
+                            <text class="t2 f28-c333">1231 <text class="t2-1 f28-dc ml20">¥2000.29</text> </text>
+                            <text class="t3 f24-c999 ml20">收到：123</text>
                         </view>
                         <view class="row mt30">
                             <text class="t1 f28-c999">单号</text>
@@ -68,23 +68,27 @@
 				</view>
 			</view>
 		</view>
-		<view class="foot_btn row jc_sb">
-			<view class="nums row">
-				<view class="left row" >
-					<view @click="selectAll(2)" v-if="total<dataList.length" class="iconfont icon-weixuanze"></view>
-					<view @click="selectAll(1)" v-else class="iconfont icon-xuanze"></view>
-					<view>合计</view> 
-				</view>
-				<view class="right">{{total}}</view>
-			</view>
-			<view class="btns">
-				<text class="btn left">作废</text>
-				<text class="btn right">审核</text>
-			</view>
-		</view>
+        
+        <template v-if="pageType=='out' || pageType=='in' || pageType=='inventory' || pageType=='frmLoss' || pageType=='overflow' || pageType=='return'">
+            <view class="foot_btn row jc_sb"> 
+                <view class="nums row">
+                	<view class="left row" >
+                		<view @click="selectAll(2)" v-if="total<dataList.length" class="iconfont icon-weixuanze"></view>
+                		<view @click="selectAll(1)" v-else class="iconfont icon-xuanze"></view>
+                		<view>合计</view> 
+                	</view>
+                	<view class="right">{{total}}</view>
+                </view>
+                <view class="btns">
+                	<text class="btn left">作废</text>
+                	<text class="btn right">审核</text>
+                </view>
+            </view>
+        </template>
+			
 		<!-- 新增按钮 -->
 		<view 
-        v-if="pageType!=='offer'"
+        v-if="pageType!=='offer' && pageType!=='turnover' "
         class="add_btn" @click="navTo('./AddPage?pageType='+pageType)">
 			+
 		</view>

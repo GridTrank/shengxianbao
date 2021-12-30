@@ -13,6 +13,15 @@
                 </view>
             </template>
 			
+            <view class="item row jc_sb">
+            	<view class="left f28-c333">
+            		单号
+            	</view>
+            	<view class="f28-c666">
+            		123456
+            	</view>
+            </view>
+            
 			<view class="item row jc_sb">
 				<view class="left f28-c333">
 					日期
@@ -21,25 +30,16 @@
 					2021-12-20
 				</view>
 			</view>
-            
-			<view class="item row jc_sb">
+            <!-- 客户名称 -->
+            <view class="item row jc_sb">
 				<view class="left f28-c333">
-					单号
+					客户名称
 				</view>
 				<view class="f28-c666">
-					123456
+					123
 				</view>
 			</view>
-			<view class="item row jc_sb">
-				<view class="left f28-c333">
-					状态
-				</view>
-				<view class="f28-c666">
-					待审核
-				</view>
-			</view>
-            
-            <!-- 报价单 -->
+            <!-- 状态 -->
             <template v-if="pageType=='offer'">
                 <view class="item row jc_sb">
                 	<view class="left f28-c333">
@@ -50,7 +50,17 @@
                 	</view>
                 </view>
             </template>
-            
+            <!-- 备注 -->
+            <template v-if="pageType=='turnover'">
+                <view class="item row jc_sb">
+                	<view class="left f28-c333">
+                		备注
+                	</view>
+                	<view class="f28-c666">
+                		备注
+                	</view>
+                </view>
+            </template>
             
 		</view>
         
@@ -65,7 +75,8 @@
 		<view class="foot_btn row jc_sb">
 			<view class="nums row">
 				<view class="left row">
-					{{pageTxt}}
+					<!-- {{pageTxt}} -->
+                    合计
 				</view>
 				<view class="right">3</view>
 			</view>

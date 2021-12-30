@@ -4,7 +4,7 @@
 			<u--form ref='form' :model="model" :rules="rules" >
 				<u-form-item prop="account">
 					<view class="input_item">
-						<u-input  placeholder='请输入账号' border='bottom' v-model="model.account">
+						<u-input  placeholder='请输入账号' border='bottom' v-model="model.accountName">
 							<template slot="prefix">
 								<text class="label" >账号</text>
 							</template>
@@ -13,7 +13,7 @@
 				</u-form-item>
 				<u-form-item prop="password">
 					<view class="input_item ">
-						<u-input type='password' placeholder='请输入密码' border='none' v-model="model.password">
+						<u-input type='password' placeholder='请输入密码' border='none' v-model="model.accountPasword">
 							<template slot="prefix">
 								<text class="label" >密码</text>
 							</template>
@@ -96,6 +96,7 @@
 			  this.tips = text;
 			},
 			getCode() {
+                
 			    if (this.$refs.uCode.canGetCode) {
 			        uni.$u.toast('验证码已发送');
 			        this.$refs.uCode.start();
@@ -104,8 +105,14 @@
 			    }
 			},
 			submit(){
+                console.log(this.model)
+                let data={
+                    ...this.model
+                }
+                this.$http('customer/register',data,'post').then(res=>{
+                    console.log(res)
+                })
 				this.$refs.form.validate().then(res => {
-					delete this.model.password_
 					console.log(this.model)
 				}).catch(errors => {
 					

@@ -1,24 +1,10 @@
 <template>
 	<view class="page_wrap">
-		<!-- <uni-nav-bar 
-		@clickLeft="clickLeft"
-		@clickRight="clickRight"
-		left-icon="back" 
-		fixed=true
-		right-icon="search"
-		title="库存查询">
-		</uni-nav-bar> -->
 		<view class="container mt20">
-			<view class="row jc_sb filter" v-if="pageType=='search'">
-				<view class="price">
-					价格
-					<text class="iconfont icon-shang"></text>
-					<text class="iconfont icon-zhankai"></text>
-				</view>
-				<view class="screen" @click="showFilter=true">
-					筛选<text class="iconfont icon-shaixuan"></text>
-				</view>
-			</view>
+			<search-comprehensive
+            :showScreen="true"
+            >
+            </search-comprehensive>
 			<list></list>
 		</view>
 		
