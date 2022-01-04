@@ -2,10 +2,14 @@
 	<view class="filter_wrap">
 		<scroll-view class="parent_list" scroll-y="true">
 			<view class="tit f32-c333 fwb">全部分类</view>
-			<view class="parent_item" v-for="(item,index) in list" :key="index">
+			<view class="parent_item" v-for="(item,index) in list1" :key="index">
 				<view class="f28-c333 mt40">{{item.label}}</view>
 				<view class="child_list row">
-					<view :class="['child_item', 'mt20', el.checked && 'is_check' ]" @click="selectItem(el,e)" v-for="(el,e) in item.childList" :key="e">
+					<view 
+                    :class="['child_item', 'mt20', el.checked && 'is_check' ]" 
+                    @click="selectItem(el,e,index)" 
+                    v-for="(el,e) in item.childList" 
+                    :key="e">
 						{{el.label}}
 					</view>
 				</view>
@@ -29,10 +33,10 @@
 					return [{
 						label:'蔬菜',
 						childList:[
-							{label:'青菜',checked:false},
-							{label:'青菜',checked:false},
-							{label:'青菜',checked:false},
-							{label:'青菜',checked:false},
+							{label:'青菜1',checked:false},
+							{label:'青菜2',checked:false},
+							{label:'青菜3',checked:false},
+							{label:'青菜4',checked:false},
 							{label:'青菜',checked:false},
 							{label:'青菜',checked:false}
 						]
@@ -53,23 +57,46 @@
 		},
 		data(){
 			return{
-				
+				list1:[{
+					label:'蔬菜',
+					childList:[
+						{label:'青菜1',checked:false},
+						{label:'青菜2',checked:false},
+						{label:'青菜3',checked:false},
+						{label:'青菜4',checked:false},
+						{label:'青菜',checked:false},
+						{label:'青菜',checked:false}
+					]
+				},
+				{
+					label:'蔬菜',
+					childList:[
+						{label:'青菜',checked:false},
+						{label:'青菜',checked:false},
+						{label:'青菜',checked:false},
+						{label:'青菜',checked:false},
+						{label:'青菜',checked:false},
+						{label:'青菜',checked:false}
+					]
+				}]
 			}
 		},
 		methods:{
-			selectItem(item,index){
+			selectItem(item,e,index){
 				item.checked=!item.checked
+                // this.list1[index].childList[e].checked=!this.list1[index].childList[e].checked
+                this.$forceUpdate()
 			},
 			submit(val){
 				if(val==1){
-					this.list.forEach(el=>{
+					this.list1.forEach(el=>{
 						el.childList.forEach((e=>{
 							e.checked=false
 						}))
 					})
 				}else{
 					let arr=[]
-					this.list.forEach(el=>{
+					this.list1.forEach(el=>{
 						el.childList.forEach((e=>{
 							if(e.checked){
 								arr.push(e)
@@ -77,6 +104,7 @@
 						}))
 					})
 					console.log(arr)
+                    this.$emit('selectFilter',arr)
 				}
 			}
 		}

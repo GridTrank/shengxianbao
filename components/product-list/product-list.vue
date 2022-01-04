@@ -75,7 +75,9 @@
 				this.moreIcon=this.showMore?'icon-shang':'icon-zhankai'
 			},
 			addGood(){
-				this.$refs.spec.show=true
+                if(this.$util.isLogin()){
+                    this.$refs.spec.show=true
+                }
 			}
 		}
 	}

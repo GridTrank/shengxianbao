@@ -162,9 +162,11 @@
 		}
 		.input_item{
 			.label{
-				color: #888;
-				font-size: 24upx;
-				margin-right: 80upx;
+				color: #333;
+				font-size: 32upx;
+				width: 150upx;
+				text-align: left;
+				display: block;
 			}
 			.iconfont{
 				color: #d1d1d1;

@@ -24,9 +24,11 @@
   margin: 0 !important;
 }
 .page_wrap .input_wrap .input_item .label.data-v-41522e78 {
-  color: #888;
-  font-size: 24rpx;
-  margin-right: 80rpx;
+  color: #333;
+  font-size: 32rpx;
+  width: 150rpx;
+  text-align: left;
+  display: block;
 }
 .page_wrap .input_wrap .input_item .iconfont.data-v-41522e78 {
   color: #d1d1d1;
@@ -54,7 +56,6 @@
   color: #fff;
   font-size: 36rpx;
   border-radius: 50rpx;
-  background: -webkit-linear-gradient(314deg, #F87523 0%, #FD1D20 100%);
   background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
   margin: auto;
   margin-top: 50rpx;

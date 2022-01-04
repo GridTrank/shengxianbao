@@ -114,11 +114,12 @@
 			};
 		},
 		onLoad(options){
+            console.log(options)
 			this.id = options.id;
 			// this.loadRating(); //加载评价
 		},
 		onShow() {
-			// this.loadData();
+			this.loadData();
 		},
 		onPageScroll(e) {
 			this.$refs.pageHeader && this.$refs.pageHeader.pageScroll(e);
@@ -134,16 +135,11 @@
 		// #endif
 		methods:{
 			async loadData(){
-				const res = await this.$request('product', 'getDetail', {
+				const res = await this.$http('api/pms/productcategory/getProductSkuIdInfo', {
 					id: this.id
 				})
-				if(res.status === 0){
-					this.$util.msg(res.msg || '产品不存在或已下架');
-					setTimeout(()=>{
-						uni.navigateBack();
-					}, 1000)
-					return;
-				}
+                console.log(123,res)
+                
 				const data = res.data;
 				data.content = data.content.replace(/img src="/g, 'img style="display:block;width:100%;height:auto" src="');
 				this.data = data;

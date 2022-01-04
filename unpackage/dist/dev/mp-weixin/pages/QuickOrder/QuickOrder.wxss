@@ -5,11 +5,8 @@
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
 .page_wrap .labels_list {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-wrap: nowrap;
-          flex-wrap: nowrap;
+  flex-wrap: nowrap;
   white-space: nowrap;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
@@ -38,8 +35,6 @@
           transform: translateX(-50%);
 }
 .page_wrap .second_list {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
   height: 88vh;
   overflow: hidden;
@@ -50,9 +45,7 @@
 }
 .page_wrap .second_list .left_list .left_item {
   padding: 40rpx 0;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
+  justify-content: center;
   color: #666;
   font-size: 28rpx;
 }

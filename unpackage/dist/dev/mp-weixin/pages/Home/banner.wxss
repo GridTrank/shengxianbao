@@ -19,7 +19,6 @@
   border-radius: 16rpx;
   -webkit-transform: scale(0.94, 0.88);
           transform: scale(0.94, 0.88);
-  -webkit-transition: -webkit-transform .36s;
   transition: -webkit-transform .36s;
   transition: transform .36s;
   transition: transform .36s, -webkit-transform .36s;
@@ -33,9 +32,7 @@
   left: 0;
   bottom: 12rpx;
   width: 100%;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
+  justify-content: center;
 }
 .dot.data-v-278d2c53 {
   width: 32rpx;

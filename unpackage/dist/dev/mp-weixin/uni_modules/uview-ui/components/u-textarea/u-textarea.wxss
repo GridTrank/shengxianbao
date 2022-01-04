@@ -8,18 +8,9 @@
   border-radius: 4px;
   background-color: #fff;
   position: relative;
-
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  flex-direction: row;
+  flex: 1;
   padding: 9px;
 }
 .u-textarea--radius {
@@ -32,9 +23,7 @@
   background-color: #f5f7fa;
 }
 .u-textarea__field {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  flex: 1;
   font-size: 15px;
   color: #606266;
 }

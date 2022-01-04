@@ -19,8 +19,11 @@
                     </template>
                     <template v-else>
                         <view class="no f28-c333" @click.stop="checkedHandle(item)">	
-                            <text v-if="item.checked==2" class="iconfont icon-xuanze"></text>
-                            <text v-else class="iconfont icon-weixuanze"></text>
+                            <template v-if="pageType!=='offer'">
+                                <text v-if="item.checked==2" class="iconfont icon-xuanze"></text>
+                                <text v-else class="iconfont icon-weixuanze"></text>
+                            </template>
+                            
                             DD1234566
                         </view>
                         <view class="status">
@@ -31,15 +34,22 @@
 				<view class="detail"> 
                     <!-- 周转 -->
                     <template v-if="pageType=='turnover'">
-                        <view class="row mt20">
-                            <text class="t1 f28-c999">单号</text>
-                            <text class="t2 f28-c333">1231 <text class="t2-1 f28-dc ml20">¥2000.29</text> </text>
-                            <text class="t3 f24-c999 ml20">收到：123</text>
-                        </view>
-                        <view class="row mt30">
-                            <text class="t1 f28-c999">单号</text>
-                            <text class="t2 f28-c333">1231</text>
+                        <view class="row jc_sb mt20">
+                            <view >
+                                <text class="t1 f28-c999 ">单号</text>
+                                <text class="t2 f28-c333 ml30">1231  </text>
+                            </view>
+                            
                             <text class="t3 f24-c999">收到：123</text>
+                        </view>
+                        <view class="row jc_sb mt30">
+                            <view class="">
+                                <text class="t1 f28-c999">数量</text>
+                                <text class="t2 ml30 f28-c333">1231</text>
+                                <text class="t2-1 ml30 f28-dc ">¥2000.29</text>
+                            </view>
+                            
+                            <text class="t3 f24-c999">归还：123</text>
                         </view>
                     </template>
                     
@@ -52,19 +62,31 @@
                         </view>
                     </template>
 				</view>
+                
+                <!-- 操作选项 -->
 				<view class="handle_wrap row">
-					<view class="handle_btn h1">
-						<text class="iconfont icon-shenhe"></text>审核
-					</view>
-					<view class="handle_btn h1" @click.stop="navTo('./Detail?pageType='+pageType+'&showEdit=true')">
-						<text class="iconfont icon-bianji"></text>修改
-					</view>
-					<view class="handle_btn h2">
-						<text class="iconfont icon-shanchu"></text>作废
-					</view>
-					<view class="handle_btn h1">
-						<text class="iconfont icon-dayin"></text>打印
-					</view>
+                    <!-- 周转筐 -->
+                    <template v-if="pageType=='turnover'">
+                        <view class="handle_btn bg_style2">
+                        	归还
+                        </view>
+                    </template>
+                    <!-- 其他 -->
+                    <template v-else>
+                        <view class="handle_btn h1">
+                        	<text class="iconfont icon-shenhe"></text>审核
+                        </view>
+                        <view class="handle_btn h1" @click.stop="navTo('./Detail?pageType='+pageType+'&showEdit=true')">
+                        	<text class="iconfont icon-bianji"></text>修改
+                        </view>
+                        <view class="handle_btn h2">
+                        	<text class="iconfont icon-shanchu"></text>作废
+                        </view>
+                        <view class="handle_btn h1">
+                        	<text class="iconfont icon-dayin"></text>打印
+                        </view>
+                    </template>
+					
 				</view>
 			</view>
 		</view>
@@ -251,6 +273,9 @@
 						margin-right: 10upx;
 					}
 				}
+                .bg_style2{
+                    padding: 8upx 40upx;
+                }
 				.h1{
 					color: $base-color;
 				}

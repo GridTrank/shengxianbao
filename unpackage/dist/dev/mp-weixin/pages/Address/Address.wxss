@@ -8,7 +8,6 @@
   padding-bottom: 240rpx;
 }
 .page_wrap.data-v-4069c4b0 .u-swipe-action-item__content {
-  -webkit-transition: -webkit-transform 300ms ease 0s;
   transition: -webkit-transform 300ms ease 0s;
   transition: transform 300ms ease 0s;
   transition: transform 300ms ease 0s, -webkit-transform 300ms ease 0s;

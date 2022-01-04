@@ -12,10 +12,21 @@ export const request = (url,data,method)=>{
 		uni.request({
 			url:baseUrl+url,
 			data:data,
-			
+			header:{
+				// 'Authorization':uni.getStorageSync('token')? uni.getStorageSync('token'): '',
+				'token':uni.getStorageSync('token')? uni.getStorageSync('token'): ''
+                // 'content-type':'application/x-www-form-urlencoded'
+			},
 			method:method || 'GET',
 			success: (res) => {
-				console.log(res)
+                if( Number(res.data.code) === 0 ){
+                    resolve(res.data.data)
+                }else{
+                    uni.showToast({
+                        title:res.data.msg || '请求失败',
+                        icon:'none'
+                    })
+                }
 			},
 			fail:function(err){
 				uni.hideLoading()

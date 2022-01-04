@@ -8,7 +8,7 @@
 		}"
 	>
 		<view class="btn center" @click="navBack">
-			<text class="iconfont icon-xiangzuo" :class="{dark: headerOpacity < 0.5}"></text>
+			<text class="iconfont icon-zuojiantou" :class="{dark: headerOpacity < 0.5}"></text>
 		</view>
 		<view class="cen center">
 			<view 
@@ -101,7 +101,7 @@
 	.btn{
 		width: 80rpx;
 	}
-	.icon-xiangzuo{
+	.icon-zuojiantou{
 		width: 52rpx;
 		height: 52rpx;
 		border-radius: 100rpx;

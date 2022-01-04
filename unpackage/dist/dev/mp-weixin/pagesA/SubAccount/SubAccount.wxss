@@ -19,9 +19,7 @@
 }
 .page_wrap .list .item {
   padding: 30rpx 0;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 .page_wrap .list .item .left {
   font-size: 30rpx;
@@ -36,9 +34,7 @@
   width: 400rpx;
 }
 .page_wrap .list .btn_wrap {
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-          justify-content: flex-end;
+  justify-content: flex-end;
   padding-top: 30rpx;
   border-top: 1px solid #E1E1E1;
 }

@@ -4,8 +4,6 @@
  * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
-
-
 /**
  * vue版本动画内置的动画模式有如下：
  * fade：淡入
@@ -22,7 +20,6 @@
  */
 .u-fade-enter-active,
 .u-fade-leave-active {
-  -webkit-transition-property: opacity;
   transition-property: opacity;
 }
 .u-fade-enter,
@@ -37,7 +34,6 @@
 }
 .u-fade-zoom-enter-active,
 .u-fade-zoom-leave-active {
-  -webkit-transition-property: opacity, -webkit-transform;
   transition-property: opacity, -webkit-transform;
   transition-property: transform, opacity;
   transition-property: transform, opacity, -webkit-transform;
@@ -50,7 +46,6 @@
 .u-fade-right-leave-active,
 .u-fade-up-enter-active,
 .u-fade-up-leave-active {
-  -webkit-transition-property: opacity, -webkit-transform;
   transition-property: opacity, -webkit-transform;
   transition-property: opacity, transform;
   transition-property: opacity, transform, -webkit-transform;
@@ -87,7 +82,6 @@
 .u-slide-right-leave-active,
 .u-slide-up-enter-active,
 .u-slide-up-leave-active {
-  -webkit-transition-property: -webkit-transform;
   transition-property: -webkit-transform;
   transition-property: transform;
   transition-property: transform, -webkit-transform;
@@ -114,7 +108,6 @@
 }
 .u-zoom-enter-active,
 .u-zoom-leave-active {
-  -webkit-transition-property: -webkit-transform;
   transition-property: -webkit-transform;
   transition-property: transform;
   transition-property: transform, -webkit-transform;

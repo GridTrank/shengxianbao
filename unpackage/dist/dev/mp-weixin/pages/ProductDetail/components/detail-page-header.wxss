@@ -9,15 +9,13 @@
   left: 0;
   top: 0;
   z-index: 90;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+  justify-content: space-between;
   width: 100%;
 }
 .btn.data-v-258ff370 {
   width: 80rpx;
 }
-.icon-xiangzuo.data-v-258ff370 {
+.icon-zuojiantou.data-v-258ff370 {
   width: 52rpx;
   height: 52rpx;
   border-radius: 100rpx;
@@ -26,14 +24,12 @@
   text-align: center;
   line-height: 52rpx;
 }
-.icon-xiangzuo.dark.data-v-258ff370 {
+.icon-zuojiantou.dark.data-v-258ff370 {
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
 }
 .cen.data-v-258ff370 {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  flex: 1;
   height: 100%;
   position: relative;
 }

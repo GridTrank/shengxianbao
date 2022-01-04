@@ -4,6 +4,8 @@
 			<search-comprehensive
 			placeholder='搜索商品'
 			:showScreen='true'
+            @searchInput="searchInput"
+            @selectFilter="selectFilter"
 			>
 			</search-comprehensive>
 		</view>
@@ -14,11 +16,6 @@
 		nowParentPage='SelectGoopd'
 		:showEdit="showEdit">
 		</detail-list>
-		
-		<u-popup :show="showFilter" mode="right" @close="showFilter=false">
-			<filter-page></filter-page>
-		</u-popup>
-		
 	</view>
 </template>
 
@@ -28,26 +25,9 @@
 		data() {
 			return {
 				keyWrod:'',
-				showFilter:false,
 				modelTitle:'提示',
 				subTitle:'请输入商品数量',
 				showEdit:false,
-				datas: [{
-						img: '../../static/goods_avatar.png',
-						title: '华为荣耀',
-						remark: '256G',
-						price: '128.80',
-						number: 1,
-						checked: 1
-					}, {
-						img: '../../static/goods_avatar.png',
-						title: 'mate40',
-						remark: '128G',
-						price: '116.80',
-						number: 1,
-						checked: 1
-					}],
-				statisticsIndex:false,
 				total:0,
 				isCut:true,
 				goodsIndex:'',
@@ -83,7 +63,12 @@
 			
 		},
 		methods: {
-			
+            searchInput(value){
+                console.log('搜索',value)
+            },
+			selectFilter(value){
+                console.log('筛选后的数据',value)
+            }
 		}
 	}
 </script>

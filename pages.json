@@ -440,6 +440,15 @@
 					"navigationBarTitleText": "选择商品",
 					"enablePullDownRefresh": false
 				}
+			},{
+				"path": "StockManage/Log",
+				"style": {
+                    // #ifdef H5
+                    "navigationStyle": "custom",
+                    // #endif
+					"navigationBarTitleText": "操作日志",
+					"enablePullDownRefresh": false
+				}
 			}, {
 				"path": "SourceManage/Index",
 				"style": {

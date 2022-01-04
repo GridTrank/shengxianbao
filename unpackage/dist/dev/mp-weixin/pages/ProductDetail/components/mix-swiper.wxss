@@ -12,8 +12,7 @@
   height: 750rpx;
 }
 .image-wrapper.data-v-0eec186a {
-  -webkit-flex-shrink: 0;
-          flex-shrink: 0;
+  flex-shrink: 0;
   width: 750rpx;
   height: 750rpx;
   margin-right: 20rpx;

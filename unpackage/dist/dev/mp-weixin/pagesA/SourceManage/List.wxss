@@ -7,9 +7,7 @@
 .page_wrap .list .item.data-v-4606b369 {
   background-color: #fff;
   padding: 30rpx;
-  -webkit-box-align: baseline;
-  -webkit-align-items: baseline;
-          align-items: baseline;
+  align-items: baseline;
 }
 .page_wrap .list .item .i1.data-v-4606b369 {
   padding-bottom: 20rpx;

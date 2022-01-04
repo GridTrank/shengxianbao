@@ -6,21 +6,10 @@
  */
 .u-toolbar {
   height: 42px;
-
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 .u-toolbar__wrapper__cancel {
   color: #909193;
@@ -31,9 +20,7 @@
   color: #303133;
   padding: 0 60rpx;
   font-size: 16px;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  flex: 1;
   text-align: center;
 }
 .u-toolbar__wrapper__confirm {

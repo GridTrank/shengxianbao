@@ -4,7 +4,7 @@
 			<view class="search-wrap row":style="{height: customHeight + 'px'}" >
 				<view class=" row">
 					<image class="search" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/search.png" mode="widthFix"></image>
-					<text>输入关键字搜索</text>
+                    <u-input type="text" placeholder="输入关键字搜索" v-model="keyWord" />
 				</view>
 				<image class="yuyin" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/yuyin%402x.png" mode="widthFix"></image>
 			</view>
@@ -14,10 +14,9 @@
 
 <script>
 	export default {
-		name: 'HomePageHeader',
 		data() {
 			return {
-				
+				keyWord:'',
 			};
 		},
 		props: {

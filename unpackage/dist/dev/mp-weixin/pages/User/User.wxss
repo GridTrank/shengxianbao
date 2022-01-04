@@ -22,9 +22,7 @@
   margin-right: 20rpx;
 }
 .page_wrap .user_info .user .info.data-v-19910034 {
-  -webkit-box-align: baseline;
-  -webkit-align-items: baseline;
-          align-items: baseline;
+  align-items: baseline;
   color: #fff;
 }
 .page_wrap .user_info .user .info .name.data-v-19910034 {

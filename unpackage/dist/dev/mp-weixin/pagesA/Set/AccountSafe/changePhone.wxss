@@ -22,7 +22,6 @@
   bottom: 0;
   width: 92rpx;
   height: 10rpx;
-  background: -webkit-linear-gradient(314deg, #F87523 0%, #FD1D20 100%);
   background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
 }
 .page_wrap .page_type .sub_txt.data-v-c7237710 {
@@ -66,7 +65,6 @@
   font-size: 36rpx;
   font-weight: bold;
   border-radius: 50rpx;
-  background: -webkit-linear-gradient(314deg, #F87523 0%, #FD1D20 100%);
   background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
   margin-top: 100rpx;
 }

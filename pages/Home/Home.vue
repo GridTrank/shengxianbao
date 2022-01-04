@@ -10,20 +10,21 @@
 		<view class="bg"></view>
 		<!-- #endif -->
 		<view class="container">
-			
 			<!-- #ifdef MP -->
 			<view class="search_wrap" @click="navTo('/pages/Search/Search')">
 				<text class="iconfont icon-sousuo"></text>搜索
 			</view>
 			<!-- #endif -->
-			<banner></banner>
+			<banner :list="banners"></banner>
 			<view class="">
 				<view class="notice row mt30">
 					<image class="msg_img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/message.png" mode="widthFix"></image>
-					<text class="notice_txt ">今日23:00前下单，次日 <text class="time">7:00～10:00</text>送达</text>
+					<text class="notice_txt ">{{noticeTitle}}</text>
+                    <!-- <text class="notice_txt ">今日23:00前下单，次日 <text class="time">7:00～10:00</text>送达</text> -->
+                    
 				</view>
 			</view>
-			<module1></module1>
+			<module1 :list="typeList"></module1>
 			<module2></module2>
 			<module3></module3>
 			<view class="guess mt30">
@@ -51,21 +52,23 @@
 </template>
 
 <script>
-	import homeMixin from './mixin/home'
 	import banner from './banner.vue'
 	import module1 from './module1.vue'
 	import module2 from './module2.vue'
 	import module3 from './module3.vue'
 	export default{
 		components:{banner,module1,module2,module3},
-		mixins: [homeMixin],
 		data(){
 			return {
-				bgColor:'transparent'
+				bgColor:'transparent',
+                banners:[],
+                typeList:[],
+                specialList:[],
+                recommendList:[],
+                noticeTitle:'',
 			}
 		},
 		onPageScroll(res) {
-			console.log(res)
 			// #ifdef H5
 			if(res.scrollTop>50){
 				this.bgColor='#FF6105'
@@ -73,7 +76,47 @@
 				this.bgColor='transparent'
 			}
 			// #endif
-		}
+		},
+        onLoad() {
+            this.getBanner()
+        },
+        methods:{
+            // bannner
+            getBanner(){
+                this.$http('index/getBannerList',{displayPosition:1}).then(res=>{
+                    this.banners=res
+                    this.getTypeList()
+                    this.getRecommentList()
+                    this.getSpecialList()
+                    this.getNotice()
+                })
+            },
+            // 分类
+            getTypeList(){
+                this.$http('index/getProductTypeGroupingList').then(res=>{
+                    this.typeList=res
+                })
+            },
+            // 推荐
+            getRecommentList(){
+                this.$http('index/getBMallRecommendList',{recommendTypeId:2}).then(res=>{
+                    this.recommendList=res
+                })
+            },
+            // 品牌
+            getSpecialList(){
+                this.$http('index/getSpecialList').then(res=>{
+                    this.specialList=res
+                })
+            },
+            // 滚动标题
+            getNotice(){
+                this.$http('index/getCustomerNoticeRollingList').then(res=>{
+                    this.noticeTitle=res[0].noteTitle
+                })
+            },
+        }
+        
 	}
 </script>
 

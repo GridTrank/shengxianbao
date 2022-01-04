@@ -6,9 +6,7 @@
  */
 .bill_list.data-v-688cb280 {
   color: #fff;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+  justify-content: space-between;
   margin-top: 80rpx;
 }
 .bill_list .bill_item .txt_wrap.data-v-688cb280 {

@@ -44,16 +44,21 @@ export const msg = (title = '', param={}) => {
  * @return {Boolean}
  */
 export const isLogin = (options={}) => {
-	const token = uni.getStorageSync('uniIdToken');
+	const token = uni.getStorageSync('token');
 	if(token){
 		return true;
-	}
-	if(options.nav !== false){
-		uni.navigateTo({
-			url: '/pages/auth/login'
-		})
-	}
-	return false;
+	}else{
+        uni.showToast({
+            title:'请先登录',
+            icon:'none'
+        })
+        setTimeout(()=>{
+            uni.navigateTo({
+            	url: '/pages/Login/Login'
+            })
+        },1500)
+        return false
+    }
 }
 /**
  * 获取页面栈

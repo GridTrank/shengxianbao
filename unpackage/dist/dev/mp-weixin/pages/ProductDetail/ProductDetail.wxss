@@ -62,7 +62,6 @@ page{
 }
 /* 分享 */
 .share-wrap.data-v-9a2e6c70 {
-  background: -webkit-linear-gradient(left, #fdf5f6, #fbebf6);
   background: linear-gradient(to right, #fdf5f6, #fbebf6);
   height: 76rpx;
   padding: 0 30rpx;
@@ -96,9 +95,7 @@ page{
   color: #fff;
 }
 .share-wrap .tit.data-v-9a2e6c70 {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  flex: 1;
   font-size: 26rpx;
   color: #666;
   margin-left: 14rpx;
@@ -138,9 +135,7 @@ page{
   width: 140rpx;
 }
 .c-list .con.data-v-9a2e6c70 {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  flex: 1;
   color: #333;
 }
 .c-list .con .attr.data-v-9a2e6c70 {
@@ -175,12 +170,8 @@ page{
   padding: 10rpx 30rpx 10rpx;
 }
 .rating-wrap .e-header.data-v-9a2e6c70 {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
   height: 70rpx;
   font-size: 28rpx;
   color: #333;
@@ -192,9 +183,7 @@ page{
   margin-right: 4rpx;
 }
 .rating-wrap .tip.data-v-9a2e6c70 {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  flex: 1;
   font-size: 26rpx;
   color: #999;
   text-align: right;

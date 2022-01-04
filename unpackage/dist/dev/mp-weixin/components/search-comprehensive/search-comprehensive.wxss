@@ -12,9 +12,7 @@
   background-color: #F6F6F6;
   padding: 14rpx 30rpx;
   border-radius: 40rpx;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  flex: 1;
   margin-right: 20rpx;
 }
 .search_wrap .input_wrap image.data-v-0a264038 {

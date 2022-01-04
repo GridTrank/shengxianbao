@@ -32,15 +32,9 @@
 }
 .alertArea .searchInput .clickArea.data-v-bcf9e994 {
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   height: 36px;
 }
 .alertArea .searchInput .clickArea .jInput.data-v-bcf9e994 {
@@ -74,16 +68,11 @@
 .alertArea .pickerTop.data-v-bcf9e994 {
   background-color: #FFFFFF;
   height: 52px;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
   font-size: 18px;
   box-sizing: border-box;
-  -webkit-justify-content: space-around;
-          justify-content: space-around;
+  justify-content: space-around;
 }
 .alertArea .pickerTop .lefBtn.data-v-bcf9e994,
 .alertArea .pickerTop .rigBtn.data-v-bcf9e994 {
@@ -121,12 +110,8 @@
   width: 30px;
   height: 30px;
   text-align: center;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
 }
 .alertArea .pickerView.data-v-bcf9e994 {
   background-color: #FFFFFF;

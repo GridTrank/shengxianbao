@@ -14,9 +14,7 @@
 .page_wrap .list .item.data-v-668204d4 {
   padding: 40rpx 0;
   border-bottom: 1px solid #E1E1E1;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 .page_wrap .list .item .left.data-v-668204d4 {
   font-size: 30rpx;

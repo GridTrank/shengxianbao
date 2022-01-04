@@ -1,9 +1,13 @@
 <template>
 	<view class="">
 		<view class="info" :class="pageFrom">
-			<image class="img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" ></image>
+			<image 
+            @click="navTo('/pages/ProductDetail/ProductDetail?id='+info.productId)"
+            class="img" 
+            src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" >
+            </image>
 			<view class="detail">
-				<view class="name ">名称</view>
+				<view class="name ">{{info.productName}}</view>
 				<view class="spec ">
 					<text class="s_detail">5斤/10斤/15斤</text>
 				</view>
@@ -61,6 +65,9 @@
 <script>
 	export default{
 		props:{
+            info:{
+                type:Object
+            },
 			styleType:{
 				type:String,
 				default:''

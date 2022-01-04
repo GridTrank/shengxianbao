@@ -25,9 +25,15 @@
 						<text @click="changNum(2)">+</text>
 					</view>
 				</view>
-				<view class="detail jc_sb">
+				<view class="detail jc_sb row">
+                    <u-input  placeholder='请输入备注' border='none' v-model="remark">
+                    	<template slot="prefix">
+                    		<text class="label f28-c333">备注</text>
+                    	</template>
+                    	
+                    </u-input><!-- 
 					<view class="f28-c333">备注</view>
-					<u-input class="mt20"  type="text" v-model="remark" border='none' placeholder="请输入备注" />
+					<u-input class="mt20 ml20"  type="text" v-model="remark" border='none' placeholder="请输入备注" /> -->
 				</view>
 				
 				<view class="btn_default" @click="add">
@@ -56,7 +62,7 @@
 				}
 			},
 			add(){
-				
+                
 			}
 		}
 	}

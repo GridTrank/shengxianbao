@@ -19,7 +19,6 @@
   margin-top: 400rpx;
 }
 .page_wrap .sancode.data-v-d3778cd2 {
-  background: -webkit-linear-gradient(314deg, #F87523 0%, #FD1D20 100%);
   background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
   border-radius: 50rpx;
   color: #fff;

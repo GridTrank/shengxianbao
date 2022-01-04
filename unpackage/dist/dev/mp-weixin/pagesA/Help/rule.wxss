@@ -19,8 +19,6 @@
   width: 20rpx;
 }
 .page_wrap .text_wrap .p {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
   font-size: 24rpx;
   font-family: PingFangSC-Regular, PingFang SC;
@@ -32,8 +30,7 @@
   width: 10rpx;
   height: 10rpx;
   background: #FE5B07;
-  -webkit-flex-shrink: 0;
-          flex-shrink: 0;
+  flex-shrink: 0;
   margin-right: 16rpx;
   margin-top: 16rpx;
 }

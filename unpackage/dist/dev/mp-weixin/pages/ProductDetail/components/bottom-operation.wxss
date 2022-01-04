@@ -51,16 +51,12 @@
   border-radius: 100rpx;
 }
 .btn-group.data-v-c6f36a34 {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  flex: 1;
   margin: 0 16rpx 0 14rpx;
   overflow: hidden;
 }
 .btn-group .btn.data-v-c6f36a34 {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  flex: 1;
   height: 76rpx;
   font-size: 30rpx;
   color: #fff;

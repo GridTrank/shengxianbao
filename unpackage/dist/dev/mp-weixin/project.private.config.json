@@ -69,6 +69,18 @@
         {
           "name": "合同",
           "pathName": "pagesA/Contract/Index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/Login/register",
+          "pathName": "pages/Login/register",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "分类",
+          "pathName": "pages/Classify/Classify",
           "scene": null
         }
       ]

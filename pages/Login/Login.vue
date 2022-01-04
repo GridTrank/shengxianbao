@@ -1,11 +1,11 @@
 <template>
 	<view class="page_wrap">
 		<view class="input_wrap">
-			<u--form ref='form' :model="model" :rules="rules" >
+			<u-form ref='form' :model="model" :rules="rules" >
 				<template v-if="loginType=='account'">
-					<u-form-item prop="account">
+					<u-form-item prop="customerName">
 						<view class="input_item">
-							<u-input  placeholder='请输入账号' border='bottom' v-model="model.account">
+							<u-input  placeholder='请输入账号' border='bottom' v-model="model.customerName">
 								<template slot="prefix">
 									<text class="label" >账号</text>
 								</template>
@@ -26,7 +26,7 @@
 					</u-form-item>
 				</template>
 				<template v-else>
-					<u-form-item prop="phone">
+					<u-form-item prop="mobile">
 						<view class="input_item">
 							<u-input max placeholder='请输入手机号' border='bottom' v-model="model.mobile">
 								<template slot="prefix">
@@ -35,7 +35,7 @@
 							</u-input>
 						</view>
 					</u-form-item>
-					<u-form-item prop="code">
+					<u-form-item prop="smsCode">
 						<view class="input_item ">
 							<u-input  placeholder='请输入验证码' border='none' v-model="model.smsCode">
 								<template slot="prefix">
@@ -57,7 +57,7 @@
 					</u-form-item>
 				</template>
 				
-			</u--form>
+			</u-form>
 			
 			<view class="agreement row">
 				<image 
@@ -67,10 +67,9 @@
 				'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quan1%402x.png'" 
 				mode="widthFix">
 				</image>
-				<text>我已阅读并同意以下条款<text class="link">《好运来服务协议及隐私政策》》</text></text>
+				<text>我已阅读并同意以下条款<text class="link">《好运邻里服务协议及隐私政策》》</text></text>
 			</view>
 		</view>
-		
 		
 		<view class="btn" @click="login">
 			登录
@@ -86,44 +85,96 @@
 </template>
 
 <script>
+    import {checkStr} from '@/common/js/util'
 	export default {
 		data() {
 			return {
 				isAgree:false,
-				model:{},
+				model:{
+                    customerName:'',
+                    password:'',
+                   
+                },
 				rules:{
-					account:[
+					customerName:[
 						{required:true,message:'请输入账号',trigger:'blur'}
 					],
 					password:[
 						{required:true,message:'请输入密码',trigger:'blur'}
-					]
+					],
+                    mobile:[
+                        {
+                            required: true, 
+                            message: '请输入手机号',
+                            trigger: ['change','blur'],
+                        },
+                        {
+                            validator: (rule, value, callback) => {
+                                return this.$u.test.mobile(value);
+                            },
+                            message: '手机号码不正确',
+                            trigger: ['change','blur'],
+                        }
+                        
+                    ],
+                    smsCode:[
+                    	{required:true,message:'请输入验证码',trigger:'blur'}
+                    ],
 				},
 				tips:'',
 				loginType:'account'
 			};
 		},
-	
+        onReady() {
+	        this.$refs.form.setRules(this.rules);
+	    },
 		methods:{
 			agreeHandle(){
 				this.isAgree=!this.isAgree
 			},
 			login(){
+                if(!this.isAgree){
+                    uni.showToast({
+                        title:'请先阅读并同意服务协议与隐私政策',
+                        icon:'none'
+                    })
+                    return
+                }
+                let url=this.loginType=='account'?'api/customer/login':'api/customer/mobileLogin'
 				this.$refs.form.validate().then(res => {
-					uni.$u.toast('校验通过')
+                    this.$http(url,this.model,'post').then(res=>{
+                       uni.showToast({
+                           title:'登录成功',
+                           icon:'none'
+                       })
+                       uni.setStorageSync('token',res.token)
+                       setTimeout(()=>{
+                           uni.navigateBack()
+                       },2000)
+                       
+                    })
 				}).catch(errors => {
-					
 				})
 			},
 			changeLogin(){
 				this.loginType=this.loginType=='account'?'phone':'account'
-				console.log(this.loginType)
+                if(this.loginType=='phone'){
+                    this.model={
+                        mobile:'',
+                        smsCode:'',
+                    }
+                }else{
+                    this.model={
+                        customerName:'',
+                        password:'',
+                    }
+                }
 			},
 			codeChange(text) {
 			  this.tips = text;
 			},
 			getCode() {
-                this.$http('customer/getSmsCode',{mobile:this.model.mobile},'post').then(res=>{
+                this.$http('api/customer/getSmsCode',{mobile:this.model.mobile},'post').then(res=>{
                     console.log(res)
                 })
                 return

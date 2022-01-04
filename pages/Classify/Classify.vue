@@ -22,7 +22,7 @@
 				<view 
 				class="left_item row" 
 				@click="selectChild(item,index)"  
-				v-for="(item,index) in 15" 
+				v-for="(item,index) in childList" 
 				:key="index"
 				:class="selectChildIndex==index && 'select_child' "
 				>
@@ -32,13 +32,13 @@
 					src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/reixao%402x.png" 
 					>
 					</image>
-					<text>二级</text>
+					<text>{{item.categoryName}}</text>
 					
 				</view>
 			</scroll-view>
 			<scroll-view  scroll-y="true" class="right_list">
-				<view class="list  mt20" v-for="(item,index) in 3" :key="index">
-					<list></list>
+				<view class="list  mt20" v-for="(item,index) in dataList" :key="index">
+					<list :info="item"></list>
 				</view>
 			</scroll-view >
 		</view>
@@ -76,34 +76,46 @@
 		},
 		data() {
 			return {
-				parentList:[
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-				],
+				parentList:[],
 				childList:[],
 				selectParentIndex:0,
 				selectChildIndex:0,
 				parentListPop:false,
-				selectAllIndex:0
+				selectAllIndex:0,
+                
 			};
 		},
+        onLoad() {
+            this.getCateList()
+        },
 		methods:{
+            getCateList(){
+                this.$http('api/pms/productcategory/getCategoryPidList').then(res=>{
+                    this.getCateListById(res[0].id)
+                    res.forEach(item=>{
+                        item.name=item.categoryName
+                    })
+                    this.parentList=res
+                })
+            },
+            getCateListById(id){
+                this.$http('api/pms/productcategory/getCategoryByIdList',{id}).then(res=>{
+                    this.childList=res
+                    // this.queryData.productCategoryId=res[0].id
+                    this.queryUrl='api/pms/productcategory/productPriceByProductSkuId'
+                    this.getList()
+                })
+            },
+            
 			selectParent(e){
+                console.log(e)
 				this.selectParentIndex=e.index
+                this.getCateListById(e.id)
 			},
 			selectChild(item,index){
 				this.selectChildIndex=index
+                this.queryData.productCategoryId=item.id
+                this.getList()
 			},
 			selectItem(item,index){
 				this.selectAllIndex=index

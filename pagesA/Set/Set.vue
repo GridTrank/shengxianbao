@@ -45,7 +45,7 @@
 			
 		</view>
 		<!-- 按钮 -->
-		<view class="login_out" >
+		<view class="login_out" @click="logout">
 			退出账号
 		</view>
 		
@@ -64,7 +64,24 @@
 			
 		},
 		methods:{
-			
+			logout(){
+                uni.showModal({
+                    title:'提示',
+                    content:'确认提出当前账号吗？',
+                    success: (res) => {
+                        if(res.confirm){
+                            uni.showToast({
+                                title:'退出成功',
+                                icon:'none'
+                            })
+                            uni.clearStorage()
+                            setTimeout(()=>{
+                                this.navTo('/pages/Home/Home','switch')
+                            },1500)
+                        }
+                    }
+                })
+            }
 		},
 		
 	}

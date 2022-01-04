@@ -6,9 +6,7 @@
  */
 .page_wrap .versions_info {
   background-color: #fff;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
+  justify-content: center;
   height: 600rpx;
 }
 .page_wrap .versions_info .logo {

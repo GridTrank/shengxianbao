@@ -11,7 +11,7 @@
 				<image 
 					class="pic" 
 					:class="{current: current === index}"
-					:src="item.image" 
+					src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2221182985,1875035766&fm=26&gp=0.jpg" 
 					mode="aspectFill"
 					@click="navTo(item.link)"
 				></image>
@@ -25,26 +25,24 @@
 
 <script>
 	export default {
+        props:{
+            list:{
+                type:Array,
+                default:()=>{
+                    return []
+                }
+            }
+        },
 		name: 'HomeBanner',
 		data() {
 			return {
 				current: 0,
-				list: [
-					{image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2221182985,1875035766&fm=26&gp=0.jpg'},
-					{image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2544696267,4055569904&fm=26&gp=0.jpg'},
-					{image: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2573133749,533767849&fm=26&gp=0.jpg'},
-				]
+				// list: [
+				// 	{image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2221182985,1875035766&fm=26&gp=0.jpg'},
+				// 	{image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2544696267,4055569904&fm=26&gp=0.jpg'},
+				// 	{image: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2573133749,533767849&fm=26&gp=0.jpg'},
+				// ]
 			};
-		},
-		props: {
-			// list: {
-			// 	type: Array,
-			// 	default(){
-			// 		return [
-						
-			// 		]
-			// 	}
-			// }
 		},
 		methods: {
 			onSwiperChange(e){

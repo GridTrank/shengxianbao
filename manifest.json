@@ -142,6 +142,9 @@
                 "enable" : false
             }
         },
+        "devServer" : {
+        	"https" : false
+        },
         "title" : "好运邻里",
         "sdkConfigs" : {
             "maps" : {

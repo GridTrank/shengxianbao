@@ -22,23 +22,30 @@
             	</view>
             </view>
             
-			<view class="item row jc_sb">
-				<view class="left f28-c333">
-					日期
-				</view>
-				<view class="f28-c666">
-					2021-12-20
-				</view>
-			</view>
+            <!-- 日期 -->
+            <template v-if="pageType!=='offer'">
+                <view class="item row jc_sb">
+                	<view class="left f28-c333">
+                		日期
+                	</view>
+                	<view class="f28-c666">
+                		2021-12-20
+                	</view>
+                </view>
+            </template>
+			
+            
             <!-- 客户名称 -->
-            <view class="item row jc_sb">
-				<view class="left f28-c333">
-					客户名称
-				</view>
-				<view class="f28-c666">
-					123
-				</view>
-			</view>
+            <template v-if="pageType!=='offer'">
+                <view class="item row jc_sb">
+                    <view class="left f28-c333">
+                        客户名称
+                    </view>
+                    <view class="f28-c666">
+                        123
+                    </view>
+                </view>
+            </template>
             <!-- 状态 -->
             <template v-if="pageType=='offer'">
                 <view class="item row jc_sb">
@@ -50,8 +57,37 @@
                 	</view>
                 </view>
             </template>
+            
+            <!-- 报价单 -->
+            <template v-if="pageType=='offer'">
+                <view class="item row jc_sb">
+                	<view class="left f28-c333">
+                		价格组
+                	</view>
+                	<view class="f28-c666">
+                		价格组A
+                	</view>
+                </view>
+                <view class="item row jc_sb">
+                	<view class="left f28-c333">
+                		报价时间
+                	</view>
+                	<view class="f28-c666">
+                		查看 <text class="iconfont icon-jinru"></text>
+                	</view>
+                </view>
+                <view class="item row jc_sb">
+                	<view class="left f28-c333">
+                		报价时间段
+                	</view>
+                	<view class="f28-c666">
+                		查看 <text class="iconfont icon-jinru"></text>
+                	</view>
+                </view>
+            </template>
+            
             <!-- 备注 -->
-            <template v-if="pageType=='turnover'">
+            <template v-if="pageType=='turnover' || pageType=='offer'">
                 <view class="item row jc_sb">
                 	<view class="left f28-c333">
                 		备注
@@ -62,6 +98,17 @@
                 </view>
             </template>
             
+            <!-- 操作日志 -->
+            <template v-if="pageType=='offer'">
+                <view class="item row jc_sb" @click="navTo('./Log')">
+                	<view class="left f28-c333">
+                		操作日志
+                	</view>
+                	<view class="f28-c666">
+                		查看 <text class="iconfont icon-jinru"></text>
+                	</view>
+                </view>
+            </template>
 		</view>
         
 		<view class="slot_wrap">
@@ -128,7 +175,10 @@
 			}else if(e.pageType=='offer'){
                 barTitle='报价单详情'
                 this.pageTxt='报价'
-            }
+            }else if(e.pageType=='turnover'){
+				barTitle='周转框详情'
+				this.pageTxt='周转'
+			}
 			if(e.showEdit){
 				this.showEdit=true
 			}

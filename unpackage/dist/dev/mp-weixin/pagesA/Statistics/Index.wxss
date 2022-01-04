@@ -8,8 +8,7 @@
 .page_wrap .type_list.data-v-bb457ecc {
   background-color: #fff;
   padding: 40rpx 0;
-  -webkit-justify-content: space-around;
-          justify-content: space-around;
+  justify-content: space-around;
 }
 .page_wrap .type_list .type_item.data-v-bb457ecc {
   color: #FE5B07;

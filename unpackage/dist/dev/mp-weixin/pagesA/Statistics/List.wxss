@@ -6,8 +6,7 @@
  */
 .page_wrap .tab_list.data-v-ce017ff4 {
   background-color: #fff;
-  -webkit-justify-content: space-around;
-          justify-content: space-around;
+  justify-content: space-around;
   padding: 20rpx 0;
 }
 .page_wrap .tab_list .tab_item.data-v-ce017ff4 {
@@ -29,8 +28,7 @@
 }
 .page_wrap .data_wrap.data-v-ce017ff4 {
   background-color: #fff;
-  -webkit-justify-content: space-around;
-          justify-content: space-around;
+  justify-content: space-around;
   padding: 20rpx;
 }
 .page_wrap .data_wrap .data_item.data-v-ce017ff4 {

@@ -3,8 +3,6 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "search-comprehensive": "/components/search-comprehensive/search-comprehensive",
-    "detail-list": "/components/detail-list/detail-list",
-    "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup",
-    "filter-page": "/components/filter-page/filter-page"
+    "detail-list": "/components/detail-list/detail-list"
   }
 }
