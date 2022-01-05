@@ -1,7 +1,7 @@
 <template>
 	<view class="mix-page-header" >
 		<view class="content row">
-			<view class="search-wrap row":style="{height: customHeight + 'px'}" >
+			<view class="search-wrap row" :style="{height: customHeight + 'px'}" >
 				<view class=" row">
 					<image class="search" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/search.png" mode="widthFix"></image>
                     <u-input type="text" placeholder="输入关键字搜索" v-model="keyWord" />
