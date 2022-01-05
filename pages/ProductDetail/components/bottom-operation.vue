@@ -1,16 +1,16 @@
 <template>
 	<view class="mix-botoom-operation row">
 		<view class="nav-group row">
-			<view class="nav column center" @click="switchTab('/pages/tabbar/home')">
-				<text class="mix-icon icon-home"></text>
-				<text class="tit">首页</text>
-			</view>
 			<view class="nav column center" @click="switchTab('/pages/tabbar/cart')">
 				<text class="mix-icon icon-gouwuche"></text>
 				<text class="tit">购物车</text>
 				<view v-if="cartCount > 0" class="number center">
 					<text>{{ cartCount }}</text>
 				</view>
+			</view>
+			<view class="nav column center" @click="addCusOftenBuy">
+				<text class="mix-icon icon-gouwuche"></text>
+				<text class="tit">加常用</text>
 			</view>
 			<view class="nav column center" :class="{active: is_fav === 1}" @click="changeFav">
 				<text class="mix-icon" :class="is_fav === 1 ? 'icon-shoucang' : 'icon-shoucang-1'"></text>
@@ -21,9 +21,9 @@
 			<view class="btn center" @click="onOprationClick('cart')">
 				<text>加入购物车</text>
 			</view>
-			<view class="btn center" @click="onOprationClick('buy')">
+		<!-- 	<view class="btn center" @click="onOprationClick('buy')">
 				<text>立即购买</text>
-			</view>
+			</view> -->
 		</view>
 		
 		<mix-loading v-if="isLoading" :mask="true"></mix-loading>
@@ -65,15 +65,34 @@
 				if(!this.$util.isLogin()){
 					return;
 				}
-				const operation = this.is_fav === 1 ? 'remove': 'add';
-				const response = await this.$request('favorite', operation, {
-					product_id: this.infoData._id
-				}, {showLoading: true})
-				if(response.status === 1){
-					this.is_fav = this.is_fav === 1 ? 0: 1;
-				}else{
-					this.$util.msg(this.is_fav === 1 ? '取消收藏失败' : '收藏失败');
+				const res = await this.$http('api/favorite/saveFavorite', {
+					favoriteType: 0,
+					productSkuId:this.infoData.productSkuId
+				})
+				const data = res.data;
+				this.$util.msg('收藏成功');
+			},
+			// 加常用
+			async addCusOftenBuy(){
+				if(!this.$util.isLogin()){
+					return;
 				}
+				if(!this.infoData.cusOften){
+					// 加常用
+					const res = await this.$http('api/usedlist/addCusOftenBuy', {
+						buyQuantity: 1,
+						productSkuId:this.infoData.productSkuId
+					})
+					const data = res.data;
+				}else{
+					// 移除常用
+					const res = await this.$http('api/usedlist/removeCusOftenBuy', {
+						buyQuantity: 1,
+						productSkuId:this.infoData.productSkuId
+					})
+					const data = res.data;
+				}
+				
 			},
 			onOprationClick(type){
 				this.$emit('onOprationClick', type)
@@ -146,13 +165,12 @@
 			height: 76rpx;
 			font-size: 30rpx;
 			color: #fff;
-			background-color: orange;
-			border-radius: 100rpx 0 0 100rpx;
-			
-			&:last-child{
-				background-color: $base-color;
-				border-radius: 0 100rpx 100rpx 0;
-			}
+			border-radius: 100rpx;
+			background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
+			// &:last-child{
+			// 	background-color: $base-color;
+			// 	border-radius: 0 100rpx 100rpx 0;
+			// }
 		}
 	}
 	

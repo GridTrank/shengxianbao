@@ -1,41 +1,32 @@
 <template>
 	<view class="page_wrap">
 		<search></search>
-        <view class="parent_list" v-if="parentList.length>0">
-        	<u-tabs
-        	:list="parentList"
-        	:activeStyle="{
+		<view class="parent_list" v-if="parentList.length>0">
+			<u-tabs :list="parentList" :activeStyle="{
         		color: '#FF6304',
         		fontWeight: 'bold',
-        	}"
-        	lineColor="#FF6304"
-        	itemStyle="padding-left: 15px; padding-right: 15px; height: 34px; background:#fff"
-        	@click="selectParent">
-        	</u-tabs>
-            
-        	<view class="more_icon" @click="parentListPop=true">
-        		<text class="iconfont icon-zhankai1"></text>
-        	</view>
-        </view>
+        	}" lineColor="#FF6304" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px; background:#fff"
+				@click="selectParent">
+			</u-tabs>
+
+			<view class="more_icon" @click="parentListPop=true">
+				<text class="iconfont icon-zhankai1"></text>
+			</view>
+		</view>
 		<view class="second_list">
-			<scroll-view class="left_list"  scroll-y="true" >
-				<view 
-				class="left_item row" 
-				@click="selectChild(item,index)"  
-				v-for="(item,index) in 2" 
-				:key="index"
-				:class="selectChildIndex==index && 'select_child' "
-				>
-					<text>常用清单</text>
+			<scroll-view class="left_list" scroll-y="true">
+				<view class="left_item row" @click="selectChild(item.id)" v-for="(item,index) in tabInfo" :key="index"
+					:class="selectChildIndex==item.id && 'select_child' ">
+					<text>{{item.name}}</text>
 				</view>
 			</scroll-view>
-			<scroll-view  scroll-y="true" class="right_list">
-				<view class="list  mt20" v-for="(item,index) in 3" :key="index">
+			<scroll-view scroll-y="true" class="right_list">
+				<view class="list  mt20" v-for="(item,index) in productList" :key="index">
 					<list></list>
 				</view>
-			</scroll-view >
+			</scroll-view>
 		</view>
-		
+
 	</view>
 </template>
 
@@ -43,134 +34,163 @@
 	import search from '../Classify/search.vue'
 	import list from './list.vue'
 	export default {
-		components:{
+		components: {
 			search,
 			list
 		},
 		data() {
 			return {
-				parentList:[],
-				childList:[],
-				selectParentIndex:0,
-				selectChildIndex:0
+				parentList: [],
+				productList:[],
+				selectParentIndex: 0,
+				selectChildIndex: 0,
+				page:1,
+				tabInfo: [{
+					name: '常用清单',
+					id: 0,
+				}, {
+					name: '最近购买',
+					id: 1,
+				}]
 			};
 		},
-        onLoad() {
-            this.getCateList()
-        },
-		methods:{
-            getCateList(){
-                this.$http('api/pms/productcategory/getCategoryPidList').then(res=>{
-                    res.forEach(item=>{
-                        item.name=item.categoryName
-                    })
-                    this.parentList=res
-                })
-            },
-			selectParent(e){
-				this.selectParentIndex=e.index
+		onLoad() {
+			this.getCateList()
+		},
+		methods: {
+			getCateList() {
+				this.$http('api/pms/productcategory/getCategoryPidList').then(res => {
+					res.forEach(item => {
+						item.name = item.categoryName
+					})
+					this.parentList = res
+				})
+			},
+			selectParent(e) {
+				this.selectParentIndex = e.index
 				// this.getCateListById(e.id)
 			},
-			selectChild(item,index){
-				this.selectChildIndex=index
+			async selectChild(id) {
+				this.selectChildIndex = id;
+				if(id == 1){
+					// 最近购买
+					this.$http('api/oftenbuy/getCusOftenBuyProductList',{page:this.page,limit:20}).then(res => {
+						console.log(res)
+						this.productList = res.list;
+					})
+				}
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
-.page_wrap{
-    .parent_list{
-    	position: relative;
-    	padding-right: 50upx;
-    	padding-top: 30upx;
-    	background-color: #fff;
-    	.more_icon{
-    		position: absolute;
-    		right: 0upx;
-    		top: 42upx;
-    		color: $base-color;
-    		background-color: #fff;
-    		border-left: 1px solid #E8E8E8;
-    		padding-right: 20upx;
-    		padding-left: 10upx;
-    	}
-        /deep/ .u-tabs__wrapper__nav{
-            position: relative;
-        }
-    }
-	.labels_list{
-		display: flex;
-		flex-wrap: nowrap;
-		white-space: nowrap;
-		background-color: #fff;
-		border-bottom: 1px solid #ddd;
-		.label_item{
-			display: inline-block;
-			text-align: center;
-			color: #333;
-			font-size: 28upx;
-			padding: 20upx 30upx;
-			
-		}
-		.select_parent{
-			color: $base-color;
+	.page_wrap {
+		.parent_list {
 			position: relative;
-			&::after{
-				content: '';
-				display: block;
+			padding-right: 50upx;
+			padding-top: 30upx;
+			background-color: #fff;
+
+			.more_icon {
 				position: absolute;
-				bottom: 0;
-				width: 30upx;
-				height: 6upx;
-				background-color: $base-color;
-				left: 50%;
-				transform: translateX(-50%);
+				right: 0upx;
+				top: 42upx;
+				color: $base-color;
+				background-color: #fff;
+				border-left: 1px solid #E8E8E8;
+				padding-right: 20upx;
+				padding-left: 10upx;
+			}
+
+			/deep/ .u-tabs__wrapper__nav {
+				position: relative;
 			}
 		}
-	}
-	.second_list{
-		display: flex;
-		height: 88vh;
-		overflow: hidden;
-		.left_list{
-			width: 25%;
-			text-align: center;
-			.left_item{
-				padding: 40upx 0;
-				justify-content: center;
-				color: #666;
+
+		.labels_list {
+			display: flex;
+			flex-wrap: nowrap;
+			white-space: nowrap;
+			background-color: #fff;
+			border-bottom: 1px solid #ddd;
+
+			.label_item {
+				display: inline-block;
+				text-align: center;
+				color: #333;
 				font-size: 28upx;
-				.rexiao_img{
-					width: 20upx;
-					margin-right: 20upx;
-				}
+				padding: 20upx 30upx;
+
 			}
-			.select_child{
-				background-color: #fff;
+
+			.select_parent {
 				color: $base-color;
-				font-size: 28upx;
-				font-weight: bold;
 				position: relative;
-				&::after{
+
+				&::after {
 					content: '';
 					display: block;
 					position: absolute;
-					left: 0;
-					width: 8upx;
-					height: 40upx;
+					bottom: 0;
+					width: 30upx;
+					height: 6upx;
 					background-color: $base-color;
-					border-radius: 0 20upx 20upx 0;
+					left: 50%;
+					transform: translateX(-50%);
 				}
 			}
 		}
-		.right_list{
-			width: 75%;
-			background-color: #fff;
-			.list{
-				padding-bottom: 30upx;
+
+		.second_list {
+			display: flex;
+			height: 88vh;
+			overflow: hidden;
+
+			.left_list {
+				width: 25%;
+				text-align: center;
+
+				.left_item {
+					padding: 40upx 0;
+					justify-content: center;
+					color: #666;
+					font-size: 28upx;
+
+					.rexiao_img {
+						width: 20upx;
+						margin-right: 20upx;
+					}
+				}
+
+				.select_child {
+					background-color: #fff;
+					color: $base-color;
+					font-size: 28upx;
+					font-weight: bold;
+					position: relative;
+
+					&::after {
+						content: '';
+						display: block;
+						position: absolute;
+						left: 0;
+						width: 8upx;
+						height: 40upx;
+						background-color: $base-color;
+						border-radius: 0 20upx 20upx 0;
+					}
+				}
+			}
+
+			.right_list {
+				width: 75%;
+				background-color: #fff;
+
+				.list {
+					padding-bottom: 30upx;
+				}
 			}
 		}
 	}
-}
 </style>
