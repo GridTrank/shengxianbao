@@ -12,6 +12,7 @@
 			itemStyle="padding-left: 15px; padding-right: 15px; height: 34px; background:#fff"
 			@click="selectParent">
 			</u-tabs>
+            
 			<view class="more_icon" @click="parentListPop=true">
 				<text class="iconfont icon-zhankai1"></text>
 			</view>
@@ -107,8 +108,7 @@
                 })
             },
             
-			selectParent(e){
-                console.log(e)
+			selectParent(e,index){
 				this.selectParentIndex=e.index
                 this.getCateListById(e.id)
 			},

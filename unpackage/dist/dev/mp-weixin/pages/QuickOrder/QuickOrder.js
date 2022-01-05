@@ -93,10 +93,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uTabs: function() {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 629))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function($event) {
+      _vm.parentListPop = true
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -170,6 +198,22 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   components: {
     search: search,
@@ -177,29 +221,27 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   data: function data() {
     return {
-      parentList: [
-      { name: '一级分类' },
-      { name: '一级分类' },
-      { name: '一级分类' },
-      { name: '一级分类' },
-      { name: '一级分类' },
-      { name: '一级分类' },
-      { name: '一级分类' },
-      { name: '一级分类' },
-      { name: '一级分类' },
-      { name: '一级分类' },
-      { name: '一级分类' },
-      { name: '一级分类' },
-      { name: '一级分类' }],
-
+      parentList: [],
       childList: [],
       selectParentIndex: 0,
       selectChildIndex: 0 };
 
   },
+  onLoad: function onLoad() {
+    this.getCateList();
+  },
   methods: {
-    selectParent: function selectParent(item, index) {
-      this.selectParentIndex = index;
+    getCateList: function getCateList() {var _this = this;
+      this.$http('api/pms/productcategory/getCategoryPidList').then(function (res) {
+        res.forEach(function (item) {
+          item.name = item.categoryName;
+        });
+        _this.parentList = res;
+      });
+    },
+    selectParent: function selectParent(e) {
+      this.selectParentIndex = e.index;
+      this.getCateListById(e.id);
     },
     selectChild: function selectChild(item, index) {
       this.selectChildIndex = index;

@@ -1,7 +1,7 @@
 <template>
 	<view class="page_wrap">
 		<search></search>
-		<scroll-view class="labels_list "  scroll-x="true" >
+		<!-- <scroll-view class="labels_list "  scroll-x="true" >
 			<view 
 			class="label_item" 
 			@click="selectParent(item,index)"  
@@ -12,7 +12,23 @@
 				{{item.name}}
 			</view>
 			
-		</scroll-view>
+		</scroll-view> -->
+        <view class="parent_list">
+        	<u-tabs
+        	:list="parentList"
+        	:activeStyle="{
+        		color: '#FF6304',
+        		fontWeight: 'bold',
+        	}"
+        	lineColor="#FF6304"
+        	itemStyle="padding-left: 15px; padding-right: 15px; height: 34px; background:#fff"
+        	@click="selectParent">
+        	</u-tabs>
+            
+        	<view class="more_icon" @click="parentListPop=true">
+        		<text class="iconfont icon-zhankai1"></text>
+        	</view>
+        </view>
 		<view class="second_list">
 			<scroll-view class="left_list"  scroll-y="true" >
 				<view 
@@ -45,29 +61,27 @@
 		},
 		data() {
 			return {
-				parentList:[
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-					{name:'一级分类'},
-				],
+				parentList:[],
 				childList:[],
 				selectParentIndex:0,
 				selectChildIndex:0
 			};
 		},
+        onLoad() {
+            this.getCateList()
+        },
 		methods:{
-			selectParent(item,index){
-				this.selectParentIndex=index
+            getCateList(){
+                this.$http('api/pms/productcategory/getCategoryPidList').then(res=>{
+                    res.forEach(item=>{
+                        item.name=item.categoryName
+                    })
+                    this.parentList=res
+                })
+            },
+			selectParent(e){
+				this.selectParentIndex=e.index
+				this.getCateListById(e.id)
 			},
 			selectChild(item,index){
 				this.selectChildIndex=index
@@ -78,6 +92,22 @@
 
 <style lang="scss">
 .page_wrap{
+    .parent_list{
+    	position: relative;
+    	padding-right: 50upx;
+    	padding-top: 30upx;
+    	background-color: #fff;
+    	.more_icon{
+    		position: absolute;
+    		right: 0upx;
+    		top: 42upx;
+    		color: $base-color;
+    		background-color: #fff;
+    		border-left: 1px solid #E8E8E8;
+    		padding-right: 20upx;
+    		padding-left: 10upx;
+    	}
+    }
 	.labels_list{
 		display: flex;
 		flex-wrap: nowrap;

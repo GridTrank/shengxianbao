@@ -4668,14 +4668,23 @@ var request = function request(url, data, method) {
       url: baseUrl + url,
       data: data,
       header: {
-        // 'Authorization':uni.getStorageSync('token')? uni.getStorageSync('token'): '',
-        'token': uni.getStorageSync('token') ? uni.getStorageSync('token') : ''
+        'token': uni.getStorageSync('token') || ''
         // 'content-type':'application/x-www-form-urlencoded'
       },
       method: method || 'GET',
       success: function success(res) {
         if (Number(res.data.code) === 0) {
           resolve(res.data.data);
+        } else if (Number(res.data.code) === 10021 || Number(res.data.code) === 10020) {
+          uni.showToast({
+            title: '登录过期，请重新登录',
+            icon: 'none' });
+
+          setTimeout(function () {
+            uni.navigateTo({
+              url: '/pages/Login/Login' });
+
+          }, 1500);
         } else {
           uni.showToast({
             title: res.data.msg || '请求失败',
