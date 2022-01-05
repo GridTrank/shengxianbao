@@ -1,7 +1,7 @@
 <template>
 	<view class="page_wrap">
 		<search></search>
-		<view class="parent_list">
+		<view class="parent_list" v-if="parentList.length>0">
 			<u-tabs
 			:list="parentList"
 			:activeStyle="{
@@ -141,6 +141,9 @@
 			padding-right: 20upx;
 			padding-left: 10upx;
 		}
+        /deep/ .u-tabs__wrapper__nav{
+            position: relative;
+        }
 	}
 	.second_list{
 		display: flex;

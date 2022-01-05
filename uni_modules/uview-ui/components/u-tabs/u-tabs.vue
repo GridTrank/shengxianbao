@@ -67,7 +67,7 @@
 										transform: `translate(${lineOffsetLeft}px)`,
 										transitionDuration: `${firstTime ? 0 : duration}ms`,
 										height: $u.addUnit(this.lineHeight),
-										backgroundColor: this.lineColor
+										backgroundColor: lineColor
 									}]"
 							>
 								<!-- #endif -->

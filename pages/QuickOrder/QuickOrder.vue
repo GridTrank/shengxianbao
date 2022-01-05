@@ -1,19 +1,7 @@
 <template>
 	<view class="page_wrap">
 		<search></search>
-		<!-- <scroll-view class="labels_list "  scroll-x="true" >
-			<view 
-			class="label_item" 
-			@click="selectParent(item,index)"  
-			v-for="(item,index) in parentList" 
-			:key="index"
-			:class="selectParentIndex==index && 'select_parent' "
-			>
-				{{item.name}}
-			</view>
-			
-		</scroll-view> -->
-        <view class="parent_list">
+        <view class="parent_list" v-if="parentList.length>0">
         	<u-tabs
         	:list="parentList"
         	:activeStyle="{
@@ -81,7 +69,7 @@
             },
 			selectParent(e){
 				this.selectParentIndex=e.index
-				this.getCateListById(e.id)
+				// this.getCateListById(e.id)
 			},
 			selectChild(item,index){
 				this.selectChildIndex=index
@@ -107,6 +95,9 @@
     		padding-right: 20upx;
     		padding-left: 10upx;
     	}
+        /deep/ .u-tabs__wrapper__nav{
+            position: relative;
+        }
     }
 	.labels_list{
 		display: flex;

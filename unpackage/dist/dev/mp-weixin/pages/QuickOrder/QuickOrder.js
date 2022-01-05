@@ -202,18 +202,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 {
   components: {
     search: search,
@@ -241,7 +229,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     },
     selectParent: function selectParent(e) {
       this.selectParentIndex = e.index;
-      this.getCateListById(e.id);
+      // this.getCateListById(e.id)
     },
     selectChild: function selectChild(item, index) {
       this.selectChildIndex = index;
