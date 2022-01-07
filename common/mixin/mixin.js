@@ -14,7 +14,7 @@ export default{
 		}
 	},
 	methods: {
-		navTo(url,type, query,checkLogin=false){
+		navTo(url,type,checkLogin=false){
 			this.$util.throttle(()=>{
 				if(!url){
 					return;
@@ -36,9 +36,8 @@ export default{
 						url:url
 					})
 				}else{
-					let link=query? url+'?'+query:url
 					uni.navigateTo({
-						url:link
+						url:url
 					})
 				}
 				

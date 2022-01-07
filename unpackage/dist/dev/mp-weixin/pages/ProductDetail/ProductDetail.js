@@ -189,47 +189,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //底部栏
 var _anchorList = [];var _default =
 {
@@ -272,8 +231,6 @@ var _anchorList = [];var _default =
                   _this.$http('api/pms/productcategory/getProductSkuIdInfo', {
                     id: _this.id }));case 2:res = _context.sent;
 
-                console.log(123, res);
-
                 data = res.data;
                 data.content = data.content.replace(/img src="/g, 'img style="display:block;width:100%;height:auto" src="');
                 _this.data = data;
@@ -281,7 +238,7 @@ var _anchorList = [];var _default =
                   _this.calcAnchor(); //计算锚点参数
                 });
                 //添加浏览历史
-                _this.addProductHistory();case 9:case "end":return _context.stop();}}}, _callee);}))();
+                _this.addProductHistory();case 8:case "end":return _context.stop();}}}, _callee);}))();
     },
     //加载评价
     loadRating: function loadRating() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (

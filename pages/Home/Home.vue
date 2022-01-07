@@ -25,7 +25,7 @@
 				</view>
 			</view>
 			<module1 :list="typeList"></module1>
-			<module2></module2>
+			<module2 :list="recommendList"></module2>
 			<module3></module3>
 			<view class="guess mt30">
 				<view class="guess_top row">

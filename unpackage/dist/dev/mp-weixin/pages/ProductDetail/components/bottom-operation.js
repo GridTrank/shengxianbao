@@ -77,6 +77,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    specifications: function() {
+      return __webpack_require__.e(/*! import() | components/specifications/specifications */ "components/specifications/specifications").then(__webpack_require__.bind(null, /*! @/components/specifications/specifications.vue */ 917))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -144,8 +167,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /**
  * 商品详情页 底部操作菜单
@@ -177,22 +198,43 @@ __webpack_require__.r(__webpack_exports__);
 
   methods: {
     //收藏
-    changeFav: function changeFav() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var operation, response;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (
-                _this.$util.isLogin()) {_context.next = 2;break;}return _context.abrupt("return");case 2:
+    changeFav: function changeFav() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res, data;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (
+                _this.$util.isLogin()) {_context.next = 2;break;}return _context.abrupt("return");case 2:_context.next = 4;return (
 
 
-                operation = _this.is_fav === 1 ? 'remove' : 'add';_context.next = 5;return (
-                  _this.$request('favorite', operation, {
-                    product_id: _this.infoData._id },
-                  { showLoading: true }));case 5:response = _context.sent;
-                if (response.status === 1) {
-                  _this.is_fav = _this.is_fav === 1 ? 0 : 1;
-                } else {
-                  _this.$util.msg(_this.is_fav === 1 ? '取消收藏失败' : '收藏失败');
-                }case 7:case "end":return _context.stop();}}}, _callee);}))();
+                  _this.$http('api/favorite/saveFavorite', {
+                    favoriteType: 0,
+                    productSkuId: _this.infoData.productSkuId }));case 4:res = _context.sent;
+
+                data = res.data;
+                _this.$util.msg('收藏成功');case 7:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    // 加常用
+    addCusOftenBuy: function addCusOftenBuy() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res, data, _res, _data;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:if (
+                _this2.$util.isLogin()) {_context2.next = 2;break;}return _context2.abrupt("return");case 2:if (
+
+
+                _this2.infoData.cusOften) {_context2.next = 9;break;}_context2.next = 5;return (
+
+                  _this2.$http('api/usedlist/addCusOftenBuy', {
+                    buyQuantity: 1,
+                    productSkuId: _this2.infoData.productSkuId || 7 }));case 5:res = _context2.sent;
+
+                data = res.data;_context2.next = 13;break;case 9:_context2.next = 11;return (
+
+
+                  _this2.$http('api/usedlist/removeCusOftenBuy', {
+                    buyQuantity: 1,
+                    productSkuId: _this2.infoData.productSkuId || 7 }));case 11:_res = _context2.sent;
+
+                _data = _res.data;case 13:case "end":return _context2.stop();}}}, _callee2);}))();
+
+
     },
     onOprationClick: function onOprationClick(type) {
-      this.$emit('onOprationClick', type);
+      if (this.$util.isLogin()) {
+        this.$refs.spec.show = true;
+      }
     },
     switchTab: function switchTab(url) {
       uni.switchTab({

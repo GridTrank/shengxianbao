@@ -4472,7 +4472,7 @@ exports.checkStr = checkStr;var dateFormat = function dateFormat() {var fmt = ar
 
   },
   methods: {
-    navTo: function navTo(url, type, query) {var checkLogin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+    navTo: function navTo(url, type) {var checkLogin = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
       this.$util.throttle(function () {
         if (!url) {
           return;
@@ -4494,9 +4494,8 @@ exports.checkStr = checkStr;var dateFormat = function dateFormat() {var fmt = ar
             url: url });
 
         } else {
-          var link = query ? url + '?' + query : url;
           uni.navigateTo({
-            url: link });
+            url: url });
 
         }
 

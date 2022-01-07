@@ -60,11 +60,7 @@
   height: 76rpx;
   font-size: 30rpx;
   color: #fff;
-  background-color: orange;
-  border-radius: 100rpx 0 0 100rpx;
-}
-.btn-group .btn.data-v-c6f36a34:last-child {
-  background-color: #FE5B07;
-  border-radius: 0 100rpx 100rpx 0;
+  border-radius: 100rpx;
+  background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
 }
 

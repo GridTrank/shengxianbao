@@ -5,41 +5,8 @@
 		<mix-swiper :list="data.images"></mix-swiper>
 		<view class="introduce column">
 			<text class="title">{{ data.title }}</text>
-			<view class="price-wrap row">
-				<!-- <mix-price-view :price="data.price" :size="40"></mix-price-view> -->
-				<text v-if="data.market_price > data.price" class="m-price">￥{{ data.market_price }}</text>
-				<text v-if="loaded && !data.freight_template" class="tag">免邮费</text>
-			</view>
-			<view class="bot row">
-				<text class="fill">销量: {{ data.sales || 0 }}</text>
-				<text class="fill">库存: {{ data.stock || 0 }}</text>
-				<text class="fill">浏览量: {{ data.look_num || 0 }}</text>
-			</view>
 		</view>
-		<!--  分享 -->
-		<view class="share-wrap row">
-			<view class="icon row">
-				<text class="mix-icon icon-iconfontxingxing"></text>
-				<text>分享</text>
-			</view>
-			<text class="tit">发给好友看看吧~</text>
-			<text class="mix-icon icon-bangzhu1"></text>
-			
-			<!-- #ifdef MP-WEIXIN -->
-			<button type="primary" open-type="share">
-				<view class="btn">
-					立即分享
-					<text class="mix-icon icon-you"></text>
-				</view>
-			</button>
-			<!-- #endif -->
-			<!-- #ifndef MP-WEIXIN -->
-			<view class="btn" @click="doAppShare">
-				立即分享
-				<text class="mix-icon icon-you"></text>
-			</view>
-			<!-- #endif -->
-		</view>
+		
 		<view class="c-list">
 			<view v-if="data.skuData" class="row b-b" @click="showPopup('skuPopup')">
 				<text class="tit">购买类型</text>
@@ -53,15 +20,7 @@
 				<text class="con red">领取优惠券</text>
 				<text class="mix-icon icon-you"></text>
 			</view>
-			<!-- <view class="row b-b">
-				<text class="tit">促销活动</text>
-				<view class="con-list fill column">
-					<text>新人首单送20元无门槛代金券</text>
-					<text>订单满50减10</text>
-					<text>订单满100减30</text>
-					<text>单笔购买满两件免邮费</text>
-				</view>
-			</view> -->
+			
 			<view class="row b-b">
 				<text class="tit">服务</text>
 				<view class="con">
@@ -138,8 +97,6 @@
 				const res = await this.$http('api/pms/productcategory/getProductSkuIdInfo', {
 					id: this.id
 				})
-                console.log(123,res)
-                
 				const data = res.data;
 				data.content = data.content.replace(/img src="/g, 'img style="display:block;width:100%;height:auto" src="');
 				this.data = data;

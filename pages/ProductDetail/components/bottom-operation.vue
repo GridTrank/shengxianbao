@@ -1,19 +1,19 @@
 <template>
 	<view class="mix-botoom-operation row">
 		<view class="nav-group row">
-			<view class="nav column center" @click="switchTab('/pages/tabbar/cart')">
-				<text class="mix-icon icon-gouwuche"></text>
+			<view class="nav column center" @click="navTo('/pages/ShopCar/ShopCar','switch')">
+				<text class="iconfont icon-gouwuche"></text>
 				<text class="tit">购物车</text>
 				<view v-if="cartCount > 0" class="number center">
 					<text>{{ cartCount }}</text>
 				</view>
 			</view>
 			<view class="nav column center" @click="addCusOftenBuy">
-				<text class="mix-icon icon-gouwuche"></text>
+				<text class="iconfont icon-jiacy"></text>
 				<text class="tit">加常用</text>
 			</view>
 			<view class="nav column center" :class="{active: is_fav === 1}" @click="changeFav">
-				<text class="mix-icon" :class="is_fav === 1 ? 'icon-shoucang' : 'icon-shoucang-1'"></text>
+				<text class="iconfont" :class="is_fav === 1 ? 'icon-shoucang' : 'icon-shoucang'"></text>
 				<text class="tit">收藏</text>
 			</view>
 		</view>
@@ -21,11 +21,9 @@
 			<view class="btn center" @click="onOprationClick('cart')">
 				<text>加入购物车</text>
 			</view>
-		<!-- 	<view class="btn center" @click="onOprationClick('buy')">
-				<text>立即购买</text>
-			</view> -->
 		</view>
 		
+        <specifications ref='spec'></specifications>
 		<mix-loading v-if="isLoading" :mask="true"></mix-loading>
 	</view>
 </template>
@@ -81,21 +79,23 @@
 					// 加常用
 					const res = await this.$http('api/usedlist/addCusOftenBuy', {
 						buyQuantity: 1,
-						productSkuId:this.infoData.productSkuId
+						productSkuId:this.infoData.productSkuId || 7
 					})
 					const data = res.data;
 				}else{
 					// 移除常用
 					const res = await this.$http('api/usedlist/removeCusOftenBuy', {
 						buyQuantity: 1,
-						productSkuId:this.infoData.productSkuId
+						productSkuId:this.infoData.productSkuId || 7
 					})
 					const data = res.data;
 				}
 				
 			},
 			onOprationClick(type){
-				this.$emit('onOprationClick', type)
+                if(this.$util.isLogin()){
+                    this.$refs.spec.show=true
+                }
 			},
 			switchTab(url){
 				uni.switchTab({
