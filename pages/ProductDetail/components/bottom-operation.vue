@@ -23,7 +23,7 @@
 			</view>
 		</view>
 		
-        <specifications ref='spec'></specifications>
+        <specifications :id="infoData.productSkuId" ref='spec'></specifications>
 		<mix-loading v-if="isLoading" :mask="true"></mix-loading>
 	</view>
 </template>

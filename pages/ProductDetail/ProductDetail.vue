@@ -118,6 +118,7 @@
 			},
 			//加入购物车
 			addToCart(){
+				consoel.log(1212)
 				this.$util.throttle(async ()=>{
 					const data = this.getConfirmData();
 					if(!data){

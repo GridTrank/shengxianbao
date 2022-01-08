@@ -9,6 +9,12 @@
 		</view>
 		<view class="shop-car mt10" v-else>
 			<view class="sale row">
+				<view></view>
+				<view @tap="isCut = !isCut" class="sale_right row">
+					管理
+				</view>
+			</view>
+			<view class="sale row">
 				<view class="sale_left row">
 					<text class="left_txt">满100减7</text>
 					<text class="right_txt">订货满100减7元</text>
@@ -18,7 +24,7 @@
 				</view>
 			</view>
 			<view class="store-box" >
-				<view class="goodsInfo " v-for="(itemw,indexw) in datas" :key="indexw">
+				<view class="goodsInfo " v-for="(itemw,indexw) in dataList" :key="indexw">
 					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quanzhong%402x.png" v-if="itemw.checked == 2" class="checked-image"
 						mode="" @tap="goodsCheck(indexw,itemw.checked)"></image>
 					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quan1%402x.png" v-else class="checked-image" mode=""
@@ -74,7 +80,7 @@
 						</view>
 					</view>
 					<view class="statistics-right" v-else @tap="delect">
-						<view class="btn">
+						<view class="btn to_pay is_pay">
 							<text>删除</text>
 						</view>
 					</view>
@@ -92,7 +98,7 @@
 			return {
 				isEmpty: true,
 				iPhoneX: false,
-				datas: [
+				dataList: [
 					{
 						img: '../../static/goods_avatar.png',
 						title: '华为荣耀',
@@ -117,35 +123,49 @@
 	
 		created() {
 			this.iPhoneX = uni.getStorageSync('iPhoneX')
-			if (this.datas.length == 0) {
+			if (this.dataList.length == 0) {
 				this.isEmpty = true
 			} else {
 				this.isEmpty = false
 			}
+			// 接口没有数据  暂时先不请求接口
+			// this.getData()
 		},
-		// 右上角点击删除
-		onNavigationBarButtonTap(e) {
-			let judge = this.judgeSelect()
-			if(judge){
-				console.log(123123)
-			}else{
-				uni.showToast({
-					title:'您当前未选择任何商品,删除失败',
-					icon:'none'
-				})
-			}
-		},
+	
 		methods: {
+			getData(){
+				this.queryUrl = 'api/bmallshoppingcart/getShoppingCartPage';
+				this.getList()
+			},
+			// 删除
+			delect(e) {
+				let judge = this.judgeSelect()
+				if(judge.length){
+					// 删除
+					this.$http('/api/bmallshoppingcart',{ids:judge},(result)=>{
+						uni.showToast({
+							title:'删除成功',
+							icon:'none'
+						})
+						this.getData();
+					})
+				}else{
+					uni.showToast({
+						title:'您当前未选择任何商品,删除失败',
+						icon:'none'
+					})
+				}
+			},
 			//商品选择
 			goodsCheck( goodsIndex, goodsChecked) {
 				if (goodsChecked == 1) {
-					this.datas[goodsIndex].checked = 2
+					this.dataList[goodsIndex].checked = 2
 				} else {
-					this.datas[goodsIndex].checked = 1
+					this.dataList[goodsIndex].checked = 1
 				}
 				//判断是否全选
 				let statisticsIndex = true
-				this.datas.find((item,index)=>{
+				this.dataList.find((item,index)=>{
 					if(item.checked == 1){
 						statisticsIndex = false
 					}
@@ -164,25 +184,25 @@
 				if(goodsnum == 1){
 					return
 				}else{
-					this.datas[goodsIndex].number--
+					this.dataList[goodsIndex].number--
 				}
 				this.statistics()
 			},
 			//增加
 			add( goodsIndex, goodsnum){
-				this.datas[goodsIndex].number++
+				this.dataList[goodsIndex].number++
 				this.statistics()
 			},
 			//全选
 			allCheck(){
 				if(this.statisticsIndex){
-					this.datas.find((item,index)=>{
+					this.dataList.find((item,index)=>{
 						item.checked = 1
 						
 					})
 					this.statisticsIndex = false
 				}else{
-					this.datas.find((item,index)=>{
+					this.dataList.find((item,index)=>{
 						item.checked = 2
 						
 					})
@@ -193,7 +213,7 @@
 			//统计
 			statistics(){
 				let total = 0
-				this.datas.find((item,index)=>{
+				this.dataList.find((item,index)=>{
 					if(item.checked == 2){
 						total = total + item.price*item.number
 					}
@@ -217,10 +237,10 @@
 				}
 			},
 			judgeSelect(){
-				let judge = false
-				this.datas.find((item,index)=>{
+				let judge = []
+				this.dataList.find((item,index)=>{
 					if(item.checked == 2){
-						judge = true
+						judge.push(item.id)
 					}
 				})
 				return judge

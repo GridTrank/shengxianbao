@@ -46,11 +46,15 @@
 
 <script>
 	export default{
+		props:{
+			id:'0'//productSkuId
+		},
 		data(){
 			return{
 				show:false,
 				num:1,
-				remark:''
+				remark:'',
+				
 			}
 		},
 		methods:{
@@ -61,8 +65,12 @@
 					this.num++
 				}
 			},
+			// 加入购物车
 			add(){
-                
+          this.$http('api/bmallshoppingcart/addShoppingCart',{buyQuantity:this.num,productSkuId:this.id},(result)=>{
+						console.log(result);
+						this.$util.msg('加入购物车成功')
+					})      
 			}
 		}
 	}

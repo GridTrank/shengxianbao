@@ -74,9 +74,8 @@
 				this.selectChildIndex = id;
 				if(id == 1){
 					// 最近购买
-					this.$http('api/oftenbuy/getCusOftenBuyProductList',{page:this.page,limit:20}).then(res => {
-						this.productList = res.list;
-					})
+					this.queryUrl = 'api/oftenbuy/getCusOftenBuyProductList'
+					this.getList()
 				}
 			}
 		}

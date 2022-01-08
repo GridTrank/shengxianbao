@@ -1,57 +1,59 @@
-import {request} from '@/common/js/request'
+import {
+	request
+} from '@/common/js/request'
 
-export default{
-	data(){
+export default {
+	data() {
 		return {
 			page: 1, //页码
 			limit: 10, //每页加载数据量
 			loadingType: 1, //0加载前 1加载中 2没有更多
 			isLoading: false, //刷新数据
 			loaded: false, //加载完毕
-            queryUrl:'',
-            queryData:{},
-            dataList:[],
+			queryUrl: '',
+			queryData: {},
+			dataList: [],
 		}
 	},
 	methods: {
-		navTo(url,type,checkLogin=false){
-			this.$util.throttle(()=>{
-				if(!url){
+		navTo(url, type, checkLogin = false) {
+			this.$util.throttle(() => {
+				if (!url) {
 					return;
 				}
-				if(url=='back'){
+				if (url == 'back') {
 					uni.navigateBack()
 					return
 				}
 				// 判断是否登录
-				if(checkLogin){
+				if (checkLogin) {
 					uni.showToast({
-						title:'请先登录',
-						icon:'none'
+						title: '请先登录',
+						icon: 'none'
 					})
 					return
 				}
-				if(type=='switch'){
+				if (type == 'switch') {
 					uni.switchTab({
-						url:url
+						url: url
 					})
-				}else{
+				} else {
 					uni.navigateTo({
-						url:url
+						url: url
 					})
 				}
-				
+
 			}, 300)
 		},
-        getList(){
-            let data={
-                page:this.page,
-                limit:this.limit,
-                ...this.queryData
-            }
-            this.$http(this.queryUrl,data).then(res=>{
-                this.dataList=res.list
-            })
-        },
+		getList() {
+			let data = {
+				page: this.page,
+				limit: this.limit,
+				...this.queryData
+			}
+			this.$http(this.queryUrl, data).then(res => {
+				this.dataList = this.dataList.concat(res.list ||[] ); 
+			})
+		},
 	},
 }
