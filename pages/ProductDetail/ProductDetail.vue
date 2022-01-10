@@ -95,7 +95,7 @@
 		methods:{
 			async loadData(){
 				const res = await this.$http('api/pms/productcategory/getProductSkuIdInfo', {
-					id: this.id
+					id: this.id || 7
 				})
 				const data = res.data;
 				data.content = data.content.replace(/img src="/g, 'img style="display:block;width:100%;height:auto" src="');

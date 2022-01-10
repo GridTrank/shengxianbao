@@ -26,7 +26,7 @@
 			</view>
 			<module1 :list="typeList"></module1>
 			<module2 :list="recommendList"></module2>
-			<module3></module3>
+			<module3 :list="specialList"></module3>
 			<view class="guess mt30">
 				<view class="guess_top row">
 					<text class="top_line left"></text>
@@ -66,6 +66,7 @@
                 specialList:[],
                 recommendList:[],
                 noticeTitle:'',
+				pageType:'Home'
 			}
 		},
 		onPageScroll(res) {
@@ -89,6 +90,7 @@
                     this.getRecommentList()
                     this.getSpecialList()
                     this.getNotice()
+					// this.getLike()
                 })
             },
             // 分类
@@ -106,7 +108,11 @@
             // 品牌
             getSpecialList(){
                 this.$http('index/getSpecialList').then(res=>{
-                    this.specialList=res
+					var result = [];
+					for(var i=0,len=res.length;i<len;i+=6){
+						result.push(res.slice(i,i+6));
+					}
+                    this.specialList=result
                 })
             },
             // 滚动标题
@@ -115,6 +121,13 @@
                     this.noticeTitle=res[0].noteTitle
                 })
             },
+			// 猜你喜欢
+			getLike(){
+				this.queryUrl='api/myOneslft/getFavoriteProductPage'
+				this.getList()
+				console.log(this.dataList)
+				
+			},
         }
         
 	}
@@ -205,5 +218,6 @@
 				align-items: baseline;
 			}
 		}
+		
 	}
 </style>

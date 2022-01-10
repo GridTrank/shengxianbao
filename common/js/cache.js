@@ -39,7 +39,7 @@ function put(k, v, t) {
 /**  
  * 获取缓存   
  * @param  {[type]} k   [键名]  
- * @param  {[type]} def [获取为空时默认]  
+ * @param  {[type]} def [0]  
  */  
 function get(k, def) {  
     let deadtime = parseInt(uni.getStorageSync(k + postfix))   

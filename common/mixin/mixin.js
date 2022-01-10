@@ -1,7 +1,3 @@
-import {
-	request
-} from '@/common/js/request'
-
 export default {
 	data() {
 		return {
@@ -46,14 +42,18 @@ export default {
 			}, 300)
 		},
 		getList() {
-			let data = {
-				page: this.page,
-				limit: this.limit,
-				...this.queryData
-			}
-			this.$http(this.queryUrl, data).then(res => {
-				this.dataList = this.dataList.concat(res.list ||[] ); 
+			return new Promise((resolve,reject)=>{
+				let data = {
+					page: this.page,
+					limit: this.limit,
+					...this.queryData
+				}
+				this.$http(this.queryUrl, data).then(res => {
+					this.dataList = this.dataList.concat(res.list || res.data || [] ); 
+					resolve(this.dataList)
+				})
 			})
+			
 		},
 	},
 }

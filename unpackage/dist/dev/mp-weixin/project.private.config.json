@@ -81,6 +81,19 @@
         {
           "name": "分类",
           "pathName": "pages/Classify/Classify",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "购物车",
+          "pathName": "pages/ShopCar/ShopCar",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "地址",
+          "pathName": "pages/Address/Address",
+          "query": "",
           "scene": null
         }
       ]

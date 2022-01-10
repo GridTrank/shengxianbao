@@ -1,7 +1,7 @@
 <template>
 	<view class="list row ">
 		<view class="item column mt30" 
-        @click="getData(item)"
+        @click="navTo('pagesB/RecommendPage/RecommendPage?id='+item.id)"
         v-for="(item,index) in list" :key="index">
 			<view class="item_top row">
 				<text class="sign"></text>
@@ -9,11 +9,16 @@
 				<image class="more" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/jiantou.png" mode="widthFix"></image>
 			</view>
 			<view class="item_center">
-				{{item.subTitle || '123'}}
+				{{item.remark || ''}}
 			</view>
 			<view class="item_bottom row">
-				<image class="img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" ></image>
-				<image class="img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" ></image>
+				<image 
+				v-for="(img,i) in item.recommendProductinfoVoList"
+				:key="i"
+				class="img" 
+				:src="img.defaultImage" 
+				>
+				</image>
 			</view>
 		</view>
 	</view>
@@ -31,35 +36,10 @@
         },
 		data(){
 			return{
-				// list:[
-				// 	{
-				// 		title:'肉蛋水产',
-				// 		subTitle:'营养满分 健康美味',
-				// 	},
-				// 	{
-				// 		title:'家庭菜场',
-				// 		subTitle:'家庭采购 实惠便宜',
-				// 	},
-				// 	{
-				// 		title:'乳饮干货',
-				// 		subTitle:'营养满分 健康美味',
-				// 	},
-				// 	{
-				// 		title:'水果专场',
-				// 		subTitle:'时令水果 新鲜美味',
-				// 	},
-				// ]
 			}
 		},
         methods:{
-            getData(item){
-                this.queryUrl='api/myOneslft/getBMallRecommendProductList'
-                this.queryData={
-                    productCategoryId:item.id,
-                    recommendId:1
-                }
-                this.getList()
-            }
+            
         }
 	}
 </script>

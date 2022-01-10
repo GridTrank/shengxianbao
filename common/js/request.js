@@ -6,9 +6,16 @@ import {
 
 let baseUrl='http://47.96.98.41:9889/customer-api/'
 
-
-export const request = (url,data,method)=>{
+export const request = (url,data,method,cacheName,time)=>{
 	return new Promise((resolve, reject) => {
+		if(time > 0){
+			const cacheResult = cache.get(cacheName);
+			if(cacheResult){
+				resolve(cacheResult);
+				return;
+			}
+		}
+		
 		uni.request({
 			url:baseUrl+url,
 			data:data,
@@ -36,6 +43,9 @@ export const request = (url,data,method)=>{
                         icon:'none'
                     })
                 }
+				if(time > 0){
+					cache.put(cacheName, res.data.data, time);
+				}
 			},
 			fail:function(err){
 				uni.hideLoading()

@@ -2,7 +2,7 @@
 	<view class="module-wrap mt30">
 		<view class="row title">
 			<text class="txt">品牌专场</text>
-			<view class="more_r">
+			<view class="more_r row">
 				更多
 				<image class="more" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/jiantou.png" mode="widthFix"></image>
 			</view>
@@ -13,22 +13,30 @@
 			interval="5000"
 			@change="onSwiperChange"
 		>
-			<swiper-item class="swiper_item" v-for="(item, index) in 2" :key="index" >
+			<swiper-item class="swiper_item" v-for="(item, index) in list" :key="index" >
 				<view class="list row">
-					<view class="item mt20" v-for="(data,i) in 6" :key="i">
-						<image class="img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" ></image>
+					<view class="item mt20" v-for="(data,i) in item" :key="i">
+						<image class="img" :src="data.specialImage" ></image>
 					</view>
 				</view>
 			</swiper-item>
 		</swiper>
 		<view class="dots row ">
-			<view class="dot" :class="{current: current === index}" v-for="(item, index) in 2" :key="index"></view>
+			<view class="dot" :class="{current: current === index}" v-for="(item, index) in list" :key="index"></view>
 		</view>
 	</view>
 </template>
 
 <script>
 	export default{
+		props:{
+		    list:{
+		        type:Array,
+		        default:()=>{
+		            return []
+		        }
+		    }
+		},
 		data(){
 			return{
 				current: 0,

@@ -47,7 +47,7 @@
 <script>
 	export default{
 		props:{
-			id:'0'//productSkuId
+			pid:'0'//productSkuId
 		},
 		data(){
 			return{
@@ -67,7 +67,7 @@
 			},
 			// 加入购物车
 			add(){
-          this.$http('api/bmallshoppingcart/addShoppingCart',{buyQuantity:this.num,productSkuId:this.id},(result)=>{
+          this.$http('api/bmallshoppingcart/addShoppingCart',{buyQuantity:this.num,productSkuId:this.pid},(result)=>{
 						console.log(result);
 						this.$util.msg('加入购物车成功')
 					})      

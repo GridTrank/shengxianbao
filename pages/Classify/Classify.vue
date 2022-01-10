@@ -71,6 +71,10 @@
 			};
 		},
 		onLoad() {
+			
+		},
+		onShow(){
+			this.dataList=[]
 			this.getCateList()
 		},
 		methods: {
@@ -88,7 +92,7 @@
 					id
 				}).then(res => {
 					this.childList = res
-					// this.queryData.productCategoryId=res[0].id
+					this.queryData.productCategoryId=res[0].id
 					this.queryUrl = 'api/pms/productcategory/productPriceByProductSkuId'
 					this.getList()
 				})
@@ -96,9 +100,11 @@
 
 			selectParent(e, index) {
 				this.selectParentIndex = e.index
+				this.dataList=[]
 				this.getCateListById(e.id)
 			},
 			selectChild(item, index) {
+				this.dataList=[]
 				this.selectChildIndex = index
 				this.queryData.productCategoryId = item.id
 				this.getList()
