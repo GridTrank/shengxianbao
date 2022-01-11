@@ -2,11 +2,16 @@
 	<view class="page_wrap">
 		<search></search>
 		<view class="parent_list" v-if="parentList.length>0">
-			<u-tabs :list="parentList" :activeStyle="{
+			<u-tabs 
+			:list="parentList" 
+			:activeStyle="{
 				color: '#FF6304',
 				fontWeight: 'bold',
-			}" lineColor="#FF6304" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px; background:#fff"
-				@click="selectParent">
+			}" 
+			ref="uTbas"
+			lineColor="#FF6304" 
+			itemStyle="padding-left: 15px; padding-right: 15px; height: 34px; background:#fff"
+			@click="selectParent">
 			</u-tabs>
 
 			<view class="more_icon" @click="parentListPop=true">
@@ -32,7 +37,7 @@
 			</scroll-view>
 		</view>
 
-		<view class="all_list_wrap" v-if="parentListPop">
+		<view class="all_list_wrap" v-if="parentListPop" @click="parentListPop=false">
 			<view class="all_list ">
 				<view class="all_top row">
 					<text class="all">全部分类</text>
@@ -97,9 +102,9 @@
 					this.getList()
 				})
 			},
-
 			selectParent(e, index) {
 				this.selectParentIndex = e.index
+				this.selectAllIndex = e.index
 				this.dataList=[]
 				this.getCateListById(e.id)
 			},
@@ -111,6 +116,11 @@
 			},
 			selectItem(item, index) {
 				this.selectAllIndex = index
+				this.$refs.uTbas.current=index
+				this.$refs.uTbas.setLineLeft()
+				this.dataList=[]
+				this.getCateListById(item.id)
+				this.parentListPop=false
 			}
 		}
 	}

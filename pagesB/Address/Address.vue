@@ -53,7 +53,7 @@
 		},
 		methods:{
 			getData(){
-				this.queryUrl='api/myOneslft/getCustomerAddrList'
+				this.queryUrl='api/oms/pageList'
 				this.getList()
 				console.log(this.dataList)
 			},

@@ -20,7 +20,7 @@ export const request = (url,data,method,cacheName,time)=>{
 			url:baseUrl+url,
 			data:data,
 			header:{
-				'token':uni.getStorageSync('token') || ''
+				'token':uni.getStorageSync('token') || '',
                 // 'content-type':'application/x-www-form-urlencoded'
 			},
 			method:method || 'GET',

@@ -85,7 +85,9 @@
 			},
 			// 加入购物车
 			add(){
-				this.$http('api/bmallshoppingcart/addShoppingCart',{buyQuantity:this.num,productSkuId:this.selectPrice.productSkuId},'post').then(res=>{
+				this.$http('api/bmallshoppingcart/addShoppingCart',
+				{buyQuantity:this.num,productSkuId:this.selectPrice.productSkuId,remark:this.remark},
+				'post').then(res=>{
 					uni.showToast({
 						title:'添加成功',
 						icon:'none'

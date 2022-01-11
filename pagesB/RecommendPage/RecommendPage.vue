@@ -26,6 +26,7 @@
 			this.pageType=e.pageType
 		},
 		onShow() {
+			this.dataList=[]
 			this.getData()
 		},
 		methods:{
@@ -54,7 +55,7 @@
 				this.list=[arr1,arr2]
 				
 				uni.setNavigationBarTitle({
-					title:data[0].recommendName
+					title:data[0]?data[0].recommendName || data[0].specialName : '品牌详情'
 				})
 			}
 		}
@@ -70,6 +71,7 @@
 		.product_list{
 			position: relative;
 			padding:0 30upx;
+			align-items: baseline;
 			.detail{
 				.list{
 					width: 294upx;

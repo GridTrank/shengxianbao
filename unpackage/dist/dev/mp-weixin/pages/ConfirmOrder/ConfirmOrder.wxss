@@ -1,0 +1,129 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.page_wrap.data-v-af5aa274 {
+  padding-bottom: 160rpx;
+}
+.page_wrap .wrap.data-v-af5aa274 {
+  padding: 30rpx;
+  background-color: #fff;
+}
+.page_wrap .wrap .user_info.data-v-af5aa274 {
+  width: 500rpx;
+}
+.page_wrap .wrap .user_info .phone.data-v-af5aa274 {
+  margin: 0 20rpx;
+}
+.page_wrap .wrap .user_info .moren.data-v-af5aa274 {
+  color: #FE5B07;
+  font-size: 24rpx;
+  margin-right: 20rpx;
+  background-color: #FFF9F3;
+  padding: 2rpx 6rpx;
+}
+.page_wrap .wrap .user_info .address .txt.data-v-af5aa274 {
+  margin-right: 20rpx;
+}
+.page_wrap .wrap .goods.data-v-af5aa274 {
+  padding-top: 30rpx;
+  border-top: 1px solid #EEEEEE;
+}
+.page_wrap .wrap .goods .goods_img image.data-v-af5aa274 {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 10rpx;
+}
+.page_wrap .wrap .tip .mt10.data-v-af5aa274 {
+  font-size: 20rpx;
+}
+.page_wrap .wrap .money .n.data-v-af5aa274 {
+  background-color: #f8f8f8;
+  color: #AAAAAA;
+  font-size: 24rpx;
+  padding: 20rpx;
+  margin-left: 10rpx;
+  border-radius: 8rpx;
+}
+.page_wrap .wrap .money.data-v-af5aa274 .u-input {
+  width: 50rpx;
+  padding: 10rpx !important;
+}
+.page_wrap .wrap .money.data-v-af5aa274 .input-placeholder {
+  font-size: 24rpx !important;
+}
+.page_wrap .wrap .money .select_tip.data-v-af5aa274 {
+  background-color: #fff4ed;
+  color: #FE5B07;
+}
+.page_wrap .second.data-v-af5aa274 {
+  align-items: flex-start;
+}
+.page_wrap .pay_method .list.data-v-af5aa274 {
+  padding: 30rpx 0;
+  margin-top: 20rpx;
+  border-top: 1px solid #EEEEEE;
+  border-bottom: 1px solid #EEEEEE;
+}
+.page_wrap .pay_method .list .item.data-v-af5aa274 {
+  padding: 20rpx 0;
+  font-size: 32rpx;
+}
+.page_wrap .pay_method .list .item .left .l_img.data-v-af5aa274 {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 10rpx;
+}
+.page_wrap .pay_method .list .item .right.data-v-af5aa274 {
+  width: 36rpx;
+  height: 36rpx;
+}
+.page_wrap .pay_method .arrears.data-v-af5aa274 {
+  padding: 30rpx;
+  font-size: 28rpx;
+  color: #333;
+  justify-content: flex-end;
+}
+.page_wrap .pay_method .arrears .m.data-v-af5aa274 {
+  color: #FE5B07;
+}
+.page_wrap .expense_detail .dist.data-v-af5aa274 {
+  padding: 30rpx 0;
+  border-bottom: 1px solid #EEEEEE;
+}
+.page_wrap .expense_detail .dist.data-v-af5aa274:last-child {
+  border: none;
+}
+.page_wrap .remark .left.data-v-af5aa274 {
+  margin-right: 80rpx;
+}
+.page_wrap .remark.data-v-af5aa274 .input-placeholder {
+  font-size: 24rpx !important;
+}
+.page_wrap .foot.data-v-af5aa274 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 30rpx 0;
+  border-top: 1px solid #f1f1f1;
+}
+.page_wrap .foot .left.data-v-af5aa274 {
+  margin: 0 30rpx;
+  color: #FE5B07;
+  font-size: 40rpx;
+}
+.page_wrap .foot .btn_default.data-v-af5aa274 {
+  margin-top: 0;
+  height: 70rpx;
+  line-height: 70rpx;
+  padding: 0 60rpx;
+  font-size: 32rpx;
+  font-weight: normal;
+  position: absolute;
+  right: 30rpx;
+}
+

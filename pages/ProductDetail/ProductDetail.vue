@@ -9,15 +9,15 @@
 				<view class="mr10">
 					¥<text class="p">{{selectPrice.unitPrice}}</text><text class="u">/{{selectPrice.productUnit}}</text>
 				</view>
-				<view class="tag">
-					{{data.productTag || '标签'}}
+				<view class="tag" v-if="data.productTag">
+					{{data.productTag}}
 				</view>
 			</view>
 			<text class="title">{{ data.productName }}</text>
 			
 			<view class="spec row mt30">
 				<view 
-				class="item column" 
+				class="item column mr20" 
 				@click="selectSpec(spec,sIndex)"
 				:class="specActive==sIndex?'spec_active':'' "
 				v-for="(spec,sIndex) in data.productSkuList" 

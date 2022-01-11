@@ -1,0 +1,99 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.page_wrap .parent_list {
+  position: relative;
+  padding-right: 50rpx;
+  padding-top: 30rpx;
+  background-color: #fff;
+}
+.page_wrap .parent_list .more_icon {
+  position: absolute;
+  right: 0rpx;
+  top: 42rpx;
+  color: #FE5B07;
+  background-color: #fff;
+  border-left: 1px solid #E8E8E8;
+  padding-right: 20rpx;
+  padding-left: 10rpx;
+}
+.page_wrap .parent_list .u-tabs__wrapper__nav {
+  position: relative;
+}
+.page_wrap .labels_list {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.page_wrap .labels_list .label_item {
+  display: inline-block;
+  text-align: center;
+  color: #333;
+  font-size: 28rpx;
+  padding: 20rpx 30rpx;
+}
+.page_wrap .labels_list .select_parent {
+  color: #FE5B07;
+  position: relative;
+}
+.page_wrap .labels_list .select_parent::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 30rpx;
+  height: 6rpx;
+  background-color: #FE5B07;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.page_wrap .second_list {
+  display: flex;
+  height: 88vh;
+  overflow: hidden;
+}
+.page_wrap .second_list .left_list {
+  width: 25%;
+  text-align: center;
+}
+.page_wrap .second_list .left_list .left_item {
+  padding: 40rpx 0;
+  justify-content: center;
+  color: #666;
+  font-size: 28rpx;
+}
+.page_wrap .second_list .left_list .left_item .rexiao_img {
+  width: 20rpx;
+  margin-right: 20rpx;
+}
+.page_wrap .second_list .left_list .select_child {
+  background-color: #fff;
+  color: #FE5B07;
+  font-size: 28rpx;
+  font-weight: bold;
+  position: relative;
+}
+.page_wrap .second_list .left_list .select_child::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 8rpx;
+  height: 40rpx;
+  background-color: #FE5B07;
+  border-radius: 0 20rpx 20rpx 0;
+}
+.page_wrap .second_list .right_list {
+  width: 75%;
+  background-color: #fff;
+}
+.page_wrap .second_list .right_list .list {
+  padding-bottom: 30rpx;
+}
+

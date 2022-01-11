@@ -82,7 +82,13 @@
 			.swiper_item{
 				.list{
 					flex-wrap: wrap;
-					justify-content: space-around;
+					// justify-content: space-around;
+					.item{
+						margin-right: 15upx;
+						&:nth-child(3n){
+							margin-right: 0;
+						}
+					}
 					.img{
 						width: 200upx;
 						height: 200upx;

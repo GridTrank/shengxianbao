@@ -127,12 +127,13 @@
 				let judge = this.judgeSelect()
 				if(judge.length){
 					// 删除
+					
 					uni.showModal({
 						title:'提示',
 						content:'确认删除勾选商品吗？',
 						success: (res) => {
 							if(res.confirm){
-								this.$http('/api/bmallshoppingcart',{ids:judge},'delete').then((result)=>{
+								this.$http('api/bmallshoppingcart',{ids:judge},'delete').then((result)=>{
 									uni.showToast({
 										title:'删除成功',
 										icon:'none'
@@ -234,7 +235,7 @@
 				let judge = []
 				this.dataList.find((item,index)=>{
 					if(item.checked == 2){
-						judge.push(item.id)
+						judge.push(Number(item.id) )
 					}
 				})
 				return judge
