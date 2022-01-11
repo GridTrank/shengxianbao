@@ -49,7 +49,7 @@
 				this.renderList = list.map(src=>{
 					return {
 						loaded: !!this.loaded,
-						src
+						...src
 					}
 				});
 				this.loaded = true;

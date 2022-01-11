@@ -4,7 +4,7 @@
 			<image 
             @click="navTo('/pages/ProductDetail/ProductDetail?id='+info.productId)"
             class="img" 
-            src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" >
+            :src="info.defaultImage" >
             </image>
 			<view class="detail">
 				<view class="name ">{{info.productName}}</view>
@@ -19,7 +19,7 @@
 					<view class="p_wrap">
 						<view class="p_detail row">
 							<text class="p_left">¥</text>
-							<text class="p_right">10.00<text class="unit">/斤</text> </text>
+							<text class="p_right">{{info.unitPrice}}<text class="unit">/{{info.productUnit}}</text> </text>
 						</view>
 						<view class="sale " >
 							满100减10

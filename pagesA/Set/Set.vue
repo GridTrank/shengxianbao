@@ -1,7 +1,7 @@
 <template>
 	<view class="page_wrap">
 		<view class="list mt20">
-			<view class="item row" @click="navTo('/pages/Address/Address')">
+			<view class="item row" @click="navTo('/pagesB/Address/Address')">
 				<view class="left ">
 					地址管理
 				</view>

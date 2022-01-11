@@ -33,7 +33,9 @@
 }
 .u-action-sheet__item-wrap__item {
   padding: 15px;
+
   display: flex;
+
   flex-direction: row;
   align-items: center;
   justify-content: center;

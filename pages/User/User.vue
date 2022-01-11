@@ -4,10 +4,10 @@
 			<view class="user row mt20">
 				<image class="avatar" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/kucun.png" ></image>
 				<view class="info column">
-					<view class="name">姓名</view>
+					<view class="name">{{userInfo.customerNickName}}</view>
 					<view class="phone mt10">
 						<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/s6.png" mode="widthFix"></image>
-						<text>12345678911</text>
+						<text>{{userInfo.mobile}}</text>
 					</view>
 				</view>
 			</view>
@@ -41,9 +41,19 @@
 		},
 		data() {
 			return {
-				
+				userInfo:{},
 			};
-		}
+		},
+		onLoad() {
+			this.getUserInfo()
+		},
+		methods:{
+			getUserInfo(){
+				this.$http('api/myOneslft/getMyInfo','','post').then(res=>{
+					this.userInfo=res
+				}) 
+			}
+		},
 	}
 </script>
 

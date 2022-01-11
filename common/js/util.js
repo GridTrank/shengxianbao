@@ -68,7 +68,6 @@ export const isLogin = (options={}) => {
 export const prePage = (preIndex = 1) => {
 	const pages = getCurrentPages();
 	const prePage = pages[pages.length - (preIndex + 1)];
-
 	return prePage.$vm;
 }
 /**

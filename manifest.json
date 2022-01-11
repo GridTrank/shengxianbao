@@ -143,7 +143,7 @@
             }
         },
         "devServer" : {
-        	"https" : false
+            "https" : false
         },
         "title" : "好运邻里",
         "sdkConfigs" : {

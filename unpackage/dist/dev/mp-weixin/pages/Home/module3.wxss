@@ -31,7 +31,12 @@
 }
 .module-wrap .swiper .swiper_item .list.data-v-16a300a0 {
   flex-wrap: wrap;
-  justify-content: space-around;
+}
+.module-wrap .swiper .swiper_item .list .item.data-v-16a300a0 {
+  margin-right: 15rpx;
+}
+.module-wrap .swiper .swiper_item .list .item.data-v-16a300a0:nth-child(3n) {
+  margin-right: 0;
 }
 .module-wrap .swiper .swiper_item .list .img.data-v-16a300a0 {
   width: 200rpx;

@@ -13,7 +13,7 @@
 					<text class="f28-c999 phone">12345678911</text>
 					<text class="moren">默认</text>
 				</view>
-				<view class="address mt20 row" @click="navTo('/pages/Address/Address?pageType=confirmOrder')">
+				<view class="address mt20 row" @click="navTo('/pagesB/Address/Address?pageType=confirmOrder')">
 					<text class="txt f28-c333">江苏省 相城区 苏州市 江苏省相城区漕湖</text>
 					<text class="iconfont icon-jinru"></text>
 				</view>

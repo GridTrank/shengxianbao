@@ -7,14 +7,22 @@ import {
 let baseUrl = 'http://47.96.98.41:9889/customer-api/';
 
 export default baseUrl;
-export const request = (url, data, method) => {
+export const request = (url,data,method,cacheName,time)=>{
 	return new Promise((resolve, reject) => {
+		if(time > 0){
+			const cacheResult = cache.get(cacheName);
+			if(cacheResult){
+				resolve(cacheResult);
+				return;
+			}
+		}
+		
 		uni.request({
-			url: baseUrl + url,
-			data: data,
-			header: {
-				'token': uni.getStorageSync('token') || ''
-				// 'content-type':'application/x-www-form-urlencoded'
+			url:baseUrl+url,
+			data:data,
+			header:{
+				'token':uni.getStorageSync('token') || '',
+                // 'content-type':'application/x-www-form-urlencoded'
 			},
 			method: method || 'GET',
 			success: (res) => {
@@ -35,6 +43,9 @@ export const request = (url, data, method) => {
 						title: res.data.msg || '请求失败',
 						icon: 'none'
 					})
+				}
+				if(time > 0){
+					cache.put(cacheName, res.data.data, time);
 				}
 			},
 			fail: function(err) {

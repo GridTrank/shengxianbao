@@ -10,11 +10,6 @@
     "pages/Login/Login",
     "pages/Login/register",
     "pages/Login/find",
-    "pages/Address/Address",
-    "pages/Address/AddressDetail",
-    "pages/ChooseAddress/index",
-    "pages/ChooseAddress/search",
-    "pages/ChooseAddress/cityList",
     "pages/Order/Order",
     "pages/Order/Detail",
     "pages/ConfirmOrder/ConfirmOrder",
@@ -60,6 +55,17 @@
         "Statistics/Screen",
         "Contract/Index",
         "Contract/Detail"
+      ]
+    },
+    {
+      "root": "pagesB",
+      "pages": [
+        "RecommendPage/RecommendPage",
+        "Address/Address",
+        "Address/AddressDetail",
+        "ChooseAddress/index",
+        "ChooseAddress/search",
+        "ChooseAddress/cityList"
       ]
     }
   ],
@@ -111,13 +117,20 @@
     "pages/Home/Home": {
       "network": "all",
       "packages": [
-        "pagesA"
+        "pagesA",
+        "pagesB"
       ]
     },
     "pagesA/SubAccount/SubAccount": {
       "network": "all",
       "packages": [
         "pagesA"
+      ]
+    },
+    "pagesB/RecommendPage/RecommendPage": {
+      "network": "all",
+      "packages": [
+        "pagesB"
       ]
     }
   },
@@ -126,6 +139,5 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

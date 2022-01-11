@@ -12,7 +12,7 @@
 			}"
 		>
 			<view class="btn center" v-if="showAddress">
-				<image @click="navTo('/pages/Address/Address')" class="dizhi" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/dizhi.png" mode="widthFix"></image>
+				<image @click="navTo('/pagesB/Address/Address')" class="dizhi" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/dizhi.png" mode="widthFix"></image>
 			</view>
 			<view 
 				class="search-wrap center"

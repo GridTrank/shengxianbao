@@ -7,15 +7,15 @@
 		mode="bottom">
 			<view class="con">
 				<view class="info row">
-					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" mode="widthFix"></image>
+					<image :src="img[0]" mode="widthFix"></image>
 					<view class="">
-						<text class="f32-c333">柠檬</text>
-						<text class="f24-c999 mt10">250g</text>
+						<text class="f32-c333 mr20">{{info.productName}}</text>
+						<text class="f24-c999 mt10">{{selectPrice.productModel}}</text>
 					</view>
 				</view>
 				<view class="detail row jc_sb">
 					<text class="f28-c333">结算单位</text>
-					<text class="f28-c999">箱</text>
+					<text class="f28-c999">{{selectPrice.productUnit}}</text>
 				</view>
 				<view class="detail row jc_sb">
 					<text class="f28-c333">数量</text>
@@ -47,16 +47,34 @@
 <script>
 	export default{
 		props:{
-			id:'0'//productSkuId
+			pid:'0',//productSkuId
+			info:{
+				type:Object,
+				default:()=>{
+					return {}
+				}
+			},
+			selectPrice:{
+				type:Object,
+				default:()=>{
+					return {}
+				}
+			}
 		},
 		data(){
 			return{
 				show:false,
 				num:1,
 				remark:'',
-				
+				img:''
 			}
 		},
+		watch: {			info(data){				this.img=data.productImageVoList.map(item=>{
+					if(item.main){
+						return item.imageUrl
+					}
+				})
+			}		},
 		methods:{
 			changNum(val){
 				if(val==1 && this.num>1){
@@ -67,10 +85,17 @@
 			},
 			// 加入购物车
 			add(){
-          this.$http('api/bmallshoppingcart/addShoppingCart',{buyQuantity:this.num,productSkuId:this.id},(result)=>{
-						console.log(result);
-						this.$util.msg('加入购物车成功')
-					})      
+				this.$http('api/bmallshoppingcart/addShoppingCart',
+				{buyQuantity:this.num,productSkuId:this.selectPrice.productSkuId,remark:this.remark},
+				'post').then(res=>{
+					uni.showToast({
+						title:'添加成功',
+						icon:'none'
+					})
+					setTimeout(()=>{
+						this.show=false
+					},1500)
+				})      
 			}
 		}
 	}

@@ -1,7 +1,6 @@
 <template>
 	<view class="common-car">
 		<view class="empty-shop-car" v-if="isEmpty">
-			<!-- <image src="../../static/empty_shop_car.png" class="empty-shop-car-image" mode=""></image> -->
 			<text>当前您的购物车是空的</text>
 			<view class="empty-shop-car-btn">
 				<text>去逛逛</text>
@@ -24,35 +23,35 @@
 				</view>
 			</view>
 			<view class="store-box" >
-				<view class="goodsInfo " v-for="(itemw,indexw) in dataList" :key="indexw">
+				<view class="goodsInfo " v-for="(itemw,indexw) in dataList" :key="indexw" @click="toDetail(itemw)">
 					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quanzhong%402x.png" v-if="itemw.checked == 2" class="checked-image"
-						mode="" @tap="goodsCheck(indexw,itemw.checked)"></image>
+						mode="" @click.stop="goodsCheck(indexw,itemw.checked)"></image>
 					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quan1%402x.png" v-else class="checked-image" mode=""
-						@tap="goodsCheck(indexw,itemw.checked)"></image>
+						@click.stop="goodsCheck(indexw,itemw.checked)"></image>
 					<view class="goodsInfo-right">
-						<image :src="itemw.img" class="goods-image" mode=""></image>
+						<image :src="itemw.productImage" class="goods-image" mode=""></image>
 						<view class="goodsInfo-box">
-							<text class="goods-name">{{itemw.title}}</text>
-							<text class="spe">规格：{{itemw.remark}}</text>
+							<text class="goods-name">{{itemw.productName}} ({{itemw.productNameAlias}})</text>
+							<text class="spe">规格：{{itemw.productUnit}}</text>
 							<view class="goods-box">
-								<text class="goods-price">¥{{itemw.price}}</text>
+								<text class="goods-price">¥{{itemw.unitPrice}}</text>
 								<view class="goods-num-box">
-									<view class="goods-image" @tap="sub(indexw,itemw.number)">
+									<view class="goods-image" @click.stop="sub(indexw,itemw.buyQuantity)">
 										<text>-</text>
 									</view>
 									<view class="goods-num">
-										<text>{{itemw.number}}</text>
+										<text>{{itemw.buyQuantity}}</text>
 									</view>
-									<view class="goods-image" @tap="add(indexw,itemw.number)">
+									<view class="goods-image" @click.stop="add(indexw,itemw.buyQuantity)">
 										<text>+</text>
 									</view>
 								</view>
 							</view>
 							<view class="remark">
-								备注
+								备注：{{itemw.remark || '无'}}
 							</view>
 							<view class="subtotal mt20">
-								小计：￥{{itemw.checked==2 ? (itemw.price*itemw.number).toFixed(2) : 0}}
+								小计：￥{{itemw.checked==2 ? (itemw.unitPrice*itemw.buyQuantity).toFixed(2) : 0}}
 							</view>
 						</view>
 					</view>
@@ -98,57 +97,53 @@
 			return {
 				isEmpty: true,
 				iPhoneX: false,
-				dataList: [
-					{
-						img: '../../static/goods_avatar.png',
-						title: '华为荣耀',
-						remark: '256G',
-						price: '128.80',
-						number: 1,
-						checked: 1
-					}, {
-						img: '../../static/goods_avatar.png',
-						title: 'mate40',
-						remark: '128G',
-						price: '116.80',
-						number: 1,
-						checked: 1
-					}
-				],
 				statisticsIndex:false,
 				total:0,
 				isCut:true
 			}
 		},
-	
-		created() {
+		onLoad() {
 			this.iPhoneX = uni.getStorageSync('iPhoneX')
-			if (this.dataList.length == 0) {
-				this.isEmpty = true
-			} else {
-				this.isEmpty = false
-			}
-			// 接口没有数据  暂时先不请求接口
-			// this.getData()
+			this.getData()
 		},
 	
 		methods: {
-			getData(){
+			async getData(){
 				this.queryUrl = 'api/bmallshoppingcart/getShoppingCartPage';
-				this.getList()
+				let list=await this.getList()
+				list.forEach(item=>{
+					item.checked=2
+				})
+				this.dataList=list
+				if (list.length == 0) {
+					this.isEmpty = true
+				} else {
+					this.isEmpty = false
+				}
+				this.allCheck()
 			},
 			// 删除
 			delect(e) {
 				let judge = this.judgeSelect()
 				if(judge.length){
 					// 删除
-					this.$http('/api/bmallshoppingcart',{ids:judge},(result)=>{
-						uni.showToast({
-							title:'删除成功',
-							icon:'none'
-						})
-						this.getData();
+					
+					uni.showModal({
+						title:'提示',
+						content:'确认删除勾选商品吗？',
+						success: (res) => {
+							if(res.confirm){
+								this.$http('api/bmallshoppingcart',{ids:judge},'delete').then((result)=>{
+									uni.showToast({
+										title:'删除成功',
+										icon:'none'
+									})
+									this.getData();
+								})
+							}
+						}
 					})
+					
 				}else{
 					uni.showToast({
 						title:'您当前未选择任何商品,删除失败',
@@ -163,6 +158,7 @@
 				} else {
 					this.dataList[goodsIndex].checked = 1
 				}
+				this.$forceUpdate()
 				//判断是否全选
 				let statisticsIndex = true
 				this.dataList.find((item,index)=>{
@@ -175,22 +171,23 @@
 				}else{
 					this.statisticsIndex = true
 				}
-				
 				this.statistics()
 			},
-			
+			toDetail(item){
+				this.navTo('/pages/ProductDetail/ProductDetail?id='+item.id)
+			},
 			//减少
 			sub( goodsIndex, goodsnum){
 				if(goodsnum == 1){
 					return
 				}else{
-					this.dataList[goodsIndex].number--
+					this.dataList[goodsIndex].buyQuantity--
 				}
 				this.statistics()
 			},
 			//增加
 			add( goodsIndex, goodsnum){
-				this.dataList[goodsIndex].number++
+				this.dataList[goodsIndex].buyQuantity++
 				this.statistics()
 			},
 			//全选
@@ -198,13 +195,11 @@
 				if(this.statisticsIndex){
 					this.dataList.find((item,index)=>{
 						item.checked = 1
-						
 					})
 					this.statisticsIndex = false
 				}else{
 					this.dataList.find((item,index)=>{
 						item.checked = 2
-						
 					})
 					this.statisticsIndex = true
 				}
@@ -215,7 +210,7 @@
 				let total = 0
 				this.dataList.find((item,index)=>{
 					if(item.checked == 2){
-						total = total + item.price*item.number
+						total = total + item.unitPrice*item.buyQuantity
 					}
 				})
 				this.total = total.toFixed(2)
@@ -240,7 +235,7 @@
 				let judge = []
 				this.dataList.find((item,index)=>{
 					if(item.checked == 2){
-						judge.push(item.id)
+						judge.push(Number(item.id) )
 					}
 				})
 				return judge
@@ -345,7 +340,7 @@
 
 		.store-box {
 			width: 750upx;
-			margin-bottom: 20upx;
+			margin-bottom: 200upx;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -507,6 +502,7 @@
 				width: 100%;
 				color: #333;
 				font-size: 22upx;
+				border-top: 2upx solid #f1f1f1;
 				.e1{
 					margin-left: 30upx;
 				}

@@ -14,8 +14,6 @@
 		<view class="v-else">
 			<historyList  ref='history' @delHistory='delHistory' ></historyList>
 		</view>
-		
-		
 	</view>
 </template>
 
@@ -32,6 +30,7 @@
 		},
 		methods:{
 			search(){
+				
 				let history=uni.getStorageSync('historyList') || []
 				if(history.length>=10){
 					history.pop()
@@ -48,7 +47,6 @@
 		}
 	}
 </script>
-
 <style scoped lang="scss">
 .page_wrap{
 	padding: 100upx 30upx;

@@ -12,7 +12,7 @@
 				// #endif
 				"navigationBarTitleText": "首页"
 			}
-		}, {
+		},{
 			"path": "pages/Classify/Classify",
 			"style": {
                 // #ifdef H5
@@ -110,48 +110,6 @@
 			}
 
 		}, {
-			"path": "pages/Address/Address",
-			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
-				"navigationBarTitleText": "地址管理",
-				"enablePullDownRefresh": false
-			}
-		}, {
-			"path": "pages/Address/AddressDetail",
-			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
-				"navigationBarTitleText": "地址",
-				"enablePullDownRefresh": false
-			}
-		}, {
-			"path": "pages/ChooseAddress/index",
-			"style": {
-				"navigationBarTitleText": "地址选择",
-				"enablePullDownRefresh": false
-			}
-		}, {
-			"path": "pages/ChooseAddress/search",
-			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
-				"navigationBarTitleText": "地址搜索",
-				"enablePullDownRefresh": false
-			}
-		}, {
-			"path": "pages/ChooseAddress/cityList",
-			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
-				"navigationBarTitleText": "城市列表",
-				"enablePullDownRefresh": false
-			}
-		}, {
 			"path": "pages/Order/Order",
 			"style": {
                 // #ifdef H5
@@ -187,7 +145,8 @@
 			}
 		}
 	],
-	"subPackages": [{
+	"subPackages": [
+		{
 		"root": "pagesA",
 		"pages": [{
 				"path": "SubAccount/SubAccount",
@@ -198,7 +157,7 @@
 					"navigationBarTitleText": "添加子账号",
 					"enablePullDownRefresh": false
 				}
-			}, {
+			},{
 				"path": "SubAccount/AddOrEdit",
 				"style": {
                     // #ifdef H5
@@ -527,15 +486,76 @@
             }
             
         ]
-	}],
+		},
+		{
+		"root": "pagesB",
+		"pages": [
+			{
+				"path": "RecommendPage/RecommendPage",
+				"style": {
+					// #ifdef H5
+					"navigationStyle": "custom",
+					// #endif
+					"navigationBarTitleText": ""
+				}
+			} ,{
+				"path": "Address/Address",
+				"style": {
+					// #ifdef H5
+					"navigationStyle": "custom",
+					// #endif
+					"navigationBarTitleText": "地址管理",
+					"enablePullDownRefresh": false
+				}
+			}, {
+				"path": "Address/AddressDetail",
+				"style": {
+					// #ifdef H5
+					"navigationStyle": "custom",
+					// #endif
+					"navigationBarTitleText": "地址",
+					"enablePullDownRefresh": false
+				}
+			}, {
+				"path": "ChooseAddress/index",
+				"style": {
+					"navigationBarTitleText": "地址选择",
+					"enablePullDownRefresh": false
+				}
+			}, {
+				"path": "ChooseAddress/search",
+				"style": {
+					// #ifdef H5
+					"navigationStyle": "custom",
+					// #endif
+					"navigationBarTitleText": "地址搜索",
+					"enablePullDownRefresh": false
+				}
+			}, {
+				"path": "ChooseAddress/cityList",
+				"style": {
+					// #ifdef H5
+					"navigationStyle": "custom",
+					// #endif
+					"navigationBarTitleText": "城市列表",
+					"enablePullDownRefresh": false
+				}
+			}
+        ]
+		}
+	],
 	"preloadRule": {
 		"pages/Home/Home": {
 			"network": "all",
-			"packages": ["pagesA"]
+			"packages": ["pagesA","pagesB"]
 		},
 		"pagesA/SubAccount/SubAccount": {
 			"network": "all",
 			"packages": ["pagesA"]
+		},
+		"pagesB/RecommendPage/RecommendPage": {
+			"network": "all",
+			"packages": ["pagesB"]
 		}
 	},
 	"globalStyle": {

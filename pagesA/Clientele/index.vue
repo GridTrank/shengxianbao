@@ -29,8 +29,8 @@
 			<u-form-item class="mt20" label="详细地址" prop="addrDetails" borderBottom ref="item1">
 				<u--textarea class="textarea" height="50" v-model="userInfo.addrDetails" placeholder="请输入详细地址或直接定位"
 					border="none"></u--textarea>
-				<image class="icon" @click="navTo('/pages/ChooseAddress/index')"
-					src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/icon_region.png" mode="widthFix"></image>
+				<image class="icon" @click="navTo('/pagesB/ChooseAddress/index')" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/icon_region.png"
+					mode="widthFix"></image>
 			</u-form-item>
 			<u-form-item label="收货时间" prop="deliveryTime" @click="showActionSheet('deliveryTime')" ref="item1">
 				<u--input class="from_item" v-model="userInfo.deliveryTime" disabled disabledColor="#ffffff"

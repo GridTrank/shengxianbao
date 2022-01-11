@@ -17,4 +17,7 @@
   height: 300rpx;
   margin-right: 20rpx;
 }
+.page_wrap .info .img_wrap .img.data-v-762887ea:last-child {
+  margin-right: 0;
+}
 
