@@ -76,50 +76,46 @@
 				baseUrl: baseUrl,
 				showSheet: false,
 				rules: {
-					'customerName': {
+					customerName: {
 						type: 'string',
 						required: true,
 						message: '请填写客户名称',
 						trigger: ['blur', 'change']
 					},
-					'customerTypeId': {
+					customerTypeId: {
 						type: 'string',
-						max: 1,
 						required: true,
 						message: '请选择客户类型',
 						trigger: ['blur', 'change']
 					},
-					'customerContact': {
+					customerContact: {
 						type: 'string',
-						max: 1,
 						required: true,
 						message: '请填写联系人',
 						trigger: ['blur', 'change']
 					},
-					'telephone': {
+					telephone: {
 						type: 'string',
-						max: 1,
 						required: true,
+						max:11,
 						message: '请填写联系电话',
 						trigger: ['blur', 'change']
 					},
-					'addrDetails': {
+					addrDetails: {
 						type: 'string',
-						max: 1,
 						required: true,
 						message: '请填写详细地址',
 						trigger: ['blur', 'change']
 					},
-					'deliveryTime': {
+					deliveryTime: {
 						type: 'string',
-						max: 1,
 						required: true,
 						message: '请选择收货时间',
 						trigger: ['blur', 'change']
 					},
-					'customerBusinessLicenseUrl': {
+					customerBusinessLicenseUrl: {
 						type: 'string',
-						max: 1,
+
 						required: true,
 						message: '请上传营业执照',
 						trigger: ['blur', 'change']
@@ -174,7 +170,11 @@
 				this.userInfo[this.actionSheetType] = e.name;
 				if (this.actionSheetType == 'customerType') {
 					this.userInfo.customerTypeId = e.id;
+					this.$refs.userInfo.validateField('customerTypeId')
+				}else{
+					this.$refs.userInfo.validateField(this.actionSheetType)
 				}
+				console.log(this.userInfo)
 			},
 			// 获取客户类型
 			getType() {
