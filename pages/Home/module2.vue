@@ -1,7 +1,7 @@
 <template>
 	<view class="list row ">
 		<view class="item column mt30" 
-        @click="navTo('pagesB/RecommendPage/RecommendPage?id='+item.id)"
+        @click="navTo('/pagesB/RecommendPage/RecommendPage?id='+item.id)"
         v-for="(item,index) in list" :key="index">
 			<view class="item_top row">
 				<text class="sign"></text>

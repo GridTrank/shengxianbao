@@ -3,8 +3,33 @@
 		<pageHeader ref="pageHeader"></pageHeader>
 		<!-- 轮播图 -->
 		<mix-swiper :list="data.images"></mix-swiper>
-		<view class="introduce column">
-			<text class="title">{{ data.title }}</text>
+		
+		<view class="introduce">
+			<view class="price row">
+				<view class="mr10">
+					¥<text class="p">{{selectPrice.unitPrice}}</text><text class="u">/{{selectPrice.productUnit}}</text>
+				</view>
+				<view class="tag">
+					{{data.productTag || '标签'}}
+				</view>
+			</view>
+			<text class="title">{{ data.productName }}</text>
+			
+			<view class="spec row mt30">
+				<view 
+				class="item column" 
+				@click="selectSpec(spec,sIndex)"
+				:class="specActive==sIndex?'spec_active':'' "
+				v-for="(spec,sIndex) in data.productSkuList" 
+				:key="sIndex">
+					<view class="s1">
+						{{spec.productModel}}
+					</view>
+					<view class="s2">
+						¥{{spec.unitPrice}}/{{spec.productUnit}}
+					</view>
+				</view>
+			</view>
 		</view>
 		
 		<view class="c-list">
@@ -46,7 +71,7 @@
 			<!-- <rich-text :nodes="data.content"></rich-text> -->
 		</view>
 		<!-- 底部操作菜单 -->
-		<bottom-operation :infoData="data" @onOprationClick="onOprationClick"></bottom-operation>
+		<bottom-operation :infoData="data" :selectPrice="selectPrice" @onOprationClick="onOprationClick"></bottom-operation>
 		<!-- 规格面板 -->
 	
 	</view>
@@ -69,11 +94,12 @@
 				data: {
 					images: [],
 				},
+				specActive:0,
+				selectPrice:{},
 				ratingData: {}, //评价
 			};
 		},
 		onLoad(options){
-            console.log(options)
 			this.id = options.id;
 			// this.loadRating(); //加载评价
 		},
@@ -94,15 +120,19 @@
 		// #endif
 		methods:{
 			async loadData(){
-				const res = await this.$http('api/pms/productcategory/getProductSkuIdInfo', {
-					id: this.id || 7
+				const data = await this.$http('api/pms/productcategory/getProductSkuIdInfo', {
+					productId: this.id || 7
 				})
-				const data = res.data;
-				data.content = data.content.replace(/img src="/g, 'img style="display:block;width:100%;height:auto" src="');
+				data.productImageVoList.forEach(item=>{
+					item.src=item.imageUrl
+				})
+				data.images=data.productImageVoList
+				this.selectPrice=data.productSkuList[0]
 				this.data = data;
 				this.$nextTick(()=>{
 					this.calcAnchor();//计算锚点参数
 				})
+				
 				//添加浏览历史
 				this.addProductHistory();
 			},
@@ -115,6 +145,11 @@
 				this.$nextTick(()=>{
 					this.calcAnchor();//计算锚点参数
 				})
+			},
+			// 选择规格
+			selectSpec(item,index){
+				this.specActive=index
+				this.selectPrice=item
 			},
 			//加入购物车
 			addToCart(){
@@ -264,11 +299,27 @@
 			height: 100rpx;
 		}
 	}
+	
 	/* 标题简介 */
 	.introduce{
 		background: #fff;
 		padding: 20rpx 30rpx;
-		
+		.price{
+			color: $base-color;
+			font-size: 24upx;
+			background-color: #fff;
+			align-items: baseline;
+			.p{
+				font-size: 40upx;
+			}
+			.tag{
+				border: 2upx solid $base-color;
+				color: $base-color;
+				font-size: 20upx;
+				padding: 2upx;
+				margin-left: 20upx;
+			}
+		}
 		.title{
 			min-height: 44rpx;
 			font-size: 32rpx;
@@ -276,90 +327,25 @@
 			line-height: 44rpx;
 			font-weight: 700;
 		}
-		.price-wrap{
-			min-height: 40rpx;
-			margin-top: 28rpx;
-			font-size: 26rpx;
-		}
-		.m-price{
-			margin-left: 10rpx;
-			margin-right: 16rpx;
-			color: #999;
-			text-decoration: line-through;
-		}
-		.tag{
-			transform: translateY(4rpx);
-			padding: 0 10rpx;
-			margin-left: 8rpx;
-			background: $base-color;
-			font-size: 20rpx;
-			color: #fff;
-			line-height: 32rpx;
-			border-radius: 4rpx;
-			position: relative;
-			bottom: 8rpx;
-		}
-		.bot{
-			padding: 28rpx 0 10rpx 4rpx;
-			font-size: 24rpx;
-			color: #999;
-		}
-	}
-	/* 分享 */
-	.share-wrap{
-		background: linear-gradient(to right, #fdf5f6, #fbebf6);
-		height: 76rpx;
-		padding: 0 30rpx;
-		color: $base-color;
-		
-		.icon{
-			width: 90rpx;
-			height: 30rpx;
-			border: 1px solid $base-color;
-			border-radius: 4rpx;
-			position: relative;
-			overflow: hidden;
-			font-size: 22rpx;
-			
-			&:after{
-				position:absolute;
-				left: -20rpx;
-				top: -12rpx;
-				content: '';
-				width: 50rpx;
-				height: 50rpx;
-				border-radius: 50%;
-				background-color: $base-color;
+		.spec{
+			padding-top: 20upx;
+			border-top: 2upx solid #f1f1f1;
+			.item{
+				border: 2upx solid #EBEBEB;
+				padding: 20upx;
+				color: #999999;
+				.s1{
+					font-size: 28upx;
+				}
+				.s2{
+					font-size: 22upx;
+				}
 			}
-		}
-		.icon-iconfontxingxing{
-			position:relative;
-			z-index: 1;
-			font-size: 24rpx;
-			margin-left: 2rpx;
-			margin-right: 10rpx;
-			color: #fff;
-		}
-		.tit{
-			flex: 1;
-			font-size: 26rpx;
-			color: #666;
-			margin-left:14rpx;
-		}
-		.icon-bangzhu1{
-			padding: 10rpx;
-			font-size: 30rpx;
-			display: none;
-		}
-		.btn{
-			padding-left: 20rpx;
-			font-size: 24rpx;
-			color: $base-color;
-		}
-		.icon-you{
-			font-size: 22rpx;
-			margin-left: 4rpx;
-			color: $base-color;
+			.spec_active{
+				border-color: #FF6304;
+				background-color: #FFF1E9;
+				color: #FF6304;
+			}
 		}
 	}
 	.c-list{

@@ -12,10 +12,10 @@
 				<text class="iconfont icon-jiacy"></text>
 				<text class="tit">加常用</text>
 			</view>
-			<view class="nav column center" :class="{active: is_fav === 1}" @click="changeFav">
+			<!-- <view class="nav column center" :class="{active: is_fav === 1}" @click="changeFav">
 				<text class="iconfont" :class="is_fav === 1 ? 'icon-shoucang' : 'icon-shoucang'"></text>
 				<text class="tit">收藏</text>
-			</view>
+			</view> -->
 		</view>
 		<view class="btn-group row">
 			<view class="btn center" @click="onOprationClick('cart')">
@@ -23,7 +23,7 @@
 			</view>
 		</view>
 		
-        <specifications :pid="infoData.productSkuId" ref='spec'></specifications>
+        <specifications :pid="infoData.productSkuId" :info="infoData" :selectPrice="selectPrice" ref='spec'></specifications>
 		<mix-loading v-if="isLoading" :mask="true"></mix-loading>
 	</view>
 </template>
@@ -50,7 +50,13 @@
 				default(){
 					return {}
 				}
-			}
+			},
+			selectPrice: {
+				type: Object,
+				default(){
+					return {}
+				}
+			},
 		},
 		watch: {
 			infoData(data){
@@ -80,15 +86,23 @@
 					const res = await this.$http('api/usedlist/addCusOftenBuy', {
 						buyQuantity: 1,
 						productSkuId:this.infoData.productSkuId || 7
+					},'post')
+					
+					uni.showToast({
+						title:'添加成功',
+						icon:'none'
 					})
-					const data = res.data;
 				}else{
 					// 移除常用
 					const res = await this.$http('api/usedlist/removeCusOftenBuy', {
 						buyQuantity: 1,
 						productSkuId:this.infoData.productSkuId || 7
+					},'post')
+					
+					uni.showToast({
+						title:'移除成功',
+						icon:'none'
 					})
-					const data = res.data;
 				}
 				
 			},

@@ -90,7 +90,7 @@
                     this.getRecommentList()
                     this.getSpecialList()
                     this.getNotice()
-					// this.getLike()
+					this.getLike()
                 })
             },
             // 分类

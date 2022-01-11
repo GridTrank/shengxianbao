@@ -102,11 +102,8 @@
 				isCut:true
 			}
 		},
-	
 		onLoad() {
 			this.iPhoneX = uni.getStorageSync('iPhoneX')
-			
-			// 接口没有数据  暂时先不请求接口
 			this.getData()
 		},
 	
@@ -123,19 +120,29 @@
 				} else {
 					this.isEmpty = false
 				}
+				this.allCheck()
 			},
 			// 删除
 			delect(e) {
 				let judge = this.judgeSelect()
 				if(judge.length){
 					// 删除
-					this.$http('/api/bmallshoppingcart',{ids:judge},(result)=>{
-						uni.showToast({
-							title:'删除成功',
-							icon:'none'
-						})
-						this.getData();
+					uni.showModal({
+						title:'提示',
+						content:'确认删除勾选商品吗？',
+						success: (res) => {
+							if(res.confirm){
+								this.$http('/api/bmallshoppingcart',{ids:judge},'delete').then((result)=>{
+									uni.showToast({
+										title:'删除成功',
+										icon:'none'
+									})
+									this.getData();
+								})
+							}
+						}
 					})
+					
 				}else{
 					uni.showToast({
 						title:'您当前未选择任何商品,删除失败',
@@ -150,6 +157,7 @@
 				} else {
 					this.dataList[goodsIndex].checked = 1
 				}
+				this.$forceUpdate()
 				//判断是否全选
 				let statisticsIndex = true
 				this.dataList.find((item,index)=>{
@@ -162,11 +170,9 @@
 				}else{
 					this.statisticsIndex = true
 				}
-				
 				this.statistics()
 			},
 			toDetail(item){
-				console.log(123)
 				this.navTo('/pages/ProductDetail/ProductDetail?id='+item.id)
 			},
 			//减少
@@ -188,13 +194,11 @@
 				if(this.statisticsIndex){
 					this.dataList.find((item,index)=>{
 						item.checked = 1
-						
 					})
 					this.statisticsIndex = false
 				}else{
 					this.dataList.find((item,index)=>{
 						item.checked = 2
-						
 					})
 					this.statisticsIndex = true
 				}
@@ -335,7 +339,7 @@
 
 		.store-box {
 			width: 750upx;
-			margin-bottom: 20upx;
+			margin-bottom: 200upx;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -497,6 +501,7 @@
 				width: 100%;
 				color: #333;
 				font-size: 22upx;
+				border-top: 2upx solid #f1f1f1;
 				.e1{
 					margin-left: 30upx;
 				}

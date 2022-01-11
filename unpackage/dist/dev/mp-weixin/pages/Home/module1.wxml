@@ -1,1 +1,0 @@
-<view class="list row model-wrap mt30 data-v-16db5ea4"><block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="item column mt30 data-v-16db5ea4"><image class="img data-v-16db5ea4" src="{{item.categoryImage}}"></image><text class="name mt10 data-v-16db5ea4">{{item.categoryName}}</text></view></block></view>
