@@ -13,9 +13,14 @@
 			interval="5000"
 			@change="onSwiperChange"
 		>
-			<swiper-item class="swiper_item" v-for="(item, index) in list" :key="index" >
+			<swiper-item 
+			class="swiper_item" 
+			v-for="(item, index) in list" 
+			:key="index" >
 				<view class="list row">
-					<view class="item mt20" v-for="(data,i) in item" :key="i">
+					<view class="item mt20"
+					@click="navTo('/pagesB/RecommendPage/RecommendPage?id='+data.id+'&pageType=spec')"
+					 v-for="(data,i) in item" :key="i">
 						<image class="img" :src="data.specialImage" ></image>
 					</view>
 				</view>

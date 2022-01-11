@@ -1,7 +1,7 @@
 <template>
 	<view class="data_list">
 		<view class="list">
-			<view class="item  " v-for="(item,index) in dataList" :key="index">
+			<view class="item  " v-for="(item,index) in resultList" :key="index">
 				<view class="item_wrap row">
 					<view class="row">
 						<view @click="checkHandle(item,index)" v-if="nowParentPage=='SelectGoopd'">
@@ -50,7 +50,7 @@
             <template v-if="pageType=='out' || pageType=='in' || pageType=='inventory' || pageType=='frmLoss' || pageType=='overflow' || pageType=='return'">
                 <view class="foot_con row">
                 	<view class="check_wrap" v-if="nowParentPage!='AddPage'">
-                		<view @click="selectAll(2)" v-if="total<dataList.length" class="iconfont icon-weixuanze"></view>
+                		<view @click="selectAll(2)" v-if="total<resultList.length" class="iconfont icon-weixuanze"></view>
                 		<view @click="selectAll(1)" v-else class="iconfont icon-xuanze"></view>
                 	</view>
                 	<view class="num_wrap row">
@@ -123,7 +123,7 @@
 					}
 				}
 			},
-			dataList:{
+			resultList:{
 				get(){
 					return this.datas
 				}
@@ -138,7 +138,7 @@
 		},
 		mounted() {
 			let nums=0
-			this.dataList.forEach(item=>{
+			this.resultList.forEach(item=>{
 				if(item.checked==2){
 					nums++
 				}
@@ -147,15 +147,15 @@
 		},
 		methods:{
 			changeNum1(val,index){
-				this.dataList[index].sa=val
+				this.resultList[index].sa=val
 			},
 			changeNum2(val,index){
-				this.dataList[index].sb=val
+				this.resultList[index].sb=val
 			},
 			checkHandle(item,index){
 				item.checked==1?item.checked=2:item.checked=1
 				let nums=0
-				this.dataList.forEach(item=>{
+				this.resultList.forEach(item=>{
 					if(item.checked==2){
 						nums++
 					}
@@ -172,7 +172,7 @@
 				}
 				if(val=='two'){
 					let arr=[]
-					this.dataList.forEach(item=>{
+					this.resultList.forEach(item=>{
 						if(item.checked==2){
 							arr.push(item)
 						}
@@ -195,9 +195,9 @@
 				if(val==1){
 					this.total=0
 				}else{
-					this.total=this.dataList.length
+					this.total=this.resultList.length
 				}
-				this.dataList.forEach((item)=>{
+				this.resultList.forEach((item)=>{
 					item.checked=val
 				})
 			}

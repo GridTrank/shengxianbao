@@ -3,7 +3,7 @@
         <view class="list">
             <view class="item mt10" 
             @click="navTo('./Detail')"
-            v-for="(item,index) in 6" :key="index">
+            v-for="(item,index) in dataList" :key="index">
                 <view class="row jc_sb">
                     <text class="f28-c333">合同编号</text>
                     <text class="f28-c999">1231321</text>
@@ -31,7 +31,14 @@
             return{
                 
             }
-        }
+        },
+		onLoad() {
+			this.queryUrl='api/contract/pageList'
+			this.getList()
+		},
+		methods:{
+			
+		}
     }
 </script>
 

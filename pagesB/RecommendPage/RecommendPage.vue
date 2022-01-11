@@ -17,21 +17,30 @@
 		data(){
 			return{
 				id:'',
-				list:[]
+				list:[],
+				pageType:'',
 			}
 		},
 		onLoad(e) {
 			this.id=e.id
+			this.pageType=e.pageType
 		},
 		onShow() {
 			this.getData()
 		},
 		methods:{
 			async getData(item){
-			    this.queryUrl='api/myOneslft/getBMallRecommendProductList'
-			    this.queryData={
-			        recommendId:this.id
-			    }
+				if(this.pageType=='recommend'){
+					this.queryUrl='api/myOneslft/getBMallRecommendProductList'
+					this.queryData={
+					    recommendId:this.id
+					}
+				}else if(this.pageType=='spec'){
+					this.queryUrl='api/myOneslft/getSpecialProductListBySpecialId'
+					this.queryData={
+					    specialId:this.id
+					}
+				}
 			    let data= await this.getList()
 				let arr1=[]
 				let arr2=[]
