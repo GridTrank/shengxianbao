@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "首页",
   "usingComponents": {
+    "screen-text-scroll": "/components/screenTextScroll/screenTextScroll",
     "product-list": "/components/product-list/product-list",
     "banner": "/pages/Home/banner",
     "module1": "/pages/Home/module1",

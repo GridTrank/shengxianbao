@@ -3,6 +3,7 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "u-tabs": "/uni_modules/uview-ui/components/u-tabs/u-tabs",
+    "no-data": "/components/no-data/no-data",
     "search": "/pages/Classify/search",
     "list": "/pages/QuickOrder/list"
   }

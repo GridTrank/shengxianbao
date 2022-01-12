@@ -263,11 +263,11 @@ var _default =
       isCut: true };
 
   },
-  onLoad: function onLoad() {
+  onShow: function onShow() {
     this.iPhoneX = uni.getStorageSync('iPhoneX');
+    this.dataList = [];
     this.getData();
   },
-
   methods: {
     getData: function getData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var list;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 _this.queryUrl = 'api/bmallshoppingcart/getShoppingCartPage';_context.next = 3;return (
@@ -288,18 +288,24 @@ var _default =
       var judge = this.judgeSelect();
       if (judge.length) {
         // 删除
-
         uni.showModal({
           title: '提示',
           content: '确认删除勾选商品吗？',
           success: function success(res) {
             if (res.confirm) {
-              _this2.$http('api/bmallshoppingcart', { ids: judge }, 'delete').then(function (result) {
+              _this2.$http('api/bmallshoppingcart', judge, 'delete').then(function (result) {
                 uni.showToast({
                   title: '删除成功',
                   icon: 'none' });
 
-                _this2.getData();
+                _this2.dataList = [];
+                _this2.getList().then(function (res) {
+                  if (res.length == 0) {
+                    _this2.isEmpty = true;
+                  } else {
+                    res.isEmpty = false;
+                  }
+                });
               });
             }
           } });

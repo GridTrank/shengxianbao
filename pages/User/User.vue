@@ -46,12 +46,18 @@
 		},
 		onLoad() {
 			this.getUserInfo()
+			
 		},
 		methods:{
 			getUserInfo(){
 				this.$http('api/myOneslft/getMyInfo','','post').then(res=>{
 					this.userInfo=res
+					this.getHelpList()
 				}) 
+			},
+			getHelpList(){
+				this.$http('api/myOneslft/getHelpList','','post').then(res=>{
+				})
 			}
 		},
 	}

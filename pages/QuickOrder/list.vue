@@ -26,13 +26,12 @@
 						{{showMore?'收起':'选规格'}} 
 					</view>
 				</view>
-				<view class="collect column">
+				<!-- <view class="collect column">
 					<image class="coll_img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/shoucang2%402x.png" mode="widthFix"></image>
 					<view class="t">
 						收藏
 					</view>
-					
-				</view>
+				</view> -->
 			</view>
 		</view>
 		<view  class="more_list" v-if="showMore">

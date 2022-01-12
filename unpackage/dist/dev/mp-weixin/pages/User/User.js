@@ -178,11 +178,17 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   },
   onLoad: function onLoad() {
     this.getUserInfo();
+
   },
   methods: {
     getUserInfo: function getUserInfo() {var _this = this;
       this.$http('api/myOneslft/getMyInfo', '', 'post').then(function (res) {
         _this.userInfo = res;
+        _this.getHelpList();
+      });
+    },
+    getHelpList: function getHelpList() {
+      this.$http('api/myOneslft/getHelpList', '', 'post').then(function (res) {
       });
     } } };exports.default = _default;
 

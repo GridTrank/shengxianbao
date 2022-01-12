@@ -1,7 +1,7 @@
 <template>
 	<view >
 		<image @click="navTo('/pages/ProductDetail/ProductDetail')" class="img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" ></image>
-		<view class="name mt10">名称</view>
+		<view class="name mt10">{{goodInfo.productName}}</view>
 		<view class="desc  mt10">¥20.00/盒子（一盒约2斤）</view>
 		<view class="label mt10 row">
 			<text class="l1">新品上市</text>
@@ -61,7 +61,12 @@
 				type:String,
 				default:''
 			},
-			goodInfo:{}
+			goodInfo:{
+				type:Object,
+				default:()=>{
+					return {}
+				}
+			}
 		},
 		data(){
 			return{

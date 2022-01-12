@@ -110,9 +110,6 @@ try {
     "u-Textarea": function() {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u--textarea/u--textarea */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--textarea/u--textarea")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--textarea/u--textarea.vue */ 789))
     },
-    uUpload: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-upload/u-upload */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-upload/u-upload")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-upload/u-upload.vue */ 795))
-    },
     uActionSheet: function() {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-action-sheet/u-action-sheet */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-action-sheet/u-action-sheet")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 843))
     }
@@ -140,22 +137,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   if (!_vm._isMounted) {
     _vm.e0 = function($event) {
-      _vm.showSex = true
-      _vm.hideKeyboard()
-    }
-
-    _vm.e1 = function($event) {
-      _vm.showSex = true
-      _vm.hideKeyboard()
-    }
-
-    _vm.e2 = function($event) {
-      _vm.showSex = true
-      _vm.hideKeyboard()
-    }
-
-    _vm.e3 = function($event) {
-      _vm.showSex = false
+      _vm.showSheet = false
     }
   }
 }
@@ -191,105 +173,247 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
-{
-  data: function data() {
-    return {
-      showSex: false,
-      model1: {
-        userInfo: {
-          name: '',
-          sex: '' } },
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
-      actions: [{
-        name: '男' },
-
-      {
-        name: '女' },
-
-      {
-        name: '保密' }],
 
 
-      radio: '',
-      switchVal: false };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _request = _interopRequireDefault(__webpack_require__(/*! @/common/js/request */ 140));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { baseUrl: _request.default, showSheet: false, rules: { customerName: { type: 'string', required: true, message: '请填写客户名称', trigger: ['blur', 'change'] }, customerTypeId: { type: 'string', required: true, message: '请选择客户类型', trigger: ['blur', 'change'] }, customerContact: { type: 'string', required: true, message: '请填写联系人', trigger: ['blur', 'change'] }, telephone: { type: 'string', required: true, max: 11, message: '请填写联系电话', trigger: ['blur', 'change'] }, addrDetails: { type: 'string', required: true, message: '请填写详细地址', trigger: ['blur', 'change'] }, deliveryTime: { type: 'string', required: true, message: '请选择收货时间', trigger: ['blur', 'change'] }, customerBusinessLicenseUrl: { type: 'string', required: true, message: '请上传营业执照', trigger: ['blur', 'change'] } }, userInfo: { "addrDetails": "", "addrReference": "", "areaId": 0, "customerBusinessLicenseUrl": "", "customerBusinessLicenser": "", "customerContact": "", "customerName": "", "customerTypeId": 0, "customerType": '', "customerUrl": "", "deliveryTime": "", "inviteCode": "", "latitude": "", "longitude": "", "telephone": "" }, actions: [], radio: '', fileList: [], switchVal: false, customerType: [], customerTime: [], actionSheetType: 'customerType' };
 
   },
+  created: function created() {
+    this.getType();
+    this.getTime();
+  },
   methods: {
-    sexSelect: function sexSelect(e) {
-      this.model1.userInfo.sex = e.name;
-      this.$refs.form1.validateField('userInfo.sex');
+    // 选项显示
+    showActionSheet: function showActionSheet(type) {
+      this.actionSheetType = type;
+      if (type == 'customerType') {
+        this.actions = this.customerType;
+
+      } else {
+        // 时间
+        this.actions = this.customerTime;
+      }
+      this.showSheet = true;
+    },
+
+    select: function select(e) {
+      console.log(e);
+      this.userInfo[this.actionSheetType] = e.name;
+      if (this.actionSheetType == 'customerType') {
+        this.userInfo.customerTypeId = e.id;
+        this.$refs.userInfo.validateField('customerTypeId');
+      } else {
+        this.$refs.userInfo.validateField(this.actionSheetType);
+      }
+      console.log(this.userInfo);
+    },
+    // 获取客户类型
+    getType: function getType() {var _this = this;
+      this.$http('api/getCustomerTypeList').then(function (res) {
+        res = res || [];
+        _this.customerType = res.map(function (item) {
+          return {
+            name: item.customerType,
+            id: item.id };
+
+        });
+
+      });
+    },
+    // 获取客户类型
+    getTime: function getTime() {var _this2 = this;
+      this.$http('api/getReceivingTimeList').then(function (res) {
+        res = res || [];
+        _this2.customerTime = res.map(function (item) {
+          return {
+            name: item.startDate + '~' + item.endDate };
+
+        });
+      });
+    },
+    // 上传
+    chooseImage: function chooseImage(event) {
+      var _ = this;
+      uni.chooseImage({
+        count: 1, //默认9
+        sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], //从相册选择
+        success: function success(chooseImageRes) {
+          var tempFilePaths = chooseImageRes.tempFilePaths;
+          _.userInfo.customerBusinessLicenseUrl = tempFilePaths[0];
+          uni.uploadFile({
+            url: _.baseUrl + 'api/sys/oss/uploadFile',
+            filePath: tempFilePaths[0],
+            name: 'file',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded',
+              'token': uni.getStorageSync('token') || '' },
+
+            success: function success(uploadFileRes) {
+              console.log(uploadFileRes.data);
+              // _.userInfo.customerBusinessLicenseUrl = tempFilePaths
+            } });
+
+        } });
+
+    },
+    submit: function submit() {
+      this.$refs.userInfo.validate().then(function (res) {
+        uni.$u.toast('校验通过');
+      }).catch(function (errors) {
+        uni.$u.toast('校验失败');
+      });
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

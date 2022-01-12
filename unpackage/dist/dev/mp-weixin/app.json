@@ -65,7 +65,9 @@
         "Address/AddressDetail",
         "ChooseAddress/index",
         "ChooseAddress/search",
-        "ChooseAddress/cityList"
+        "ChooseAddress/cityList",
+        "AllBrand/AllBrand",
+        "NoticeInfo/NoticeInfo"
       ]
     }
   ],

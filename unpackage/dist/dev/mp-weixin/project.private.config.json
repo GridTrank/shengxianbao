@@ -101,6 +101,18 @@
           "pathName": "pagesA/Contract/Index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "客户认证",
+          "pathName": "pagesA/Clientele/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "快捷下单",
+          "pathName": "pages/QuickOrder/QuickOrder",
+          "query": "",
+          "scene": null
         }
       ]
     }

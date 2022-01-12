@@ -193,14 +193,19 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-var _default =
+var _default2 =
 {
   props: {
     styleType: {
       type: String,
       default: '' },
 
-    goodInfo: {} },
+    goodInfo: {
+      type: Object,
+      default: function _default() {
+        return {};
+      } } },
+
 
   data: function data() {
     return {
@@ -217,7 +222,7 @@ var _default =
       if (this.$util.isLogin()) {
         this.$refs.spec.show = true;
       }
-    } } };exports.default = _default;
+    } } };exports.default = _default2;
 
 /***/ }),
 

@@ -228,14 +228,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
 var _util = __webpack_require__(/*! @/common/js/util */ 138); //
 //
 //
@@ -301,15 +293,24 @@ var _util = __webpack_require__(/*! @/common/js/util */ 138); //
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {var _this = this;return { tips: '', model: { accountPasword: '', accountName: '', sourceType: 1, mobile: '', smsCode: '' }, rules: { accountName: [{ required: true, message: '请输入账号', trigger: 'blur' }], accountPasword: [{ required: true, message: '请输入密码', trigger: 'blur' }, { validator: function validator(rule, value, callback) {return (0, _util.checkStr)(value, 'pwd');}, message: '密码为8-16位，须包含数字、字母、符号', trigger: ['change', 'blur'] }], mobile: [{ required: true, message: '请输入手机号', trigger: ['change', 'blur'] }, { validator: function validator(rule, value, callback) {return _this.$u.test.mobile(value);}, message: '手机号码不正确', trigger: ['change', 'blur'] }], smsCode: [{ required: true, message: '请输入验证码', trigger: 'blur' }] }, isAgree: false };}, onReady: function onReady() {this.$refs.form.setRules(this.rules);}, methods: { agreeHandle: function agreeHandle() {this.isAgree = !this.isAgree;}, submit: function submit() {var _this2 = this;if (!this.isAgree) {uni.showToast({ title: '请先阅读并同意服务协议与隐私政策', icon: 'none' });}this.$refs.form.validate().then(function (res) {_this2.$http('api/customer/register', _this2.model, 'post').then(function (res) {uni.showToast({ title: '注册成功，跳转登录', icon: 'none' });setTimeout(function () {_this2.navTo('./Login');}, 2000);});
+var _default = { data: function data() {var _this = this;return { tips: '', model: { accountPasword: '', accountName: '', sourceType: 1, mobile: '', smsCode: '' }, rules: { accountName: [{ required: true, message: '请输入账号', trigger: 'blur' }], accountPasword: [{ required: true, message: '请输入密码', trigger: 'blur' }, { validator: function validator(rule, value, callback) {return (0, _util.checkStr)(value, 'pwd');}, message: '密码为8-16位，须包含数字、字母、符号', trigger: ['change', 'blur'] }], mobile: [{ required: true, message: '请输入手机号', trigger: ['change', 'blur'] }, { validator: function validator(rule, value, callback) {return _this.$u.test.mobile(value);}, message: '手机号码不正确', trigger: ['change', 'blur'] }], smsCode: [{ required: true, message: '请输入验证码', trigger: 'blur' }] }, isAgree: false };}, onReady: function onReady() {this.$refs.form.setRules(this.rules);}, methods: { agreeHandle: function agreeHandle() {this.isAgree = !this.isAgree;}, submit: function submit() {var _this2 = this;
+      if (!this.isAgree) {
+        uni.showToast({
+          title: '请先阅读并同意服务协议与隐私政策',
+          icon: 'none' });
+
+      }
+      this.$refs.form.validate().then(function (res) {
+        _this2.$http('api/customer/register', _this2.model, 'post').then(function (res) {
+          uni.showToast({
+            title: '注册成功，跳转认证',
+            icon: 'none' });
+
+          setTimeout(function () {
+            _this2.navTo('/pagesA/Clientele/index');
+          }, 2000);
+
+        });
       }).catch(function (errors) {
 
       });
@@ -318,7 +319,9 @@ var _default = { data: function data() {var _this = this;return { tips: '', mode
       this.tips = text;
     },
     getCode: function getCode() {
-      this.$http('api/customer/getSmsCode', { mobile: this.model.mobile }, 'post').then(function (res) {
+      this.$http('api/customer/getSmsCode', {
+        mobile: this.model.mobile },
+      'post').then(function (res) {
 
       });
 

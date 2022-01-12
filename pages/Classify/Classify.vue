@@ -30,13 +30,20 @@
 
 				</view>
 			</scroll-view>
-			<scroll-view scroll-y="true" class="right_list">
-				<view class="list  mt20" v-for="(item,index) in dataList" :key="index">
-					<list :info="item"></list>
+			
+			<template v-if="isEmpty">
+				<view class="right_list">
+					<no-data></no-data>
 				</view>
-			</scroll-view>
+			</template>
+			<template v-else>
+				<scroll-view scroll-y="true" class="right_list">
+					<view  class="list  mt20" v-for="(item,index) in dataList" :key="index">
+						<list :info="item"></list>
+					</view>
+				</scroll-view>
+			</template>
 		</view>
-
 		<view class="all_list_wrap" v-if="parentListPop" @click="parentListPop=false">
 			<view class="all_list ">
 				<view class="all_top row">
@@ -49,7 +56,6 @@
 						{{item.name}}
 					</view>
 				</view>
-
 			</view>
 		</view>
 
@@ -72,7 +78,7 @@
 				selectChildIndex: 0,
 				parentListPop: false,
 				selectAllIndex: 0,
-
+				isEmpty: true,
 			};
 		},
 		onLoad() {
@@ -99,7 +105,15 @@
 					this.childList = res
 					this.queryData.productCategoryId=res[0].id
 					this.queryUrl = 'api/pms/productcategory/productPriceByProductSkuId'
-					this.getList()
+					this.getList().then(res=>{
+						this.dataList=res
+						if (res.length == 0) {
+							this.isEmpty = true
+						} else {
+							this.isEmpty = false
+						}
+					})
+					
 				})
 			},
 			selectParent(e, index) {
@@ -209,7 +223,6 @@
 			width: 100%;
 			height: 100%;
 			background-color: rgba(0, 0, 0, 0.3);
-
 			.all_list {
 				background-color: #fff;
 				padding: 40upx 30upx;

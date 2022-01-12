@@ -2,7 +2,7 @@
 	<view class="common-car">
 		<view class="empty-shop-car" v-if="isEmpty">
 			<text>当前您的购物车是空的</text>
-			<view class="empty-shop-car-btn">
+			<view class="empty-shop-car-btn" @click="navTo('/pages/Home/Home','switch')">
 				<text>去逛逛</text>
 			</view>
 		</view>
@@ -102,11 +102,11 @@
 				isCut:true
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.iPhoneX = uni.getStorageSync('iPhoneX')
+			this.dataList=[]
 			this.getData()
 		},
-	
 		methods: {
 			async getData(){
 				this.queryUrl = 'api/bmallshoppingcart/getShoppingCartPage';
@@ -127,18 +127,24 @@
 				let judge = this.judgeSelect()
 				if(judge.length){
 					// 删除
-					
 					uni.showModal({
 						title:'提示',
 						content:'确认删除勾选商品吗？',
 						success: (res) => {
 							if(res.confirm){
-								this.$http('api/bmallshoppingcart',{ids:judge},'delete').then((result)=>{
+								this.$http('api/bmallshoppingcart',judge,'delete').then((result)=>{
 									uni.showToast({
 										title:'删除成功',
 										icon:'none'
 									})
-									this.getData();
+									this.dataList=[]
+									this.getList().then(res=>{
+										if (res.length == 0) {
+											this.isEmpty = true
+										} else {
+											res.isEmpty = false
+										}
+									})
 								})
 							}
 						}

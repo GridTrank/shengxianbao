@@ -4635,14 +4635,15 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.request = void 0;var _store = _interopRequireDefault(__webpack_require__(/*! @/store */ 15));
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.request = exports.default = void 0;var _store = _interopRequireDefault(__webpack_require__(/*! @/store */ 15));
 var _cache = _interopRequireDefault(__webpack_require__(/*! ./cache */ 141));
 var _util = __webpack_require__(/*! ./util */ 138);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 
 
-var baseUrl = 'http://47.96.98.41:9889/customer-api/';
+var baseUrl = 'http://47.96.98.41:9889/customer-api/';var _default =
 
+baseUrl;exports.default = _default;
 var request = function request(url, data, method, cacheName, time) {
   return new Promise(function (resolve, reject) {
     if (time > 0) {

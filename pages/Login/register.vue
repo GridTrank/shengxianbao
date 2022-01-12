@@ -138,22 +138,13 @@
 				}
 				this.$refs.form.validate().then(res => {
 					this.$http('api/customer/register', this.model, 'post').then(res => {
-						// 验证用户是否已认证
-						this.$http('api/customer/checkCertification', {}, 'post').then(res => {
-							// 已认证
-							uni.showToast({
-								title: '注册成功，跳转登录',
-								icon: 'none'
-							})
-							setTimeout(() => {
-								this.navTo('./Login')
-							}, 2000)
-						}).then(err=>{
-							// 客户认证
-							this.navTo('/pagesA/Clientele/index');
+						uni.showToast({
+							title: '注册成功，跳转认证',
+							icon: 'none'
 						})
-						
-						
+						setTimeout(() => {
+							this.navTo('/pagesA/Clientele/index')
+						}, 2000)
 						
 					})
 				}).catch(errors => {

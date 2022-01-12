@@ -2,7 +2,7 @@
 	<view class="module-wrap mt30">
 		<view class="row title">
 			<text class="txt">品牌专场</text>
-			<view class="more_r row">
+			<view class="more_r row" @click="navTo('/pagesB/AllBrand/AllBrand')">
 				更多
 				<image class="more" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/jiantou.png" mode="widthFix"></image>
 			</view>

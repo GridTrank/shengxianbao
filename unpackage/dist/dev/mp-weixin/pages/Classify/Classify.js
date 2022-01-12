@@ -97,6 +97,9 @@ try {
   components = {
     uTabs: function() {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 637))
+    },
+    noData: function() {
+      return __webpack_require__.e(/*! import() | components/no-data/no-data */ "components/no-data/no-data").then(__webpack_require__.bind(null, /*! @/components/no-data/no-data.vue */ 1218))
     }
   }
 } catch (e) {
@@ -227,6 +230,12 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
 {
   components: {
     search: search,
@@ -239,8 +248,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       selectParentIndex: 0,
       selectChildIndex: 0,
       parentListPop: false,
-      selectAllIndex: 0 };
-
+      selectAllIndex: 0,
+      isEmpty: true };
 
   },
   onLoad: function onLoad() {
@@ -267,7 +276,15 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
         _this2.childList = res;
         _this2.queryData.productCategoryId = res[0].id;
         _this2.queryUrl = 'api/pms/productcategory/productPriceByProductSkuId';
-        _this2.getList();
+        _this2.getList().then(function (res) {
+          _this2.dataList = res;
+          if (res.length == 0) {
+            _this2.isEmpty = true;
+          } else {
+            _this2.isEmpty = false;
+          }
+        });
+
       });
     },
     selectParent: function selectParent(e, index) {
