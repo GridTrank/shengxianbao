@@ -143,14 +143,19 @@
                 let url=this.loginType=='account'?'api/customer/login':'api/customer/mobileLogin'
 				this.$refs.form.validate().then(res => {
                     this.$http(url,this.model,'post').then(res=>{
-                       uni.showToast({
-                           title:'登录成功',
-                           icon:'none'
-                       })
-                       uni.setStorageSync('token',res.token)
-                       setTimeout(()=>{
-                           uni.navigateBack()
-                       },2000)
+						uni.showToast({
+							title:'登录成功',
+							icon:'none'
+						})
+						uni.setStorageSync('token',res.token)
+						// 验证用户是否已认证
+						this.$http('api/customer/checkCertification', {}, 'post').then(res => {
+							console.log(res)
+							
+						})
+						// setTimeout(()=>{
+						//     uni.navigateBack()
+						// },2000)
                        
                     })
 				}).catch(errors => {

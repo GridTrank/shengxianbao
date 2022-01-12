@@ -1,7 +1,7 @@
 <template>
 	<view class="page_wrap">
 		<!-- 注意，如果需要兼容微信小程序，最好通过setRules方法设置rules规则 -->
-		<u--form class="from_wrap" :labelWidth="120" :labelStyle="{height:'60upx'}" :rules="rules" :model="userInfo" ref="userInfo">
+		<u--form class="" :labelWidth="120" :labelStyle="{height:'60upx'}" :rules="rules" :model="userInfo" ref="userInfo">
 			<u-form-item label="客户名称" prop="customerName" borderBottom ref="item1">
 				<u--input class="from_item" v-model="userInfo.customerName" border="none" placeholder="请输入客户名称">
 				</u--input>
@@ -26,11 +26,16 @@
 					placeholder="请选择客户地址参照物" border="none"></u--input>
 				<u-icon slot="right" name="arrow-right"></u-icon>
 			</u-form-item> -->
-			<u-form-item class="mt20" label="详细地址" prop="addrDetails" borderBottom ref="item1">
-				<u--textarea class="textarea" height="50" v-model="userInfo.addrDetails" placeholder="请输入详细地址或直接定位"
-					border="none"></u--textarea>
-				<image class="icon" @click="navTo('/pagesB/ChooseAddress/index')" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/icon_region.png"
-					mode="widthFix"></image>
+			
+			<u-form-item style="margin-top: 10px;" class="mt20"  label="详细地址" prop="addrDetails" borderBottom ref="item1">
+				<view class="mt20 address row jc_sb">
+					<u--textarea class="textarea" height="30" v-model="userInfo.addrDetails" placeholder="请输入详细地址或直接定位"
+						border="none">
+					</u--textarea>
+					<image class="icon" @click="navTo('/pagesB/ChooseAddress/index')" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/icon_region.png"
+						mode="widthFix">
+					</image>
+				</view>
 			</u-form-item>
 			<u-form-item label="收货时间" prop="deliveryTime" @click="showActionSheet('deliveryTime')" ref="item1">
 				<u--input class="from_item" v-model="userInfo.deliveryTime" disabled disabledColor="#ffffff"
@@ -248,48 +253,49 @@
 <style scoped lang="scss">
 	.page_wrap {
 		padding-bottom: 250upx;
-
-		.from_wrap {
-			.u-form-item {
-				padding: 0 30upx;
-				background-color: #fff;
-			}
-
-			.upload_wrap {
-				width: 100%;
-				padding-bottom: 20upx;
-			}
-
-			.textarea {
-				padding: 0;
-				width: 200upx;
-			}
-
-			.upload_img {
-				width: 528upx;
-				height: 320upx;
-				border: 1px dashed #CECECE;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				flex-direction: column;
-				color: #AAAAAA;
-				font-size: 28upx;
-
-				.upload_icon {
-					font-size: 60upx;
-				}
-			}
-
-			.icon {
-				width: 28upx;
-			}
-
-			.from_item {
-				height: 60upx;
+		/deep/ .u-form-item{
+			background-color: #fff;
+			padding: 0 30upx;
+		}
+		/* #ifdef MP-WEIXIN */
+		/deep/ .u-textarea__field{
+			width: 408upx !important;
+		}
+		/* #endif */ 
+		.upload_wrap {
+			width: 100%;
+			padding-bottom: 20upx;
+		}
+		.textarea {
+			padding: 0;
+			width: 200upx;
+		}
+		.upload_img {
+			width: 528upx;
+			height: 320upx;
+			border: 1px dashed #CECECE;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			color: #AAAAAA;
+			font-size: 28upx;
+			.upload_icon {
+				font-size: 60upx;
 			}
 		}
-
+		.address{
+			flex-shrink: 0;
+			/* #ifdef H5*/
+			width: 100%;
+			/* #endif */
+		}
+		.icon {
+			width: 28upx;
+		}
+		.from_item {
+			height: 60upx;
+		}
 		.btn_wrap {
 			position: fixed;
 			bottom: 0;

@@ -12,12 +12,12 @@
 				// #endif
 				"navigationBarTitleText": "首页"
 			}
-		},{
+		}, {
 			"path": "pages/Classify/Classify",
 			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
 				"navigationBarTitleText": "分类",
 				"enablePullDownRefresh": false
 			}
@@ -25,9 +25,9 @@
 		}, {
 			"path": "pages/QuickOrder/QuickOrder",
 			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
 				"navigationBarTitleText": "快捷下单",
 				"enablePullDownRefresh": false
 			}
@@ -35,9 +35,9 @@
 		}, {
 			"path": "pages/ShopCar/ShopCar",
 			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
 				"navigationBarTitleText": "购物车",
 				"enablePullDownRefresh": false,
 				"app-plus": {
@@ -54,9 +54,9 @@
 		}, {
 			"path": "pages/User/User",
 			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
 				"navigationBarTitleText": "我的",
 				"enablePullDownRefresh": false
 			}
@@ -82,9 +82,9 @@
 		}, {
 			"path": "pages/Login/Login",
 			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
 				"navigationBarTitleText": "登录",
 				"enablePullDownRefresh": false
 			}
@@ -92,9 +92,9 @@
 		}, {
 			"path": "pages/Login/register",
 			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
 				"navigationBarTitleText": "注册",
 				"enablePullDownRefresh": false
 			}
@@ -102,9 +102,9 @@
 		}, {
 			"path": "pages/Login/find",
 			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
 				"navigationBarTitleText": "修改密码",
 				"enablePullDownRefresh": false
 			}
@@ -112,18 +112,18 @@
 		}, {
 			"path": "pages/Order/Order",
 			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
 				"navigationBarTitleText": "我的订单",
 				"enablePullDownRefresh": false
 			}
 		}, {
 			"path": "pages/Order/Detail",
 			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
 				"navigationBarTitleText": "订单详情",
 				"enablePullDownRefresh": false
 			}
@@ -137,360 +137,349 @@
 		}, {
 			"path": "pages/ConfirmOrder/GoodList",
 			"style": {
-                // #ifdef H5
-                "navigationStyle": "custom",
-                // #endif
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
 				"navigationBarTitleText": "商品列表",
 				"enablePullDownRefresh": false
 			}
 		}
 	],
-	"subPackages": [
-		{
-		"root": "pagesA",
-		"pages": [{
-				"path": "SubAccount/SubAccount",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "添加子账号",
-					"enablePullDownRefresh": false
-				}
-			},{
-				"path": "SubAccount/AddOrEdit",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "添加子账号",
-					"enablePullDownRefresh": false
-				}
-			}, {
-				"path": "AddGood/AddGood",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "新品需求",
-					"enablePullDownRefresh": false
-				}
-			}, {
-				"path": "AddGood/fillIn1",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "填写信息",
-					"enablePullDownRefresh": false
-				}
-			},
-			{
-				"path": "AddGood/fillIn2",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "填写信息",
-					"enablePullDownRefresh": false
-				}
-			},{
-				"path": "Balance/index",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "余额",
-					"enablePullDownRefresh": false
-				}
-			}, {
-				"path": "Balance/detail",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "余额明细",
-					"enablePullDownRefresh": false
-				}
-			}, {
-				"path": "Arrearages/index",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "欠款",
-					"enablePullDownRefresh": false
-				}
-			}, {
-				"path": "Coupon/index",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "优惠券",
-					"enablePullDownRefresh": false
-				}
-			},  {
-				"path": "Coupon/center",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "领券中心",
-					"enablePullDownRefresh": false
-				}
-			}, {
-				"path": "Integral/detail",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "积分明细",
-					"enablePullDownRefresh": false
-				}
-			},{
-				"path": "Help/about",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "关于我们",
-					"enablePullDownRefresh": false
-				}
-			},{
-				"path": "Help/afterRules",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "售后规则",
-					"enablePullDownRefresh": false
-				}
-			},{
-				"path": "Help/businessLicense",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "营业执照",
-					"enablePullDownRefresh": false
-				}
-			},{
-				"path": "Help/userAgreement",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "用户协议",
-					"enablePullDownRefresh": false
-				}
-			},{
-				"path": "Help/feedback",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "反馈建议",
-					"enablePullDownRefresh": false
-				}
-			},{
-				"path": "Help/rule",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "规则",
-					"enablePullDownRefresh": false
-				}
-			},{
-				"path": "Clientele/index",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "客户认证",
-					"enablePullDownRefresh": false
-				}
-			},{
-				"path": "Set/Set",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "设置",
-					"enablePullDownRefresh": false
-				}
+	"subPackages": [{
+			"root": "pagesA",
+			"pages": [{
+					"path": "SubAccount/SubAccount",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "添加子账号",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "SubAccount/AddOrEdit",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "添加子账号",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "AddGood/AddGood",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "新品需求",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "AddGood/fillIn1",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "填写信息",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "AddGood/fillIn2",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "填写信息",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Balance/index",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "余额",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Balance/detail",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "余额明细",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Arrearages/index",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "欠款",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Coupon/index",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "优惠券",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Coupon/center",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "领券中心",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Integral/detail",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "积分明细",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Help/about",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "关于我们",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Help/afterRules",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "售后规则",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Help/businessLicense",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "营业执照",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Help/userAgreement",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "用户协议",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Help/feedback",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "反馈建议",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Help/rule",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "规则",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Clientele/index",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "客户认证",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Set/Set",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "设置",
+						"enablePullDownRefresh": false
+					}
 
-			}, {
-				"path": "Set/AccountSafe/index",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "账号与安全",
-					"enablePullDownRefresh": false
-				}
+				}, {
+					"path": "Set/AccountSafe/index",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "账号与安全",
+						"enablePullDownRefresh": false
+					}
 
-			}, {
-				"path": "Set/AccountSafe/changePhone",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "更换手机号",
-					"enablePullDownRefresh": false
+				}, {
+					"path": "Set/AccountSafe/changePhone",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "更换手机号",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "StockQuery/index",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "库存查询",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "StockQuery/Detail",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "库存明细",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "StockManage/Index",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "StockManage/Detail",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "StockManage/AddPage",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "StockManage/SelectGood",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "选择商品",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "StockManage/Log",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "操作日志",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "SourceManage/Index",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "溯源",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "SourceManage/List",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "溯源列表",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "SourceManage/Detail",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "溯源详情",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Statistics/Index",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "统计",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Statistics/List",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "订货统计",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "Statistics/Screen",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "筛选",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Contract/Index",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "合同列表",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Contract/Detail",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "合同详情",
+						"enablePullDownRefresh": false
+					}
 				}
-			}, {
-				"path": "StockQuery/index",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "库存查询",
-					"enablePullDownRefresh": false
-				}
-			},
-			{
-				"path": "StockQuery/Detail",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "库存明细",
-					"enablePullDownRefresh": false
-				}
-			}
-		    ,{
-                "path" : "StockManage/Index",
-                "style" :                                                                                    
-                {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-            },{
-                "path" : "StockManage/Detail",
-                "style" :                                                                                    
-                {
-                        // #ifdef H5
-                        "navigationStyle": "custom",
-                        // #endif
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-            },{
-                "path" : "StockManage/AddPage",
-                "style" :                                                                                    
-                {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-            }, {
-				"path": "StockManage/SelectGood",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "选择商品",
-					"enablePullDownRefresh": false
-				}
-			},{
-				"path": "StockManage/Log",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "操作日志",
-					"enablePullDownRefresh": false
-				}
-			}, {
-				"path": "SourceManage/Index",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "溯源",
-					"enablePullDownRefresh": false
-				}
-			}, {
-				"path": "SourceManage/List",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "溯源列表",
-					"enablePullDownRefresh": false
-				}
-			}, {
-				"path": "SourceManage/Detail",
-				"style": {
-                    // #ifdef H5
-                    "navigationStyle": "custom",
-                    // #endif
-					"navigationBarTitleText": "溯源详情",
-					"enablePullDownRefresh": false
-				}
-			}
-            ,{
-                "path" : "Statistics/Index",
-                    "style" :{
-                        // #ifdef H5
-                        "navigationStyle": "custom",
-                        // #endif
-                    "navigationBarTitleText": "统计",
-                    "enablePullDownRefresh": false
-                }
-            },
-            {
-                "path" : "Statistics/List",
-                    "style" :{
-                     // #ifdef H5
-                     "navigationStyle": "custom",
-                     // #endif
-                    "navigationBarTitleText": "订货统计",
-                    "enablePullDownRefresh": false
-                }
-            },
-            {
-                "path" : "Statistics/Screen",
-                    "style" :{
-                     // #ifdef H5
-                     "navigationStyle": "custom",
-                     // #endif
-                    "navigationBarTitleText": "筛选",
-                    "enablePullDownRefresh": false
-                }
-            },{
-                "path" : "Contract/Index",
-                "style" :{
-                        // #ifdef H5
-                        "navigationStyle": "custom",
-                        // #endif
-                    "navigationBarTitleText": "合同列表",
-                    "enablePullDownRefresh": false
-                }
-            },{
-                "path" : "Contract/Detail",
-                    "style" :{
-                        // #ifdef H5
-                        "navigationStyle": "custom",
-                        // #endif
-                    "navigationBarTitleText": "合同详情",
-                    "enablePullDownRefresh": false
-                }
-            }
-            
-        ]
+			]
 		},
 		{
-		"root": "pagesB",
-		"pages": [
-			{
+			"root": "pagesB",
+			"pages": [{
 				"path": "RecommendPage/RecommendPage",
 				"style": {
 					// #ifdef H5
@@ -498,7 +487,7 @@
 					// #endif
 					"navigationBarTitleText": ""
 				}
-			} ,{
+			}, {
 				"path": "Address/Address",
 				"style": {
 					// #ifdef H5
@@ -519,6 +508,9 @@
 			}, {
 				"path": "ChooseAddress/index",
 				"style": {
+					// #ifdef H5
+					"navigationStyle": "custom",
+					// #endif
 					"navigationBarTitleText": "地址选择",
 					"enablePullDownRefresh": false
 				}
@@ -540,14 +532,31 @@
 					"navigationBarTitleText": "城市列表",
 					"enablePullDownRefresh": false
 				}
-			}
-        ]
+			}, {
+				"path": "AllBrand/AllBrand",
+				"style": {
+					// #ifdef H5
+					"navigationStyle": "custom",
+					// #endif
+					"navigationBarTitleText": "品牌专场",
+					"enablePullDownRefresh": false
+				}
+			}, {
+				"path": "NoticeInfo/NoticeInfo",
+				"style": {
+					// #ifdef H5
+					"navigationStyle": "custom",
+					// #endif
+					"navigationBarTitleText": "通知详情",
+					"enablePullDownRefresh": false
+				}
+			}]
 		}
 	],
 	"preloadRule": {
 		"pages/Home/Home": {
 			"network": "all",
-			"packages": ["pagesA","pagesB"]
+			"packages": ["pagesA", "pagesB"]
 		},
 		"pagesA/SubAccount/SubAccount": {
 			"network": "all",

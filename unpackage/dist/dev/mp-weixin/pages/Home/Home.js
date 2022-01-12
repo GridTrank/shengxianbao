@@ -95,6 +95,9 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    screenTextScroll: function() {
+      return __webpack_require__.e(/*! import() | components/screenTextScroll/screenTextScroll */ "components/screenTextScroll/screenTextScroll").then(__webpack_require__.bind(null, /*! @/components/screenTextScroll/screenTextScroll.vue */ 1201))
+    },
     productList: function() {
       return __webpack_require__.e(/*! import() | components/product-list/product-list */ "components/product-list/product-list").then(__webpack_require__.bind(null, /*! @/components/product-list/product-list.vue */ 602))
     }
@@ -210,7 +213,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-
 {
   components: { banner: banner, module1: module1, module2: module2, module3: module3 },
   data: function data() {
@@ -220,7 +222,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       typeList: [],
       specialList: [],
       recommendList: [],
-      noticeTitle: '',
+      noticeList: [],
       pageType: 'Home' };
 
   },
@@ -273,15 +275,13 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     // 滚动标题
     getNotice: function getNotice() {var _this5 = this;
       this.$http('index/getCustomerNoticeRollingList').then(function (res) {
-        _this5.noticeTitle = res[0].noteTitle;
+        _this5.noticeList = res;
       });
     },
     // 猜你喜欢
     getLike: function getLike() {
       this.queryUrl = 'api/myOneslft/getFavoriteProductPage';
       this.getList();
-      console.log(this.dataList);
-
     } } };exports.default = _default;
 
 /***/ }),

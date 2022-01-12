@@ -97,6 +97,9 @@ try {
   components = {
     uTabs: function() {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 637))
+    },
+    noData: function() {
+      return __webpack_require__.e(/*! import() | components/no-data/no-data */ "components/no-data/no-data").then(__webpack_require__.bind(null, /*! @/components/no-data/no-data.vue */ 1218))
     }
   }
 } catch (e) {
@@ -123,6 +126,14 @@ var render = function() {
   if (!_vm._isMounted) {
     _vm.e0 = function($event) {
       _vm.parentListPop = true
+    }
+
+    _vm.e1 = function($event) {
+      _vm.parentListPop = false
+    }
+
+    _vm.e2 = function($event) {
+      _vm.parentListPop = false
     }
   }
 }
@@ -193,6 +204,33 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   components: {
     search: search,
@@ -204,7 +242,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       productList: [],
       selectParentIndex: 0,
       selectChildIndex: 0,
+      selectAllIndex: 0,
       page: 1,
+      parentListPop: false,
       tabInfo: [{
         name: '常用清单',
         id: 0 },
@@ -214,7 +254,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
   },
-  onLoad: function onLoad() {
+  onShow: function onShow() {
+    this.dataList = [];
     this.getCateList();
   },
   methods: {
@@ -224,19 +265,36 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
           item.name = item.categoryName;
         });
         _this.parentList = res;
+        _this.selectChild(0);
       });
     },
     selectParent: function selectParent(e) {
+      this.dataList = [];
       this.selectParentIndex = e.index;
-      // this.getCateListById(e.id)
+      this.selectChildIndex = 0;
+      this.selectAllIndex = e.index;
+      this.selectChild(0);
     },
     selectChild: function selectChild(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                _this2.dataList = [];
                 _this2.selectChildIndex = id;
                 if (id == 1) {
                   // 最近购买
                   _this2.queryUrl = 'api/oftenbuy/getCusOftenBuyProductList';
                   _this2.getList();
-                }case 2:case "end":return _context.stop();}}}, _callee);}))();
+                } else {
+                  // 常用
+                  _this2.queryUrl = 'api/usedlist/findUsedList';
+                  _this2.getList();
+                }case 3:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    selectItem: function selectItem(item, index) {
+      this.selectAllIndex = index;
+      this.$refs.uTbas.current = index;
+      this.$refs.uTbas.setLineLeft();
+      this.dataList = [];
+      this.selectChild(0);
+      this.parentListPop = false;
     } } };exports.default = _default;
 
 /***/ }),

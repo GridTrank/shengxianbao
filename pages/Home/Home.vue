@@ -17,12 +17,11 @@
 			<!-- #endif -->
 			<banner :list="banners"></banner>
 			<view class="">
-				<view class="notice row mt30">
+				<view class="notice row mt30" v-if="noticeList.length>0">
 					<image class="msg_img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/message.png" mode="widthFix"></image>
-					<text class="notice_txt ">{{noticeTitle}}</text>
-                    <!-- <text class="notice_txt ">今日23:00前下单，次日 <text class="time">7:00～10:00</text>送达</text> -->
-                    
+					<screenTextScroll :list="noticeList"></screenTextScroll>
 				</view>
+				
 			</view>
 			<module1 :list="typeList"></module1>
 			<module2 :list="recommendList"></module2>
@@ -65,7 +64,7 @@
                 typeList:[],
                 specialList:[],
                 recommendList:[],
-                noticeTitle:'',
+                noticeList:[],
 				pageType:'Home'
 			}
 		},
@@ -118,15 +117,13 @@
             // 滚动标题
             getNotice(){
                 this.$http('index/getCustomerNoticeRollingList').then(res=>{
-                    this.noticeTitle=res[0].noteTitle
+                    this.noticeList=res
                 })
             },
 			// 猜你喜欢
 			getLike(){
 				this.queryUrl='api/myOneslft/getFavoriteProductPage'
 				this.getList()
-				console.log(this.dataList)
-				
 			},
         }
         

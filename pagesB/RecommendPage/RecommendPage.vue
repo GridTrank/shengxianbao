@@ -4,7 +4,7 @@
 		<view class="product_list row">
 			<view :class="['detail', 'index'+(ai+1) ] " v-for="(arr,ai) in list" :key="ai">
 				<view class="list column mt20" v-for="(item,index) in arr" :key="index">
-					<product-list></product-list>
+					<product-list :goodInfo="item"></product-list>
 				</view>
 			</view>
 			
