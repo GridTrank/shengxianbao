@@ -8,7 +8,7 @@
 					<text>{{ cartCount }}</text>
 				</view>
 			</view>
-			<view class="nav column center" @click="addCusOftenBuy">
+			<view :class="['nav column center',{'active' : infoData.used == 1}] " @click="addCusOftenBuy">
 				<text class="iconfont icon-jiacy"></text>
 				<text class="tit">加常用</text>
 			</view>
@@ -81,13 +81,14 @@
 				if(!this.$util.isLogin()){
 					return;
 				}
-				if(!this.infoData.cusOften){
+				console.log(this.infoData.used)
+				if(this.infoData.used == 0){
 					// 加常用
 					const res = await this.$http('api/usedlist/addCusOftenBuy', {
 						buyQuantity: 1,
 						productSkuId:this.infoData.productSkuId || 7
 					},'post')
-					
+					this.infoData.used = 1;
 					uni.showToast({
 						title:'添加成功',
 						icon:'none'
@@ -98,7 +99,7 @@
 						buyQuantity: 1,
 						productSkuId:this.infoData.productSkuId || 7
 					},'post')
-					
+					this.infoData.used = 0;
 					uni.showToast({
 						title:'移除成功',
 						icon:'none'
