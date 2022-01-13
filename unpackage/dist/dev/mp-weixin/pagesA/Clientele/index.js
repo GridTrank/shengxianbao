@@ -104,11 +104,11 @@ try {
     "u-Input": function() {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u--input/u--input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--input/u--input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--input/u--input.vue */ 831))
     },
-    uIcon: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 836))
-    },
     "u-Textarea": function() {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u--textarea/u--textarea */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--textarea/u--textarea")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--textarea/u--textarea.vue */ 791))
+    },
+    uIcon: function() {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 836))
     },
     uActionSheet: function() {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-action-sheet/u-action-sheet */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-action-sheet/u-action-sheet")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 845))
@@ -324,7 +324,7 @@ var _request = _interopRequireDefault(__webpack_require__(/*! @/common/js/reques
 //
 //
 //
-var _default = { data: function data() {return { baseUrl: _request.default, showSheet: false, rules: { customerName: { type: 'string', required: true, message: '请填写客户名称', trigger: ['blur', 'change'] }, customerTypeId: { type: 'string', required: true, message: '请选择客户类型', trigger: ['blur', 'change'] }, customerContact: { type: 'string', required: true, message: '请填写联系人', trigger: ['blur', 'change'] }, telephone: { type: 'string', required: true, max: 11, message: '请填写联系电话', trigger: ['blur', 'change'] }, addrDetails: { type: 'string', required: true, message: '请填写详细地址', trigger: ['blur', 'change'] }, deliveryTime: { type: 'string', required: true, message: '请选择收货时间', trigger: ['blur', 'change'] }, customerBusinessLicenseUrl: { type: 'string', required: true, message: '请上传营业执照', trigger: ['blur', 'change'] } }, userInfo: { "addrDetails": "", "addrReference": "", "areaId": 0, "customerBusinessLicenseUrl": "", "customerBusinessLicenser": "", "customerContact": "", "customerName": "", "customerTypeId": 1, "customerType": '', "customerUrl": "", "deliveryTime": "", "inviteCode": "", "latitude": "", "longitude": "", "telephone": "" }, actions: [], radio: '', fileList: [], switchVal: false, customerType: [], customerTime: [], actionSheetType: 'customerType' };
+var _default = { data: function data() {return { baseUrl: _request.default, showSheet: false, rules: { customerName: { type: 'string', required: true, message: '请填写客户名称', trigger: ['blur', 'change'] }, customerTypeId: { type: 'string', required: true, message: '请选择客户类型', trigger: ['blur', 'change'] }, customerContact: { type: 'string', required: true, message: '请填写联系人', trigger: ['blur', 'change'] }, telephone: { type: 'string', required: true, max: 11, message: '请填写联系电话', trigger: ['blur', 'change'] }, addrDetails: { type: 'string', required: true, message: '请填写详细地址', trigger: ['blur', 'change'] }, deliveryTime: { type: 'string', required: true, message: '请选择收货时间', trigger: ['blur', 'change'] }, customerBusinessLicenseUrl: { type: 'string', required: true, message: '请上传营业执照', trigger: ['blur', 'change'] } }, userInfo: { "addrDetails": "", "addrReference": "", "areaId": 0, "customerBusinessLicenseUrl": "", "customerBusinessLicenser": "", "customerContact": "", "customerName": "", "customerTypeId": 123123, "customerType": '123', "customerUrl": "", "deliveryTime": "", "inviteCode": "", "latitude": "", "longitude": "", "telephone": "" }, actions: [], radio: '', fileList: [], switchVal: false, customerType: [], customerTime: [], actionSheetType: 'customerType' };
 
   },
   created: function created() {
@@ -411,7 +411,7 @@ var _default = { data: function data() {return { baseUrl: _request.default, show
 
     },
     submit: function submit() {var _this3 = this;
-      +this.$refs.userInfo.validate().then(function (res) {
+      this.$refs.userInfo.validate().then(function (res) {
         _this3.$http('api/customer/updateCustomer', _this3.userInfo, 'post').then(function (res) {
           uni.showToast({
             title: '认证成功',
@@ -421,8 +421,9 @@ var _default = { data: function data() {return { baseUrl: _request.default, show
             _this3.navTo('/pages/Home/Home', 'switch');
           }, 1500);
         });
+
       }).catch(function (errors) {
-        uni.$u.toast('校验失败');
+        // uni.$u.toast('校验失败')
       });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

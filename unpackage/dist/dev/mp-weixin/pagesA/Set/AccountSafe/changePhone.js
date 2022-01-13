@@ -253,14 +253,16 @@ var _util = __webpack_require__(/*! @/common/js/util */ 138); //
 //
 //
 //
-var _default = { data: function data() {return { model: {}, rules: { account: [{ required: true, message: '请输入账号', trigger: 'blur' }], phone: [{ required: true, validator: this.phoneRule, trigger: 'blur' }], password: [{ required: true, message: '请输入密码', trigger: 'blur' }], newPassword: [{ required: true, validator: this.passWordRule, trigger: 'blur' }], code: [{ required: true, message: '请输入验证码', trigger: 'blur' }] }, tips: '' };}, methods: { phoneRule: function phoneRule(rule, value, cb) {if (!value || !(0, _util.checkStr)(value, 'mobile')) {cb(new Error('请输入正确的手机号码'));}cb();}, passWordRule: function passWordRule(rule, value, cb) {if (!value || !(0, _util.checkStr)(value, 'pwd')) {cb(new Error('密码为8-16位，须包含数字、字母、符号'));}cb();}, codeChange: function codeChange(text) {this.tips = text;}, getCode: function getCode() {if (this.$refs.uCode.canGetCode) {uni.$u.toast('验证码已发送');this.$refs.uCode.start();} else {
+var _default = { data: function data() {return { model: {}, rules: { account: [{ required: true, message: '请输入账号', trigger: 'blur' }], mobile: [{ required: true, validator: this.phoneRule, trigger: 'blur' }], password: [{ required: true, message: '请输入密码', trigger: 'blur' }], newPassword: [{ required: true, validator: this.passWordRule, trigger: 'blur' }], code: [{ required: true, message: '请输入验证码', trigger: 'blur' }] }, tips: '' };}, methods: { phoneRule: function phoneRule(rule, value, cb) {if (!value || !(0, _util.checkStr)(value, 'mobile')) {cb(new Error('请输入正确的手机号码'));}cb();}, passWordRule: function passWordRule(rule, value, cb) {if (!value || !(0, _util.checkStr)(value, 'pwd')) {cb(new Error('密码为8-16位，须包含数字、字母、符号'));}cb();}, codeChange: function codeChange(text) {this.tips = text;}, getCode: function getCode() {var _this = this;if (this.$refs.uCode.canGetCode) {this.$http('api/customer/getSmsCode', { mobild: this.model.mobile }, function (res) {// uni.$u.toast('验证码已发送');
+          _this.$refs.uCode.start();});
+      } else {
         uni.$u.toast('倒计时结束后再发送');
       }
     },
-    submit: function submit() {var _this = this;
+    submit: function submit() {var _this2 = this;
       this.$refs.form.validate().then(function (res) {
-        delete _this.model.password_;
-        console.log(_this.model);
+        delete _this2.model.password_;
+        console.log(_this2.model);
       }).catch(function (errors) {
 
       });

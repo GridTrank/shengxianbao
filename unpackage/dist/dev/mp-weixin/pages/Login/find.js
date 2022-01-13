@@ -232,15 +232,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
 var _util = __webpack_require__(/*! @/common/js/util */ 138); //
 //
 //
@@ -310,16 +301,18 @@ var _util = __webpack_require__(/*! @/common/js/util */ 138); //
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {var _this = this;return { model: { newPassword: '', accountName: '', mobile: '', smsCode: '' }, rules: { accountName: [{ required: true, message: '请输入账号', trigger: 'blur' }], newPassword: [{ required: true, message: '请输入新密码', trigger: 'blur' }, { validator: function validator(rule, value, callback) {return (0, _util.checkStr)(value, 'pwd');}, message: '密码为8-16位，须包含数字、字母、符号', trigger: ['change', 'blur'] }], mobile: [{ required: true, message: '请输入手机号', trigger: ['change', 'blur'] }, { validator: function validator(rule, value, callback) {return _this.$u.test.mobile(value);}, message: '手机号码不正确', trigger: ['change', 'blur'] }], smsCode: [{ required: true, message: '请输入验证码', trigger: 'blur' }] }, tips: '', isAgree: false };}, onReady: function onReady() {this.$refs.form.setRules(this.rules);}, methods: { agreeHandle: function agreeHandle() {this.isAgree = !this.isAgree;}, codeChange: function codeChange(text) {this.tips = text;}, getCode: function getCode() {var _this2 = this;if (this.$refs.uCode.canGetCode) {this.$http('api/customer/getSmsCode', { mobile: this.model.mobile }, 'post').then(function (res) {_this2.$refs.uCode.start();});} else {uni.$u.toast('倒计时结束后再发送');}}, submit: function submit() {var _this3 = this;this.$refs.form.validate().then(function (res) {_this3.$http('api/customer/updatePassword', _this3.model, 'post').then(function (res) {uni.showToast({
+var _default = { data: function data() {var _this = this;return { model: { newPassword: '', accountName: '', mobile: '', smsCode: '' }, rules: { accountName: [{ required: true, message: '请输入账号', trigger: 'blur' }], newPassword: [{ required: true, message: '请输入新密码', trigger: 'blur' }, { validator: function validator(rule, value, callback) {return (0, _util.checkStr)(value, 'pwd');}, message: '密码为8-16位，须包含数字、字母、符号', trigger: ['change', 'blur'] }], mobile: [{ required: true, message: '请输入手机号', trigger: ['change', 'blur'] }, { validator: function validator(rule, value, callback) {return _this.$u.test.mobile(value);}, message: '手机号码不正确', trigger: ['change', 'blur'] }], smsCode: [{ required: true, message: '请输入验证码', trigger: 'blur' }] }, tips: '', isAgree: false };}, onReady: function onReady() {this.$refs.form.setRules(this.rules);}, methods: { agreeHandle: function agreeHandle() {this.isAgree = !this.isAgree;}, codeChange: function codeChange(text) {this.tips = text;}, getCode: function getCode() {var _this2 = this;if (this.$refs.uCode.canGetCode) {this.$http('api/customer/getSmsCode', { mobile: this.model.mobile }, 'post').then(function (res) {
+          _this2.$refs.uCode.start();
+        });
+
+      } else {
+        uni.$u.toast('倒计时结束后再发送');
+      }
+    },
+    submit: function submit() {var _this3 = this;
+      this.$refs.form.validate().then(function (res) {
+        _this3.$http('api/customer/updatePassword', _this3.model, 'post').then(function (res) {
+          uni.showToast({
             title: '修改成功，跳转登录',
             icon: 'none' });
 
