@@ -12,8 +12,8 @@
 				<text class="iconfont icon-jiacy"></text>
 				<text class="tit">加常用</text>
 			</view>
-			<!-- <view class="nav column center" :class="{active: is_fav === 1}" @click="changeFav">
-				<text class="iconfont" :class="is_fav === 1 ? 'icon-shoucang' : 'icon-shoucang'"></text>
+			<!-- <view class="nav column center" :class="{active: infoData.favorite === 1}" @click="changeFav">
+				<text class="iconfont" :class="infoData.favorite === 1 ? 'icon-shoucang' : 'icon-shoucang'"></text>
 				<text class="tit">收藏</text>
 			</view> -->
 		</view>
@@ -22,8 +22,9 @@
 				<text>加入购物车</text>
 			</view>
 		</view>
-		
-        <specifications :pid="infoData.productSkuId" :info="infoData" :selectPrice="selectPrice" ref='spec'></specifications>
+
+		<specifications :pid="infoData.productSkuId" :info="infoData" :selectPrice="selectPrice" ref='spec'>
+		</specifications>
 		<mix-loading v-if="isLoading" :mask="true"></mix-loading>
 	</view>
 </template>
@@ -40,79 +41,86 @@
 			};
 		},
 		computed: {
-			cartCount(){
+			cartCount() {
 				return this.$store.state.cartCount;
 			}
 		},
 		props: {
 			infoData: {
 				type: Object,
-				default(){
+				default () {
 					return {}
 				}
 			},
 			selectPrice: {
 				type: Object,
-				default(){
+				default () {
 					return {}
 				}
 			},
 		},
 		watch: {
-			infoData(data){
-				this.is_fav = data.fav; 
+			infoData(data) {
+				this.is_fav = data.fav;
 			}
 		},
 		methods: {
 			//收藏
-			async changeFav(){
-				if(!this.$util.isLogin()){
+			async changeFav() {
+				if (!this.$util.isLogin()) {
 					return;
 				}
+				var favorite = Number(this.infoData.favorite);
 				const res = await this.$http('api/favorite/saveFavorite', {
-					favoriteType: 0,
-					productSkuId:this.infoData.productSkuId
+					favoriteType: !favorite,
+					productSkuId: this.infoData.productSkuId
 				})
 				const data = res.data;
-				this.$util.msg('收藏成功');
+				if (favorite) {
+					this.infoData.favorite = 0;
+					this.$util.msg('取消收藏成功');
+				} else {
+					this.infoData.favorite = 1;
+					this.$util.msg('收藏成功');
+				}
 			},
 			// 加常用
-			async addCusOftenBuy(){
-				if(!this.$util.isLogin()){
+			async addCusOftenBuy() {
+				if (!this.$util.isLogin()) {
 					return;
 				}
 				console.log(this.infoData.used)
-				if(this.infoData.used == 0){
+				if (this.infoData.used == 0) {
 					// 加常用
 					const res = await this.$http('api/usedlist/addCusOftenBuy', {
 						buyQuantity: 1,
-						productSkuId:this.infoData.productSkuId || 7
-					},'post')
+						productSkuId: this.infoData.productSkuId || 7
+					}, 'post')
 					this.infoData.used = 1;
 					uni.showToast({
-						title:'添加成功',
-						icon:'none'
+						title: '添加成功',
+						icon: 'none'
 					})
-				}else{
+				} else {
 					// 移除常用
 					const res = await this.$http('api/usedlist/removeCusOftenBuy', {
 						buyQuantity: 1,
-						productSkuId:this.infoData.productSkuId || 7
-					},'post')
+						productSkuId: this.infoData.productSkuId || 7
+					}, 'post')
 					this.infoData.used = 0;
 					uni.showToast({
-						title:'移除成功',
-						icon:'none'
+						title: '移除成功',
+						icon: 'none'
 					})
 				}
-				
+
 			},
-			onOprationClick(type){
-                if(this.$util.isLogin()){
-                    this.$refs.spec.show=true
-                }
+			onOprationClick(type) {
+				if (this.$util.isLogin()) {
+					this.$refs.spec.show = true
+				}
 			},
-			switchTab(url){
+			switchTab(url) {
 				uni.switchTab({
 					url
 				})
@@ -122,7 +130,7 @@
 </script>
 
 <style scoped lang="scss">
-	.mix-botoom-operation{
+	.mix-botoom-operation {
 		position: fixed;
 		left: 0;
 		bottom: 0;
@@ -130,34 +138,38 @@
 		width: 100%;
 		height: 100rpx;
 		background-color: #fff;
-		box-shadow: 0 -2rpx 10rpx 0 rgba(0,0,0,.1);
+		box-shadow: 0 -2rpx 10rpx 0 rgba(0, 0, 0, .1);
 		box-sizing: content-box;
 		padding-bottom: constant(safe-area-inset-bottom);
-		padding-bottom: env(safe-area-inset-bottom); 
+		padding-bottom: env(safe-area-inset-bottom);
 	}
-	.nav-group{
+
+	.nav-group {
 		padding-left: 6rpx;
-		
-		.nav{
+
+		.nav {
 			width: 90rpx;
 			height: 80rpx;
 			color: #333;
 			position: relative;
-		
-			&.active{
+
+			&.active {
 				color: $base-color;
 			}
 		}
-		.tit{
+
+		.tit {
 			font-size: 20rpx;
 		}
-		.mix-icon{
+
+		.mix-icon {
 			height: 48rpx;
 			line-height: 48rpx;
 			font-size: 38rpx;
 			margin-bottom: 6rpx;
 		}
-		.number{
+
+		.number {
 			position: absolute;
 			right: 16rpx;
 			top: 2rpx;
@@ -170,12 +182,13 @@
 			border-radius: 100rpx;
 		}
 	}
-	.btn-group{
+
+	.btn-group {
 		flex: 1;
 		margin: 0 16rpx 0 14rpx;
 		overflow: hidden;
-		
-		.btn{
+
+		.btn {
 			flex: 1;
 			height: 76rpx;
 			font-size: 30rpx;
@@ -188,5 +201,4 @@
 			// }
 		}
 	}
-	
 </style>
