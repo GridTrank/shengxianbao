@@ -6,12 +6,12 @@
 				<u--input class="from_item" v-model="userInfo.customerName" border="none" placeholder="请输入客户名称">
 				</u--input>
 			</u-form-item>
-			<u-form-item label="客户类型" prop="customerTypeId" borderBottom @click="showActionSheet('customerType')"
+			<!-- <u-form-item label="客户类型" prop="customerTypeId" borderBottom @click="showActionSheet('customerType')"
 				ref="item1">
 				<u--input class="from_item" v-model="userInfo.customerType" disabled disabledColor="#ffffff"
 					placeholder="请选择客户类型" border="none"></u--input>
 				<u-icon slot="right" name="arrow-right"></u-icon>
-			</u-form-item>
+			</u-form-item> -->
 			<u-form-item label="联系人" prop="customerContact" borderBottom ref="item1">
 				<u--input class="from_item" v-model="userInfo.customerContact" border="none" placeholder="请输入联系人">
 				</u--input>
@@ -134,8 +134,8 @@
 					"customerBusinessLicenser": "",
 					"customerContact": "",
 					"customerName": "",
-					"customerTypeId": 1,
-					"customerType": '',
+					"customerTypeId": 123123,
+					"customerType": '123',
 					"customerUrl": "",
 					"deliveryTime": "",
 					"inviteCode": "",
@@ -236,7 +236,7 @@
 				});
 			},
 			submit(){
-+				this.$refs.userInfo.validate().then(res => {
+				this.$refs.userInfo.validate().then(res => {
 					this.$http('api/customer/updateCustomer',this.userInfo,'post').then(res=>{
 						uni.showToast({
 							title:'认证成功',
@@ -246,11 +246,11 @@
 							this.navTo('/pages/Home/Home','switch')
 						},1500)
 					})
+
 				}).catch(errors => {
-					uni.$u.toast('校验失败')
+					// uni.$u.toast('校验失败')
 				})
 			}
-
 		},
 	};
 </script>

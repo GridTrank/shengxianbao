@@ -3,10 +3,10 @@
 		
 		<view class="input_wrap">
 			<u--form ref='form' :model="model" :rules="rules" >
-				<u-form-item prop="phone">
+				<u-form-item prop="mobile">
 					<view class="input_item ">
 						<view class="label">当前手机号码</view>
-						<u-input class="mt10" placeholder='请输入手机号码' border='bottom' v-model="model.phone"></u-input>
+						<u-input class="mt10" placeholder='请输入手机号码' border='bottom' v-model="model.mobile"></u-input>
 					</view>
 				</u-form-item>
 				<u-form-item prop="password">
@@ -53,7 +53,7 @@
 					account:[
 						{required:true,message:'请输入账号',trigger:'blur'}
 					],
-					phone:[
+					mobile:[
 						{required:true,validator:this.phoneRule,trigger:'blur'}
 					],
 					password:[
@@ -87,8 +87,10 @@
 			},
 			getCode() {
 			    if (this.$refs.uCode.canGetCode) {
-			        uni.$u.toast('验证码已发送');
-			        this.$refs.uCode.start();
+						this.$http('api/customer/getSmsCode',{mobild:this.model.mobile},(res)=>{
+							// uni.$u.toast('验证码已发送');
+							this.$refs.uCode.start();
+						})
 			    } else {
 					uni.$u.toast('倒计时结束后再发送');
 			    }
