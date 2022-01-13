@@ -116,7 +116,6 @@
 						message: '请输入验证码',
 						trigger: 'blur'
 					}],
-
 				},
 				isAgree: false
 			};

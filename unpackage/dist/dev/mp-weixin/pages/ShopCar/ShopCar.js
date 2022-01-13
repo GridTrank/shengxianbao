@@ -341,7 +341,7 @@ var _default =
       this.statistics();
     },
     toDetail: function toDetail(item) {
-      this.navTo('/pages/ProductDetail/ProductDetail?id=' + item.id);
+      this.navTo('/pagesB/ProductDetail/ProductDetail?id=' + item.id);
     },
     //减少
     sub: function sub(goodsIndex, goodsnum) {

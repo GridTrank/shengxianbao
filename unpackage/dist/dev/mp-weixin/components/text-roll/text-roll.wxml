@@ -1,1 +1,0 @@
-<view class="content data-v-9a769380"><view class="text row data-v-9a769380"><block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="_p data-v-9a769380">{{''+item.noteTitle+''}}</view></block></view></view>

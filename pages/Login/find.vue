@@ -2,10 +2,10 @@
 	<view class="page_wrap">
 		
 		<view class="input_wrap">
-			<u--form ref='form' :model="model" :rules="rules" >
-				<u-form-item prop="account">
+			<u-form ref='form' :model="model" :rules="rules" >
+				<u-form-item prop="accountName">
 					<view class="input_item ">
-						<u-input class="mt10" placeholder='请输入当前账号' border='bottom' v-model="model.account">
+						<u-input class="mt10" placeholder='请输入当前账号' border='bottom' v-model="model.accountName">
 							<template slot="prefix">
 								<text class="label" >账号</text>
 							</template>
@@ -13,9 +13,9 @@
 					</view>
 				</u-form-item>
 				
-				<u-form-item prop="phone">
+				<u-form-item prop="mobile">
 					<view class="input_item ">
-						<u-input class="mt10" placeholder='请输入手机号码' border='bottom' v-model="model.phone">
+						<u-input class="mt10" placeholder='请输入手机号码' border='bottom' v-model="model.mobile">
 							<template slot="prefix">
 								<text class="label" >手机号</text>
 							</template>
@@ -23,9 +23,9 @@
 					</view>
 				</u-form-item>
 				
-				<u-form-item prop="code">
+				<u-form-item prop="smsCode">
 					<view class="input_item ">
-						<u-input class="mt10" placeholder='请输入验证码' border='bottom' v-model="model.code">
+						<u-input class="mt10" placeholder='请输入验证码' border='bottom' v-model="model.smsCode">
 							<template slot="prefix">
 								<text class="label" >验证码</text>
 							</template>
@@ -54,7 +54,7 @@
 						</u-input>
 					</view>
 				</u-form-item>
-			</u--form>
+			</u-form>
 			<view class="agreement row">
 				<image 
 				@click="agreeHandle" 
@@ -81,41 +81,59 @@
 	export default {
 		data() {
 			return {
-				model:{},
-				rules:{
-					account:[
-						{required:true,message:'请输入账号',trigger:'blur'}
+				model:{
+					newPassword: '',
+					accountName: '',
+					mobile: '',
+					smsCode: '',
+				},
+				rules: {
+					accountName: [{
+						required: true,
+						message: '请输入账号',
+						trigger: 'blur'
+					}],
+					newPassword: [{
+							required: true,
+							message: '请输入新密码',
+							trigger: 'blur'
+						},
+						{
+							validator: (rule, value, callback) => {
+								return checkStr(value, 'pwd');
+							},
+							message: '密码为8-16位，须包含数字、字母、符号',
+							trigger: ['change', 'blur'],
+						}
 					],
-					phone:[
-						{required:true,validator:this.phoneRule,trigger:'blur'}
+					mobile: [{
+							required: true,
+							message: '请输入手机号',
+							trigger: ['change', 'blur'],
+						},
+						{
+							validator: (rule, value, callback) => {
+								return this.$u.test.mobile(value);
+							},
+							message: '手机号码不正确',
+							trigger: ['change', 'blur'],
+						}
+				
 					],
-					password:[
-						{required:true,message:'请输入密码',trigger:'blur'}
-					],
-					newPassword:[
-						{required:true,validator:this.passWordRule,trigger:'blur'}
-					],
-					code:[
-						{required:true,message:'请输入验证码',trigger:'blur'}
-					]
+					smsCode: [{
+						required: true,
+						message: '请输入验证码',
+						trigger: 'blur'
+					}],
 				},
 				tips:'',
 				isAgree:false
 			};
 		},
+		onReady() {
+			this.$refs.form.setRules(this.rules);
+		},
 		methods:{
-			phoneRule(rule,value,cb){
-				if(!value || !checkStr(value, 'mobile')){
-					cb(new Error('请输入正确的手机号码'))
-				}
-				cb()
-			},
-			passWordRule(rule,value,cb){
-				if(!value || !checkStr(value, 'pwd')){
-					cb(new Error('密码为8-16位，须包含数字、字母、符号'))
-				}
-				cb()
-			},
 			agreeHandle(){
 				this.isAgree=!this.isAgree
 			},
@@ -124,16 +142,27 @@
 			},
 			getCode() {
 			    if (this.$refs.uCode.canGetCode) {
-			        uni.$u.toast('验证码已发送');
-			        this.$refs.uCode.start();
+			        this.$http('api/customer/getSmsCode', {
+			        	mobile: this.model.mobile
+			        }, 'post').then(res => {
+						this.$refs.uCode.start();
+			        })
+			        
 			    } else {
 					uni.$u.toast('倒计时结束后再发送');
 			    }
 			},
 			submit(){
 				this.$refs.form.validate().then(res => {
-					delete this.model.password_
-					console.log(this.model)
+					this.$http('api/customer/updatePassword', this.model, 'post').then(res => {
+						uni.showToast({
+							title: '修改成功，跳转登录',
+							icon: 'none'
+						})
+						setTimeout(() => {
+							this.navTo('./Login')
+						}, 2000)
+					})
 				}).catch(errors => {
 					
 				})

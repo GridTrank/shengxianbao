@@ -127,6 +127,7 @@
 					this.$util.msg('请补充详细地址');
 					return;
 				} */
+				console.log(this.$util.prePage())
 				this.$util.prePage().setAddress(Object.assign({}, {
 					ad_info, address, location, title,room
 				}));

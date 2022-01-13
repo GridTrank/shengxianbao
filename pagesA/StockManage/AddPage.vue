@@ -6,7 +6,7 @@
 					{{pageTxt}}仓库
 				</view>
 				<view class="right row">
-					<text class="label">1231231</text>
+					<text class="label">{{queryData.warehouseName}}</text>
 					<text class="iconfont icon-jinru"></text>
 				</view>
 			</view>
@@ -77,6 +77,10 @@
 				remark:'',
 				stockData:null,
 				columns:[{label:'仓库1',value:1},{label:'仓库2',value:2}],
+				queryData:{
+					warehouseName:'请选择',
+					warehouseId:''
+				},
 			};
 		},
 		onLoad(e) {
@@ -112,6 +116,7 @@
 			if(uni.getStorageSync('stockData')){
 				this.stockData=uni.getStorageSync('stockData')
 			}
+			this.getStockList()
 		},
 		mounted() {
 			if(uni.getStorageSync('stockData')){
@@ -119,6 +124,16 @@
 			}
 		},
 		methods:{
+			getStockList(){
+				this.$http('api/Loss/selectListWareName').then(res=>{
+					this.columns=res.map((item)=>{
+						return {
+							label:item.warehouseName,
+							value:item.id
+						}
+					})
+				})
+			},
 			showPopHandle(val){
 				if(val==2){
 					this.$refs.dateEl.show();
@@ -133,17 +148,15 @@
 			},
 			// 选择仓库
 			confirm(e){
-				console.log(e)
+				this.queryData.warehouseName=e.label
+				this.queryData.warehouseId=e.value
 			}
 		},
-		
 		onUnload() {
-			console.log(2222)
 			uni.removeStorageSync('stockData')
 		},
 		onBackPress(options) {
 			if(options.from=='backbutton'){
-				
 				uni.removeStorageSync('stockData')
 				uni.navigateTo({
 					url:'./Index?pageType='+this.pageType

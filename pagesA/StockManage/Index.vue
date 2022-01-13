@@ -6,10 +6,12 @@
 		:showScreen='true'
 		></search-comprehensive>
 		
+		<template v-if="dataList_.length>0">
+			
 		<view class="list">
 			<view 
 			class="item model-wrap" 
-			v-for="(item,index) in dataList" 
+			v-for="(item,index) in dataList_" 
 			@click="navTo('./Detail?pageType='+pageType)"
 			:key="index">
 				<view class="top row jc_sb">
@@ -23,11 +25,10 @@
                                 <text v-if="item.checked==2" class="iconfont icon-xuanze"></text>
                                 <text v-else class="iconfont icon-weixuanze"></text>
                             </template>
-                            
-                            DD1234566
+                            {{item.lossCode}}
                         </view>
                         <view class="status">
-                            待审核
+                            {{item.billState===1?'已审核':item.billState===-1?'已作废':'待审核'}}
                         </view>
                     </template>
 				</view>
@@ -55,10 +56,10 @@
                     
                     <!-- 其他 -->
                     <template v-else>
-                        <view class="label bg_style1">冷冻仓库</view>
+                        <view class="label bg_style1">{{item.warehouseName}}</view>
                         <view class="row jc_sb mt30">
-                        	<text class="date f28-c333">2020-10-22 08:08:12</text>
-                        	<text class="price">¥39.00</text>
+                        	<text class="date f28-c333">{{item.lossDate | date_('Y-m-d H:i')}}</text>
+                        	<text class="price">¥{{item.lossAmount}}</text>
                         </view>
                     </template>
 				</view>
@@ -86,16 +87,20 @@
                         	<text class="iconfont icon-dayin"></text>打印
                         </view>
                     </template>
-					
 				</view>
 			</view>
 		</view>
+		</template>
+		
+		<template v-else>
+			<no-data></no-data>
+		</template>
         
         <template v-if="pageType=='out' || pageType=='in' || pageType=='inventory' || pageType=='frmLoss' || pageType=='overflow' || pageType=='return'">
             <view class="foot_btn row jc_sb"> 
                 <view class="nums row">
                 	<view class="left row" >
-                		<view @click="selectAll(2)" v-if="total<dataList.length" class="iconfont icon-weixuanze"></view>
+                		<view @click="selectAll(2)" v-if="total<dataList_.length || dataList_.length<=0" class="iconfont icon-weixuanze"></view>
                 		<view @click="selectAll(1)" v-else class="iconfont icon-xuanze"></view>
                 		<view>合计</view> 
                 	</view>
@@ -125,23 +130,19 @@
 				pageTxt:'',
 				list: [{
 					name: '全部',
-					vlaue:0
+					value:0
 				}, {
 					name: '待审核',
-					vlaue:1
+					value:1
 				}, {
 					name: '已审核',
-					vlaue:2
+					value:2
 				}, {
 					name: '已作废',
-					vlaue:3
+					value:3
 				}],
-				dataList:[
-					{checked:1},
-					{checked:1},
-					{checked:1},
-					{checked:1},
-				],
+				dataList_:[],
+				initList:[],
 				total:0
 			};
 		},
@@ -159,6 +160,7 @@
 			}else if(e.pageType=='frmLoss'){
 				barTitle='报损单'
 				this.pageTxt='报损'
+				this.queryUrl='api/Loss/pageList'
 			}else if(e.pageType=='overflow'){
 				barTitle='报溢单'
 				this.pageTxt='报溢'
@@ -184,23 +186,49 @@
                 barTitle='报价单'
                 this.pageTxt='报价'
             }
+			
 			this.pageType=e.pageType
 			uni.setNavigationBarTitle({
 				title:barTitle
 			})
+			this.initData()
 			
 		},
 		computed:{
 			
 		},
 		methods:{
+			async initData(){
+				let list= await this.getList()
+				list.forEach(el=>{
+					el.checked=1
+				})
+				this.dataList_=list
+				this.initList=JSON.parse(JSON.stringify(this.dataList_))
+			},
 			tab(item){
-				console.log(item)
+				let list=this.initList
+				if(item.value==1){
+					this.dataList_=list.filter(el=>{
+						return !el.billState || el.billState===0
+					})
+				}else if(item.value===2){
+					this.dataList_=list.filter(el=>{
+						return el.billState==1
+					})
+					console.log(this.dataList_,list)
+				}else if(item.value==3){
+					this.dataList_=list.filter(el=>{
+						return el.billState==-1
+					})
+				}else{
+					this.dataList_=list
+				}
 			},
 			checkedHandle(item){
 				let nums=0
 				item.checked=item.checked==1?2:1
-				this.dataList.forEach(item=>{
+				this.dataList_.forEach(item=>{
 					if(item.checked==2){
 						nums++
 					}
@@ -208,14 +236,12 @@
 				this.total=nums
 			},
 			selectAll(val){
-				console.log(this.dataList,this.total)
-				
 				if(val==1){
 					this.total=0
 				}else{
-					this.total=this.dataList.length
+					this.total=this.dataList_.length
 				}
-				this.dataList.forEach(item=>{
+				this.dataList_.forEach(item=>{
 					item.checked=val
 				})
 				

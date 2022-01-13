@@ -4,7 +4,7 @@ import {
 } from '@/common/js/util'
 
 
-Vue.filter('date', (timeStamp, format='Y-m-d H:i')=>{
+Vue.filter('date_', (timeStamp, format='Y-m-d H:i')=>{
 	if(!timeStamp) return '';
 	return date(format, timeStamp);
 })

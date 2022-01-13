@@ -147,7 +147,6 @@
 			padding-right: 50upx;
 			padding-top: 30upx;
 			background-color: #fff;
-
 			.more_icon {
 				position: absolute;
 				right: 0upx;
@@ -158,42 +157,35 @@
 				padding-right: 20upx;
 				padding-left: 10upx;
 			}
-
 			/deep/ .u-tabs__wrapper__nav {
 				position: relative;
 			}
 		}
-
 		.second_list {
 			display: flex;
 			height: 89.5vh;
 			overflow: hidden;
 			align-items: normal;
-
 			.left_list {
 				width: 25%;
 				text-align: center;
-
 				.left_item {
 					padding: 40upx 0;
 					justify-content: center;
 					color: #666;
 					font-size: 28upx;
-
 					.rexiao_img {
 						width: 20upx;
 						height: 26upx;
 						margin-right: 20upx;
 					}
 				}
-
 				.select_child {
 					background-color: #fff;
 					color: $base-color;
 					font-size: 28upx;
 					font-weight: bold;
 					position: relative;
-
 					&::after {
 						content: '';
 						display: block;
@@ -206,7 +198,6 @@
 					}
 				}
 			}
-
 			.right_list {
 				width: 75%;
 				background-color: #fff;
@@ -216,7 +207,6 @@
 				}
 			}
 		}
-
 		.all_list_wrap {
 			position: fixed;
 			top: 90upx;
@@ -226,17 +216,14 @@
 			.all_list {
 				background-color: #fff;
 				padding: 40upx 30upx;
-
 				.all_top {
 					justify-content: space-between;
-
 					.all {
 						color: #333;
 						font-size: 28upx;
 						font-weight: bold;
 						padding: 0 30upx;
 						position: relative;
-
 						&::after {
 							position: absolute;
 							content: '';
@@ -250,7 +237,6 @@
 						}
 					}
 				}
-
 				.all_item {
 					display: inline-block;
 					padding: 10upx 26upx;
@@ -259,12 +245,10 @@
 					color: #999;
 					font-size: 24upx;
 					margin-right: 30upx;
-
 					&:nth-child(4n) {
 						margin-right: 0;
 					}
 				}
-
 				.select_all_item {
 					background-color: #fff4ed;
 					color: $base-color;

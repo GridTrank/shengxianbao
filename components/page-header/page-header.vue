@@ -17,7 +17,7 @@
 			<view 
 				class="search-wrap center"
 				:style="{height: customHeight + 'px'}" 
-				@click="navTo('/pages/Search/Search')"
+				@click="navTo('/pagesB/Search/Search')"
 			>
 				<image class="search" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/search.png" mode="widthFix"></image>
 				<text>输入关键字搜索</text>

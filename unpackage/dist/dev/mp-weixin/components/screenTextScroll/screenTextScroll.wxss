@@ -8,7 +8,7 @@
   width: 500rpx;
   font-size: 20rpx;
   height: 44rpx;
-  color: #333;
+  color: #666;
   border-radius: 6rpx;
   overflow: hidden;
   box-sizing: border-box;

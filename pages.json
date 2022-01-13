@@ -61,25 +61,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, {
-			"path": "pages/ProductDetail/ProductDetail",
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/Search/Search",
-			"style": {
-				"navigationBarTitleText": "搜索",
-				// #ifdef H5
-				"navigationStyle": "custom",
-				// #endif
-				"enablePullDownRefresh": false
-			}
-
-		}, {
+		},  {
 			"path": "pages/Login/Login",
 			"style": {
 				// #ifdef H5
@@ -550,7 +532,25 @@
 					"navigationBarTitleText": "通知详情",
 					"enablePullDownRefresh": false
 				}
-			}]
+			},{
+				"path": "ProductDetail/ProductDetail",
+				"style": {
+					"navigationBarTitleText": "",
+					"navigationStyle": "custom",
+					"enablePullDownRefresh": false
+				}
+			
+			}, {
+				"path": "Search/Search",
+				"style": {
+					"navigationBarTitleText": "搜索",
+					// #ifdef H5
+					"navigationStyle": "custom",
+					// #endif
+					"enablePullDownRefresh": false
+				}
+			}
+			]
 		}
 	],
 	"preloadRule": {

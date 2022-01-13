@@ -44,7 +44,7 @@
 		width: 500upx;
 		font-size: 20upx;
 		height: 44upx;
-		color: #333;
+		color: #666;
 		border-radius: 6upx;
 		overflow: hidden;
 		box-sizing: border-box;

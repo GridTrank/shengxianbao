@@ -1,13 +1,5 @@
 <template>
 	<view class="page_wrap">
-		<!-- <uni-nav-bar
-		@clickLeft="clickLeft"
-		@clickRight="clickRight"
-		left-icon="back" 
-		fixed=true
-		right-text="余额明细"
-		title="余额">
-		</uni-nav-bar> -->
 		<view class="top_bg">
 			<view class="txt">当前可用余额（元）</view>
 			<view class="money">100.00</view>

@@ -96,10 +96,10 @@ var components
 try {
   components = {
     uTabs: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 637))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 660))
     },
     noData: function() {
-      return __webpack_require__.e(/*! import() | components/no-data/no-data */ "components/no-data/no-data").then(__webpack_require__.bind(null, /*! @/components/no-data/no-data.vue */ 1218))
+      return __webpack_require__.e(/*! import() | components/no-data/no-data */ "components/no-data/no-data").then(__webpack_require__.bind(null, /*! @/components/no-data/no-data.vue */ 668))
     }
   }
 } catch (e) {
@@ -169,7 +169,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var search = function search() {__webpack_require__.e(/*! require.ensure | pages/Classify/search */ "pages/Classify/search").then((function () {return resolve(__webpack_require__(/*! ./search.vue */ 645));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var list = function list() {__webpack_require__.e(/*! require.ensure | pages/Classify/list */ "pages/Classify/list").then((function () {return resolve(__webpack_require__(/*! ./list.vue */ 652));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var search = function search() {__webpack_require__.e(/*! require.ensure | pages/Classify/search */ "pages/Classify/search").then((function () {return resolve(__webpack_require__(/*! ./search.vue */ 675));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var list = function list() {__webpack_require__.e(/*! require.ensure | pages/Classify/list */ "pages/Classify/list").then((function () {return resolve(__webpack_require__(/*! ./list.vue */ 682));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

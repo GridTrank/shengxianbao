@@ -186,6 +186,31 @@
 						success: (res) => {
 							if(res.confirm){
 								uni.removeStorageSync('stockData')
+								let data={
+									billState:0,
+									infoInfoVoList:[
+										{
+											auxiliaryQuantity:1,
+											auxiliaryUnit:'个',
+											costPrice:123,
+											lossAmount:1,
+											lossCode:123,
+											lossQuantity:1,
+											productCode:123,
+											productName:'123',
+											productNameAlias:'23',
+											productSkuId:5,
+											productUnit:'‘，',
+											relation:'',
+											remark:'',
+										}
+									],
+									lossAmount:123,
+									lossCode:111,
+									lossDate:123,
+									warehouseId:1,
+									warehouseName:123
+								}
 							}
 						}
 					})

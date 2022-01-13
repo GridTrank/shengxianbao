@@ -2,7 +2,7 @@
 	<view class="">
 		<view class="info" :class="pageFrom">
 			<image 
-            @click="navTo('/pages/ProductDetail/ProductDetail?id='+info.productId)"
+            @click="navTo('/pagesB/ProductDetail/ProductDetail?id='+info.productId)"
             class="img" 
             :src="info.defaultImage" >
             </image>

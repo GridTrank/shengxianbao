@@ -16,7 +16,7 @@
 				<u--input class="from_item" v-model="userInfo.customerContact" border="none" placeholder="请输入联系人">
 				</u--input>
 			</u-form-item>
-			<u-form-item label="联系电话" prop="telephone" ref="item1">
+			<u-form-item label="联系电话" prop="telephone" borderBottom ref="item1">
 				<u--input class="from_item" v-model="userInfo.telephone" border="none" placeholder="请输入联系电话">
 				</u--input>
 			</u-form-item>
@@ -29,7 +29,7 @@
 			
 			<u-form-item style="margin-top: 10px;" class="mt20"  label="详细地址" prop="addrDetails" borderBottom ref="item1">
 				<view class="mt20 address row jc_sb">
-					<u--textarea class="textarea" height="30" v-model="userInfo.addrDetails" placeholder="请输入详细地址或直接定位"
+					<u--textarea class="textarea" height="50" v-model="userInfo.addrDetails" placeholder="请输入详细地址或直接定位"
 						border="none">
 					</u--textarea>
 					<image class="icon" @click="navTo('/pagesB/ChooseAddress/index')" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/icon_region.png"
@@ -134,7 +134,7 @@
 					"customerBusinessLicenser": "",
 					"customerContact": "",
 					"customerName": "",
-					"customerTypeId": 0,
+					"customerTypeId": 1,
 					"customerType": '',
 					"customerUrl": "",
 					"deliveryTime": "",
@@ -171,7 +171,6 @@
 			},
 
 			select(e) {
-				console.log(e)
 				this.userInfo[this.actionSheetType] = e.name;
 				if (this.actionSheetType == 'customerType') {
 					this.userInfo.customerTypeId = e.id;
@@ -179,7 +178,6 @@
 				}else{
 					this.$refs.userInfo.validateField(this.actionSheetType)
 				}
-				console.log(this.userInfo)
 			},
 			// 获取客户类型
 			getType() {
@@ -204,6 +202,12 @@
 						}
 					});
 				})
+			},
+			//选择地址回调
+			setAddress(e){
+				this.userInfo.addrDetails=e.address+e.room
+				this.userInfo.latitude=e.location.lat
+				this.userInfo.longitude=e.location.lng
 			},
 			// 上传
 			chooseImage(event) {
@@ -231,9 +235,17 @@
 					}
 				});
 			},
-			submit() {
-				this.$refs.userInfo.validate().then(res => {
-					uni.$u.toast('校验通过')
+			submit(){
++				this.$refs.userInfo.validate().then(res => {
+					this.$http('api/customer/updateCustomer',this.userInfo,'post').then(res=>{
+						uni.showToast({
+							title:'认证成功',
+							icon:'none'
+						})
+						setTimeout(()=>{
+							this.navTo('/pages/Home/Home','switch')
+						},1500)
+					})
 				}).catch(errors => {
 					uni.$u.toast('校验失败')
 				})

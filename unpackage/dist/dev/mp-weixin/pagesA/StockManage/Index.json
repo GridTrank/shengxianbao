@@ -3,6 +3,7 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "u-tabs": "/uni_modules/uview-ui/components/u-tabs/u-tabs",
-    "search-comprehensive": "/components/search-comprehensive/search-comprehensive"
+    "search-comprehensive": "/components/search-comprehensive/search-comprehensive",
+    "no-data": "/components/no-data/no-data"
   }
 }

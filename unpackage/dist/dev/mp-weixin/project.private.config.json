@@ -113,6 +113,12 @@
           "pathName": "pages/QuickOrder/QuickOrder",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "搜索",
+          "pathName": "pages/Search/Search",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "搜索",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-input": "/uni_modules/uview-ui/components/u-input/u-input",
+    "history-list": "/pagesB/Search/histotyList",
+    "list": "/pages/Classify/list"
+  }
+}
