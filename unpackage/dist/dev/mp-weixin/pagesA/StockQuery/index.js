@@ -96,13 +96,13 @@ var components
 try {
   components = {
     searchComprehensive: function() {
-      return __webpack_require__.e(/*! import() | components/search-comprehensive/search-comprehensive */ "components/search-comprehensive/search-comprehensive").then(__webpack_require__.bind(null, /*! @/components/search-comprehensive/search-comprehensive.vue */ 855))
+      return __webpack_require__.e(/*! import() | components/search-comprehensive/search-comprehensive */ "components/search-comprehensive/search-comprehensive").then(__webpack_require__.bind(null, /*! @/components/search-comprehensive/search-comprehensive.vue */ 848))
     },
     uPopup: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-popup/u-popup.vue */ 862))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-popup/u-popup.vue */ 855))
     },
     filterPage: function() {
-      return __webpack_require__.e(/*! import() | components/filter-page/filter-page */ "components/filter-page/filter-page").then(__webpack_require__.bind(null, /*! @/components/filter-page/filter-page.vue */ 870))
+      return __webpack_require__.e(/*! import() | components/filter-page/filter-page */ "components/filter-page/filter-page").then(__webpack_require__.bind(null, /*! @/components/filter-page/filter-page.vue */ 863))
     }
   }
 } catch (e) {
@@ -164,7 +164,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var list = function list() {__webpack_require__.e(/*! require.ensure | pagesA/StockQuery/list */ "pagesA/StockQuery/list").then((function () {return resolve(__webpack_require__(/*! ./list.vue */ 877));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var list = function list() {__webpack_require__.e(/*! require.ensure | pagesA/StockQuery/list */ "pagesA/StockQuery/list").then((function () {return resolve(__webpack_require__(/*! ./list.vue */ 870));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

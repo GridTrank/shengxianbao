@@ -7,7 +7,7 @@
 		<view class="introduce">
 			<view class="price row">
 				<view class="mr10">
-					¥<text class="p">{{selectPrice.unitPrice}}</text><text class="u">/{{selectPrice.productUnit}}</text>
+					¥<text class="p">{{selectData.unitPrice}}</text><text class="u">/{{selectData.productUnit}}</text>
 				</view>
 				<view class="tag" v-if="data.productTag">
 					{{data.productTag}}
@@ -49,8 +49,7 @@
 			<view class="row b-b">
 				<text class="tit">服务</text>
 				<view class="con">
-					<text class="service">7天无理由退换货 ·</text>
-					<text class="service">假一赔十 ·</text>
+					<text  class="service mr20" v-for="(d,i) in data.productService" :key="i">{{d}}</text>
 				</view>
 			</view>
 		</view>
@@ -71,7 +70,11 @@
 			<!-- <rich-text :nodes="data.content"></rich-text> -->
 		</view>
 		<!-- 底部操作菜单 -->
-		<bottom-operation :infoData="data" :selectPrice="selectPrice" @onOprationClick="onOprationClick"></bottom-operation>
+		<bottom-operation 
+		:infoData="data" 
+		:selectData="selectData" 
+		@onOprationClick="onOprationClick">
+		</bottom-operation>
 		<!-- 规格面板 -->
 	
 	</view>
@@ -95,12 +98,15 @@
 					images: [],
 				},
 				specActive:0,
-				selectPrice:{},
+				selectData:{},
 				ratingData: {}, //评价
+				id:'',
+				skuId:'',
 			};
 		},
 		onLoad(options){
 			this.id = options.id;
+			this.skuId=options.skuId
 			// this.loadRating(); //加载评价
 		},
 		onShow() {
@@ -127,7 +133,15 @@
 					item.src=item.imageUrl
 				})
 				data.images=data.productImageVoList
-				this.selectPrice=data.productSkuList[0]
+				let index=data.productSkuList.findIndex((item)=>{
+					return item.productSkuId==this.skuId
+				}) || 0
+				this.specActive=index
+				this.selectData={
+					...data.productSkuList[index],
+					productName:data.productName,
+					imageUrl:data.productImageVoList[0].imageUrl
+				}
 				this.data = data;
 				this.$nextTick(()=>{
 					this.calcAnchor();//计算锚点参数
@@ -149,11 +163,10 @@
 			// 选择规格
 			selectSpec(item,index){
 				this.specActive=index
-				this.selectPrice=item
+				this.selectData=Object.assign(this.selectData,item)
 			},
 			//加入购物车
 			addToCart(){
-				consoel.log(1212)
 				this.$util.throttle(async ()=>{
 					const data = this.getConfirmData();
 					if(!data){

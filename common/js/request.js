@@ -4,7 +4,7 @@ import {
 	msg
 } from './util'
 
-let baseUrl = 'http://47.96.98.41:9889/customer-api/';
+let baseUrl = 'https://sxb2bmallapi.loveinway.com/customer-api/';
 
 export default baseUrl;
 export const request = (url,data,method,cacheName,time)=>{

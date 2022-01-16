@@ -211,11 +211,14 @@ var _default =
   },
   methods: {
     getData: function getData() {
-      this.queryUrl = 'api/oms/pageList';
-      this.getList();
-      console.log(this.dataList);
+      this.queryUrl = 'api/myOneslft/getCustomerAddrList';
+      this.getList().then(function (res) {
+        console.log(res);
+      });
     },
     selectAddress: function selectAddress(e) {
+      console.log(e);
+      return;
       if (e.index == 1) {
         uni.showModal({
           title: '提示',
@@ -227,7 +230,7 @@ var _default =
           } });
 
       } else {
-        this.navTo('./AddressDetail?pageType=edit');
+        this.navTo('./AddressDetail?pageType=edit&');
       }
     },
     confirmAddress: function confirmAddress(e) {

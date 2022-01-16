@@ -49,11 +49,10 @@ export default {
 					...this.queryData
 				}
 				this.$http(this.queryUrl, data).then(res => {
-					this.dataList = this.dataList.concat(res.list || res.data || [] ); 
+					this.dataList = this.dataList.concat(Array.isArray(res)?res:  (res.list || res.data || []) ); 
 					resolve(this.dataList)
 				})
 			})
-			
 		},
 	},
 }

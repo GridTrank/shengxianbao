@@ -132,7 +132,10 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 9));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var pageHeader = function pageHeader() {__webpack_require__.e(/*! require.ensure | pagesB/ProductDetail/components/detail-page-header */ "pagesB/ProductDetail/components/detail-page-header").then((function () {return resolve(__webpack_require__(/*! ./components/detail-page-header */ 927));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var mixSwiper = function mixSwiper() {__webpack_require__.e(/*! require.ensure | pagesB/ProductDetail/components/mix-swiper */ "pagesB/ProductDetail/components/mix-swiper").then((function () {return resolve(__webpack_require__(/*! ./components/mix-swiper */ 934));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var bottomOperation = function bottomOperation() {__webpack_require__.e(/*! require.ensure | pagesB/ProductDetail/components/bottom-operation */ "pagesB/ProductDetail/components/bottom-operation").then((function () {return resolve(__webpack_require__(/*! ./components/bottom-operation */ 941));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 9));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var pageHeader = function pageHeader() {__webpack_require__.e(/*! require.ensure | pagesB/ProductDetail/components/detail-page-header */ "pagesB/ProductDetail/components/detail-page-header").then((function () {return resolve(__webpack_require__(/*! ./components/detail-page-header */ 927));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var mixSwiper = function mixSwiper() {__webpack_require__.e(/*! require.ensure | pagesB/ProductDetail/components/mix-swiper */ "pagesB/ProductDetail/components/mix-swiper").then((function () {return resolve(__webpack_require__(/*! ./components/mix-swiper */ 934));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var bottomOperation = function bottomOperation() {__webpack_require__.e(/*! require.ensure | pagesB/ProductDetail/components/bottom-operation */ "pagesB/ProductDetail/components/bottom-operation").then((function () {return resolve(__webpack_require__(/*! ./components/bottom-operation */ 941));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+
+
+
 
 
 
@@ -229,12 +232,15 @@ var _anchorList = [];var _default =
         images: [] },
 
       specActive: 0,
-      selectPrice: {},
-      ratingData: {} //评价
-    };
+      selectData: {},
+      ratingData: {}, //评价
+      id: '',
+      skuId: '' };
+
   },
   onLoad: function onLoad(options) {
     this.id = options.id;
+    this.skuId = options.skuId;
     // this.loadRating(); //加载评价
   },
   onShow: function onShow() {
@@ -253,7 +259,7 @@ var _anchorList = [];var _default =
   },
 
   methods: {
-    loadData: function loadData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var data;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+    loadData: function loadData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var data, index;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                   _this.$http('api/pms/productcategory/getProductSkuIdInfo', {
                     productId: _this.id || 7 }));case 2:data = _context.sent;
 
@@ -261,14 +267,22 @@ var _anchorList = [];var _default =
                   item.src = item.imageUrl;
                 });
                 data.images = data.productImageVoList;
-                _this.selectPrice = data.productSkuList[0];
+                index = data.productSkuList.findIndex(function (item) {
+                  return item.productSkuId == _this.skuId;
+                }) || 0;
+                _this.specActive = index;
+                _this.selectData = _objectSpread(_objectSpread({},
+                data.productSkuList[index]), {}, {
+                  productName: data.productName,
+                  imageUrl: data.productImageVoList[0].imageUrl });
+
                 _this.data = data;
                 _this.$nextTick(function () {
                   _this.calcAnchor(); //计算锚点参数
                 });
 
                 //添加浏览历史
-                _this.addProductHistory();case 9:case "end":return _context.stop();}}}, _callee);}))();
+                _this.addProductHistory();case 11:case "end":return _context.stop();}}}, _callee);}))();
     },
     //加载评价
     loadRating: function loadRating() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
@@ -283,11 +297,10 @@ var _anchorList = [];var _default =
     // 选择规格
     selectSpec: function selectSpec(item, index) {
       this.specActive = index;
-      this.selectPrice = item;
+      this.selectData = Object.assign(this.selectData, item);
     },
     //加入购物车
     addToCart: function addToCart() {var _this3 = this;
-      consoel.log(1212);
       this.$util.throttle( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var data, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
                 data = _this3.getConfirmData();if (
                 data) {_context3.next = 3;break;}return _context3.abrupt("return");case 3:_context3.next = 5;return (

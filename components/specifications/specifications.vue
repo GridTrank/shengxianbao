@@ -7,15 +7,15 @@
 		mode="bottom">
 			<view class="con">
 				<view class="info row">
-					<image :src="img[0]" mode="widthFix"></image>
+					<image :src="selectData.imageUrl" mode="widthFix"></image>
 					<view class="">
-						<text class="f32-c333 mr20">{{info.productName}}</text>
-						<text class="f24-c999 mt10">{{selectPrice.productModel}}</text>
+						<text class="f32-c333 mr20">{{selectData.productName}}</text>
+						<text class="f24-c999 mt10">{{selectData.productModel}}</text>
 					</view>
 				</view>
 				<view class="detail row jc_sb">
 					<text class="f28-c333">结算单位</text>
-					<text class="f28-c999">{{selectPrice.productUnit}}</text>
+					<text class="f28-c999">{{selectData.productUnit}}</text>
 				</view>
 				<view class="detail row jc_sb">
 					<text class="f28-c333">数量</text>
@@ -47,14 +47,7 @@
 <script>
 	export default{
 		props:{
-			pid:'0',//productSkuId
-			info:{
-				type:Object,
-				default:()=>{
-					return {}
-				}
-			},
-			selectPrice:{
+			selectData:{
 				type:Object,
 				default:()=>{
 					return {}
@@ -69,12 +62,7 @@
 				img:''
 			}
 		},
-		watch: {			info(data){				this.img=data.productImageVoList.map(item=>{
-					if(item.main){
-						return item.imageUrl
-					}
-				})
-			}		},
+		watch: {		},
 		methods:{
 			changNum(val){
 				if(val==1 && this.num>1){
@@ -86,7 +74,7 @@
 			// 加入购物车
 			add(){
 				this.$http('api/bmallshoppingcart/addShoppingCart',
-				{buyQuantity:this.num,productSkuId:this.selectPrice.productSkuId,remark:this.remark},
+				{buyQuantity:this.num,productSkuId:this.selectData.productSkuId,remark:this.remark},
 				'post').then(res=>{
 					uni.showToast({
 						title:'添加成功',

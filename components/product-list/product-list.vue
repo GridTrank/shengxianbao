@@ -1,56 +1,48 @@
 <template>
-	<view >
-		<image @click="navTo('/pagesB/ProductDetail/ProductDetail')" class="img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" ></image>
+	<view class="list_wrap">
+		<image 
+		@click="navTo('/pagesB/ProductDetail/ProductDetail?id='+goodInfo.productId)" 
+		class="img" 
+		:src="goodInfo.defaultImage" >
+		</image>
 		<view class="name mt10">{{goodInfo.productName}}</view>
-		<view class="desc  mt10">¥20.00/盒子（一盒约2斤）</view>
-		<view class="label mt10 row">
-			<text class="l1">新品上市</text>
-			<text class="l1">今日特价</text>
+		<!-- <view class="desc  mt10">¥20.00/盒子（一盒约2斤）</view> -->
+		<view class="label mt10 row" v-if="goodInfo.productTag">
+			<text class="l1">{{goodInfo.productTag}}</text>
 		</view>
-		<view class="spec mt10 row">
+		<view class="spec mt10 row" v-if="goodInfo.productModelList.length>1">
 			<text class="s_tit">规格</text>
-			<text class="s_detail">5斤/10斤/15斤</text>
+			<text class="s_detail">{{goodInfo.productModelList.join('/')}}</text>
 		</view>
 		<view class="price row mt20">
 			<view class="p_wrap">
 				<text class="p_detail">
 					<text class="p_left">¥</text>
-					<text class="p_right">10.00<text class="unit">/斤</text> </text>
+					<text class="p_right">{{goodInfo.productSkuList[0].unitPrice}}<text class="unit">/{{goodInfo.productSkuList[0].productUnit}}</text> </text>
 				</text>
 				<view class="sale " v-if="!showMore">
 					满100减10
 				</view>
 			</view>
-			<text class="show_more row" @click="moreHandle">
+			<text class="show_more row" @click="moreHandle" v-if="goodInfo.productSkuList.length>1">
 				{{showMore?'收起':'展开'}} <text class="iconfont " :class="moreIcon"></text>
 			</text>
-			<image @click="addGood" class="add" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/gwc.png" mode="widthFix"></image>
+			<image @click="addGood('')" class="add" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/gwc.png" ></image>
 		</view>
 		<template  v-if="showMore">
-			<view class="price row mt20">
-				<text class="p_detail">
-					<text class="p_left">¥</text>
-					<text class="p_right">10.00<text class="unit">/斤</text> </text>
-				</text>
-				<image class="add" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/gwc.png" mode="widthFix"></image>
+			<view class="price row mt20" v-for="(d,i) in goodInfo.productSkuList" :key="i">
+				<template v-if="i>0">
+					<text class="p_detail">
+						<text class="p_left">¥</text>
+						<text class="p_right">{{d.unitPrice}}<text class="unit">/{{d.productUnit}}</text> </text>
+					</text>
+					<image @click="addGood(d)" class="add" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/gwc.png" ></image>
+				</template>
 			</view>
-			<view class="price row mt20">
-				<text class="p_detail">
-					<text class="p_left">¥</text>
-					<text class="p_right">10.00<text class="unit">/斤</text> </text>
-				</text>
-				<image class="add" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/gwc.png" mode="widthFix"></image>
-			</view>
-			<view class="price row mt20">
-				<text class="p_detail">
-					<text class="p_left">¥</text>
-					<text class="p_right">10.00<text class="unit">/斤</text> </text>
-				</text>
-				<image class="add" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/gwc.png" mode="widthFix"></image>
-			</view>
+			
 		</template>
 		
-		<specifications ref='spec'></specifications>
+		<specifications :selectData="selectData" ref='spec'></specifications>
 	</view>
 </template>
 
@@ -72,6 +64,7 @@
 			return{
 				moreIcon:'icon-zhankai',
 				showMore:false,
+				selectData:{},
 			}
 		},
 		methods:{
@@ -79,8 +72,21 @@
 				this.showMore=!this.showMore
 				this.moreIcon=this.showMore?'icon-shang':'icon-zhankai'
 			},
-			addGood(){
+			addGood(val){
                 if(this.$util.isLogin()){
+					if(val){
+						this.selectData={
+							...val,
+							productName:this.goodInfo.productName,
+							imageUrl:this.goodInfo.defaultImage
+						}
+					}else{
+						this.selectData={
+							...this.goodInfo.productSkuList[0],
+							productName:this.goodInfo.productName,
+							imageUrl:this.goodInfo.defaultImage
+						}
+					}
                     this.$refs.spec.show=true
                 }
 			}
@@ -89,6 +95,9 @@
 </script>
 
 <style scoped lang="scss">
+	.list_wrap{
+		width: 294upx;
+	}
 	.img{
 		width: 250upx;
 		height: 180upx;
@@ -159,6 +168,7 @@
 		}
 		.add{
 			width: 44upx;
+			height: 44upx;
 		}
 	}
 	.sale{

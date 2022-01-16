@@ -96,7 +96,7 @@ var components
 try {
   components = {
     productList: function() {
-      return __webpack_require__.e(/*! import() | components/product-list/product-list */ "components/product-list/product-list").then(__webpack_require__.bind(null, /*! @/components/product-list/product-list.vue */ 625))
+      return __webpack_require__.e(/*! import() | components/product-list/product-list */ "components/product-list/product-list").then(__webpack_require__.bind(null, /*! @/components/product-list/product-list.vue */ 902))
     }
   }
 } catch (e) {

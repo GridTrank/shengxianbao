@@ -23,7 +23,9 @@
 			</view>
 		</view>
 
-		<specifications :pid="infoData.productSkuId" :info="infoData" :selectPrice="selectPrice" ref='spec'>
+		<specifications 
+		:selectData="selectData" 
+		ref='spec'>
 		</specifications>
 		<mix-loading v-if="isLoading" :mask="true"></mix-loading>
 	</view>
@@ -52,7 +54,7 @@
 					return {}
 				}
 			},
-			selectPrice: {
+			selectData: {
 				type: Object,
 				default () {
 					return {}
@@ -89,7 +91,6 @@
 				if (!this.$util.isLogin()) {
 					return;
 				}
-				console.log(this.infoData.used)
 				if (this.infoData.used == 0) {
 					// 加常用
 					const res = await this.$http('api/usedlist/addCusOftenBuy', {

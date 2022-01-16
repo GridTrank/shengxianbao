@@ -99,6 +99,7 @@
 }
 .price .add.data-v-50c82900 {
   width: 44rpx;
+  height: 44rpx;
 }
 .collect.data-v-50c82900 {
   position: absolute;

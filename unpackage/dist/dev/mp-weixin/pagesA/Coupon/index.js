@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uTabs: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 660))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 653))
     }
   }
 } catch (e) {
@@ -153,7 +153,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var CouponList = function CouponList() {__webpack_require__.e(/*! require.ensure | components/coupon-list/coupon-list */ "components/coupon-list/coupon-list").then((function () {return resolve(__webpack_require__(/*! ../../components/coupon-list/coupon-list */ 816));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var CouponList = function CouponList() {__webpack_require__.e(/*! require.ensure | components/coupon-list/coupon-list */ "components/coupon-list/coupon-list").then((function () {return resolve(__webpack_require__(/*! ../../components/coupon-list/coupon-list */ 809));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

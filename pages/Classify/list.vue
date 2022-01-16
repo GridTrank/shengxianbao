@@ -9,9 +9,9 @@
 			<view class="detail">
 				<view class="name ">{{info.productName}}</view>
 				<view class="spec ">
-					<text class="s_detail">5斤/10斤/15斤</text>
+					<text class="s_detail">{{info.productModelList.join('/')}}</text>
 				</view>
-				<view class="label row">
+				<view class="label row" v-if="info.productTag">
 					<text class="l1">新品上市</text>
 					<text class="l1">今日特价</text>
 				</view>
@@ -19,7 +19,7 @@
 					<view class="p_wrap">
 						<view class="p_detail row">
 							<text class="p_left">¥</text>
-							<text class="p_right">{{info.unitPrice}}<text class="unit">/{{info.productUnit}}</text> </text>
+							<text class="p_right">{{info.productSkuList[0].unitPrice}}<text class="unit">/{{info.productSkuList[0].productUnit}}</text> </text>
 						</view>
 						<view class="sale " >
 							满100减10
@@ -39,25 +39,28 @@
 			</view>
 		</view>
 		<view  class="more_list" v-if="showMore">
-		<view class="price row ">
-			<view class="p_detail">
-				<view class="p_wrap ">
-					<text class="circle">4斤</text>
-					<text class="desc">¥10.00/斤（4斤X10）</text>
-					<view class="p_detail row">
-						<text class="p_left">¥</text>
-						<text class="p_right">10.00<text class="unit">/斤</text> </text>
-					</view>
-					<view class="sale " >
-						满100减10
+			<view class="price row mt10" v-for="(d,i) in info.productSkuList"> 
+				<view class="p_detail">
+					<view class="p_wrap ">
+						<text class="circle">{{d.productModel}}</text>
+						<text class="desc">{{d.productNameAlias}}</text>
+						<view class="p_detail row">
+							<text class="p_left">¥</text>
+							<text class="p_right">{{d.unitPrice}}<text class="unit">/{{d.productUnit}}</text> </text>
+						</view>
+						<view class="sale " >
+							满100减10
+						</view>
 					</view>
 				</view>
-				
+				<image class="add" @click="addGood(d)" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/gwc.png"></image>
 			</view>
-			<image class="add" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/gwc.png" mode="widthFix"></image>
 		</view>
 		
-	</view>
+		<specifications
+		:selectData="selectData" 
+		ref='spec'>
+		</specifications>
 	</view>
 </template>
 
@@ -80,12 +83,23 @@
 			return{
 				moreIcon:'icon-xia',
 				showMore:false,
+				selectData:{}
 			}
 		},
 		methods:{
 			moreHandle(){
 				this.showMore=!this.showMore
 				this.moreIcon=this.showMore?'icon-shang':'icon-xia'
+			},
+			addGood(val){
+			    if(this.$util.isLogin()){
+					this.selectData={
+						...val,
+						productName:this.info.productName,
+						imageUrl:this.info.defaultImage
+					}
+			        this.$refs.spec.show=true
+			    }
 			}
 		}
 	}
@@ -191,6 +205,7 @@
 		}
 		.add{
 			width: 44upx;
+			height: 44upx;
 		}
 	}
 	.collect{

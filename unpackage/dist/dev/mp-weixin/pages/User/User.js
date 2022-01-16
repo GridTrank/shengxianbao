@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var billList = function billList() {__webpack_require__.e(/*! require.ensure | pages/User/billList */ "pages/User/billList").then((function () {return resolve(__webpack_require__(/*! ./billList.vue */ 696));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var myOrder = function myOrder() {__webpack_require__.e(/*! require.ensure | pages/User/myOrder */ "pages/User/myOrder").then((function () {return resolve(__webpack_require__(/*! ./myOrder.vue */ 703));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var toolList = function toolList() {__webpack_require__.e(/*! require.ensure | pages/User/toolList */ "pages/User/toolList").then((function () {return resolve(__webpack_require__(/*! ./toolList.vue */ 710));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var helpCenter = function helpCenter() {__webpack_require__.e(/*! require.ensure | pages/User/helpCenter */ "pages/User/helpCenter").then((function () {return resolve(__webpack_require__(/*! ./helpCenter.vue */ 717));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var billList = function billList() {__webpack_require__.e(/*! require.ensure | pages/User/billList */ "pages/User/billList").then((function () {return resolve(__webpack_require__(/*! ./billList.vue */ 689));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var myOrder = function myOrder() {__webpack_require__.e(/*! require.ensure | pages/User/myOrder */ "pages/User/myOrder").then((function () {return resolve(__webpack_require__(/*! ./myOrder.vue */ 696));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var toolList = function toolList() {__webpack_require__.e(/*! require.ensure | pages/User/toolList */ "pages/User/toolList").then((function () {return resolve(__webpack_require__(/*! ./toolList.vue */ 703));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var helpCenter = function helpCenter() {__webpack_require__.e(/*! require.ensure | pages/User/helpCenter */ "pages/User/helpCenter").then((function () {return resolve(__webpack_require__(/*! ./helpCenter.vue */ 710));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -184,11 +184,12 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     getUserInfo: function getUserInfo() {var _this = this;
       this.$http('api/myOneslft/getMyInfo', '', 'post').then(function (res) {
         _this.userInfo = res;
-        _this.getHelpList();
+        // this.getHelpList()
       });
     },
     getHelpList: function getHelpList() {
       this.$http('api/myOneslft/getHelpList', '', 'post').then(function (res) {
+        console.log(res);
       });
     } } };exports.default = _default;
 

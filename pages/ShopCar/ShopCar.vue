@@ -180,7 +180,7 @@
 				this.statistics()
 			},
 			toDetail(item){
-				this.navTo('/pagesB/ProductDetail/ProductDetail?id='+item.id)
+				this.navTo('/pagesB/ProductDetail/ProductDetail?id='+item.productId+'&skuId='+item.productSkuId)
 			},
 			//减少
 			sub( goodsIndex, goodsnum){

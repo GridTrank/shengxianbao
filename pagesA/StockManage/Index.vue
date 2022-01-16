@@ -12,7 +12,7 @@
 			<view 
 			class="item model-wrap" 
 			v-for="(item,index) in dataList_" 
-			@click="navTo('./Detail?pageType='+pageType)"
+			@click="navTo('./Detail?pageType='+pageType+'&id='+item.id)"
 			:key="index">
 				<view class="top row jc_sb">
                     <template v-if="pageType=='turnover'">
@@ -74,18 +74,28 @@
                     </template>
                     <!-- 其他 -->
                     <template v-else>
-                        <view class="handle_btn h1">
-                        	<text class="iconfont icon-shenhe"></text>审核
-                        </view>
-                        <view class="handle_btn h1" @click.stop="navTo('./Detail?pageType='+pageType+'&showEdit=true')">
-                        	<text class="iconfont icon-bianji"></text>修改
-                        </view>
-                        <view class="handle_btn h2">
-                        	<text class="iconfont icon-shanchu"></text>作废
-                        </view>
-                        <view class="handle_btn h1">
-                        	<text class="iconfont icon-dayin"></text>打印
-                        </view>
+						<template v-if="item.billState===0 || !item.billState">
+							<view class="handle_btn h1">
+								<text class="iconfont icon-shenhe"></text>审核
+							</view>
+							<view class="handle_btn h1" @click.stop="navTo('./Detail?pageType='+pageType+'&showEdit=true')">
+								<text class="iconfont icon-bianji"></text>修改
+							</view>
+							<view class="handle_btn h2">
+								<text class="iconfont icon-shanchu"></text>作废
+							</view>
+							<view class="handle_btn h1" >
+								<text class="iconfont icon-dayin"></text>打印
+							</view>
+						</template>
+						<template v-else-if="item.billState==1">
+							<view class="handle_btn h1">
+								<text class="iconfont icon-shenhe"></text>反审核
+							</view>
+							<view class="handle_btn h1" >
+								<text class="iconfont icon-dayin"></text>打印
+							</view>
+						</template>
                     </template>
 				</view>
 			</view>

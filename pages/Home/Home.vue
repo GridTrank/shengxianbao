@@ -26,7 +26,7 @@
 			<module1 :list="typeList"></module1>
 			<module2 :list="recommendList"></module2>
 			<module3 :list="specialList"></module3>
-			<view class="guess mt30">
+			<view class="guess mt30" v-if="false">
 				<view class="guess_top row">
 					<text class="top_line left"></text>
 					<text class="top_txt">猜您喜欢</text>
@@ -35,12 +35,12 @@
 				<view class="product_list ">
 					<view class="detail left_list">
 						<view class="list column mt20" v-for="(item,index) in 3" :key="index">
-							<product-list></product-list>
+							<!-- <product-list></product-list> -->
 						</view>
 					</view>
 					<view class="detail right_list">
 						<view class="list column mt20" v-for="(item,index) in 3" :key="index">
-							<product-list></product-list>
+							<!-- <product-list></product-list> -->
 						</view>
 					</view>
 				</view>

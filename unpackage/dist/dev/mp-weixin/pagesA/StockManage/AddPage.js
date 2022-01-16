@@ -96,16 +96,16 @@ var components
 try {
   components = {
     uInput: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-input/u-input.vue */ 741))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-input/u-input.vue */ 734))
     },
     detailList: function() {
-      return __webpack_require__.e(/*! import() | components/detail-list/detail-list */ "components/detail-list/detail-list").then(__webpack_require__.bind(null, /*! @/components/detail-list/detail-list.vue */ 884))
+      return __webpack_require__.e(/*! import() | components/detail-list/detail-list */ "components/detail-list/detail-list").then(__webpack_require__.bind(null, /*! @/components/detail-list/detail-list.vue */ 877))
     },
     jPicker: function() {
-      return __webpack_require__.e(/*! import() | components/jPicker/jPicker */ "components/jPicker/jPicker").then(__webpack_require__.bind(null, /*! @/components/jPicker/jPicker.vue */ 764))
+      return __webpack_require__.e(/*! import() | components/jPicker/jPicker */ "components/jPicker/jPicker").then(__webpack_require__.bind(null, /*! @/components/jPicker/jPicker.vue */ 757))
     },
     itmisterDatePicker: function() {
-      return __webpack_require__.e(/*! import() | components/itmister-date-picker/itmister-date-picker */ "components/itmister-date-picker/itmister-date-picker").then(__webpack_require__.bind(null, /*! @/components/itmister-date-picker/itmister-date-picker.nvue */ 891))
+      return __webpack_require__.e(/*! import() | components/itmister-date-picker/itmister-date-picker */ "components/itmister-date-picker/itmister-date-picker").then(__webpack_require__.bind(null, /*! @/components/itmister-date-picker/itmister-date-picker.nvue */ 884))
     }
   }
 } catch (e) {

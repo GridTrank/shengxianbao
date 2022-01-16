@@ -96,7 +96,7 @@ var components
 try {
   components = {
     detailList: function() {
-      return __webpack_require__.e(/*! import() | components/detail-list/detail-list */ "components/detail-list/detail-list").then(__webpack_require__.bind(null, /*! @/components/detail-list/detail-list.vue */ 884))
+      return __webpack_require__.e(/*! import() | components/detail-list/detail-list */ "components/detail-list/detail-list").then(__webpack_require__.bind(null, /*! @/components/detail-list/detail-list.vue */ 877))
     }
   }
 } catch (e) {
@@ -162,7 +162,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} //
 //
 //
 //
@@ -313,7 +313,10 @@ var _default =
     return {
       pageType: '',
       pageTxt: '',
-      showEdit: false };
+      showEdit: false,
+      pageUrl: '',
+      id: '',
+      pageDetail: {} };
 
   },
   onLoad: function onLoad(e) {
@@ -330,6 +333,7 @@ var _default =
     } else if (e.pageType == 'frmLoss') {
       barTitle = '报损单详情';
       this.pageTxt = '报损';
+      this.pageUrl = 'api/Loss/fingdOne';
     } else if (e.pageType == 'overflow') {
       barTitle = '报溢单详情';
       this.pageTxt = '报溢';
@@ -343,6 +347,7 @@ var _default =
       barTitle = '周转框详情';
       this.pageTxt = '周转';
     }
+    this.id = e.id;
     if (e.showEdit) {
       this.showEdit = true;
     }
@@ -350,15 +355,31 @@ var _default =
     uni.setNavigationBarTitle({
       title: barTitle });
 
+    this.getDetail();
 
   },
   methods: {
-    submit: function submit(val) {
+    getDetail: function getDetail() {var _this = this;
+      this.$http(this.pageUrl, { id: this.id }).then(function (res) {
+        _this.pageDetail = res.data;
+      });
+    },
+    submit: function submit(val) {var _this2 = this;
+      console.log(val);
+      var con = '',url = '',data = {};
+      if (val === 1) {
+        con = '库存即将调整，请确认操作';
+        url = 'api/Loss/update';
+      }
       uni.showModal({
         title: '提示',
-        content: '内容',
+        content: con,
         success: function success(res) {
-          console.log(res);
+          if (res.confirm) {
+            _this2.$http(url, _objectSpread({}, _this2.pageDetail), 'put').then(function (res) {
+              _this2.showEdit = false;
+            });
+          }
         } });
 
     } } };exports.default = _default;

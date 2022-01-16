@@ -96,10 +96,10 @@ var components
 try {
   components = {
     searchComprehensive: function() {
-      return __webpack_require__.e(/*! import() | components/search-comprehensive/search-comprehensive */ "components/search-comprehensive/search-comprehensive").then(__webpack_require__.bind(null, /*! @/components/search-comprehensive/search-comprehensive.vue */ 855))
+      return __webpack_require__.e(/*! import() | components/search-comprehensive/search-comprehensive */ "components/search-comprehensive/search-comprehensive").then(__webpack_require__.bind(null, /*! @/components/search-comprehensive/search-comprehensive.vue */ 848))
     },
     detailList: function() {
-      return __webpack_require__.e(/*! import() | components/detail-list/detail-list */ "components/detail-list/detail-list").then(__webpack_require__.bind(null, /*! @/components/detail-list/detail-list.vue */ 884))
+      return __webpack_require__.e(/*! import() | components/detail-list/detail-list */ "components/detail-list/detail-list").then(__webpack_require__.bind(null, /*! @/components/detail-list/detail-list.vue */ 877))
     }
   }
 } catch (e) {
@@ -218,9 +218,13 @@ var _default =
       this.pageTxt = '报价';
     }
     this.pageType = e.pageType;
-
+    this.getProductList();
   },
   methods: {
+    getProductList: function getProductList() {
+      this.queryUrl = 'api/pms/productcategory/getProductList';
+      this.getList();
+    },
     searchInput: function searchInput(value) {
       console.log('搜索', value);
     },

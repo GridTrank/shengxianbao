@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uInput: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-input/u-input.vue */ 741))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-input/u-input.vue */ 734))
     }
   }
 } catch (e) {
@@ -153,7 +153,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var historyList = function historyList() {__webpack_require__.e(/*! require.ensure | pagesB/Search/histotyList */ "pagesB/Search/histotyList").then((function () {return resolve(__webpack_require__(/*! ./histotyList.vue */ 948));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var list = function list() {__webpack_require__.e(/*! require.ensure | pages/Classify/list */ "pages/Classify/list").then((function () {return resolve(__webpack_require__(/*! @/pages/Classify/list.vue */ 682));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var historyList = function historyList() {__webpack_require__.e(/*! require.ensure | pagesB/Search/histotyList */ "pagesB/Search/histotyList").then((function () {return resolve(__webpack_require__(/*! ./histotyList.vue */ 948));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var list = function list() {__webpack_require__.e(/*! require.ensure | pages/Classify/list */ "pages/Classify/list").then((function () {return resolve(__webpack_require__(/*! @/pages/Classify/list.vue */ 675));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

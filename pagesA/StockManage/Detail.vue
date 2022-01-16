@@ -149,7 +149,10 @@
 			return {
 				pageType:'',
 				pageTxt:'',
-				showEdit:false
+				showEdit:false,
+				pageUrl:'',
+				id:'',
+				pageDetail:{}
 			};
 		},
 		onLoad(e) {
@@ -166,6 +169,7 @@
 			}else if(e.pageType=='frmLoss'){
 				barTitle='报损单详情'
 				this.pageTxt='报损'
+				this.pageUrl='api/Loss/fingdOne'
 			}else if(e.pageType=='overflow'){
 				barTitle='报溢单详情'
 				this.pageTxt='报溢'
@@ -179,6 +183,7 @@
 				barTitle='周转框详情'
 				this.pageTxt='周转'
 			}
+			this.id=e.id
 			if(e.showEdit){
 				this.showEdit=true
 			}
@@ -186,15 +191,31 @@
 			uni.setNavigationBarTitle({
 				title:barTitle
 			})
+			this.getDetail()
 			
 		},
 		methods:{
+			getDetail(){
+				this.$http(this.pageUrl,{id:this.id}).then(res=>{
+					this.pageDetail=res.data
+				})
+			},
 			submit(val){
+				console.log(val)
+				let con='',url='',data={}
+				if(val===1){
+					con='库存即将调整，请确认操作'
+					url='api/Loss/update'
+				}
 				uni.showModal({
 					title:'提示',
-					content:'内容',
+					content:con,
 					success:(res)=> {
-						console.log(res)
+						if(res.confirm){
+							this.$http(url,{...this.pageDetail},'put').then(res=>{
+								this.showEdit=false
+							})
+						}
 					}
 				})
 			}

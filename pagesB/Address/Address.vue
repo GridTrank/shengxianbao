@@ -11,11 +11,11 @@
 		        <view class="item" @click="confirmAddress(item)">
 		        	<view class="user_info row">
 		        		<text v-if="index===0" class="moren">[默认]</text>
-						<text class="name">姓名</text>
-						<text class="phone">12345678911</text>
+						<text class="name">{{item.accepter}}</text>
+						<text class="phone">{{item.telephone}}</text>
 		        	</view>
 					<view class="address mt20">
-						江苏省 相城区 苏州市 江苏省相城区漕湖花园
+						{{item.addrDetails}}
 					</view>
 		        </view>
 		    </u-swipe-action-item>
@@ -53,11 +53,14 @@
 		},
 		methods:{
 			getData(){
-				this.queryUrl='api/oms/pageList'
-				this.getList()
-				console.log(this.dataList)
+				this.queryUrl='api/myOneslft/getCustomerAddrList'
+				this.getList().then(res=>{
+					console.log(res)
+				})
 			},
 			selectAddress(e){
+				console.log(e)
+				return
 				if(e.index==1){
 					uni.showModal({
 						title:'提示',
@@ -69,7 +72,7 @@
 						}
 					})
 				}else{
-					this.navTo('./AddressDetail?pageType=edit')
+					this.navTo('./AddressDetail?pageType=edit&')
 				}
 			},
 			confirmAddress(e){

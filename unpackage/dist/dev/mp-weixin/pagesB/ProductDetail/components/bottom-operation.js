@@ -80,7 +80,7 @@ var components
 try {
   components = {
     specifications: function() {
-      return __webpack_require__.e(/*! import() | components/specifications/specifications */ "components/specifications/specifications").then(__webpack_require__.bind(null, /*! @/components/specifications/specifications.vue */ 955))
+      return __webpack_require__.e(/*! import() | components/specifications/specifications */ "components/specifications/specifications").then(__webpack_require__.bind(null, /*! @/components/specifications/specifications.vue */ 963))
     }
   }
 } catch (e) {
@@ -167,6 +167,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /**
  * 商品详情页 底部操作菜单
@@ -190,7 +193,7 @@ __webpack_require__.r(__webpack_exports__);
         return {};
       } },
 
-    selectPrice: {
+    selectData: {
       type: Object,
       default: function _default() {
         return {};
@@ -204,43 +207,50 @@ __webpack_require__.r(__webpack_exports__);
 
   methods: {
     //收藏
-    changeFav: function changeFav() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res, data;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (
-                _this.$util.isLogin()) {_context.next = 2;break;}return _context.abrupt("return");case 2:_context.next = 4;return (
+    changeFav: function changeFav() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var favorite, res, data;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (
+                _this.$util.isLogin()) {_context.next = 2;break;}return _context.abrupt("return");case 2:
 
 
+                favorite = Number(_this.infoData.favorite);_context.next = 5;return (
                   _this.$http('api/favorite/saveFavorite', {
-                    favoriteType: 0,
-                    productSkuId: _this.infoData.productSkuId }));case 4:res = _context.sent;
+                    favoriteType: !favorite,
+                    productSkuId: _this.infoData.productSkuId }));case 5:res = _context.sent;
 
                 data = res.data;
-                _this.$util.msg('收藏成功');case 7:case "end":return _context.stop();}}}, _callee);}))();
+                if (favorite) {
+                  _this.infoData.favorite = 0;
+                  _this.$util.msg('取消收藏成功');
+                } else {
+                  _this.infoData.favorite = 1;
+                  _this.$util.msg('收藏成功');
+                }case 8:case "end":return _context.stop();}}}, _callee);}))();
     },
     // 加常用
     addCusOftenBuy: function addCusOftenBuy() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res, _res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:if (
-                _this2.$util.isLogin()) {_context2.next = 2;break;}return _context2.abrupt("return");case 2:if (
+                _this2.$util.isLogin()) {_context2.next = 2;break;}return _context2.abrupt("return");case 2:if (!(
 
 
-                _this2.infoData.cusOften) {_context2.next = 9;break;}_context2.next = 5;return (
+                _this2.infoData.used == 0)) {_context2.next = 10;break;}_context2.next = 5;return (
 
                   _this2.$http('api/usedlist/addCusOftenBuy', {
                     buyQuantity: 1,
                     productSkuId: _this2.infoData.productSkuId || 7 },
                   'post'));case 5:res = _context2.sent;
-
+                _this2.infoData.used = 1;
                 uni.showToast({
                   title: '添加成功',
-                  icon: 'none' });_context2.next = 13;break;case 9:_context2.next = 11;return (
+                  icon: 'none' });_context2.next = 15;break;case 10:_context2.next = 12;return (
 
 
 
                   _this2.$http('api/usedlist/removeCusOftenBuy', {
                     buyQuantity: 1,
                     productSkuId: _this2.infoData.productSkuId || 7 },
-                  'post'));case 11:_res = _context2.sent;
-
+                  'post'));case 12:_res = _context2.sent;
+                _this2.infoData.used = 0;
                 uni.showToast({
                   title: '移除成功',
-                  icon: 'none' });case 13:case "end":return _context2.stop();}}}, _callee2);}))();
+                  icon: 'none' });case 15:case "end":return _context2.stop();}}}, _callee2);}))();
 
 
 

@@ -60,9 +60,13 @@
                 this.pageTxt='报价'
             }
 			this.pageType=e.pageType
-			
+			this.getProductList()
 		},
 		methods: {
+			getProductList(){
+				this.queryUrl='api/pms/productcategory/getProductList'
+				this.getList()
+			},
             searchInput(value){
                 console.log('搜索',value)
             },
