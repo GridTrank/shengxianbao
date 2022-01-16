@@ -1,27 +1,33 @@
 <template>
 	<view class="page_wrap">
-		<u-swipe-action class="mt20">
-		    <u-swipe-action-item 
-			v-for="(item,index) in dataList"
-			:key="index"
-			:name="index"
-			:show='false'
-			@click="selectAddress" 
-			:options="options2">
-		        <view class="item" @click="confirmAddress(item)">
-		        	<view class="user_info row">
-		        		<text v-if="index===0" class="moren">[默认]</text>
-						<text class="name">{{item.accepter}}</text>
-						<text class="phone">{{item.telephone}}</text>
-		        	</view>
-					<view class="address mt20">
-						{{item.addrDetails}}
+		<view class="address_wrap pt20">
+			<view class="item" @click="confirmAddress" v-for="(item,index) in dataList" :key="index">
+				<u-cell-group :border="false">
+					<u-cell title="收件人" :border="false" :isLink="true" :value="item.accepter">
+					</u-cell>
+					<u-cell title="联系人" :border="false" :value="item.telephone">
+					</u-cell>
+					<u-cell :title-width="100" title="地址" :border="false" :value="item.addrDetails">
+					</u-cell>
+				</u-cell-group>
+
+				<view class="tool_wrap">
+					<view class="tool jc_sb row">
+						<text class="moren">
+							<block v-if="index===0">[默认]</block>
+						</text>
+						<view class="row">
+							<view class="row mr20" @click="edit(item.id)">
+								<u-icon name="edit-pen" color="#FD4D00" size="24"></u-icon>编辑
+							</view>
+							<view class="row" @click="del(item.id)">
+								<u-icon name="trash" color="#FD4D00" size="24"></u-icon>删除
+							</view>
+						</view>
 					</view>
-		        </view>
-		    </u-swipe-action-item>
-			
-		</u-swipe-action>
-		
+				</view>
+			</view>
+		</view>
 		<view class="btn_default" @click="navTo('./AddressDetail?pageType=add')">
 			+ 新增地址
 		</view>
@@ -32,51 +38,42 @@
 	export default {
 		data() {
 			return {
-				options2: [{
-				    text: '编辑',
-				    style: {
-				        backgroundColor: '#FDCE00'
-				    }
-				}, {
-				    text: '删除',
-				    style: {
-				        backgroundColor: '#FD4D00'
-				    }
-				}],
-				pageType:''
-				
+
+				pageType: ''
+
 			};
 		},
 		onLoad(e) {
-			this.pageType=e.pageType
+			this.pageType = e.pageType
 			this.getData()
 		},
-		methods:{
-			getData(){
-				this.queryUrl='api/myOneslft/getCustomerAddrList'
-				this.getList().then(res=>{
+		methods: {
+			getData() {
+				this.queryUrl = 'api/myOneslft/getCustomerAddrList'
+				this.getList().then(res => {
 					console.log(res)
 				})
 			},
-			selectAddress(e){
-				console.log(e)
-				return
-				if(e.index==1){
-					uni.showModal({
-						title:'提示',
-						content:'确定要删除吗？',
-						success: (res) => {
-							if(res.confirm){
-								uni.$u.toast('删除成功')
-							}
+			del(id) {
+				uni.showModal({
+					title: '提示',
+					content: '确定要删除吗？',
+					success: (res) => {
+						if (res.confirm) {
+							this.$http('api/myOneslft/deleteCustomerAdd',{ids:[id]},'DELETE'),then(res=>{
+								uni.$u.toast('删除成功');
+								this.getData()
+							})
+							
 						}
-					})
-				}else{
-					this.navTo('./AddressDetail?pageType=edit&')
-				}
+					}
+				})
 			},
-			confirmAddress(e){
-				if(this.pageType=='confirmOrder'){
+			edit(id) {
+				this.navTo('./AddressDetail?pageType=edit&id=' + id)
+			},
+			confirmAddress(e) {
+				if (this.pageType == 'confirmOrder') {
 					console.log(123)
 				}
 			}
@@ -85,43 +82,37 @@
 </script>
 
 <style scoped lang="scss">
-.page_wrap{
-	/deep/ .u-swipe-action-item__content{
-		transition: transform 300ms ease 0s;
-		transform: translateX(0px);
-	}
-	padding-bottom: 240upx;
-	.item{
-		padding:30upx;
-		border-bottom: 1px solid #eee;
-		.user_info{
-			.moren{
-				color:$base-color;
-				font-size:24upx;
-				margin-right: 20upx;
-			}
-			.name{
-				color: #333;
-				font-size: 32upx;
-				
-			}
-			.phone{
-				margin-left: 20upx;
-				color: #aaa;
-				font-size: 28upx;
-			}
+	.page_wrap {
+		/deep/ .u-swipe-action-item__content {
+			transition: transform 300ms ease 0s;
+			transform: translateX(0px);
 		}
-		.address{
-			color: #333;
-			font-size: 28upx;
-		}
-	}
-	.btn_default{
-		width: 93%;
-		position: fixed;
-		bottom: 40upx;
-		left: 3.5%;
-	}
 
-}
+		padding-bottom: 240upx;
+
+		.item {
+			margin-bottom: 30upx;
+			background-color: #fff;
+
+			.tool_wrap {
+				padding: 0 30upx;
+
+				.tool {
+					padding: 20upx 0;
+					border-top: 1px solid #eee;
+					color: #FD4D00;
+					font-size: 24upx;
+				}
+			}
+
+		}
+
+		.btn_default {
+			width: 93%;
+			position: fixed;
+			bottom: 40upx;
+			left: 3.5%;
+		}
+
+	}
 </style>
