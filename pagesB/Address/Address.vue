@@ -60,7 +60,7 @@
 					content: '确定要删除吗？',
 					success: (res) => {
 						if (res.confirm) {
-							this.$http('api/myOneslft/deleteCustomerAdd',{ids:[id]},'DELETE'),then(res=>{
+							this.$http('api/myOneslft/deleteCustomerAdd',{ids:[id]},'DELETE').then(res=>{
 								uni.$u.toast('删除成功');
 								this.getData()
 							})

@@ -80,10 +80,13 @@
 			},
 			login() {
 				this.$refs.form.validate().then(res => {
-					this.$http('api/myOneslft/updateCustomerAddr', {
-						dto: this.model
-					}, 'POST').then(res => {
-						console.log(res);
+					var url = 'api/myOneslft/addCustomerAddr';
+					var data = {dto: this.model};
+					if(this.pageType=='edit'){
+						url = 'api/myOneslft/updateCustomerAddr'
+						data.id = this.$route.query.id;
+					}
+					this.$http(url,data, 'POST').then(res => {
 						uni.showToast({
 							title:'保存成功',
 							icon:'none'
