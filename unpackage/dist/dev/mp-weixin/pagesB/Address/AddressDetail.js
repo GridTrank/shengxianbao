@@ -101,11 +101,17 @@ try {
     uFormItem: function() {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-form-item/u-form-item.vue */ 726))
     },
-    uInput: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-input/u-input.vue */ 734))
+    "u-Input": function() {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--input/u--input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--input/u--input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--input/u--input.vue */ 824))
     },
     uSwitch: function() {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-switch/u-switch */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-switch/u-switch")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-switch/u-switch.vue */ 776))
+    },
+    uPopup: function() {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-popup/u-popup.vue */ 855))
+    },
+    sempCity: function() {
+      return Promise.all(/*! import() | components/semp-city/semp-city */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/semp-city/semp-city")]).then(__webpack_require__.bind(null, /*! @/components/semp-city/semp-city.vue */ 1216))
     }
   }
 } catch (e) {
@@ -129,6 +135,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function($event) {
+      _vm.showCity = false
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -206,38 +217,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
     return {
       isAgree: false,
-      model: {},
-      rules: {},
+      area: '请选择',
+      model: {
+        accepter: '',
+        telephone: '',
+        addrDetails: '' },
+
+      showCity: false,
+      rules: {
+        accepter: {
+          type: 'string',
+          required: true,
+          message: '请填写客户名称',
+          trigger: ['blur', 'change'] },
+
+        telephone: {
+          type: 'string',
+          required: true,
+          max: 11,
+          message: '请填写联系电话',
+          trigger: ['blur', 'change'] },
+
+        area: {
+          type: 'string',
+          required: true,
+          max: 11,
+          message: '请选择地区',
+          trigger: ['blur', 'change'] },
+
+        addrDetails: {
+          type: 'string',
+          required: true,
+          message: '请填写详细地址',
+          trigger: ['blur', 'change'] } },
 
 
-      tags: ['家', '父母家', '公司'],
       selectTagIndex: 0,
       isDefault: true,
       address: {} };
@@ -245,19 +264,37 @@ var _default =
   },
 
   methods: {
+    getData: function getData() {
+
+    },
     agreeHandle: function agreeHandle() {
       this.isAgree = !this.isAgree;
     },
-    login: function login() {
+    add: function add() {var _this = this;
       this.$refs.form.validate().then(function (res) {
-        uni.$u.toast('校验通过');
+        _this.$http('api/myOneslft/updateCustomerAddr', {
+          dto: _this.model },
+        'POST').then(function (res) {
+          console.log(res);
+          uni.showToast({
+            title: '保存成功',
+            icon: 'none' });
+
+          _this.navTo('back');
+        });
       }).catch(function (errors) {
 
       });
     },
-    //选择地址回调
+    // 选择地址
+    onCityClick: function onCityClick(e) {
+      console.log(e);
+      this.showCity = false;
+    },
+    //详细地址输入回调
     setAddress: function setAddress(e) {
-      this.address = e;
+      console.log(e);
+      // this.model.addrDetails = e
     },
     selectTag: function selectTag(index) {
       this.selectTagIndex = index;

@@ -15,26 +15,17 @@
           transform: translateX(0px);
 }
 .page_wrap .item.data-v-346c2c96 {
-  padding: 30rpx;
-  border-bottom: 1px solid #eee;
+  margin-bottom: 30rpx;
+  background-color: #fff;
 }
-.page_wrap .item .user_info .moren.data-v-346c2c96 {
-  color: #FE5B07;
+.page_wrap .item .tool_wrap.data-v-346c2c96 {
+  padding: 0 30rpx;
+}
+.page_wrap .item .tool_wrap .tool.data-v-346c2c96 {
+  padding: 20rpx 0;
+  border-top: 1px solid #eee;
+  color: #FD4D00;
   font-size: 24rpx;
-  margin-right: 20rpx;
-}
-.page_wrap .item .user_info .name.data-v-346c2c96 {
-  color: #333;
-  font-size: 32rpx;
-}
-.page_wrap .item .user_info .phone.data-v-346c2c96 {
-  margin-left: 20rpx;
-  color: #aaa;
-  font-size: 28rpx;
-}
-.page_wrap .item .address.data-v-346c2c96 {
-  color: #333;
-  font-size: 28rpx;
 }
 .page_wrap .btn_default.data-v-346c2c96 {
   width: 93%;

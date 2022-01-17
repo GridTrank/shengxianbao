@@ -80,7 +80,7 @@ var components
 try {
   components = {
     changeNum: function() {
-      return __webpack_require__.e(/*! import() | components/change-num/change-num */ "components/change-num/change-num").then(__webpack_require__.bind(null, /*! @/components/change-num/change-num.vue */ 1043))
+      return __webpack_require__.e(/*! import() | components/change-num/change-num */ "components/change-num/change-num").then(__webpack_require__.bind(null, /*! @/components/change-num/change-num.vue */ 1033))
     }
   }
 } catch (e) {

@@ -95,11 +95,14 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uSwipeAction: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-swipe-action/u-swipe-action */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-swipe-action/u-swipe-action")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-swipe-action/u-swipe-action.vue */ 909))
+    uCellGroup: function() {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-cell-group/u-cell-group */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-cell-group/u-cell-group")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-cell-group/u-cell-group.vue */ 909))
     },
-    uSwipeActionItem: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-swipe-action-item/u-swipe-action-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-swipe-action-item/u-swipe-action-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-swipe-action-item/u-swipe-action-item.vue */ 915))
+    uCell: function() {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-cell/u-cell */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-cell/u-cell")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-cell/u-cell.vue */ 816))
+    },
+    uIcon: function() {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 829))
     }
   }
 } catch (e) {
@@ -186,20 +189,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
-      options2: [{
-        text: '编辑',
-        style: {
-          backgroundColor: '#FDCE00' } },
-
-      {
-        text: '删除',
-        style: {
-          backgroundColor: '#FD4D00' } }],
-
 
       pageType: '' };
 
@@ -216,22 +215,23 @@ var _default =
         console.log(res);
       });
     },
-    selectAddress: function selectAddress(e) {
-      console.log(e);
-      return;
-      if (e.index == 1) {
-        uni.showModal({
-          title: '提示',
-          content: '确定要删除吗？',
-          success: function success(res) {
-            if (res.confirm) {
+    del: function del(id) {var _this = this;
+      uni.showModal({
+        title: '提示',
+        content: '确定要删除吗？',
+        success: function success(res) {
+          if (res.confirm) {
+            _this.$http('api/myOneslft/deleteCustomerAdd', { ids: [id] }, 'DELETE'), then(function (res) {
               uni.$u.toast('删除成功');
-            }
-          } });
+              _this.getData();
+            });
 
-      } else {
-        this.navTo('./AddressDetail?pageType=edit&');
-      }
+          }
+        } });
+
+    },
+    edit: function edit(id) {
+      this.navTo('./AddressDetail?pageType=edit&id=' + id);
     },
     confirmAddress: function confirmAddress(e) {
       if (this.pageType == 'confirmOrder') {

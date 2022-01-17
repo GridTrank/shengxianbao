@@ -2,7 +2,8 @@
   "navigationBarTitleText": "地址管理",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "u-swipe-action": "/uni_modules/uview-ui/components/u-swipe-action/u-swipe-action",
-    "u-swipe-action-item": "/uni_modules/uview-ui/components/u-swipe-action-item/u-swipe-action-item"
+    "u-cell-group": "/uni_modules/uview-ui/components/u-cell-group/u-cell-group",
+    "u-cell": "/uni_modules/uview-ui/components/u-cell/u-cell",
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon"
   }
 }

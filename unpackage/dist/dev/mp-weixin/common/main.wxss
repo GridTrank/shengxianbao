@@ -115,6 +115,9 @@ page{
 .mr30{
     margin-right: 30rpx;
 }
+.pt20{
+	padding-top: 20rpx;
+}
 .pd40-region{
 	padding:0 40rpx 20rpx 40rpx;
 }

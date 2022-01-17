@@ -261,7 +261,6 @@ var _mapCtx = null;var _default =
                                                                                                                                          	this.$util.msg('请补充详细地址');
                                                                                                                                          	return;
                                                                                                                                          } */
-      console.log(this.$util.prePage());
       this.$util.prePage().setAddress(Object.assign({}, {
         ad_info: ad_info, address: address, location: location, title: title, room: room }));
 

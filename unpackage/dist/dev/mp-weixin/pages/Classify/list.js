@@ -80,7 +80,7 @@ var components
 try {
   components = {
     specifications: function() {
-      return __webpack_require__.e(/*! import() | components/specifications/specifications */ "components/specifications/specifications").then(__webpack_require__.bind(null, /*! @/components/specifications/specifications.vue */ 963))
+      return __webpack_require__.e(/*! import() | components/specifications/specifications */ "components/specifications/specifications").then(__webpack_require__.bind(null, /*! @/components/specifications/specifications.vue */ 953))
     }
   }
 } catch (e) {

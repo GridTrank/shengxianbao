@@ -5,7 +5,7 @@
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
 .page_wrap.data-v-68019a07 {
-  min-height: calc( 100vh - 74px);
+  min-height: calc(100vh - 74px);
 }
 .page_wrap .input_wrap.data-v-68019a07 .u-input {
   padding: 30rpx 0 !important;
@@ -13,24 +13,42 @@
 .page_wrap .input_wrap.data-v-68019a07 .u-form-item__body {
   padding: 0;
 }
-.page_wrap .input_wrap.data-v-68019a07 .u-form-item__body__right__message {
-  margin: 0 !important;
+.page_wrap .input_wrap.data-v-68019a07 .u-form-item__body__left {
+  flex-shrink: 0;
 }
-.page_wrap .input_wrap .input_item.data-v-68019a07 {
+.page_wrap .input_wrap.data-v-68019a07 .u-form-item {
   background-color: #fff;
-  padding: 10rpx 30rpx;
+  padding: 0 30rpx;
 }
-.page_wrap .input_wrap .input_item .label.data-v-68019a07 {
+.page_wrap .input_wrap .icon.data-v-68019a07 {
+  flex-shrink: 0;
+  width: 28rpx;
+  height: 28rpx;
+}
+.page_wrap .input_wrap .address.data-v-68019a07 {
+  flex-shrink: 0;
+}
+.page_wrap .input_wrap .address.data-v-68019a07 .icon {
+  width: 34rpx;
+  height: 46rpx;
+}
+.page_wrap .input_wrap .switch.data-v-68019a07 {
+  width: 100%;
+  padding: 30rpx 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.page_wrap .input_wrap .label.data-v-68019a07 {
   color: #333;
   font-size: 28rpx;
   width: 200rpx;
 }
-.page_wrap .input_wrap .input_item .cen.data-v-68019a07 {
+.page_wrap .input_wrap .cen.data-v-68019a07 {
   color: #c0c4cc;
   font-size: 30rpx;
   width: 440rpx;
 }
-.page_wrap .input_wrap .input_item .list .item.data-v-68019a07 {
+.page_wrap .input_wrap .list .item.data-v-68019a07 {
   width: 86rpx;
   height: 38rpx;
   line-height: 38rpx;
@@ -41,18 +59,23 @@
   border: 1px solid #aaa;
   margin-right: 20rpx;
 }
-.page_wrap .input_wrap .input_item .list .select_tag.data-v-68019a07 {
+.page_wrap .input_wrap .list .select_tag.data-v-68019a07 {
   border-color: #FE5B07;
   color: #FE5B07;
 }
-.page_wrap .input_wrap .input_item .moren.data-v-68019a07 {
+.page_wrap .input_wrap .moren.data-v-68019a07 {
   justify-content: space-between;
   font-size: 28rpx;
   color: #333;
 }
-.page_wrap .input_wrap .input_item .m_s.data-v-68019a07 {
+.page_wrap .input_wrap .m_s.data-v-68019a07 {
   color: #aaa;
   font-size: 24rpx;
+}
+.page_wrap .input_wrap .se_add.data-v-68019a07 {
+  padding: 30rpx 0;
+  color: #999;
+  font-size: 30rpx;
 }
 .page_wrap .input_wrap .c_view.data-v-68019a07 {
   height: 108rpx;

@@ -365,11 +365,16 @@ var _default =
       });
     },
     submit: function submit(val) {var _this2 = this;
-      console.log(val);
       var con = '',url = '',data = {};
       if (val === 1) {
         con = '库存即将调整，请确认操作';
         url = 'api/Loss/update';
+      } else if (val === 2) {
+        con = '您正在作废单据，请确认操作';
+        url = 'api/Loss/auditOrInvalid';
+      } else {
+        con = '您正在审核单据，请确认操作';
+        url = 'api/Loss/auditOrInvalid';
       }
       uni.showModal({
         title: '提示',
