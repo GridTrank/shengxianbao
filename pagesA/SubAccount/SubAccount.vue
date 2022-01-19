@@ -30,7 +30,7 @@
 					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/edit.png" mode="widthFix"></image>
 					<text>编辑</text>
 				</view>
-				<view class="btn row">
+				<view class="btn row" @click="disable(item)">
 					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/shanchu.png" mode="widthFix"></image>
 					<text>禁用</text>
 				</view>
@@ -60,7 +60,35 @@
 			this.getList()
 		},
 		methods:{
-			
+			disable(item){
+				if(!item.enabled){
+					uni.showToast({
+						title:'该账号已禁用',
+						icon:'none'
+					})
+					return
+				}
+				
+				this.$http('api/account/findOne',{id:item.id}).then(res=>{
+					let data={
+						accountName:res.accountName,
+						accountTag:res.accountTag,
+						accountPasword:res.accountPasword,
+						mobile:res.mobile,
+						enabled:'0',
+						showPrice:res.showPrice,
+						id:res.id
+					}
+					this.$http('api/account/update',data,'put').then(res=>{
+						uni.showToast({
+							title:'已禁用',
+							icon:'none'
+						})
+						item.enabled='0'
+					})
+				})
+				
+			}
 		},
 		
 	}

@@ -158,7 +158,6 @@
 					let url=this.pageType=='edit'?'api/account/update':'api/account/insert'
 					let method=this.pageType=='edit'?'put':'post'
 					this.$http(url,data,method).then(res=>{
-						console.log(1)
 						uni.showToast({
 							title:this.pageType=='edit'?'修改成功':'添加成功',
 							icon:'none'

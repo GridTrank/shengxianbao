@@ -16,6 +16,9 @@ export const request = (url,data,method,cacheName,time)=>{
 				return;
 			}
 		}
+		uni.showLoading({
+			title:'加载中...'
+		})
 		uni.request({
 			url:baseUrl+url,
 			data:data,
@@ -25,6 +28,7 @@ export const request = (url,data,method,cacheName,time)=>{
 			},
 			method: method || 'GET',
 			success: (res) => {
+				uni.hideLoading()
 				if (Number(res.data.code) === 0) {
 					resolve(res.data.data)
 				} else if (Number(res.data.code) === 10021 || Number(res.data.code) === 10020) {
