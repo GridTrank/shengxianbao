@@ -1,38 +1,38 @@
 <template>
 	<view class="page_wrap">
-		<view class="list mt20 " v-for="(data,index) in 2 " :key="index">
+		<view class="list mt20 " v-for="(item,index) in dataList " :key="index">
 			<view class="item row ">
 				<view class="left ">
 					账号名称
 				</view>
 				<view class="right row">
-					<text class="label">12345678911</text>
+					<text class="label">{{item.accountName}}</text>
 				</view>
 			</view>
 			<view class="item row">
 				<view class="left ">
-					联系人
+					账户别名
 				</view>
 				<view class="right row">
-					<text class="label">可修改密码</text>
+					<text class="label">{{item.accountTag}}</text>
 				</view>
 			</view>
 			<view class="item row" >
 				<view class="left ">
-					联系电话
+					联系方式
 				</view>
 				<view class="right row">
-					<text class="label">可修改密码</text>
+					<text class="label">{{item.mobile}}</text>
 				</view>
 			</view>
 			<view class="btn_wrap row">
-				<view class="btn edit row">
+				<view class="btn edit row" @click="navTo('./AddOrEdit?pageType=edit&id='+item.id)">
 					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/edit.png" mode="widthFix"></image>
 					<text>编辑</text>
 				</view>
 				<view class="btn row">
 					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/shanchu.png" mode="widthFix"></image>
-					<text>删除</text>
+					<text>禁用</text>
 				</view>
 			</view>
 		</view>
@@ -53,6 +53,11 @@
 		},
 		onLoad(e) {
 			
+		},
+		onShow() {
+			this.dataList=[]
+			this.queryUrl='api/account/pageList'
+			this.getList()
 		},
 		methods:{
 			

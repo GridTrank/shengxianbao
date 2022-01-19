@@ -91,6 +91,12 @@
 
 <style scoped lang="scss">
 	.spec_wrap{
+		/deep/ .u-popup{
+			.u-transition{
+				z-index: 99998;
+			}
+		}
+		
 		.con{
 			padding: 30upx;
 			.info{

@@ -135,7 +135,7 @@
 						// #ifdef H5
 						"navigationStyle": "custom",
 						// #endif
-						"navigationBarTitleText": "添加子账号",
+						"navigationBarTitleText": "子账号",
 						"enablePullDownRefresh": false
 					}
 				}, {

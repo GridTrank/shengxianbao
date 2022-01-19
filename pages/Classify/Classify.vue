@@ -20,16 +20,18 @@
 		</view>
 
 		<view class="second_list row">
-			<scroll-view class="left_list" scroll-y="true">
+			<view class="left_list" scroll-y="true">
+				<!-- childList -->
 				<view class="left_item row" @click="selectChild(item,index)" v-for="(item,index) in childList"
 					:key="index" :class="selectChildIndex==index && 'select_child' ">
 					<image class="rexiao_img" v-if="selectChildIndex==index"
 						src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/reixao%402x.png">
 					</image>
+					<!-- <text>23123</text> -->
 					<text>{{item.categoryName}}</text>
 
 				</view>
-			</scroll-view>
+			</view>
 			
 			<template v-if="isEmpty">
 				<view class="right_list">
@@ -79,23 +81,47 @@
 				parentListPop: false,
 				selectAllIndex: 0,
 				isEmpty: true,
+				showId:'',
 			};
 		},
 		onLoad() {
 			
 		},
 		onShow(){
+			this.showId=uni.getStorageSync('classId')
 			this.dataList=[]
 			this.getCateList()
+		},
+		onHide() {
+			uni.removeStorageSync('classId')
 		},
 		methods: {
 			getCateList() {
 				this.$http('api/pms/productcategory/getCategoryPidList').then(res => {
-					this.getCateListById(res[0].id)
 					res.forEach(item => {
 						item.name = item.categoryName
 					})
 					this.parentList = res
+					if(this.showId){
+						let index=this.parentList.findIndex((item)=>{
+							return item.id==this.showId
+						}) || 0
+						let data={
+							index:index,
+							id:this.showId
+						}
+						this.selectParent(data)
+						setTimeout(()=>{
+							this.$refs.uTbas.current=index
+							this.$refs.uTbas.resize()
+						},500)
+					}else{
+						this.getCateListById(res[0].id)
+						setTimeout(()=>{
+							this.$refs.uTbas.current=0
+							this.$refs.uTbas.resize()
+						},500)
+					}
 				})
 			},
 			getCateListById(id) {
@@ -113,13 +139,12 @@
 							this.isEmpty = false
 						}
 					})
-					
 				})
 			},
-			selectParent(e, index) {
-				this.selectParentIndex = e.index
+			selectParent(e) {
 				this.selectAllIndex = e.index
 				this.dataList=[]
+				uni.setStorageSync('classId', e.id)
 				this.getCateListById(e.id)
 			},
 			selectChild(item, index) {
@@ -133,6 +158,7 @@
 				this.$refs.uTbas.current=index
 				this.$refs.uTbas.setLineLeft()
 				this.dataList=[]
+				uni.setStorageSync('classId', item.id)
 				this.getCateListById(item.id)
 				this.parentListPop=false
 			}
@@ -169,6 +195,7 @@
 			.left_list {
 				width: 25%;
 				text-align: center;
+				overflow-y: scroll;
 				.left_item {
 					padding: 40upx 0;
 					justify-content: center;

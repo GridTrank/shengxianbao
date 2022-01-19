@@ -37,6 +37,7 @@
             <view class="img_wrap row mt20">
                 <image 
 				v-for="(img,i) in detail.fileList"
+				:key="i"
                 class="img"
                 @click="prevImg"
                 :src="img" mode=""></image>

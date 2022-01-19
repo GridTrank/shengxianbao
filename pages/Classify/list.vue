@@ -39,7 +39,7 @@
 			</view>
 		</view>
 		<view  class="more_list" v-if="showMore">
-			<view class="price row mt10" v-for="(d,i) in info.productSkuList"> 
+			<view class="price row mt10" v-for="(d,i) in info.productSkuList" :key="i"> 
 				<view class="p_detail">
 					<view class="p_wrap ">
 						<text class="circle">{{d.productModel}}</text>

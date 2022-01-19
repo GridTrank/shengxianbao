@@ -125,6 +125,12 @@
           "pathName": "pagesB/Address/AddressDetail",
           "query": "pageType=add",
           "scene": null
+        },
+        {
+          "name": "子账号",
+          "pathName": "pagesA/SubAccount/SubAccount",
+          "query": "",
+          "scene": null
         }
       ]
     }

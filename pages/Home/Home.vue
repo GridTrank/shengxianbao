@@ -26,23 +26,19 @@
 			<module1 :list="typeList"></module1>
 			<module2 :list="recommendList"></module2>
 			<module3 :list="specialList"></module3>
-			<view class="guess mt30" v-if="false">
+			<view class="guess mt30">
 				<view class="guess_top row">
 					<text class="top_line left"></text>
 					<text class="top_txt">猜您喜欢</text>
 					<text class="top_line right"></text>
 				</view>
-				<view class="product_list ">
-					<view class="detail left_list">
-						<view class="list column mt20" v-for="(item,index) in 3" :key="index">
-							<!-- <product-list></product-list> -->
+				<view class="product_list jc_sb">
+					<view class="detail left_list" v-for="(arr,ai) in likeList" :key="ai">
+						<view class="list column mt20" v-for="(item,index) in arr" :key="index">
+							<product-list :goodInfo="item"></product-list>
 						</view>
 					</view>
-					<view class="detail right_list">
-						<view class="list column mt20" v-for="(item,index) in 3" :key="index">
-							<!-- <product-list></product-list> -->
-						</view>
-					</view>
+					
 				</view>
 			</view>
 		</view>
@@ -65,6 +61,7 @@
                 specialList:[],
                 recommendList:[],
                 noticeList:[],
+				likeList:[],
 				pageType:'Home'
 			}
 		},
@@ -121,9 +118,19 @@
                 })
             },
 			// 猜你喜欢
-			getLike(){
+			async getLike(){
 				this.queryUrl='api/myOneslft/getFavoriteProductPage'
-				this.getList()
+				let data= await this.getList()
+				let arr1=[]
+				let arr2=[]
+				data.forEach((el,index)=>{
+					if((index+1)%2==1){
+						arr1.push(el)
+					}else{
+						arr2.push(el)
+					}
+				})
+				this.likeList=[arr1,arr2]
 			},
         }
         

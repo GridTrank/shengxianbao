@@ -122,9 +122,19 @@
 <style scoped lang="scss">
 	.page_wrap {
 		min-height: calc(100vh - 74px);
-
+		/deep/ .u-form-item{
+			background-color: #fff;
+			padding: 0 30upx;
+			.address{
+				.icon {
+					/* #ifdef MP*/
+					width: 28upx;
+					height: 36upx;
+					/* #endif */
+				}
+			}
+		}
 		.input_wrap {
-
 			/deep/ .u-input {
 				padding: 30upx 0 !important;
 			}
@@ -145,10 +155,6 @@
 			/deep/ .u-form-item__body__right__message {
 				margin: 0 !important;
 			}
-
-			.form_wrap {
-				background-color: #fff;
-				padding: 0upx 30upx;
 				.icon {
 					flex-shrink: 0;
 					width: 28upx;
@@ -176,7 +182,6 @@
 					font-size: 30upx;
 					width: 440upx;
 				}
-
 				.list {
 					.item {
 						width: 86upx;
@@ -206,9 +211,6 @@
 					color: #aaa;
 					font-size: 24upx;
 				}
-
-			}
-
 			.c_view {
 				height: 108upx;
 				position: relative;

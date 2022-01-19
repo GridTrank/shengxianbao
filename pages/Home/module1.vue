@@ -1,6 +1,8 @@
 <template>
 	<view class="list row model-wrap mt30">
-		<view class="item column mt30" v-for="(item,index) in list" :key="index">
+		<view class="item column mt30" 
+		@click="toClass(item)"
+		v-for="(item,index) in list" :key="index">
 			<image class="img" :src="item.categoryImage" ></image>
 			<text class="name mt10">{{item.categoryName }}</text>
 		</view>
@@ -20,6 +22,12 @@
 		data(){
 			return{
 				
+			}
+		},
+		methods:{
+			toClass(item){
+				uni.setStorageSync('classId','12')
+				this.navTo('/pages/Classify/Classify','switch')
 			}
 		}
 	}

@@ -32,6 +32,7 @@
 .page_wrap .second_list .left_list {
   width: 25%;
   text-align: center;
+  overflow-y: scroll;
 }
 .page_wrap .second_list .left_list .left_item {
   padding: 40rpx 0;

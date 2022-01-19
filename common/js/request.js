@@ -16,7 +16,6 @@ export const request = (url,data,method,cacheName,time)=>{
 				return;
 			}
 		}
-		
 		uni.request({
 			url:baseUrl+url,
 			data:data,

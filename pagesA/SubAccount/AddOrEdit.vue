@@ -1,37 +1,37 @@
 <template>
 	<view class="page_wrap">
 		<view class="input_wrap mt20">
-			<u--form ref='form' :model="model" :rules="rules" >
-				<u-form-item prop="account">
+			<u-form ref='form' :model="model" :rules="rules" >
+				<u-form-item prop="accountName">
 					<view class="input_item">
-						<u-input max placeholder='请输入子账号名称' border='bottom' v-model="model.account">
+						<u-input max placeholder='请输入子账号名称' border='bottom' v-model="model.accountName">
 							<template slot="prefix">
 								<text class=" f28-c333">子账号 <text class="xing">*</text> </text>
 							</template>
 						</u-input>
 					</view>
 				</u-form-item>
-				<u-form-item prop="name">
+				<u-form-item prop="accountTag">
 					<view class="input_item ">
-						<u-input  placeholder='请输入联系人' border='bottom' v-model="model.name">
+						<u-input  placeholder='请输入账号别名' border='bottom' v-model="model.accountTag">
 							<template slot="prefix">
-								<text class=" f28-c333">联系人 <text class="xing">*</text></text>
+								<text class=" f28-c333">账号别名 <text class="xing">*</text></text>
 							</template>
 						</u-input>
 					</view>
 				</u-form-item>
-				<u-form-item prop="phone">
+				<u-form-item prop="mobile">
 					<view class="input_item ">
-						<u-input  placeholder='请输入手机' border='bottom' v-model="model.phone">
+						<u-input  placeholder='请输入手机' border='bottom' v-model="model.mobile">
 							<template slot="prefix">
 								<text class=" f28-c333">手机 <text class="xing">*</text></text>
 							</template>
 						</u-input>
 					</view>
 				</u-form-item>
-				<u-form-item prop="password">
+				<u-form-item prop="accountPasword">
 					<view class="input_item ">
-						<u-input  placeholder='请输入密码' border='bottom' v-model="model.password">
+						<u-input  placeholder='请输入密码' border='bottom' v-model="model.accountPasword">
 							<template slot="prefix">
 								<text class=" f28-c333">密码 <text class="xing">*</text></text>
 							</template>
@@ -42,20 +42,20 @@
 				<u-form-item >
 					<view class="input_item row jc_sb status">
 						<text>账号状态</text>
-						<u-switch activeColor="#FF6C00" size="16" v-model="isDefault" @change="changeDefault"></u-switch>
+						<u-switch activeColor="#FF6C00" size="16" v-model="model.enabled"  @change="changeDefault1"></u-switch>
 					</view>
 				</u-form-item>
-			</u--form>
+			</u-form>
 		</view>
 		<view class="power">
 			<view class="title">子账号权限</view>
 			<view class="row jc_sb">
 				<text class="f28-c333">显示商品价格</text>
-				<u-switch activeColor="#FF6C00" size="16" v-model="isDefault" @change="changeDefault"></u-switch>
+				<u-switch activeColor="#FF6C00" size="16" v-model="model.showPrice" @change="changeDefault2"></u-switch>
 			</view>
 		</view>
-		<view :class="['btn',(model.account && model.name && model.phone && model.password) && 'can']" @click="submit">
-			<text>{{(model.account && model.name && model.phone && model.password)?'保存':'取消'}}</text>
+		<view :class="['btn',(model.accountName && model.accountTag && model.mobile && model.accountPasword) && 'can']" @click="submit">
+			<text>保存</text>
 		</view>
 	</view>
 </template>
@@ -67,47 +67,106 @@
 			return {
 				tips:'',
 				canClick:false,
-				model:{},
+				model:{
+					accountName:'',
+					mobile:'',
+					accountPasword:'',
+					accountTag:'',
+					enabled:true,
+					showPrice:true
+				},
 				isDefault:true,
 				rules:{
-					account:[
+					accountName:[
 						{required:true,message:'请输入子账户名称',trigger:'blur'}
 					],
-					phone:[
-						{required:true,validator:this.phoneRule,trigger:'blur'}
+					mobile:[
+						{
+							required: true,
+							message: '请输入手机号',
+							trigger: ['change', 'blur'],
+						},
+						{
+							validator: (rule, value, callback) => {
+								return this.$u.test.mobile(value);
+							},
+							message: '手机号码不正确',
+							trigger: ['change', 'blur'],
+						}
 					],
-					password:[
-						{required:true,validator:this.passWordRule,trigger:'blur'}
-					],
-					name:[
-						{required:true,message:'请输入联系人姓名',trigger:'blur'}
+					accountPasword: [{
+							required: true,
+							message: '请输入密码',
+							trigger: 'blur'
+					}],
+					accountTag:[
+						{required:true,message:'请输入账号别名',trigger:'blur'}
 					]
 				},
-				isAgree:false
+				pageType:'',
+				detail:{},
+				id:''
 			};
 		},
 		watch:{
 			
 		},
+		onLoad(e) {
+			this.pageType=e.pageType
+			this.id=e.id
+			if(e.pageType=='edit'){
+				this.getDetail(e.id)
+			}
+		},
+		onReady() {
+		    this.$refs.form.setRules(this.rules);
+		},
 		methods:{
-			phoneRule(rule,value,cb){
-				if(!value || !checkStr(value, 'mobile')){
-					cb(new Error('请输入正确的手机号码'))
-				}
-				cb()
+			getDetail(id){
+				this.$http('api/account/findOne',{id}).then(res=>{
+					this.detail= JSON.parse(JSON.stringify(res))
+					res.enabled=res.enabled>0?true:false
+					res.showPrice=res.showPrice>0?true:false
+					res.accountPasword='****************'
+					this.model=res
+				})
 			},
-			passWordRule(rule,value,cb){
-				if(!value || !checkStr(value, 'pwd')){
-					cb(new Error('密码为8-16位，须包含数字、字母、符号'))
-				}
-				cb()
+			changeDefault1(e){
+				console.log(e)
+				this.model.enabled=e
 			},
-			changeDefault(e){
-				this.isDefault=e
+			changeDefault2(e){
+				this.model.showPrice=e
 			},
 			submit(){
 				this.$refs.form.validate().then(res => {
-					console.log(this.model)
+					let model=this.model
+					let detail=this.detail
+					let data={
+						accountName:model.accountName,
+						accountTag:model.accountTag,
+						mobile:model.mobile,
+						enabled:model.enabled?'1':'0',
+						showPrice:model.showPrice?'1':'0',
+					}
+					if(this.pageType=='edit'){
+						data.id=detail.id
+						data.accountPasword=detail.accountPasword
+					}else{
+						data.accountPasword=model.accountPasword
+					}
+					let url=this.pageType=='edit'?'api/account/update':'api/account/insert'
+					let method=this.pageType=='edit'?'put':'post'
+					this.$http(url,data,method).then(res=>{
+						console.log(1)
+						uni.showToast({
+							title:this.pageType=='edit'?'修改成功':'添加成功',
+							icon:'none'
+						})
+						setTimeout(()=>{
+							this.navTo('back')
+						},1500)
+					})
 				}).catch(errors => {
 					
 				})
