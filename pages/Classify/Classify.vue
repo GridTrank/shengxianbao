@@ -103,14 +103,14 @@
 					if(this.showId){
 						let index=this.parentList.findIndex((item)=>{
 							return item.id==this.showId
-						}) || 0
+						})
 						let data={
-							index:index,
+							index:index>=0?index:0,
 							id:this.showId
 						}
 						this.selectParent(data)
 						setTimeout(()=>{
-							this.$refs.uTbas.current=index
+							this.$refs.uTbas.current=index>=0?index:0
 							this.$refs.uTbas.resize()
 						},500)
 					}else{

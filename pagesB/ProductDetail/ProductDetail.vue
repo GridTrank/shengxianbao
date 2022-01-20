@@ -135,10 +135,10 @@
 				data.images=data.productImageVoList
 				let index=data.productSkuList.findIndex((item)=>{
 					return item.productSkuId==this.skuId
-				}) || 0
-				this.specActive=index
+				})
+				this.specActive=index>=0?index:0
 				this.selectData={
-					...data.productSkuList[index],
+					...data.productSkuList[index>=0?index:0],
 					productName:data.productName,
 					imageUrl:data.productImageVoList[0].imageUrl
 				}
