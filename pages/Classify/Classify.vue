@@ -21,15 +21,12 @@
 
 		<view class="second_list row">
 			<view class="left_list" scroll-y="true">
-				<!-- childList -->
 				<view class="left_item row" @click="selectChild(item,index)" v-for="(item,index) in childList"
 					:key="index" :class="selectChildIndex==index && 'select_child' ">
 					<image class="rexiao_img" v-if="selectChildIndex==index"
 						src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/reixao%402x.png">
 					</image>
-					<!-- <text>23123</text> -->
 					<text>{{item.categoryName}}</text>
-
 				</view>
 			</view>
 			
@@ -39,11 +36,11 @@
 				</view>
 			</template>
 			<template v-else>
-				<scroll-view scroll-y="true" class="right_list">
+				<view class="right_list">
 					<view  class="list  mt20" v-for="(item,index) in dataList" :key="index">
 						<list :info="item"></list>
 					</view>
-				</scroll-view>
+				</view>
 			</template>
 		</view>
 		<view class="all_list_wrap" v-if="parentListPop" @click="parentListPop=false">
@@ -95,6 +92,7 @@
 		onHide() {
 			uni.removeStorageSync('classId')
 		},
+		
 		methods: {
 			getCateList() {
 				this.$http('api/pms/productcategory/getCategoryPidList').then(res => {
@@ -131,6 +129,9 @@
 					this.childList = res
 					this.queryData.productCategoryId=res[0].id
 					this.queryUrl = 'api/pms/productcategory/productPriceByProductSkuId'
+					uni.showLoading({
+						title:'加载中...'
+					})
 					this.getList().then(res=>{
 						this.dataList=res
 						if (res.length == 0) {
@@ -228,7 +229,7 @@
 			.right_list {
 				width: 75%;
 				background-color: #fff;
-
+				overflow-y: scroll;
 				.list {
 					padding-bottom: 30upx;
 				}

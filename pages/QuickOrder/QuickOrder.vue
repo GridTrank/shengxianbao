@@ -18,18 +18,18 @@
 			</view>
 		</view>
 		<view class="second_list">
-			<scroll-view class="left_list" scroll-y="true">
+			<view class="left_list" >
 				<view class="left_item row" @click="selectChild(item.id)" v-for="(item,index) in tabInfo" :key="index"
 					:class="selectChildIndex==item.id && 'select_child' ">
 					<text>{{item.name}}</text>
 				</view>
-			</scroll-view>
+			</view>
 			<template v-if="dataList.length>0">
-				<scroll-view scroll-y="true" class="right_list">
+				<view  class="right_list">
 					<view  class="list  mt20" v-for="(item,index) in dataList" :key="index">
 						<list></list>
 					</view>
-				</scroll-view>
+				</view>
 			</template>
 			<template v-else>
 				<view class="right_list">
@@ -195,7 +195,7 @@
 			.left_list {
 				width: 25%;
 				text-align: center;
-
+				overflow-y: scroll;
 				.left_item {
 					padding: 40upx 0;
 					justify-content: center;
@@ -231,7 +231,7 @@
 			.right_list {
 				width: 75%;
 				background-color: #fff;
-
+				overflow-y: scroll;
 				.list {
 					padding-bottom: 30upx;
 				}

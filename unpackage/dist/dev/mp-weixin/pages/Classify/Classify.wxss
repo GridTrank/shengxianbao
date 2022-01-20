@@ -65,6 +65,7 @@
 .page_wrap .second_list .right_list {
   width: 75%;
   background-color: #fff;
+  overflow-y: scroll;
 }
 .page_wrap .second_list .right_list .list {
   padding-bottom: 30rpx;

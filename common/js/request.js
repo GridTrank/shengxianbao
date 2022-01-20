@@ -16,9 +16,7 @@ export const request = (url,data,method,cacheName,time)=>{
 				return;
 			}
 		}
-		uni.showLoading({
-			title:'加载中...'
-		})
+		
 		uni.request({
 			url:baseUrl+url,
 			data:data,
