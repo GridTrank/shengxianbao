@@ -6,12 +6,14 @@
 			:showScreen='true'
             @searchInput="searchInput"
             @selectFilter="selectFilter"
+			:showClassify="true"
 			>
 			</search-comprehensive>
 		</view>
 		
 		<detail-list 
 		:pageType='pageType' 
+		:datas="pageList"
 		:pageTxt="pageTxt"
 		nowParentPage='SelectGoopd'
 		:showEdit="showEdit">
@@ -20,6 +22,7 @@
 </template>
 
 <script>
+	import {mapState,mapMutations} from 'vuex'
 	export default {
 		name: "commonCar",
 		data() {
@@ -33,6 +36,7 @@
 				goodsIndex:'',
 				pageType:'',
 				pageTxt:'',
+				pageList:[]
 			}
 		},
 		onLoad(e) {
@@ -62,10 +66,19 @@
 			this.pageType=e.pageType
 			this.getProductList()
 		},
+		computed:{
+			...mapState(['$StockManageInfo'])
+		},
 		methods: {
+			...mapMutations(['SET_STOCK_MANAGE_INFO']),
 			getProductList(){
 				this.queryUrl='api/pms/productcategory/getProductList'
-				this.getList()
+				this.getList().then(res=>{
+					res.forEach(el=>{
+						el.checked=1
+					})
+					this.pageList=res
+				})
 			},
             searchInput(value){
                 console.log('搜索',value)

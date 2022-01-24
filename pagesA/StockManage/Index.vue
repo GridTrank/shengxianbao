@@ -4,102 +4,106 @@
 		<search-comprehensive
 		placeholder='搜索单号'
 		:showScreen='true'
+		:pageType="pageType"
+		:showStock="true"
+		:showDate="true"
+		@selectFilter="selectFilter"
 		></search-comprehensive>
 		
 		<template v-if="dataList_.length>0">
-			
-		<view class="list">
-			<view 
-			class="item model-wrap" 
-			v-for="(item,index) in dataList_" 
-			@click="navTo('./Detail?pageType='+pageType+'&id='+item.id)"
-			:key="index">
-				<view class="top row jc_sb">
-                    <template v-if="pageType=='turnover'">
-                        <text class="f28-c333">好运邻里</text>
-                        <text class="status">待归还</text>
-                    </template>
-                    <template v-else>
-                        <view class="no f28-c333" @click.stop="checkedHandle(item)">	
-                            <template v-if="pageType!=='offer'">
-                                <text v-if="item.checked==2" class="iconfont icon-xuanze"></text>
-                                <text v-else class="iconfont icon-weixuanze"></text>
-                            </template>
-                            {{item.lossCode}}
-                        </view>
-                        <view class="status">
-                            {{item.billState===1?'已审核':item.billState===-1?'已作废':'待审核'}}
-                        </view>
-                    </template>
-				</view>
-				<view class="detail"> 
-                    <!-- 周转 -->
-                    <template v-if="pageType=='turnover'">
-                        <view class="row jc_sb mt20">
-                            <view >
-                                <text class="t1 f28-c999 ">单号</text>
-                                <text class="t2 f28-c333 ml30">1231  </text>
-                            </view>
-                            
-                            <text class="t3 f24-c999">收到：123</text>
-                        </view>
-                        <view class="row jc_sb mt30">
-                            <view class="">
-                                <text class="t1 f28-c999">数量</text>
-                                <text class="t2 ml30 f28-c333">1231</text>
-                                <text class="t2-1 ml30 f28-dc ">¥2000.29</text>
-                            </view>
-                            
-                            <text class="t3 f24-c999">归还：123</text>
-                        </view>
-                    </template>
-                    
-                    <!-- 其他 -->
-                    <template v-else>
-                        <view class="label bg_style1">{{item.warehouseName}}</view>
-                        <view class="row jc_sb mt30">
-                        	<text class="date f28-c333">{{item.lossDate | date_('Y-m-d H:i')}}</text>
-                        	<text class="price">¥{{item.lossAmount}}</text>
-                        </view>
-                    </template>
-				</view>
-                
-                <!-- 操作选项 -->
-				<view class="handle_wrap row">
-                    <!-- 周转筐 -->
-                    <template v-if="pageType=='turnover'">
-                        <view class="handle_btn bg_style2">
-                        	归还
-                        </view>
-                    </template>
-                    <!-- 其他 -->
-                    <template v-else>
-						<template v-if="item.billState===0 || !item.billState">
-							<view class="handle_btn h1">
-								<text class="iconfont icon-shenhe"></text>审核
+			<view class="list">
+				<view 
+				class="item model-wrap" 
+				v-for="(item,index) in dataList_" 
+				@click="navTo('./Detail?pageType='+pageType+'&id='+item.id)"
+				:key="index">
+					<view class="top row jc_sb">
+						<template v-if="pageType=='turnover'">
+							<text class="f28-c333">好运邻里</text>
+							<text class="status">待归还</text>
+						</template>
+						<template v-else>
+							<view class="no f28-c333" @click.stop="checkedHandle(item)">	
+								<template v-if="pageType!=='offer'">
+									<text v-if="item.checked==2" class="iconfont icon-xuanze"></text>
+									<text v-else class="iconfont icon-weixuanze"></text>
+								</template>
+								{{item.lossCode || item.outputCode || item.inputCode}}
 							</view>
-							<view class="handle_btn h1" @click.stop="navTo('./Detail?pageType='+pageType+'&showEdit=true')">
-								<text class="iconfont icon-bianji"></text>修改
-							</view>
-							<view class="handle_btn h2">
-								<text class="iconfont icon-shanchu"></text>作废
-							</view>
-							<view class="handle_btn h1" >
-								<text class="iconfont icon-dayin"></text>打印
+							<view class="status" :class="item.billState==-1?'die':''">
+								{{item.billState==1?'已审核':item.billState==-1?'已作废':'待审核'}}
 							</view>
 						</template>
-						<template v-else-if="item.billState==1">
-							<view class="handle_btn h1">
-								<text class="iconfont icon-shenhe"></text>反审核
+					</view>
+					<view class="detail"> 
+						<!-- 周转 -->
+						<template v-if="pageType=='turnover'">
+							<view class="row jc_sb mt20">
+								<view >
+									<text class="t1 f28-c999 ">单号</text>
+									<text class="t2 f28-c333 ml30">1231  </text>
+								</view>
+								
+								<text class="t3 f24-c999">收到：123</text>
 							</view>
-							<view class="handle_btn h1" >
-								<text class="iconfont icon-dayin"></text>打印
+							<view class="row jc_sb mt30">
+								<view class="">
+									<text class="t1 f28-c999">数量</text>
+									<text class="t2 ml30 f28-c333">1231</text>
+									<text class="t2-1 ml30 f28-dc ">¥2000.29</text>
+								</view>
+								
+								<text class="t3 f24-c999">归还：123</text>
 							</view>
 						</template>
-                    </template>
+						
+						<!-- 其他 -->
+						<template v-else>
+							<view class="label bg_style1">{{item.warehouseName}}</view>
+							<view class="row jc_sb mt30">
+								<text class="date f28-c333">
+									{{item.lossDate | date_('Y-m-d H:i') || item.outputDate || item.inputDate}}
+								</text>
+								<text class="price">
+									¥{{item.lossAmount || item.outputAmount || item.inputAmount}}
+								</text>
+							</view>
+						</template>
+					</view>
+					
+					<!-- 操作选项 -->
+					<view class="handle_wrap row">
+						<!-- 周转筐 -->
+						<template v-if="pageType=='turnover'">
+							<view class="handle_btn bg_style2">
+								归还
+							</view>
+						</template>
+						<!-- 其他 -->
+						<template v-else>
+							<template v-if="item.billState==='0' || !item.billState">
+								<view class="handle_btn h1" @click.stop="submit(item,2)">
+									<text class="iconfont icon-shenhe"></text>审核
+								</view>
+								<view class="handle_btn h1" @click.stop="navTo('./Detail?pageType='+pageType+'&showEdit=true&id='+item.id)">
+									<text class="iconfont icon-bianji"></text>修改
+								</view>
+								<view class="handle_btn h2" @click.stop="submit(item,1)">
+									<text class="iconfont icon-shanchu"></text>作废
+								</view>
+							</template>
+							<template v-else-if="item.billState==1">
+								<view class="handle_btn h1" @click.stop="submit(item,3)">
+									<text class="iconfont icon-shenhe"></text>反审核
+								</view>
+								<view class="handle_btn h1" >
+									<text class="iconfont icon-dayin"></text>打印
+								</view>
+							</template>
+						</template>
+					</view>
 				</view>
 			</view>
-		</view>
 		</template>
 		
 		<template v-else>
@@ -117,8 +121,8 @@
                 	<view class="right">{{total}}</view>
                 </view>
                 <view class="btns">
-                	<text class="btn left">作废</text>
-                	<text class="btn right">审核</text>
+                	<text class="btn left" @click="submit({},1)">作废</text>
+                	<text class="btn right" @click="submit({},2)">审核</text>
                 </view>
             </view>
         </template>
@@ -161,9 +165,11 @@
 			if(e.pageType=='out'){
 				barTitle='出库单'
 				this.pageTxt='出库'
+				this.queryUrl='api/outputBill/pageList'
 			}else if(e.pageType=='in'){
 				barTitle='入库单'
 				this.pageTxt='入库'
+				this.queryUrl='api/inputBill/pageList'
 			}else if(e.pageType=='inventory'){
 				barTitle='盘点单'
 				this.pageTxt='盘点'
@@ -201,14 +207,20 @@
 			uni.setNavigationBarTitle({
 				title:barTitle
 			})
-			this.initData()
 			
+		},
+		onShow() {
+			this.dataList=[]
+			this.initData()
 		},
 		computed:{
 			
 		},
 		methods:{
 			async initData(){
+				uni.showLoading({
+					title:'加载中'
+				})
 				let list= await this.getList()
 				list.forEach(el=>{
 					el.checked=1
@@ -217,23 +229,21 @@
 				this.initList=JSON.parse(JSON.stringify(this.dataList_))
 			},
 			tab(item){
-				let list=this.initList
+				let billState=''
 				if(item.value==1){
-					this.dataList_=list.filter(el=>{
-						return !el.billState || el.billState===0
-					})
-				}else if(item.value===2){
-					this.dataList_=list.filter(el=>{
-						return el.billState==1
-					})
-					console.log(this.dataList_,list)
+					billState='0'
+				}else if(item.value==2){
+					billState='1'
 				}else if(item.value==3){
-					this.dataList_=list.filter(el=>{
-						return el.billState==-1
-					})
+					billState='-1'
 				}else{
-					this.dataList_=list
+					billState=''
 				}
+				this.queryData={
+					billState
+				}
+				this.dataList=[]
+				this.initData()
 			},
 			checkedHandle(item){
 				let nums=0
@@ -255,6 +265,148 @@
 					item.checked=val
 				})
 				
+			},
+			// 操作
+			submit(item,val){
+				let con='',url='',data={}
+				if(val==1){
+					con='您正在作废单据，请确认操作'
+					switch(this.pageType){
+						case 'in':
+							url='api/inputBill/updateInvalid'
+							break;
+						case 'out':
+							url='api/outputBill/updateInvalid'
+							break;
+						case 'inventory':
+							url=''
+							break;
+						case 'frmLoss':
+							url='api/Loss/updateInvalid'
+							break;
+						case 'overflow':
+							url=''
+							break;
+						case 'return':
+							url=''
+							break;
+						case 'turnover':
+							url=''
+							break;
+						case 'offer':
+							url=''
+							break;
+						default:
+							url=''
+					}
+					data={
+						id:item.id
+					}
+				}else if(val==2){
+					con='您正在审核单据，请确认操作'
+					switch(this.pageType){
+						case 'in':
+							url='api/inputBill/updateAudit'
+							break;
+						case 'out':
+							url='api/outputBill/updateAudit'
+							break;
+						case 'inventory':
+							url=''
+							break;
+						case 'frmLoss':
+							url='api/Loss/updateAudit'
+							break;
+						case 'overflow':
+							url=''
+							break;
+						case 'return':
+							url=''
+							break;
+						case 'turnover':
+							url=''
+							break;
+						case 'offer':
+							url=''
+							break;
+						default:
+							url=''
+					}
+					data={
+						id:item.id
+					}
+				}else{
+					con='您正在反审核单据，请确认操作'
+					switch(this.pageType){
+						case 'in':
+							url='api/inputBill/updateBackAudit'
+							break;
+						case 'out':
+							url='api/outputBill/updateBackAudit'
+							break;
+						case 'inventory':
+							url=''
+							break;
+						case 'frmLoss':
+							url='api/Loss/updateBackAudit'
+							break;
+						case 'overflow':
+							url=''
+							break;
+						case 'return':
+							url=''
+							break;
+						case 'turnover':
+							url=''
+							break;
+						case 'offer':
+							url=''
+							break;
+						default:
+							url=''
+					}
+					data={
+						id:item.id
+					}
+				}
+				uni.showModal({
+					title:'提示',
+					content:con,
+					success:(res)=> {
+						if(res.confirm){
+							this.$http(url,data,'put').then(res=>{
+								if(val==1){
+									uni.showToast({
+										title:'报废-成功',
+										icon:'none'
+									})
+									item.billState='-1'
+								}else if(val==2){
+									uni.showToast({
+										title:'审核-成功',
+										icon:'none'
+									})
+									item.billState='1'
+								}else{
+									uni.showToast({
+										title:'反审核-成功',
+										icon:'none'
+									})
+									item.billState='0'
+								}
+								this.$forceUpdate()
+							})
+						}
+					}
+				})
+			},
+			// 筛选
+			selectFilter(value){
+				this.queryData={
+					...value
+				}
+				this.dataList=[]
+				this.initData()
 			}
 		}
 	}
@@ -275,13 +427,16 @@
 			background-color: #fff;
 			margin-bottom: 20upx;
 			.top{
-				
+				padding-bottom: 20upx;
+				border-bottom: 1px solid #f1f1f1;
 				.status{
 					font-size: 28upx;
 					color: $base-color;
 				}
-				padding-bottom: 20upx;
-				border-bottom: 1px solid #f1f1f1;
+				.die{
+					color: #666;
+				}
+				
 			}
 			.detail{
 				padding-top: 10upx ;

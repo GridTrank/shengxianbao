@@ -154,27 +154,26 @@ var _default =
   props: {
     index: {
       type: Number,
+      default: 0 },
+
+    num: {
+      type: Number,
       default: 0 } },
 
 
   data: function data() {
-    return {
-      num: 0 };
+    return {};
 
   },
-  watch: {
-    'num': function num(val) {
-      this.$emit('changeNumResult', val, this.index);
-    } },
 
   methods: {
     change: function change(val) {
       if (val == 1) {
         if (this.num > 0) {
-          this.num--;
+          this.$emit('changeNumResult', 'sub', this.index);
         }
       } else {
-        this.num++;
+        this.$emit('changeNumResult', 'add', this.index);
       }
     } } };exports.default = _default;
 

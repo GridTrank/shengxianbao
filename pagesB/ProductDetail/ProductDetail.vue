@@ -127,7 +127,8 @@
 		methods:{
 			async loadData(){
 				const data = await this.$http('api/pms/productcategory/getProductSkuIdInfo', {
-					productId: this.id || 7
+					productId: this.id || 7,
+					productSkuId:this.skuId || ''
 				})
 				data.productImageVoList.forEach(item=>{
 					item.src=item.imageUrl
@@ -146,9 +147,6 @@
 				this.$nextTick(()=>{
 					this.calcAnchor();//计算锚点参数
 				})
-				
-				//添加浏览历史
-				this.addProductHistory();
 			},
 			//加载评价
 			async loadRating(){

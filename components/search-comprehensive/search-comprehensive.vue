@@ -13,7 +13,13 @@
 			</view>
 		</view>
 		<u-popup :show="showFilter" mode="right" @close="showFilter=false">
-			<filter-page @selectFilter="selectFilter"></filter-page>
+			<filter-page 
+			:pageType="pageType"
+			:showStock="showStock"
+			:showDate="showDate"
+			:showClassify="showClassify"
+			@selectFilter="selectFilter">
+			</filter-page>
 		</u-popup>
 	</view>
 </template>
@@ -25,19 +31,40 @@
 				type:String,
 				default:'请输入关键词搜索'
 			},
+			// 显示筛选按钮
 			showScreen:{
 				type:Boolean,
 				default:false
 			},
+			// 显示筛选仓库
+			showStock:{
+				type:Boolean,
+				default:false
+			},
+			// 显示日期
+			showDate:{
+				type:Boolean,
+				default:false
+			},
+			// 显示筛选商品
+			showClassify:{
+				type:Boolean,
+				default:false
+			},
+			// 显示扫描按钮
 			showScan:{
 				type:Boolean,
 				default:true
 			},
+			// 显示输入框
 			showInput:{
 				type:Boolean,
 				default:true
 			},
-			
+			pageType:{
+				type:String,
+				default:''
+			},
 		},
 		data(){
 			return {
@@ -61,6 +88,7 @@
 			},
             selectFilter(value){
                 this.$emit('selectFilter',value)
+				this.showFilter=false
             }
 		}
 	}

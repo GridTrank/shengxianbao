@@ -162,152 +162,167 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 {
   data: function data() {
     return {
@@ -324,6 +339,7 @@ var _default =
     if (e.pageType == 'out') {
       barTitle = '出库单详情';
       this.pageTxt = '出库';
+      this.pageUrl = 'api/outputBill/findInfo';
     } else if (e.pageType == 'in') {
       barTitle = '入库单详情';
       this.pageTxt = '入库';
@@ -358,36 +374,80 @@ var _default =
     this.getDetail();
 
   },
-  methods: {
+  computed: _objectSpread({},
+  (0, _vuex.mapState)(['$StockManageInfo'])),
+
+  methods: _objectSpread(_objectSpread({},
+  (0, _vuex.mapMutations)(['SET_STOCK_MANAGE_INFO'])), {}, {
+    // 获取详情
     getDetail: function getDetail() {var _this = this;
       this.$http(this.pageUrl, { id: this.id }).then(function (res) {
-        _this.pageDetail = res.data;
+        _this.pageDetail = res;
+        _this.SET_STOCK_MANAGE_INFO({ selectData: res.infoInfoVoList });
       });
     },
+    // 添加商品
+    addProduct: function addProduct() {
+      this.navTo('./SelectGood?pageType=' + this.pageType);
+    },
+    // 提交
     submit: function submit(val) {var _this2 = this;
+      // console.log(this.pageDetail)
       var con = '',url = '',data = {};
       if (val === 1) {
         con = '库存即将调整，请确认操作';
         url = 'api/Loss/update';
+        data = this.pageDetail;
       } else if (val === 2) {
         con = '您正在作废单据，请确认操作';
-        url = 'api/Loss/auditOrInvalid';
-      } else {
+        url = 'api/Loss/updateInvalid';
+        data = {
+          id: this.pageDetail.id };
+
+      } else if (val == 3) {
         con = '您正在审核单据，请确认操作';
-        url = 'api/Loss/auditOrInvalid';
+        url = 'api/Loss/updateAudit';
+        data = {
+          id: this.pageDetail.id };
+
+      } else if (val == 4) {
+        con = '您正在反审核单据，请确认操作';
+        url = 'api/Loss/updateBackAudit';
+        data = {
+          id: this.pageDetail.id };
+
       }
       uni.showModal({
         title: '提示',
         content: con,
         success: function success(res) {
           if (res.confirm) {
-            _this2.$http(url, _objectSpread({}, _this2.pageDetail), 'put').then(function (res) {
+            _this2.$http(url, data, 'put').then(function (res) {
               _this2.showEdit = false;
+              if (val == 2) {
+                uni.showToast({
+                  title: '报损-报废-成功',
+                  icon: 'none' });
+
+              } else if (val == 3) {
+                uni.showToast({
+                  title: '报损-审核-成功',
+                  icon: 'none' });
+
+              } else if (val == 4) {
+                uni.showToast({
+                  title: '报损-反审核-成功',
+                  icon: 'none' });
+
+              }
             });
+            setTimeout(function () {
+              _this2.getDetail();
+            }, 1500);
           }
         } });
 
-    } } };exports.default = _default;
+    } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

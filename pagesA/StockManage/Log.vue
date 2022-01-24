@@ -1,17 +1,21 @@
 <template>
     <view class="page_wrap">
-        <view class="list">
+        <view class="list" v-if="list.length>0">
             <view class="item row jc_sa">
                 <text class="f24-c333">操作内容</text>
                 <text class="f24-c333">操作人</text>
                 <text class="f24-c333">创建时间</text>
             </view>
-            <view class="item row jc_sa mt20" v-for="(item,index) in 6" :key="index">
-                <text class="f24-c999">创建订单</text>
-                <text class="f24-c999">姓名</text>
-                <text class="f24-c999">2020-09-12 12:00-10:00</text>
+            <view class="item row jc_sa mt20" v-for="(item,index) in list" :key="index">
+                <text class="f24-c999">{{item.remark}}</text>
+                <text class="f24-c999">{{item.createName}}</text>
+                <text class="f24-c999">{{item.createDate}}</text>
             </view>
         </view>
+		
+		<template v-else>
+			<no-data></no-data>
+		</template>
     </view>
 </template>
 
@@ -19,9 +23,19 @@
     export default{
         data(){
             return{
-                
+                list:[]
             }
-        }
+        },
+		onLoad(e) {
+			this.getData(e.id,e.pageUrl)
+		},
+		methods:{
+			getData(id,url){
+				this.$http(url,{id}).then(res=>{
+					this.list=res.infologList
+				})
+			}
+		}
     }
 </script>
 

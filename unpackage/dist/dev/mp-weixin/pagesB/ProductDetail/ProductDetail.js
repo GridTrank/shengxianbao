@@ -261,7 +261,8 @@ var _anchorList = [];var _default =
   methods: {
     loadData: function loadData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var data, index;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                   _this.$http('api/pms/productcategory/getProductSkuIdInfo', {
-                    productId: _this.id || 7 }));case 2:data = _context.sent;
+                    productId: _this.id || 7,
+                    productSkuId: _this.skuId || '' }));case 2:data = _context.sent;
 
                 data.productImageVoList.forEach(function (item) {
                   item.src = item.imageUrl;
@@ -279,10 +280,7 @@ var _anchorList = [];var _default =
                 _this.data = data;
                 _this.$nextTick(function () {
                   _this.calcAnchor(); //计算锚点参数
-                });
-
-                //添加浏览历史
-                _this.addProductHistory();case 11:case "end":return _context.stop();}}}, _callee);}))();
+                });case 10:case "end":return _context.stop();}}}, _callee);}))();
     },
     //加载评价
     loadRating: function loadRating() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (

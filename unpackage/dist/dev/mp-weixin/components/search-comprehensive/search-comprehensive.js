@@ -189,8 +189,11 @@ var _default =
 
     showInput: {
       type: Boolean,
-      default: true } },
+      default: true },
 
+    pageType: {
+      type: String,
+      default: '' } },
 
 
   data: function data() {

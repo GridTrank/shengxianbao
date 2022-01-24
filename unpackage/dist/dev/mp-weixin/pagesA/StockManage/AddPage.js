@@ -229,73 +229,82 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _util = __webpack_require__(/*! @/common/js/util */ 138); //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {return { num: '', showPop: false, selectDate: '', pageType: '', pageTxt: '', remark: '', stockData: null, columns: [{ label: '仓库1', value: 1 }, { label: '仓库2', value: 2 }], queryData: { warehouseName: '请选择', warehouseId: '' } };}, onLoad: function onLoad(e) {var barTitle;if (e.pageType == 'out') {barTitle = '新增出库单';this.pageTxt = '出库';} else if (e.pageType == 'in') {barTitle = '新增入库单';this.pageTxt = '入库';} else if (e.pageType == 'overflow') {barTitle = '新增报溢单';this.pageTxt = '报溢';} else if (e.pageType == 'return') {barTitle = '新增退货单';this.pageTxt = '退货';} else if (e.pageType == 'inventory') {barTitle = '新增盘点单';this.pageTxt = '盘点';} else if (e.pageType == 'frmLoss') {barTitle = '新增报损单';this.pageTxt = '报损';} else if (e.pageType == 'offer') {barTitle = '新增报价单';this.pageTxt = '报价';}this.pageType = e.pageType;uni.setNavigationBarTitle({ title: barTitle });this.selectDate = (0, _util.date)('Y-m-d', new Date().getTime());if (uni.getStorageSync('stockData')) {this.stockData = uni.getStorageSync('stockData');}this.getStockList();}, mounted: function mounted() {if (uni.getStorageSync('stockData')) {this.$refs.detailList.step = 'three';}}, methods: { getStockList: function getStockList() {var _this = this;this.$http('api/Loss/selectListWareName').then(function (res) {_this.columns = res.map(function (item) {return { label: item.warehouseName, value: item.id };});
+var _util = __webpack_require__(/*! @/common/js/util */ 138);
+var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+{
+  data: function data() {
+    return {
+      num: '',
+      showPop: false,
+      selectDate: '',
+      pageType: '',
+      pageTxt: '',
+      remark: '',
+      stockData: null,
+      columns: [{ label: '仓库1', value: 1 }, { label: '仓库2', value: 2 }],
+      queryData: {
+        warehouseName: '请选择',
+        warehouseId: '' } };
+
+
+  },
+  onLoad: function onLoad(e) {
+    var barTitle;
+    if (e.pageType == 'out') {
+      barTitle = '新增出库单';
+      this.pageTxt = '出库';
+    } else if (e.pageType == 'in') {
+      barTitle = '新增入库单';
+      this.pageTxt = '入库';
+    } else if (e.pageType == 'overflow') {
+      barTitle = '新增报溢单';
+      this.pageTxt = '报溢';
+    } else if (e.pageType == 'return') {
+      barTitle = '新增退货单';
+      this.pageTxt = '退货';
+    } else if (e.pageType == 'inventory') {
+      barTitle = '新增盘点单';
+      this.pageTxt = '盘点';
+    } else if (e.pageType == 'frmLoss') {
+      barTitle = '新增报损单';
+      this.pageTxt = '报损';
+    } else if (e.pageType == 'offer') {
+      barTitle = '新增报价单';
+      this.pageTxt = '报价';
+    }
+    this.pageType = e.pageType;
+    uni.setNavigationBarTitle({
+      title: barTitle });
+
+    this.selectDate = (0, _util.date)('Y-m-d', new Date().getTime());
+
+    if (uni.getStorageSync('stockData')) {
+      this.stockData = uni.getStorageSync('stockData');
+    }
+    this.getStockList();
+  },
+  mounted: function mounted() {
+    if (uni.getStorageSync('stockData')) {
+      this.$refs.detailList.step = 'three';
+    }
+    if (this.$StockManageInfo.warehouseId) {
+      this.queryData.warehouseName = this.$StockManageInfo.warehouseName;
+      this.queryData.warehouseId = this.$StockManageInfo.warehouseId;
+    }
+  },
+  computed: _objectSpread({},
+  (0, _vuex.mapState)(['$StockManageInfo'])),
+
+  methods: _objectSpread(_objectSpread({},
+  (0, _vuex.mapMutations)(['SET_STOCK_MANAGE_INFO'])), {}, {
+    getStockList: function getStockList() {var _this = this;
+      this.$http('api/workhous/getWorkhousList').then(function (res) {
+        _this.columns = res.map(function (item) {
+          return {
+            label: item.warehouseName,
+            value: item.id };
+
+        });
       });
     },
     showPopHandle: function showPopHandle(val) {
@@ -307,14 +316,14 @@ var _default = { data: function data() {return { num: '', showPop: false, select
     },
     // 选择日期
     dateConfirm: function dateConfirm(date) {
-      console.log(date);
       this.selectDate = date;
     },
     // 选择仓库
     confirm: function confirm(e) {
       this.queryData.warehouseName = e.label;
       this.queryData.warehouseId = e.value;
-    } },
+      this.SET_STOCK_MANAGE_INFO(this.queryData);
+    } }),
 
   onUnload: function onUnload() {
     uni.removeStorageSync('stockData');

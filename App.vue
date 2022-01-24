@@ -7,17 +7,12 @@
 					this.initSize(e);
 				}
 			})
-			this.initLogin();
+			this.initWareHouseList();
 		},
 		methods: {
 			//登录状态
-			async initLogin(){
-				const token = uni.getStorageSync('uniIdToken');
-				if(token){
-					this.$store.commit('setToken', {
-						token
-					});
-				}
+			initWareHouseList(){
+				this.$store.dispatch('Get_Ware_House_List')
 			},
 			/**
 			 * 存储设备信息 参考colorUI

@@ -66,6 +66,7 @@
 
 <script>
 	import {date} from "@/common/js/util"
+	import {mapState,mapMutations} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -122,10 +123,18 @@
 			if(uni.getStorageSync('stockData')){
 				this.$refs.detailList.step='three'
 			}
+			if(this.$StockManageInfo.warehouseId){
+				this.queryData.warehouseName=this.$StockManageInfo.warehouseName
+				this.queryData.warehouseId=this.$StockManageInfo.warehouseId
+			}
+		},
+		computed:{
+			...mapState(['$StockManageInfo'])
 		},
 		methods:{
+			...mapMutations(['SET_STOCK_MANAGE_INFO']),
 			getStockList(){
-				this.$http('api/Loss/selectListWareName').then(res=>{
+				this.$http('api/workhous/getWorkhousList').then(res=>{
 					this.columns=res.map((item)=>{
 						return {
 							label:item.warehouseName,
@@ -143,13 +152,13 @@
 			},
 			// 选择日期
 			dateConfirm(date){
-				console.log(date)
 			    this.selectDate = date;
 			},
 			// 选择仓库
 			confirm(e){
 				this.queryData.warehouseName=e.label
 				this.queryData.warehouseId=e.value
+				this.SET_STOCK_MANAGE_INFO(this.queryData)
 			}
 		},
 		onUnload() {

@@ -70,4 +70,11 @@
   background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   color: #fff;
 }
+.page_wrap .add_product.data-v-43d58b8e {
+  padding: 30rpx 30rpx 0 30rpx;
+  text-align: right;
+  color: #FE5B07;
+  font-size: 28rpx;
+  justify-content: flex-end;
+}
 

@@ -16,26 +16,25 @@
 			index:{
 				type:Number,
 				default:0
+			},
+			num:{
+				type:Number,
+				default:0
 			}
 		},
 		data(){
 			return{
-				num:0
 			}
 		},
-		watch:{
-			'num':function(val){
-				this.$emit('changeNumResult',val,this.index)
-			}
-		},
+		
 		methods:{
 			change(val){
 				if(val==1){
 					if(this.num>0){
-						this.num--
+						this.$emit('changeNumResult','sub',this.index,)
 					}
 				}else{
-					this.num++
+					this.$emit('changeNumResult','add',this.index)
 				}
 			}
 		}

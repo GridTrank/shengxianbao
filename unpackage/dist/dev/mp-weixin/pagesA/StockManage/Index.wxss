@@ -28,6 +28,9 @@
   font-size: 28rpx;
   color: #FE5B07;
 }
+.page_wrap .list .item .top .die.data-v-6d9ae89a {
+  color: #666;
+}
 .page_wrap .list .item .detail.data-v-6d9ae89a {
   padding-top: 10rpx;
 }

@@ -312,9 +312,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 var _default =
 {
   data: function data() {
@@ -344,6 +341,7 @@ var _default =
     if (e.pageType == 'out') {
       barTitle = '出库单';
       this.pageTxt = '出库';
+      this.queryUrl = 'api/outputBill/pageList';
     } else if (e.pageType == 'in') {
       barTitle = '入库单';
       this.pageTxt = '入库';
@@ -384,32 +382,37 @@ var _default =
     uni.setNavigationBarTitle({
       title: barTitle });
 
-    this.initData();
 
+  },
+  onShow: function onShow() {
+    this.dataList = [];
+    this.initData();
   },
   computed: {},
 
 
   methods: {
-    initData: function initData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var list;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                  _this.getList());case 2:list = _context.sent;
+    initData: function initData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var list;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                uni.showLoading({
+                  title: '加载中' });_context.next = 3;return (
+
+                  _this.getList());case 3:list = _context.sent;
                 list.forEach(function (el) {
                   el.checked = 1;
                 });
                 _this.dataList_ = list;
-                _this.initList = JSON.parse(JSON.stringify(_this.dataList_));case 6:case "end":return _context.stop();}}}, _callee);}))();
+                _this.initList = JSON.parse(JSON.stringify(_this.dataList_));case 7:case "end":return _context.stop();}}}, _callee);}))();
     },
     tab: function tab(item) {
       var list = this.initList;
       if (item.value == 1) {
         this.dataList_ = list.filter(function (el) {
-          return !el.billState || el.billState === 0;
+          return !el.billState || el.billState === '0';
         });
-      } else if (item.value === 2) {
+      } else if (item.value == 2) {
         this.dataList_ = list.filter(function (el) {
           return el.billState == 1;
         });
-        console.log(this.dataList_, list);
       } else if (item.value == 3) {
         this.dataList_ = list.filter(function (el) {
           return el.billState == -1;
@@ -437,6 +440,60 @@ var _default =
       this.dataList_.forEach(function (item) {
         item.checked = val;
       });
+
+    },
+    // 操作
+    submit: function submit(item, val) {var _this2 = this;
+      var con = '',url = '',data = {};
+      if (val == 1) {
+        con = '您正在作废单据，请确认操作';
+        url = 'api/Loss/updateInvalid';
+        data = {
+          id: item.id };
+
+      } else if (val == 2) {
+        con = '您正在审核单据，请确认操作';
+        url = 'api/Loss/updateAudit';
+        data = {
+          id: item.id };
+
+      } else {
+        con = '您正在反审核单据，请确认操作';
+        url = 'api/Loss/updateBackAudit';
+        data = {
+          id: item.id };
+
+      }
+      uni.showModal({
+        title: '提示',
+        content: con,
+        success: function success(res) {
+          if (res.confirm) {
+            _this2.$http(url, data, 'put').then(function (res) {
+              if (val == 1) {
+                uni.showToast({
+                  title: '报损-报废-成功',
+                  icon: 'none' });
+
+                item.billState = '-1';
+              } else if (val == 2) {
+                uni.showToast({
+                  title: '报损-审核-成功',
+                  icon: 'none' });
+
+                item.billState = '1';
+              } else {
+                uni.showToast({
+                  title: '报损-反审核-成功',
+                  icon: 'none' });
+
+                item.billState = '0';
+              }
+              _this2.$forceUpdate();
+              console.log(item);
+            });
+          }
+        } });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

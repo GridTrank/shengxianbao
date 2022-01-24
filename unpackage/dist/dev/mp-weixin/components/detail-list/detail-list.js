@@ -137,93 +137,96 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default2 =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 16);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default2 =
 {
   props: {
     datas: {
       type: Array,
       default: function _default() {
-        return [
-        { name: 1, checked: 2, sa: 0, sb: 0 },
-        { name: 2, checked: 1, sa: 0, sb: 0 },
-        { name: 3, checked: 1, sa: 0, sb: 0 }];
+        return [];
+
 
       } },
 
@@ -244,7 +247,7 @@ var _default2 =
       default: '' } },
 
 
-  computed: {
+  computed: _objectSpread({
     showSummary: function showSummary() {
       if (this.nowParentPage == 'AddPage') {
         return true;
@@ -267,6 +270,7 @@ var _default2 =
         return this.datas;
       } } },
 
+  (0, _vuex.mapState)(['$StockManageInfo'])),
 
   data: function data() {
     return {
@@ -282,14 +286,24 @@ var _default2 =
         nums++;
       }
     });
+
     this.total = nums;
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({},
+  (0, _vuex.mapMutations)(['SET_STOCK_MANAGE_INFO'])), {}, {
     changeNum1: function changeNum1(val, index) {
-      this.resultList[index].sa = val;
+      if (val == 'add') {
+        this.resultList[index].lossQuantity += 1;
+      } else {
+        this.resultList[index].lossQuantity -= 1;
+      }
     },
     changeNum2: function changeNum2(val, index) {
-      this.resultList[index].sb = val;
+      if (val == 'add') {
+        this.resultList[index].auxiliaryQuantity += 1;
+      } else {
+        this.resultList[index].auxiliaryQuantity -= 1;
+      }
     },
     checkHandle: function checkHandle(item, index) {
       item.checked == 1 ? item.checked = 2 : item.checked = 1;
@@ -317,6 +331,10 @@ var _default2 =
           }
         });
         uni.setStorageSync("stockData", arr);
+        var selectData = this.resultList.filter(function (el) {
+          return el.checked == 2;
+        });
+        this.SET_STOCK_MANAGE_INFO({ selectData: selectData });
         this.navTo('./AddPage?pageType=' + this.pageType);
       } else if (val == 'three') {
         uni.showModal({
@@ -364,7 +382,7 @@ var _default2 =
       this.resultList.forEach(function (item) {
         item.checked = val;
       });
-    } } };exports.default = _default2;
+    } }) };exports.default = _default2;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

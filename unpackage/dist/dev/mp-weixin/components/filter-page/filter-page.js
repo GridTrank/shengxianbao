@@ -168,7 +168,11 @@ var _default2 =
           { label: '青菜', checked: false }] }];
 
 
-      } } },
+      } },
+
+    pageType: {
+      type: String,
+      default: '' } },
 
 
   data: function data() {

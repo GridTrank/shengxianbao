@@ -11,6 +11,7 @@ export default {
 			dataList: [],
 		}
 	},
+	
 	methods: {
 		navTo(url, type, checkLogin = false) {
 			this.$util.throttle(() => {
@@ -54,5 +55,12 @@ export default {
 				})
 			})
 		},
+	},
+	// 上拉加载
+	onReachBottom(){
+		// if(this.isContinue){
+		// 	this.queryData.current++
+		// 	this.getData()
+		// }
 	},
 }

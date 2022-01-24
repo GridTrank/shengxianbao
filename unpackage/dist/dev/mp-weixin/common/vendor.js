@@ -4754,6 +4754,7 @@ exports.checkStr = checkStr;var dateFormat = function dateFormat() {var fmt = ar
       dataList: [] };
 
   },
+
   methods: {
     navTo: function navTo(url, type) {var checkLogin = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
       this.$util.throttle(function () {
@@ -4796,7 +4797,15 @@ exports.checkStr = checkStr;var dateFormat = function dateFormat() {var fmt = ar
           resolve(_this.dataList);
         });
       });
-    } } };exports.default = _default;
+    } },
+
+  // 上拉加载
+  onReachBottom: function onReachBottom() {
+    // if(this.isContinue){
+    // 	this.queryData.current++
+    // 	this.getData()
+    // }
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
@@ -5146,8 +5155,14 @@ var store = new _vuex.default.Store({
   state: {
     // 用户信息
     $userInfo: {
-      id: 1 } } });var _default =
+      id: 1 },
 
+    $StockManageInfo: {} },
+
+  mutations: {
+    SET_STOCK_MANAGE_INFO: function SET_STOCK_MANAGE_INFO(state, data) {
+      state.$StockManageInfo = Object.assign({}, state.$StockManageInfo, data);
+    } } });var _default =
 
 
 

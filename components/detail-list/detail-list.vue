@@ -1,7 +1,7 @@
 <template>
 	<view class="data_list">
 		<view class="list">
-			<view class="item  " v-for="(item,index) in resultList" :key="index">
+			<view class="item " v-for="(item,index) in resultList" :key="index">
 				<view class="item_wrap row">
 					<view class="row">
 						<view @click="checkHandle(item,index)" v-if="nowParentPage=='SelectGoopd'">
@@ -12,15 +12,16 @@
 					</view>
 					<view class="info">
 						<view class="row jc_sb">
-							<text class="f28-c333">名称</text>
-							<text class="f24-c999">商品编号：123456</text>
+							<text class="f28-c333">{{item.productName}}</text>
+							<text class="f24-c999">商品编号：{{item.productCode}}</text>
 						</view>
 						<view class="desc mt10 f24-c999">
-							1包约125g
+							{{item.productNameAlias }}
 						</view>
 						<view class="price row  mt10">
-							<text class="bao">包</text>
-							<text class="f24-c999">￥10.00元/包</text>
+							<text class="bao mr10">{{item.productUnit}}</text>
+							<text class="f24-c999 mr10">{{item.auxiliaryUnit}}</text>
+							<text class="f24-c999">￥{{item.costPrice}}元/{{item.productUnit}}</text>
 						</view>
 						
 						<view class="kucun" v-if="pageType=='inventory'">
@@ -32,15 +33,30 @@
 				<view class="mt10 bottom_wrap change row" v-if="showEdit || showEditSelf">
 					<text v-if="nowParentPage=='Detail'" class="iconfont icon-shanchu"></text>
 					<view class="row">
-						<change-num :index="index" @changeNumResult="changeNum1"></change-num> <text class="bg_style1">斤</text>
+						<change-num 
+							:index="index" 
+							:num="item.lossQuantity || item.outputQuantity || item.inputQuantity" 
+							@changeNumResult="changeNum1">
+						</change-num> 
+						<text class="bg_style1">{{item.productUnit}}</text>
 					</view>
 					<view class="row">
-						<change-num :index="index" @changeNumResult="changeNum2"></change-num> <text class="bg_style1">包</text>
+						<change-num 
+						:index="index" 
+						:num="item.auxiliaryQuantity" 
+						@changeNumResult="changeNum2">
+						</change-num> 
+						<text class="bg_style1">{{item.auxiliaryUnit}}</text>
 					</view>
 				</view>
 				<view class="mt10 bottom_wrap row" v-if="showSummary">
 					<text class="f24-c333">{{pageTxt}}：</text>
-					<text class="tip">{{item.sa}}斤({{item.sb}}包)</text>
+					<text class="tip mr10">
+						{{item.auxiliaryQuantity}}{{item.auxiliaryUnit }}
+					</text>
+					<text class="tip">
+						({{item.lossQuantity || item.outputQuantity}}{{item.productUnit}})
+					</text>
 				</view>
 			</view>
 		</view>
@@ -76,15 +92,14 @@
 </template>
 
 <script>
+	import {mapState,mapMutations} from 'vuex'
 	export default{
 		props:{
 			datas:{
 				type:Array,
 				default:()=>{
 					return [
-					{name:1,checked:2,sa:0,sb:0},
-					{name:2,checked:1,sa:0,sb:0},
-					{name:3,checked:1,sa:0,sb:0}
+						
 					]
 				}
 			},
@@ -127,7 +142,8 @@
 				get(){
 					return this.datas
 				}
-			}
+			},
+			...mapState(['$StockManageInfo'])
 		},
 		data(){
 			return {
@@ -146,11 +162,32 @@
 			this.total=nums
 		},
 		methods:{
+			...mapMutations(['SET_STOCK_MANAGE_INFO']),
 			changeNum1(val,index){
-				this.resultList[index].sa=val
+				let type=''
+				switch(this.pageType){
+					case 'in':
+						type='intputQuantity'
+						break;
+					case 'out':
+						type='outputQuantity'
+						break;
+					case 'frmLoss':
+						type='lossQuantity'
+						break;
+				}
+				if(val=='add'){
+					this.resultList[index][type]+=1
+				}else{
+					this.resultList[index][type]-=1
+				}
 			},
 			changeNum2(val,index){
-				this.resultList[index].sb=val
+				if(val=='add'){
+					this.resultList[index].auxiliaryQuantity+=1
+				}else{
+					this.resultList[index].auxiliaryQuantity-=1
+				}
 			},
 			checkHandle(item,index){
 				item.checked==1?item.checked=2:item.checked=1
@@ -178,6 +215,10 @@
 						}
 					})
 					uni.setStorageSync("stockData",arr)
+					let selectData=this.resultList.filter(el=>{
+						return el.checked==2
+					})
+					this.SET_STOCK_MANAGE_INFO({selectData})
 					this.navTo('./AddPage?pageType='+this.pageType)
 				}else if(val=='three'){
 					uni.showModal({
@@ -233,7 +274,7 @@
 <style scoped lang="scss">
 	.data_list{
 		.list{
-			padding:30upx;
+			padding:30upx 30upx 100upx 30upx !important;
 			.item{
 				margin-bottom: 30upx;
 				.item_wrap{
@@ -315,6 +356,7 @@
 			width: 100%;
 			padding: 30upx 0;
 			z-index: 111;
+			border-top: 2upx solid #f1f1f1;
 			.foot_con{
 				padding:0 30upx;
 				.check_wrap{

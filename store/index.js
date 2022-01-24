@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {request} from '@/common/js/request'
 
 Vue.use(Vuex) // vue的插件机制
 
@@ -10,8 +11,25 @@ const store = new Vuex.Store({
         // 用户信息
         $userInfo: {
             id: 1
-        }
-    }
+        },
+		$StockManageInfo:{},
+		$WareHouseList:[]
+    },
+	actions:{
+		Get_Ware_House_List(state){
+			request('api/workhous/getWorkhousList').then(res=>{
+				state.commit('GET_WARE_HOUSE_LIST',res)
+			})
+		}
+	},
+	mutations:{
+		SET_STOCK_MANAGE_INFO(state,data){
+			state.$StockManageInfo=Object.assign({},state.$StockManageInfo,data)
+		},
+		GET_WARE_HOUSE_LIST(state,data){
+			state.$WareHouseList=data
+		}
+	}
 })
 
 export default store

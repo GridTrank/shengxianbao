@@ -1,7 +1,7 @@
 <template>
 	<view class="list_wrap">
 		<image 
-		@click="navTo('/pagesB/ProductDetail/ProductDetail?id='+goodInfo.productId)" 
+		@click="navTo('/pagesB/ProductDetail/ProductDetail?id='+goodInfo.productId+'&skuId='+goodInfo.productSkuList[0].productSkuId)" 
 		class="img" 
 		:src="goodInfo.defaultImage" >
 		</image>
