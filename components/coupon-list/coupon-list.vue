@@ -2,19 +2,19 @@
 	<view :class="['coupon_wrap',type]">
 		<view class="coupon" v-for="(item,index) in couponList" :key="index">
 			<view class="coupon_info">
-				<view class="title b">满100减10</view>
+				<view class="title b">{{item.ticketName}}</view>
 				<view class="tag_wrap">
-					<view class="tag line">剩7天</view>
-					<view class="tag line">满减卷</view>
-					<view class="tag">线上门店通用</view>
+					<view class="tag line">{{JSON.parse(item.combination)[0]}}</view>
+					<view class="tag line" v-if="item.ticketType">{{ticketType[item.ticketType]}}</view>
+					<view class="tag">{{applyType[item.applyType]}}</view>
 				</view>
-				<view class="date mt30 f24-c333">2020.10.02 00:00-2020.10.10 23:59</view>
+				<view class="date mt30 f24-c333">{{dateTime('Y-m-d H:i',item.timeUseBegin)}}-{{dateTime('Y-m-d H:i',item.timeUseEnd)}}</view>
 			</view>
 			<view class="coupon-money column">
-				<view class="money"><span class="min">￥</span><span>1000</span></view>
-				<view class="condition">满100可用</view>
+				<view class="money"><span class="min">￥</span><span>{{item.ruleAmount}}</span></view>
+				<view class="condition">满{{item.ticketAmount}}可用</view>
 				<view class="use" v-if="type == 'list'">去使用<view class="circle"><span class="iconfont icon-jinru"></span></view></view>
-				<view class="get" v-if="type == 'get'">领取</view>
+				<view class="get" v-if="type == 'get'" @click="getCoupon(item.id)">领取</view>
 				<view class="lost" v-if="type == 'used'">{{state}}</view>
 			</view>
 		</view>
@@ -22,12 +22,13 @@
 </template>
 
 <script>
+	import {date} from '@/common/js/util'
 	export default{
 		props:{
 			couponList:{
 				type:Array,
 				default:()=>{
-					return [{},{},{},{},{},{},{},{},{},{},{},{}]
+					return []
 				}
 			},
 			// list 列表
@@ -45,11 +46,38 @@
 		},
 		data(){
 			return{
-				
+				// :0=满减券,1=品类满减券,2=商品折扣券,3=免运费券 4=新人优惠券
+				ticketType:{
+					'0':'满减券',
+					'1':'品类满减券',
+					'2':'商品折扣券',
+					'3':'免运费券',
+					'4':'新人优惠券'
+				},
+				// applyType	适用商品: 0全部商品 1 商品类型 2 单个商品
+				applyType:{
+					'0':'全部商品',
+					'1':'商品类型',
+					'2':'单个商品'
+					
+				}
 			}
 		},
+		created(){
+		},
 		methods:{
-			
+			dateTime(str,time){
+				return date(str,time)
+			},
+			getCoupon(id){
+				this.$http('api/bmallticketuse/receiveTicket',{id:id}).then((result)=>{
+					console.log(result);
+					uni.showToast({
+						title:'领取成功',
+						icon:'none'
+					})
+				})
+			}
 		}
 	}
 </script>
@@ -80,7 +108,7 @@
 					height: 100%;
 					z-index: 1;
 				}
-				padding:26upx 10upx 26upx 40upx;
+				padding:26upx 10upx 26upx 26upx;
 				.title{
 					font-size: 36upx;
 				}
@@ -93,7 +121,7 @@
 						border:1px solid #FE5B07;
 						background-color: #FE5B07;
 						border-radius: 1px;
-						padding: 2upx 20upx;
+						padding: 2upx 15upx;
 						margin-right: 8upx;
 						&.line{
 							color: #FE5B07;
