@@ -1,7 +1,7 @@
 <template>
 	<view class="page_wrap ">
 		<u-tabs class="coupon_tab"  lineColor="#FE5B07" :activeStyle="{color: '#FE5B07',}" :list="list" @click="tab"></u-tabs>
-		<CouponList :type="couponTab" :state="activeTab"></CouponList>
+		<CouponList :state="activeTab" :type="type" :couponList="dataList"></CouponList>
 		<view class="btn" @click="navTo('/pagesA/Coupon/center')">领券中心<span class="iconfont icon-jinru"></span></view>
 	</view>
 </template>
@@ -13,28 +13,40 @@
 			return {
 				list: [{
 					name: '未使用',
-					type:'list'
+					value:'list',
+					type:'0'
 				}, {
 					name: '已使用',
-					type:'used'
+					value:'used',
+					type:'1'
 				}, {
 					name: '已过期',
-					type:'used'
+					value:'used',
+					type:'2'
 				}],
-				couponTab:'list',
-				activeTab:'已使用'
+				type:'list',
+				queryData:{ticketStatus:0},
+				activeTab:'use',
+				dataList:[],
+				queryUrl:'api/bmallticketuse/pageCusList'
 			}
 		},
 		components:{
 			CouponList
 		},
+		created(){
+			this.getList()
+		},
 		methods: {
 			onNavigationBarButtonTap(){
 				this.navTo('/pagesA/Coupon/loseEfficacy')
 			},
+			
 			tab(item){
-				this.activeTab = item.name
-				this.couponTab=item.type
+				this.queryData.ticketStatus = item.type;
+				this.activeTab = item.name;
+				this.dataList = [];
+				this.getList()
 			}
 		}
 	}
