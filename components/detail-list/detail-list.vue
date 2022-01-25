@@ -55,7 +55,7 @@
 						{{item.auxiliaryQuantity}}{{item.auxiliaryUnit }}
 					</text>
 					<text class="tip">
-						({{item.lossQuantity || item.outputQuantity}}{{item.productUnit}})
+						({{item.lossQuantity || item.outputQuantity || item.inputQuantity}}{{item.productUnit}})
 					</text>
 				</view>
 			</view>
@@ -163,11 +163,11 @@
 		},
 		methods:{
 			...mapMutations(['SET_STOCK_MANAGE_INFO']),
-			changeNum1(val,index){
+			changeNum1(val,index,num){
 				let type=''
 				switch(this.pageType){
 					case 'in':
-						type='intputQuantity'
+						type='inputQuantity'
 						break;
 					case 'out':
 						type='outputQuantity'
@@ -178,15 +178,19 @@
 				}
 				if(val=='add'){
 					this.resultList[index][type]+=1
-				}else{
+				}else if(val=='sub'){
 					this.resultList[index][type]-=1
+				}else{
+					this.resultList[index][type]=num
 				}
 			},
-			changeNum2(val,index){
+			changeNum2(val,index,num){
 				if(val=='add'){
 					this.resultList[index].auxiliaryQuantity+=1
-				}else{
+				}else if(val=='sub'){
 					this.resultList[index].auxiliaryQuantity-=1
+				}else{
+					this.resultList[index].auxiliaryQuantity=num
 				}
 			},
 			checkHandle(item,index){

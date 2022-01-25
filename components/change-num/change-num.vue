@@ -3,7 +3,7 @@
 		<view class="btn left" @click="change(1)">
 			-
 		</view>
-		<u-input border='none' v-model="num"></u-input>
+		<u-input border='none' v-model="num" @blur="change(3)"></u-input>
 		<view class="btn right" @click="change(2)">
 			+
 		</view>
@@ -18,9 +18,10 @@
 				default:0
 			},
 			num:{
-				type:Number,
+				type:Number|String,
 				default:0
-			}
+			},
+			
 		},
 		data(){
 			return{
@@ -33,8 +34,10 @@
 					if(this.num>0){
 						this.$emit('changeNumResult','sub',this.index,)
 					}
-				}else{
+				}else if(val==2){
 					this.$emit('changeNumResult','add',this.index)
+				}else{
+					this.$emit('changeNumResult','',this.index,this.num)
 				}
 			}
 		}

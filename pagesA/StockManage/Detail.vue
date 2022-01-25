@@ -122,7 +122,7 @@
 			:pageTxt="pageTxt"
 			:pageType="pageType"
 			nowParentPage="Detail"
-			:datas="pageDetail.infoInfoVoList"
+			:datas="pageDetail.infoInfoVoList || pageDetail.infoVoList"
 			:showEdit="showEdit"> 
             </detail-list>
 		</view>
@@ -133,7 +133,9 @@
 					<!-- {{pageTxt}} -->
                     合计
 				</view>
-				<view class="right">{{pageDetail.infoInfoVoList && pageDetail.infoInfoVoList.length}}</view>
+				<view class="right">
+					{{(pageDetail.infoInfoVoList && pageDetail.infoInfoVoList.length) || (pageDetail.infoVoList && pageDetail.infoVoList.length)}}
+				</view>
 			</view>
 			<view class="btns">
 				<text v-if="pageDetail.billState==='0'" class="edit" @click="showEdit=true"><text class="iconfont icon-bianji"></text>编辑</text>
