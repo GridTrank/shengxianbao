@@ -143,8 +143,7 @@
 			}else if(e.pageType=='return'){
 				barTitle='新增退货单'
 				this.pageTxt='退货'
-				this.leftNumName='lossQuantity'
-				
+				this.leftNumName='returnorderNum'
 			}else if(e.pageType=='inventory'){
 				barTitle='新增盘点单'
 				this.pageTxt='盘点'

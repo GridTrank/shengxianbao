@@ -21,7 +21,7 @@
 						<view class="price row  mt10">
 							<text class="bao mr10">{{item.productUnit}}</text>
 							<text class="f24-c999 mr10">{{item.auxiliaryUnit}}</text>
-							<text class="f24-c999">￥{{item.costPrice}}元/{{item.productUnit}}</text>
+							<text class="f24-c999">￥{{item.costPrice || item.returnorderPrice}}元/{{item.productUnit}}</text>
 						</view>
 						
 						<view class="kucun" v-if="pageType=='inventory'">
@@ -53,10 +53,10 @@
 				<view class="mt10 bottom_wrap row" v-if="showSummary">
 					<text class="f24-c333">{{pageTxt}}：</text>
 					<text class="tip mr10">
-						{{item.lossQuantity || item.outputQuantity || item.inputQuantity}}{{item.auxiliaryUnit}}
+						{{item.lossQuantity || item.outputQuantity || item.inputQuantity || item.returnorderNum}}{{item.auxiliaryUnit}}
 					</text>
 					<text class="tip">
-						({{item.auxiliaryQuantity}}{{item.productUnit}})
+						({{item.auxiliaryQuantity || item.auxiliaryNum}}{{item.productUnit}})
 					</text>
 				</view>
 			</view>
