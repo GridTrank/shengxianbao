@@ -35,28 +35,28 @@
 					<view class="row">
 						<change-num
 							:index="index" 
-							:num="item.auxiliaryQuantity" 
+							:num="item.lossQuantity || item.outputQuantity || item.inputQuantity" 
 							@changeNumResult="changeNum1">
 						</change-num> 
-						<text class="bg_style1">{{item.productUnit }}</text>
+						<text class="bg_style1">{{item.auxiliaryUnit}}</text>
 					</view>
 					<view class="row">
 						<change-num
 							:index="index" 
-							:num="item.lossQuantity || item.outputQuantity || item.inputQuantity" 
+							:num="item.auxiliaryQuantity" 
 							@changeNumResult="changeNum2">
 						</change-num> 
-						<text class="bg_style1">{{item.auxiliaryUnit}}</text>
+						<text class="bg_style1">{{item.productUnit }}</text>
 					</view>
 				</view>
 				
 				<view class="mt10 bottom_wrap row" v-if="showSummary">
 					<text class="f24-c333">{{pageTxt}}：</text>
 					<text class="tip mr10">
-						{{item.auxiliaryQuantity}}{{item.productUnit}}
+						{{item.lossQuantity || item.outputQuantity || item.inputQuantity}}{{item.auxiliaryUnit}}
 					</text>
 					<text class="tip">
-						({{item.lossQuantity || item.outputQuantity || item.inputQuantity}}{{item.auxiliaryUnit}})
+						({{item.auxiliaryQuantity}}{{item.productUnit}})
 					</text>
 				</view>
 			</view>
@@ -164,7 +164,7 @@
 		},
 		methods:{
 			...mapMutations(['SET_STOCK_MANAGE_INFO']),
-			changeNum1(val,index,num){
+			changeNum2(val,index,num){
 				if(val=='add'){
 					this.resultList[index].auxiliaryQuantity+=1
 				}else if(val=='sub'){
@@ -174,7 +174,7 @@
 				}
 				this.$forceUpdate()
 			},
-			changeNum2(val,index,num){
+			changeNum1(val,index,num){
 				let type=''
 				switch(this.pageType){
 					case 'in':

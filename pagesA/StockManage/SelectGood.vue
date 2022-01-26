@@ -50,7 +50,9 @@
 						</view>
 					</view>
 					
+					
 					<view class="mt10 bottom_wrap change row" v-if='item.showEdit'>
+						
 						<view class="row">
 							<change-num 
 							:index="index" 
@@ -58,7 +60,7 @@
 							@changeNumResult="changeNum1"
 							>
 							</change-num> 
-							<text class="bg_style1">{{item.productUnit}}</text>
+							<text class="bg_style1">{{item.auxiliaryUnit || item.auxiliaryunit}}</text>
 						</view>
 						<view class="row">
 							<change-num 
@@ -67,8 +69,9 @@
 							@changeNumResult="changeNum2"
 							>
 							</change-num> 
-							<text class="bg_style1">{{item.auxiliaryUnit || item.auxiliaryunit}}</text>
+							<text class="bg_style1">{{item.productUnit}}</text>
 						</view>
+						
 					</view>
 				</view>
 			</view>
