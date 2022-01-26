@@ -35,7 +35,7 @@
 					<view class="row">
 						<change-num
 							:index="index" 
-							:num="item.lossQuantity || item.outputQuantity || item.inputQuantity" 
+							:num="item.lossQuantity || item.outputQuantity || item.inputQuantity || item.returnorderNum" 
 							@changeNumResult="changeNum1">
 						</change-num> 
 						<text class="bg_style1">{{item.auxiliaryUnit}}</text>
@@ -56,7 +56,7 @@
 						{{item.lossQuantity || item.outputQuantity || item.inputQuantity || item.returnorderNum}}{{item.auxiliaryUnit}}
 					</text>
 					<text class="tip">
-						({{item.auxiliaryQuantity || item.auxiliaryNum}}{{item.productUnit}})
+						({{item.auxiliaryQuantity }}{{item.productUnit}})
 					</text>
 				</view>
 			</view>
@@ -187,9 +187,9 @@
 						type='lossQuantity'
 						break;
 					case 'return':
-						type='lossQuantity'
+						type='returnorderNum'
 						break;
-					case 'return':
+					case 'inventory':
 						type='lossQuantity'
 						break;
 				}
