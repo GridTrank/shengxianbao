@@ -6,9 +6,9 @@
  */
 .filter_wrap.data-v-617f100e {
   width: 540rpx;
-  height: 100%;
   background-color: #fff;
   padding: 60rpx 30rpx 120rpx 30rpx;
+  overflow-y: scroll;
 }
 .filter_wrap .parent_list.data-v-617f100e {
   height: 92%;
@@ -16,10 +16,10 @@
 .filter_wrap .parent_list .parent_item.data-v-617f100e {
   padding-bottom: 30rpx;
 }
-.filter_wrap .child_list.data-v-617f100e {
+.filter_wrap .parent_list .child_list.data-v-617f100e {
   flex-wrap: wrap;
 }
-.filter_wrap .child_list .child_item.data-v-617f100e {
+.filter_wrap .parent_list .child_list .child_item.data-v-617f100e {
   width: 166rpx;
   height: 56rpx;
   line-height: 56rpx;
@@ -30,14 +30,24 @@
   font-size: 24rpx;
   margin-right: 20rpx;
 }
-.filter_wrap .child_list .child_item.data-v-617f100e:nth-child(3n) {
+.filter_wrap .parent_list .child_list .child_item.data-v-617f100e:nth-child(3n) {
   margin-right: 0;
 }
-.filter_wrap .child_list .is_check.data-v-617f100e {
+.filter_wrap .parent_list .child_list .is_check.data-v-617f100e {
   background-color: #fff;
   border: 1px solid #FE5B07;
   width: 160rpx;
   color: #FE5B07;
+}
+.filter_wrap .date_wrap .date_btn.data-v-617f100e {
+  width: 45%;
+  text-align: center;
+  border: 1px solid #f1f1f1;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  color: #666;
+  height: 50rpx;
+  line-height: 50rpx;
 }
 .filter_wrap .btn_wrap.data-v-617f100e {
   position: fixed;

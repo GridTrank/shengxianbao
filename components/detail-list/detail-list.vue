@@ -8,7 +8,7 @@
 							<view v-if="item.checked==1" class="iconfont icon-weixuanze"></view>
 							<view v-else class="iconfont icon-xuanze"></view>
 						</view>
-						<image class="img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" mode="widthFix"></image>
+						<image class="img" :src="item.defaultImage" mode="widthFix"></image>
 					</view>
 					<view class="info">
 						<view class="row jc_sb">
@@ -31,31 +31,32 @@
 				</view>
 				
 				<view class="mt10 bottom_wrap change row" v-if="showEdit || showEditSelf">
-					<text v-if="nowParentPage=='Detail'" class="iconfont icon-shanchu"></text>
+					<text v-if="nowParentPage=='Detail'" class="iconfont icon-shanchu" @click="delProduct(item,index)"></text>
 					<view class="row">
-						<change-num 
+						<change-num
 							:index="index" 
-							:num="item.lossQuantity || item.outputQuantity || item.inputQuantity" 
+							:num="item.auxiliaryQuantity" 
 							@changeNumResult="changeNum1">
 						</change-num> 
-						<text class="bg_style1">{{item.productUnit}}</text>
+						<text class="bg_style1">{{item.productUnit }}</text>
 					</view>
 					<view class="row">
-						<change-num 
-						:index="index" 
-						:num="item.auxiliaryQuantity" 
-						@changeNumResult="changeNum2">
+						<change-num
+							:index="index" 
+							:num="item.lossQuantity || item.outputQuantity || item.inputQuantity" 
+							@changeNumResult="changeNum2">
 						</change-num> 
 						<text class="bg_style1">{{item.auxiliaryUnit}}</text>
 					</view>
 				</view>
+				
 				<view class="mt10 bottom_wrap row" v-if="showSummary">
 					<text class="f24-c333">{{pageTxt}}：</text>
 					<text class="tip mr10">
-						{{item.auxiliaryQuantity}}{{item.auxiliaryUnit }}
+						{{item.auxiliaryQuantity}}{{item.productUnit}}
 					</text>
 					<text class="tip">
-						({{item.lossQuantity || item.outputQuantity || item.inputQuantity}}{{item.productUnit}})
+						({{item.lossQuantity || item.outputQuantity || item.inputQuantity}}{{item.auxiliaryUnit}})
 					</text>
 				</view>
 			</view>
@@ -164,6 +165,16 @@
 		methods:{
 			...mapMutations(['SET_STOCK_MANAGE_INFO']),
 			changeNum1(val,index,num){
+				if(val=='add'){
+					this.resultList[index].auxiliaryQuantity+=1
+				}else if(val=='sub'){
+					this.resultList[index].auxiliaryQuantity-=1
+				}else{
+					this.resultList[index].auxiliaryQuantity=Number(num)
+				}
+				this.$forceUpdate()
+			},
+			changeNum2(val,index,num){
 				let type=''
 				switch(this.pageType){
 					case 'in':
@@ -175,23 +186,21 @@
 					case 'frmLoss':
 						type='lossQuantity'
 						break;
+					case 'return':
+						type='lossQuantity'
+						break;
+					case 'return':
+						type='lossQuantity'
+						break;
 				}
 				if(val=='add'){
 					this.resultList[index][type]+=1
 				}else if(val=='sub'){
 					this.resultList[index][type]-=1
 				}else{
-					this.resultList[index][type]=num
+					this.resultList[index][type]= Number(num)
 				}
-			},
-			changeNum2(val,index,num){
-				if(val=='add'){
-					this.resultList[index].auxiliaryQuantity+=1
-				}else if(val=='sub'){
-					this.resultList[index].auxiliaryQuantity-=1
-				}else{
-					this.resultList[index].auxiliaryQuantity=num
-				}
+				this.$forceUpdate()
 			},
 			checkHandle(item,index){
 				item.checked==1?item.checked=2:item.checked=1
@@ -212,17 +221,11 @@
 					this.showEditSelf=false
 				}
 				if(val=='two'){
-					let arr=[]
-					this.resultList.forEach(item=>{
-						if(item.checked==2){
-							arr.push(item)
-						}
-					})
-					uni.setStorageSync("stockData",arr)
-					let selectData=this.resultList.filter(el=>{
+					let infoInfoVoList=this.resultList.filter(el=>{
 						return el.checked==2
 					})
-					this.SET_STOCK_MANAGE_INFO({selectData})
+					uni.setStorageSync("stockData",infoInfoVoList)
+					this.SET_STOCK_MANAGE_INFO({infoInfoVoList})
 					this.navTo('./AddPage?pageType='+this.pageType)
 				}else if(val=='three'){
 					uni.showModal({
@@ -231,32 +234,46 @@
 						success: (res) => {
 							if(res.confirm){
 								uni.removeStorageSync('stockData')
-								let data={
-									billState:0,
-									infoInfoVoList:[
-										{
-											auxiliaryQuantity:1,
-											auxiliaryUnit:'个',
-											costPrice:123,
-											lossAmount:1,
-											lossCode:123,
-											lossQuantity:1,
-											productCode:123,
-											productName:'123',
-											productNameAlias:'23',
-											productSkuId:5,
-											productUnit:'‘，',
-											relation:'',
-											remark:'',
-										}
-									],
-									lossAmount:123,
-									lossCode:111,
-									lossDate:123,
-									warehouseId:1,
-									warehouseName:123
+								let url=''
+								switch(this.pageType){
+									case 'in':
+										url='api/inputBill/saveInput'
+										break;
+									case 'out':
+										url='api/outputBill/saveOutput'
+										break;
+									case 'inventory':
+										url=''
+										break;
+									case 'frmLoss':
+										url='api/Loss/saveLoss'
+										break;
+									case 'overflow':
+										url=''
+										break;
+									case 'return':
+										url='api/returnorder/saveReturnorder'
+										break;
+									case 'turnover':
+										url=''
+										break;
+									case 'offer':
+										url=''
+										break;
+									default:
+										url=''
 								}
+								this.$http(url,this.$StockManageInfo,'post').then(res=>{
+									uni.showToast({
+										title:'添加成功',
+										icon:'none'
+									})
+									setTimeout(()=>{
+										this.navTo('/pagesA/StockManage/Index?pageType='+this.pageType+'&pageTxt='+this.pageTxt)
+									},1500)
+								})
 							}
+							
 						}
 					})
 				}
@@ -269,6 +286,18 @@
 				}
 				this.resultList.forEach((item)=>{
 					item.checked=val
+				})
+			},
+			// 删除单个商品
+			delProduct(item,index){
+				uni.showModal({
+					title:'提示',
+					content:'确认删除所选商品吗？',
+					success: (res) => {
+						if(res.confirm){
+							this.resultList.splice(index,1)
+						}
+					}
 				})
 			}
 		}

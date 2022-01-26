@@ -3,6 +3,6 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "search-comprehensive": "/components/search-comprehensive/search-comprehensive",
-    "detail-list": "/components/detail-list/detail-list"
+    "change-num": "/components/change-num/change-num"
   }
 }

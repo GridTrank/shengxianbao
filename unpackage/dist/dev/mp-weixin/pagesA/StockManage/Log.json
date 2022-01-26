@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "操作日志",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "no-data": "/components/no-data/no-data"
+  }
 }

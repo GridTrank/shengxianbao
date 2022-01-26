@@ -23,12 +23,12 @@
 			<view class="list">
 				<view class="item " v-for="(item,index) in pageList" :key="index">
 					<view class="item_wrap row">
-						<view class="row">
-							<view>
+						<view class="row" @click="checkHandle(item,index)">
+							<view >
 								<view v-if="item.checked==1" class="iconfont icon-weixuanze"></view>
 								<view v-else class="iconfont icon-xuanze"></view>
 							</view>
-							<image class="img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" mode="widthFix"></image>
+							<image class="img" :src="item.defaultImage" ></image>
 						</view>
 						<view class="info">
 							<view class="row jc_sb">
@@ -50,11 +50,11 @@
 						</view>
 					</view>
 					
-					<view class="mt10 bottom_wrap change row" >
+					<view class="mt10 bottom_wrap change row" v-if='item.showEdit'>
 						<view class="row">
 							<change-num 
 							:index="index" 
-							:num="item.leftNum" 
+							:num="item[leftNumName]" 
 							@changeNumResult="changeNum1"
 							>
 							</change-num> 
@@ -63,26 +63,24 @@
 						<view class="row">
 							<change-num 
 							:index="index" 
-							:num="item.rightNum" 
+							:num="item.auxiliaryQuantity" 
 							@changeNumResult="changeNum2"
 							>
 							</change-num> 
-							<text class="bg_style1">{{item.auxiliaryUnit}}</text>
+							<text class="bg_style1">{{item.auxiliaryUnit || item.auxiliaryunit}}</text>
 						</view>
 					</view>
 				</view>
 			</view>
-			
-		   
 			<view class="foot_wrap" >
 		        <template>
 		            <view class="foot_con row">
 		            	<view class="check_wrap">
-		            		<view v-if="true" class="iconfont icon-weixuanze"></view>
-		            		<view  v-else class="iconfont icon-xuanze"></view>
+		            		<view  @click="selectAll(2)" v-if="total<pageList.length" class="iconfont icon-weixuanze"></view>
+		            		<view  @click="selectAll(1)" v-else class="iconfont icon-xuanze"></view>
 		            	</view>
 		            	<view class="num_wrap row">
-		            		<text class="label">{{pageTxt}}</text> <text class="value">1</text>
+		            		<text class="label">{{pageTxt}}</text> <text class="value">{{total}}</text>
 		            	</view>
 		            	<view class="btn_wrap row">
 		            		<view v-if="step=='one'" class="btn" @click="submit('one')">
@@ -115,14 +113,15 @@
 				keyWrod:'',
 				modelTitle:'提示',
 				subTitle:'请输入商品数量',
-				showEdit:false,
 				total:0,
 				isCut:true,
 				goodsIndex:'',
 				pageType:'',
 				pageTxt:'',
 				step:'one',
-				pageList:[]
+				pageList:[],
+				fromPage:'',
+				leftNumName:''
 			}
 		},
 		onLoad(e) {
@@ -130,26 +129,33 @@
 			if(e.pageType=='out'){
 				barTitle='新增出库单'
 				this.pageTxt='出库'
+				this.leftNumName='outputQuantity'
 			}else if(e.pageType=='in'){
 				barTitle='新增入库单'
 				this.pageTxt='入库'
+				this.leftNumName='inputQuantity'
 			}else if(e.pageType=='overflow'){
 				barTitle='新增报溢单'
 				this.pageTxt='报溢'
 			}else if(e.pageType=='return'){
 				barTitle='新增退货单'
 				this.pageTxt='退货'
+				this.leftNumName='lossQuantity'
+				
 			}else if(e.pageType=='inventory'){
 				barTitle='新增盘点单'
 				this.pageTxt='盘点'
+				this.leftNumName='lossQuantity'
 			}else if(e.pageType=='frmLoss'){
 				barTitle='新增报损单'
+				this.leftNumName='lossQuantity'
 				this.pageTxt='报损'
 			}else if(e.pageType=='offer'){
                 barTitle='新增报价单'
                 this.pageTxt='报价'
             }
 			this.pageType=e.pageType
+			this.fromPage=e.fromPage
 			this.getProductList()
 		},
 		computed:{
@@ -162,8 +168,11 @@
 				this.getList().then(res=>{
 					res.forEach(el=>{
 						el.checked=1
-						el.leftNum=0
-						el.rightNum=0
+						el[this.leftNumName]=0
+						el.auxiliaryQuantity=0
+						el.showEdit=false
+						el.auxiliaryUnit=el.auxiliaryunit
+						el.costPrice=el.unitPrice
 					})
 					this.pageList=res
 				})
@@ -174,28 +183,97 @@
 			selectFilter(value){
                 console.log('筛选后的数据',value)
             },
+			// 选择单个商品
+			checkHandle(item,index){
+				item.checked==1?item.checked=2:item.checked=1
+				let nums=0
+				this.pageList.forEach(item=>{
+					if(item.checked==2){
+						nums++
+					}
+				})
+				if(this.step=='two'){
+					if(item.checked==2){
+						this.pageList[index].showEdit=true
+					}else{
+						this.pageList[index].showEdit=false
+					}
+				}
+				
+				this.total=nums
+				this.$forceUpdate()
+			},
+			// 全选
+			selectAll(val){
+				if(val==1){
+					this.total=0
+				}else{
+					this.total=this.pageList.length
+				}
+				this.pageList.forEach((item)=>{
+					item.checked=val
+					if(this.step=='two'){
+						if(val==2){
+							item.showEdit=true
+						}else{
+							item.showEdit=false
+						}
+					}
+				})
+			},
 			changeNum1(val,index,num){
 				if(val=='add'){
-					this.pageList[index].leftNum+=1
+					this.pageList[index][this.leftNumName]+=1
 				}else if(val=='sub'){
-					this.pageList[index].leftNum-=1
+					this.pageList[index][this.leftNumName]-=1
 				}else{
-					this.pageList[index].leftNum=num
+					this.pageList[index][this.leftNumName]=Number(num) 
 				}
 				this.$forceUpdate()
 			},
 			changeNum2(val,index,num){
 				if(val=='add'){
-					this.pageList[index].rightNum+=1
+					this.pageList[index].auxiliaryQuantity+=1
 				}else if(val=='sub'){
-					this.pageList[index].rightNum-=1
+					this.pageList[index].auxiliaryQuantity=1
 				}else{
-					this.pageList[index].rightNum=num
+					this.pageList[index].auxiliaryQuantity=Number(num)
 				}
 				this.$forceUpdate()
 			},
 			submit(val){
-				
+				let list=this.pageList
+				if(val=='one'){
+					let isChecked=list.some(el=>{
+						return el.checked==2
+					})
+					if(!isChecked){
+						uni.showToast({
+							title:'请先选择商品',
+							icon:'none'
+						})
+						return
+					}
+					list.forEach(el=>{
+						if(el.checked==2){
+							el.showEdit=true
+						}
+					})
+					this.step='two'
+				}else if(val=='two'){
+					let infoInfoVoList=list.filter(el=>{
+						return el.checked==2
+					})
+					uni.setStorageSync("stockData",infoInfoVoList)
+					if(this.fromPage=='Detail'){
+						let list=this.$StockManageInfo.infoInfoVoList.concat(infoInfoVoList)
+						this.SET_STOCK_MANAGE_INFO({infoInfoVoList:list})
+						this.navTo('back')
+					}else{
+						this.navTo('./AddPage?pageType='+this.pageType)
+						this.SET_STOCK_MANAGE_INFO({infoInfoVoList})
+					}
+				}
 			}
 		}
 	}
@@ -281,6 +359,7 @@
 				}
 				.img{
 					width: 120upx;
+					height: 120upx;
 					margin-right: 30upx;
 				}
 				.info{

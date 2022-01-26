@@ -24,7 +24,7 @@
 				v-for="(item,index) in $WareHouseList" :key="index"
 				:class="['child_item', 'mt20', stockIndex==(index+1) && 'is_check' ]" 
 				>
-					{{item.warehouseName}}
+					{{item.workhouseName}}
 				</view>
 			</view>
 		</view>
@@ -62,33 +62,6 @@
 	import {mapState,mapMutations} from 'vuex'
 	export default{
 		props:{
-			list:{
-				type:Array,
-				default:()=>{
-					return [{
-						label:'蔬菜',
-						childList:[
-							{label:'青菜1',checked:false},
-							{label:'青菜2',checked:false},
-							{label:'青菜3',checked:false},
-							{label:'青菜4',checked:false},
-							{label:'青菜',checked:false},
-							{label:'青菜',checked:false}
-						]
-					},
-					{
-						label:'蔬菜',
-						childList:[
-							{label:'青菜',checked:false},
-							{label:'青菜',checked:false},
-							{label:'青菜',checked:false},
-							{label:'青菜',checked:false},
-							{label:'青菜',checked:false},
-							{label:'青菜',checked:false}
-						]
-					}]
-				}
-			},
 			showStock:{
 				type:Boolean,
 				default:false
@@ -134,7 +107,7 @@
 					]
 				}],
 				stockIndex:0,
-				warehouseId:'',
+				workhouseId:'',
 				showDatePicker:false,
 				dateValue:Number(new Date()),
 				lossDateStart:'',
@@ -150,7 +123,7 @@
 			// 选择仓库
 			selecStock(item,index){
 				this.stockIndex=index+1
-				this.warehouseId=item.id
+				this.workhouseId=item.id
 			},
 			dateHandle(type){
 				this.selectDateType=type
@@ -181,7 +154,7 @@
 				}else{
 					if(this.showStock){
 						let data={
-							warehouseId:this.warehouseId,
+							workhouseId:this.workhouseId,
 							lossDateStart:this.lossDateStart,
 							lossDateEnd:this.lossDateEnd
 						}

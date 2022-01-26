@@ -2,13 +2,13 @@
 	<view class="page_wrap">
 		<view class="info_list mt20">
             <!-- 有仓库的 -->
-            <template v-if="pageType=='return' || pageType=='frmLoss' || pageType=='out' || pageType=='in'">
+            <template v-if="pageType=='return' || pageType=='frmLoss' || pageType=='out' || pageType=='in' ">
                 <view class="item row jc_sb">
                 	<view class="left f28-c333">
                 		{{pageTxt}}仓库
                 	</view>
                 	<view class="f28-c666">
-                		{{pageDetail.warehouseName}}
+                		{{pageDetail.workhouseName}}
                 	</view>
                 </view>
             </template>
@@ -32,7 +32,7 @@
                 		日期
                 	</view>
                 	<view class="f28-c666">
-						{{pageDetail.lossDate || pageDetail.outputDate || pageDetail.inputDate}}
+						{{pageDetail.lossDate || pageDetail.outputDate || pageDetail.inputDate || pageDetail.returnorderDate}}
                 	</view>
                 </view>
             </template>
@@ -50,7 +50,7 @@
                 </view>
             </template>
             <!-- 状态 -->
-            <template v-if="pageType=='offer' || pageType=='frmLoss' || pageType=='out' || pageType=='in'">
+            <template v-if="pageType=='return' || pageType=='frmLoss' || pageType=='out' || pageType=='in'">
                 <view class="item row jc_sb">
                 	<view class="left f28-c333">
                 		状态
@@ -90,7 +90,7 @@
             </template>
             
             <!-- 备注 -->
-            <template v-if="pageType=='turnover' || pageType=='offer' || pageType=='frmLoss' || pageType=='in' || pageType=='out'">
+            <template v-if="pageType=='return' || pageType=='offer' || pageType=='frmLoss' || pageType=='in' || pageType=='out'">
                 <view class="item row jc_sb">
                 	<view class="left f28-c333">
                 		备注
@@ -102,7 +102,7 @@
             </template>
             
             <!-- 操作日志 -->
-            <template v-if="pageType=='offer' || pageType=='frmLoss' || pageType=='out' || pageType=='in'">
+            <template v-if="pageType=='return' || pageType=='frmLoss' || pageType=='out' || pageType=='in'">
                 <view class="item row jc_sb" @click="navTo('./Log?id='+pageDetail.id+'&pageUrl='+pageUrl)">
                 	<view class="left f28-c333">
                 		操作日志
@@ -134,7 +134,7 @@
                     合计
 				</view>
 				<view class="right">
-					{{(pageDetail.infoInfoVoList && pageDetail.infoInfoVoList.length) || (pageDetail.infoVoList && pageDetail.infoVoList.length)}}
+					{{(pageDetail.infoInfoVoList && pageDetail.infoInfoVoList.length) || (pageDetail.infoVoList && pageDetail.infoVoList.length) || 0}}
 				</view>
 			</view>
 			<view class="btns">
@@ -186,6 +186,7 @@
 			}else if(e.pageType=='inventory'){
 				barTitle='盘点单详情'
 				this.pageTxt='盘点'
+				this.pageUrl='api/stocktake/findInfo'
 			}else if(e.pageType=='frmLoss'){
 				barTitle='报损单详情'
 				this.pageTxt='报损'
@@ -196,6 +197,7 @@
 			}else if(e.pageType=='return'){
 				barTitle='退货单详情'
 				this.pageTxt='退货'
+				this.pageUrl='api/returnorder/findInfo'
 			}else if(e.pageType=='offer'){
                 barTitle='报价单详情'
                 this.pageTxt='报价'
@@ -217,18 +219,25 @@
 		computed:{
 			...mapState(['$StockManageInfo'])
 		},
+		onShow() {
+			if(this.pageDetail.infoInfoVoList){
+				this.pageDetail.infoInfoVoList=this.$StockManageInfo.infoInfoVoList 
+			}else{
+				this.pageDetail.infoVoList=this.$StockManageInfo.infoInfoVoList 
+			}
+		},
 		methods:{
 			...mapMutations(['SET_STOCK_MANAGE_INFO']),
 			// 获取详情
 			getDetail(){
 				this.$http(this.pageUrl,{id:this.id}).then(res=>{
 					this.pageDetail=res
-					this.SET_STOCK_MANAGE_INFO({selectData:res.infoInfoVoList})
+					this.SET_STOCK_MANAGE_INFO({infoInfoVoList :(res.infoInfoVoList || res.infoVoList)})
 				})
 			},
 			// 添加商品
 			addProduct(){
-				this.navTo('./SelectGood?pageType='+this.pageType)
+				this.navTo('./SelectGood?pageType='+this.pageType+'&fromPage=Detail')
 			},
 			// 提交
 			submit(val){
@@ -244,7 +253,7 @@
 							url='api/outputBill/update'
 							break;
 						case 'inventory':
-							url=''
+							url='api/stocktake/update'
 							break;
 						case 'frmLoss':
 							url='api/Loss/update'
@@ -253,7 +262,7 @@
 							url=''
 							break;
 						case 'return':
-							url=''
+							url='api/returnorder/update'
 							break;
 						case 'turnover':
 							url=''
@@ -275,7 +284,7 @@
 							url='api/outputBill/updateInvalid'
 							break;
 						case 'inventory':
-							url=''
+							url='api/stocktake/updateInvalid'
 							break;
 						case 'frmLoss':
 							url='api/Loss/updateInvalid'
@@ -284,7 +293,7 @@
 							url=''
 							break;
 						case 'return':
-							url=''
+							url='api/returnorder/updateInvalid'
 							break;
 						case 'turnover':
 							url=''
@@ -308,7 +317,7 @@
 							url='api/outputBill/updateAudit'
 							break;
 						case 'inventory':
-							url=''
+							url='api/stocktake/updateAudit'
 							break;
 						case 'frmLoss':
 							url='api/Loss/updateAudit'
@@ -317,7 +326,7 @@
 							url=''
 							break;
 						case 'return':
-							url=''
+							url='api/returnorder/updateAudit'
 							break;
 						case 'turnover':
 							url=''
@@ -341,7 +350,7 @@
 							url='api/outputBill/updateBackAudit'
 							break;
 						case 'inventory':
-							url=''
+							url='api/stocktake/updateBackAudit'
 							break;
 						case 'frmLoss':
 							url='api/Loss/updateBackAudit'
@@ -350,7 +359,7 @@
 							url=''
 							break;
 						case 'return':
-							url=''
+							url='api/returnorder/updateBackAudit'
 							break;
 						case 'turnover':
 							url=''

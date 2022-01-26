@@ -28,7 +28,7 @@
 									<text v-if="item.checked==2" class="iconfont icon-xuanze"></text>
 									<text v-else class="iconfont icon-weixuanze"></text>
 								</template>
-								{{item.lossCode || item.outputCode || item.inputCode}}
+								{{item.lossCode || item.outputCode || item.inputCode || item.returnorderCode}}
 							</view>
 							<view class="status" :class="item.billState==-1?'die':''">
 								{{item.billState==1?'已审核':item.billState==-1?'已作废':'待审核'}}
@@ -59,13 +59,13 @@
 						
 						<!-- 其他 -->
 						<template v-else>
-							<view class="label bg_style1">{{item.warehouseName}}</view>
+							<view class="label bg_style1">{{item.workhouseName}}</view>
 							<view class="row jc_sb mt30">
 								<text class="date f28-c333">
-									{{item.lossDate | date_('Y-m-d H:i') || item.outputDate || item.inputDate}}
+									{{item.lossDate || item.outputDate || item.inputDate || item.returnorderDate}}
 								</text>
 								<text class="price">
-									¥{{item.lossAmount || item.outputAmount || item.inputAmount}}
+									¥{{item.lossAmount || item.outputAmount || item.inputAmount || item.returnorderAmount || 0}}
 								</text>
 							</view>
 						</template>
@@ -137,6 +137,7 @@
 </template>
 
 <script>
+	import {mapState,mapMutations} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -173,6 +174,7 @@
 			}else if(e.pageType=='inventory'){
 				barTitle='盘点单'
 				this.pageTxt='盘点'
+				this.queryUrl='api/stocktake/pageList'
 			}else if(e.pageType=='frmLoss'){
 				barTitle='报损单'
 				this.pageTxt='报损'
@@ -183,6 +185,7 @@
 			}else if(e.pageType=='return'){
 				barTitle='退货单'
 				this.pageTxt='退货'
+				this.queryUrl='api/returnorder/pageList'
 			}else if(e.pageType=='turnover'){
 				barTitle='周转框'
 				this.pageTxt='周转'
@@ -212,11 +215,14 @@
 		onShow() {
 			this.dataList=[]
 			this.initData()
+			this.CLEAR_STOCK_MANAGE()
+			uni.removeStorageSync('stockData')
 		},
 		computed:{
 			
 		},
 		methods:{
+			...mapMutations(['CLEAR_STOCK_MANAGE']),
 			async initData(){
 				uni.showLoading({
 					title:'加载中'
@@ -279,7 +285,7 @@
 							url='api/outputBill/updateInvalid'
 							break;
 						case 'inventory':
-							url=''
+							url='api/stocktake/updateInvalid'
 							break;
 						case 'frmLoss':
 							url='api/Loss/updateInvalid'
@@ -288,7 +294,7 @@
 							url=''
 							break;
 						case 'return':
-							url=''
+							url='api/returnorder/updateInvalid'
 							break;
 						case 'turnover':
 							url=''
@@ -312,7 +318,7 @@
 							url='api/outputBill/updateAudit'
 							break;
 						case 'inventory':
-							url=''
+							url='api/stocktake/updateAudit'
 							break;
 						case 'frmLoss':
 							url='api/Loss/updateAudit'
@@ -321,7 +327,7 @@
 							url=''
 							break;
 						case 'return':
-							url=''
+							url='api/returnorder/updateAudit'
 							break;
 						case 'turnover':
 							url=''
@@ -345,7 +351,7 @@
 							url='api/outputBill/updateBackAudit'
 							break;
 						case 'inventory':
-							url=''
+							url='api/stocktake/updateBackAudit'
 							break;
 						case 'frmLoss':
 							url='api/Loss/updateBackAudit'
@@ -354,7 +360,7 @@
 							url=''
 							break;
 						case 'return':
-							url=''
+							url='api/returnorder/updateBackAudit'
 							break;
 						case 'turnover':
 							url=''
@@ -407,6 +413,15 @@
 				}
 				this.dataList=[]
 				this.initData()
+			}
+		},
+		onUnload() {
+			this.navTo('/pages/User/User','switch')
+		},
+		onBackPress(options) {
+			if(options.from=='backbutton'){
+				this.navTo('/pages/User/User','switch')
+				return true
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 					{{pageTxt}}仓库
 				</view>
 				<view class="right row">
-					<text class="label">{{queryData.warehouseName}}</text>
+					<text class="label">{{queryData.workhouseName}}</text>
 					<text class="iconfont icon-jinru"></text>
 				</view>
 			</view>
@@ -79,8 +79,8 @@
 				stockData:null,
 				columns:[{label:'仓库1',value:1},{label:'仓库2',value:2}],
 				queryData:{
-					warehouseName:'请选择',
-					warehouseId:''
+					workhouseName:'请选择',
+					workhouseId:''
 				},
 			};
 		},
@@ -113,7 +113,7 @@
 				title:barTitle
 			})
 			this.selectDate=date('Y-m-d',new Date().getTime())
-			
+			this.initDate(this.selectDate)
 			if(uni.getStorageSync('stockData')){
 				this.stockData=uni.getStorageSync('stockData')
 			}
@@ -121,15 +121,31 @@
 		},
 		mounted() {
 			if(uni.getStorageSync('stockData')){
+				let list=uni.getStorageSync('stockData')
 				this.$refs.detailList.step='three'
+				list.forEach(el=>{
+					el.costPrice=el.unitPrice
+				})
+				this.stockData=list
+				this.SET_STOCK_MANAGE_INFO({infoInfoVoList:list})
+				this.$forceUpdate()
 			}
-			if(this.$StockManageInfo.warehouseId){
-				this.queryData.warehouseName=this.$StockManageInfo.warehouseName
-				this.queryData.warehouseId=this.$StockManageInfo.warehouseId
+			if(this.$StockManageInfo.workhouseId){
+				this.queryData.workhouseName=this.$StockManageInfo.workhouseName
+				this.queryData.workhouseId=this.$StockManageInfo.workhouseId
 			}
+			if(this.$StockManageInfo.remark){
+				this.remark=this.$StockManageInfo.remark
+			}
+			
 		},
 		computed:{
 			...mapState(['$StockManageInfo'])
+		},
+		watch:{
+			"remark":function(val){
+				this.SET_STOCK_MANAGE_INFO({'remark':val})
+			}
 		},
 		methods:{
 			...mapMutations(['SET_STOCK_MANAGE_INFO']),
@@ -137,7 +153,7 @@
 				this.$http('api/workhous/getWorkhousList').then(res=>{
 					this.columns=res.map((item)=>{
 						return {
-							label:item.warehouseName,
+							label:item.workhouseName,
 							value:item.id
 						}
 					})
@@ -153,11 +169,31 @@
 			// 选择日期
 			dateConfirm(date){
 			    this.selectDate = date;
+				this.initDate(date)
+			},
+			initDate(date){
+				switch(this.pageType){
+					case 'in':
+						this.SET_STOCK_MANAGE_INFO({'inputDate':date})
+						break;
+					case 'out':
+						this.SET_STOCK_MANAGE_INFO({'outputDate':date})
+						break;
+					case 'frmLoss':
+						this.SET_STOCK_MANAGE_INFO({'lossDate':date})
+						break;
+					case 'return':
+						this.SET_STOCK_MANAGE_INFO({'returnorderDate':date})
+						break;
+					case 'inventory':
+						this.SET_STOCK_MANAGE_INFO({'stocktakeDate':date})
+						break;
+				}
 			},
 			// 选择仓库
 			confirm(e){
-				this.queryData.warehouseName=e.label
-				this.queryData.warehouseId=e.value
+				this.queryData.workhouseName=e.label
+				this.queryData.workhouseId=e.value
 				this.SET_STOCK_MANAGE_INFO(this.queryData)
 			}
 		},

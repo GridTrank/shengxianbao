@@ -20,7 +20,7 @@
   background-color: #fff;
   position: relative;
   flex-direction: row;
-  padding: 26rpx 10rpx 26rpx 40rpx;
+  padding: 26rpx 10rpx 26rpx 26rpx;
 }
 .coupon_wrap .coupon_info.data-v-c00e9c60::before {
   content: "";
@@ -42,7 +42,7 @@
   border: 1px solid #FE5B07;
   background-color: #FE5B07;
   border-radius: 1px;
-  padding: 2rpx 20rpx;
+  padding: 2rpx 15rpx;
   margin-right: 8rpx;
 }
 .coupon_wrap .coupon_info .tag_wrap .tag.line.data-v-c00e9c60 {

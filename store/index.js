@@ -26,6 +26,9 @@ const store = new Vuex.Store({
 		SET_STOCK_MANAGE_INFO(state,data){
 			state.$StockManageInfo=Object.assign({},state.$StockManageInfo,data)
 		},
+		CLEAR_STOCK_MANAGE(state,data){
+			state.$StockManageInfo={}
+		},
 		GET_WARE_HOUSE_LIST(state,data){
 			state.$WareHouseList=data
 		}
