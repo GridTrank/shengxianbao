@@ -50,8 +50,12 @@ export default {
 					...this.queryData
 				}
 				this.$http(this.queryUrl, data).then(res => {
-					this.dataList = this.dataList.concat(Array.isArray(res)?res:  (res.list || res.data || []) ); 
+					this.dataList = this.dataList.concat(Array.isArray(res)?res:  (res.list || res.data || [])); 
 					resolve(this.dataList)
+					// 限制重复请求并且加载完后限制请求
+					this.isRequestState = Number(res.total) <= this.dataList.length ? true : false;
+					
+					
 				})
 			})
 		},

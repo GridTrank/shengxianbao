@@ -24,6 +24,9 @@
 					value:'used',
 					type:'2'
 				}],
+				isRequestState:false,
+				page:1,
+				limit:20,
 				type:'list',
 				queryData:{ticketStatus:0},
 				activeTab:'use',
@@ -36,6 +39,15 @@
 		},
 		created(){
 			this.getList()
+		},
+		onReachBottom(){
+			console.log(this.isRequestState)
+			if(!this.isRequestState){
+				this.isRequestState = true;
+				this.page++;
+				this.getList();
+			}
+			
 		},
 		methods: {
 			onNavigationBarButtonTap(){
