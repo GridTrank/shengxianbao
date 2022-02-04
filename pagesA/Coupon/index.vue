@@ -1,7 +1,7 @@
 <template>
 	<view class="page_wrap ">
 		<u-tabs class="coupon_tab"  lineColor="#FE5B07" :activeStyle="{color: '#FE5B07',}" :list="list" @click="tab"></u-tabs>
-		<CouponList :state="activeTab" :type="type" :couponList="dataList"></CouponList>
+		<CouponList :pageType="pageType" :state="activeTab" :type="type" :couponList="dataList"></CouponList>
 		<view class="btn" @click="navTo('/pagesA/Coupon/center')">领券中心<span class="iconfont icon-jinru"></span></view>
 	</view>
 </template>
@@ -31,12 +31,16 @@
 				queryData:{ticketStatus:0},
 				activeTab:'use',
 				dataList:[],
-				queryUrl:'api/bmallticketuse/pageCusList'
+				queryUrl:'api/bmallticketuse/pageCusList',
+                pageType:''
 			}
 		},
 		components:{
 			CouponList
 		},
+        onLoad(e){
+            this.pageType=e.pageType
+        },
 		created(){
 			this.getList()
 		},

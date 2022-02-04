@@ -1,6 +1,6 @@
 <template>
 	<view :class="['coupon_wrap',type]">
-		<view class="coupon" v-for="(item,index) in couponList" :key="index">
+		<view v-if="couponList.length>0" class="coupon" v-for="(item,index) in couponList" :key="index">
 			<view class="coupon_info">
 				<view class="title b">{{item.ticketName}}</view>
 				<view class="tag_wrap">
@@ -13,16 +13,23 @@
 			<view class="coupon-money column">
 				<view class="money"><span class="min">￥</span><span>{{item.ruleAmount}}</span></view>
 				<view class="condition">满{{item.ticketAmount}}可用</view>
-				<view class="use" v-if="type == 'list'">去使用<view class="circle"><span class="iconfont icon-jinru"></span></view></view>
+				<view class="use" v-if="type == 'list'" @click="useCoupon(item)">
+                    去使用<view class="circle"><span class="iconfont icon-jinru"></span></view>
+                </view>
 				<view class="get" v-if="type == 'get'" @click="getCoupon(item.id)">领取</view>
 				<view class="lost" v-if="type == 'used'">{{state}}</view>
 			</view>
 		</view>
+        
+        <view v-if="couponList.length<=0">
+        	<no-data></no-data>
+        </view>
 	</view>
 </template>
 
 <script>
 	import {date} from '@/common/js/util'
+    import {mapState,mapMutations} from 'vuex'
 	export default{
 		props:{
 			couponList:{
@@ -38,6 +45,10 @@
 				type:String,
 				default:'list'
 			},
+            pageType:{
+                type:String,
+                default:''
+            },
 			// 失效优惠券 已使用还是已失效
 			state:{
 				type:String,
@@ -63,12 +74,32 @@
 				}
 			}
 		},
+        watch:{
+            
+        },
 		created(){
 		},
+        computed:{
+            ...mapState(['$orderData'])
+        },
 		methods:{
+            ...mapMutations(['SET_ORDER_DATA']),
 			dateTime(str,time){
 				return date(str,time)
 			},
+            useCoupon(item){
+                if(this.pageType=='orderDetail'  ){
+                    if(this.$orderData.goodsAmount >item.ticketAmount){
+                        this.SET_ORDER_DATA({couponAmount:item.ruleAmount})
+                        this.navTo('back')
+                    }else{
+                        uni.showToast({
+                            title:'未满足条件',
+                            icon:'none'
+                        })
+                    }
+                }
+            },
 			getCoupon(id){
 				this.$http('api/bmallticketuse/receiveTicket',{id:id}).then((result)=>{
 					console.log(result);

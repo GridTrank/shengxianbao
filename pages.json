@@ -551,12 +551,28 @@
 				}
 			}
 			]
-		}
+		},
+        {
+            "root":"pagesC",
+            "pages":[
+                {
+                	"path": "Out/Index",
+                	"style": {
+                		// #ifdef H5
+                		"navigationStyle": "custom",
+                		// #endif
+                		"navigationBarTitleText": "出库单",
+                		"enablePullDownRefresh": false
+                	}
+                }
+            ]
+            
+        }
 	],
 	"preloadRule": {
 		"pages/Home/Home": {
 			"network": "all",
-			"packages": ["pagesA", "pagesB"]
+			"packages": ["pagesA", "pagesB","pagesC"]
 		},
 		"pagesA/SubAccount/SubAccount": {
 			"network": "all",
@@ -565,7 +581,11 @@
 		"pagesB/RecommendPage/RecommendPage": {
 			"network": "all",
 			"packages": ["pagesB"]
-		}
+		},
+        "pagesC/Out/Out": {
+        	"network": "all",
+        	"packages": ["pagesC"]
+        }
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

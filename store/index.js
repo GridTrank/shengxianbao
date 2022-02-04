@@ -13,7 +13,8 @@ const store = new Vuex.Store({
             id: 1
         },
 		$StockManageInfo:{},
-		$WareHouseList:[]
+		$WareHouseList:[],
+        $orderData:{}
     },
 	actions:{
 		Get_Ware_House_List(state){
@@ -31,7 +32,10 @@ const store = new Vuex.Store({
 		},
 		GET_WARE_HOUSE_LIST(state,data){
 			state.$WareHouseList=data
-		}
+		},
+        SET_ORDER_DATA(state,data){
+            state.$orderData=Object.assign({},state.$orderData,data)
+        }
 	}
 })
 

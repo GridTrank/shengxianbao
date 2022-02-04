@@ -187,15 +187,23 @@
 				if(goodsnum == 1){
 					return
 				}else{
+                    this.changeNum('api/bmallshoppingcart/updateShoppingCartSub',this.dataList[goodsIndex].productSkuId)
 					this.dataList[goodsIndex].buyQuantity--
 				}
 				this.statistics()
 			},
 			//增加
 			add( goodsIndex, goodsnum){
+                this.changeNum('api/bmallshoppingcart/updateShoppingCartAdd',this.dataList[goodsIndex].productSkuId)
 				this.dataList[goodsIndex].buyQuantity++
 				this.statistics()
 			},
+            // 购物车加减
+            changeNum(url,id){
+                this.$http(url,{productSkuId: Number(id) },'post').then(res=>{
+                    
+                })
+            },
 			//全选
 			allCheck(){
 				if(this.statisticsIndex){
@@ -229,7 +237,7 @@
 			accounts(){
 				let judge = this.judgeSelect()
 				if(judge){
-					this.navTo('/pages/ConfirmOrder/ConfirmOrder')
+					this.navTo('/pages/ConfirmOrder/ConfirmOrder?ids='+judge)
 				}else{
 					uni.showToast({
 						title:'您当前未选择任何商品,结算失败',
@@ -241,7 +249,7 @@
 				let judge = []
 				this.dataList.find((item,index)=>{
 					if(item.checked == 2){
-						judge.push(Number(item.id) )
+						judge.push(Number(item.productSkuId) )
 					}
 				})
 				return judge

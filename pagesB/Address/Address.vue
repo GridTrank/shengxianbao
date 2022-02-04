@@ -38,18 +38,18 @@
 	export default {
 		data() {
 			return {
-
-				pageType: ''
-
+				pageType:'',
+                type:'',
 			};
 		},
 		onLoad(e) {
 			this.pageType = e.pageType
+			this.type = e.type
 			this.getData()
 		},
 		methods: {
 			getData() {
-				this.queryUrl = 'api/myOneslft/getCustomerAddrList'
+				this.queryUrl =this.type==1? 'api/myOneslft/getCustomerAddrList':'api/bmallpickuppoint/page'
 				this.getList().then(res => {
 					console.log(res)
 				})

@@ -66,12 +66,7 @@
 	padding-bottom: 20upx;
 	.tab_list{
 		position: fixed;
-		// #ifdef MP
 		top: 0upx;
-		// #endif
-		// #ifndef MP
-		top: 88upx;
-		// #endif
 		background-color: #fff;
 		width: 100%;
 		justify-content: space-around;

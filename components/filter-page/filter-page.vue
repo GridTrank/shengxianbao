@@ -90,6 +90,7 @@
 		},
 		created(){
 			this.getData()
+            this.$store.dispatch('Get_Ware_House_List')
 		},
 		methods: {
 			// 获取筛选数据

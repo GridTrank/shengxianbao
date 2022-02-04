@@ -7,7 +7,7 @@
 					this.initSize(e);
 				}
 			})
-			this.initWareHouseList();
+			// this.initWareHouseList();
 		},
 		methods: {
 			//登录状态

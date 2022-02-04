@@ -77,6 +77,11 @@
         onLoad() {
             this.getBanner()
         },
+        onShow() {
+            if(uni.getStorageSync('token')){
+                this.getLike()
+            }
+        },
         methods:{
             // bannner
             getBanner(){
@@ -86,7 +91,6 @@
                     this.getRecommentList()
                     this.getSpecialList()
                     this.getNotice()
-					this.getLike()
                 })
             },
             // 分类

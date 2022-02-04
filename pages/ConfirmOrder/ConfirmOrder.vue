@@ -2,19 +2,19 @@
 	<view class="page_wrap">
 		<view class="wrap jc_sb row mt20" @click="selectDeliType">
 			<text class="f28-c333">配送方式</text>
-			<text class="f28-c999 ">快递配送<text class="iconfont icon-jinru"></text></text>
+			<text class="f28-c999 ">{{shipMethod}}<text class="iconfont icon-jinru"></text></text>
 		</view>
 		<!-- 地址 -->
 		<view class="wrap jc_sb row mt20 second">
-			<text class="f28-c333">配送地址</text>
+			<text class="f28-c333">{{deliveryTypeId==1?'配送':'自提'}}地址</text>
 			<view class="user_info">
 				<view class="row info">
-					<text class="f32-c333 name">姓名</text>
-					<text class="f28-c999 phone">12345678911</text>
+					<text class="f32-c333 name">{{addressDetail.accepter}}</text>
+					<text class="f28-c999 phone">{{addressDetail.telephone}}</text>
 					<text class="moren">默认</text>
 				</view>
-				<view class="address mt20 row" @click="navTo('/pagesB/Address/Address?pageType=confirmOrder')">
-					<text class="txt f28-c333">江苏省 相城区 苏州市 江苏省相城区漕湖</text>
+				<view class="address mt20 row jc_sb" @click="navTo('/pagesB/Address/Address?pageType=confirmOrder&type='+deliveryTypeId)">
+					<text class="txt f28-c333">{{addressDetail.addrDetails}}</text>
 					<text class="iconfont icon-jinru"></text>
 				</view>
 			</view>
@@ -23,7 +23,7 @@
 		<view class="wrap time mt20">
 			<view class="dist row jc_sb" @click="popupStatus=true">
 				<text class="f28-c333">配送时间</text>
-				<text class="f28-c333">2020-10-12 9-10 <text class="iconfont icon-jinru"></text> </text>
+				<text class="f28-c333">{{shipTime}}<text class="iconfont icon-jinru"></text> </text>
 			</view>
 			<view class="goods row jc_sb mt30" @click="navTo('./GoodList')">
 				<view class="goods_img row">
@@ -41,10 +41,10 @@
 			</view>
 			<view class="money row">
 				<view 
-				:class="['n',selectTip==index && 'select_tip']" 
+				:class="['n',selectTip===index && 'select_tip']" 
 				@click="selectTipHandle(item,index)"
 				v-for="(item,index) in tipMoney" :key="index">
-					{{item.money}}
+					￥{{item.tipsAmount}}
 				</view>
 				<u-input class="n" border='none' type="text" placeholder="自定" v-model="customTip" />
 			</view>
@@ -67,8 +67,8 @@
 					
 				</view>
 			</view>
-			<view class="arrears row">
-				欠款：<text class="m">-￥100.00</text>
+			<view class="arrears row" v-if="userInfo.debtAmount>0">
+				欠款：<text class="m">-￥{{userInfo.debtAmount}}</text>
 			</view>
 		</view>
 		
@@ -76,19 +76,21 @@
 		<view class="wrap expense_detail mt20">
 			<view class="dist row jc_sb">
 				<text class="f28-c333">商品总价</text>
-				<text class="f28-c333">¥639.00</text>
+				<text class="f28-c333">¥{{orderDetail.goodsAmount}}</text>
 			</view>
 			<view class="dist row jc_sb">
 				<text class="f28-c333">运费</text>
-				<text class="f28-c333">¥639.00</text>
+				<text class="f28-c333">¥{{orderDetail.logisticsAmount}}</text>
 			</view>
 			<view class="dist row jc_sb">
 				<text class="f28-c333">司机小费</text>
-				<text class="f28-c333">¥639.00</text>
+				<text class="f28-c333">¥{{selectTipMoney || 0}}</text>
 			</view>
-			<view class="dist row coupon jc_sb">
+			<view class="dist row coupon jc_sb" @click="navTo('/pagesA/Coupon/index?goodsAmount='+ orderDetail.goodsAmount+'&pageType=orderDetail')">
 				<text class="f28-c333">优惠券</text>
-				<text class="f28-c333 m">¥639.00 <text class="iconfont icon-jinru"></text> </text>
+				<text class="f28-c333 m">¥{{ticketAmount}}
+                    <text class="iconfont icon-jinru"></text>
+                </text>
 			</view>
 		</view>
 		
@@ -101,8 +103,8 @@
 		</view>
 		<!-- 底部 -->
 		<view class="foot wrap row ">
-			<view class="left row"> <text>¥639.00</text> <text class="f24-c333">(含运费)</text></view>
-			<view class=" f24-c333">优惠 <text>¥00.00</text> </view>
+			<view class="left row"> <text>¥{{totalAmount}}</text> <text class="f24-c333">(含运费)</text></view>
+			<view class=" f24-c333">优惠 <text>¥{{ticketAmount}}</text> </view>
 			<view class="btn_default">支付</view>
 		</view>
 		<jPicker
@@ -123,7 +125,7 @@
 			maxHour="22"
 			minMinute="0"
 			maxMinute="59"
-			@close="datePickerClose"
+			@close="popupStatus=false"
 			@confirm="handleDatePickerConfirm"
 		>
 		</bz-date-picker>
@@ -131,32 +133,130 @@
 </template>
 
 <script>
+    import {date} from "@/common/js/util"
+    import {mapState,mapMutations} from 'vuex'
 	export default {
 		data() {
 			return {
 				showPicker:true,
 				popupStatus:false,
-				columns:[{label:'上门自退',value:1},{label:'快递配送',value:2}],
+                shipMethod:'快递配送',
+                deliveryTypeId:1,
+				columns:[{label:'快递配送',value:1},{label:'上门自提',value:2}],
 				listType:'',
-				tipMoney:[
-					{money:'￥1',value:1},
-					{money:'￥2',value:2},
-					{money:'￥3',value:3},
-				],
+                addressDetail:{},
+                orderDetail:{},
+				tipMoney:[],
 				customTip:'',
-				selectTip:0,
+				selectTip:'',
+                selectTipMoney:'',
+                ticketAmount:0,
 				payList:[
-					{label:'微信支付',src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/wx.png',checked:false,type:'weixin'},
-					{label:'支付宝支付',src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/zfb.png',checked:false,type:'apliay'},
-					{label:'银行卡支付',src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/yhk.png',checked:false,type:'card'},
+					{label:'微信',src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/wx.png',checked:false,type:'weixin'},
+					{label:'支付宝',src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/zfb.png',checked:false,type:'apliay'},
+					{label:'银联',src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/yhk.png',checked:false,type:'card'},
 				],
 				remark:'',
+                shipTime:'',
+                userInfo:{},
+                totalAmount:0,
+                comAmount:'',
 			};
 		},
+        watch:{
+            "customTip":function(val){
+                this.selectTip=''
+                this.selectTipMoney=val
+                let money=this.comAmount
+                let m= Number(money)+ Number(val)
+                this.totalAmount=m.toFixed(2)
+                this.SET_ORDER_DATA({customTip:val})
+            }
+        },
+        computed:{
+            ...mapState(['$orderData']),
+        },
+        onLoad(e) {
+            this.getDetail(e.ids)
+            this.shipTime=date('Y-m-d H-i',new Date().getTime())
+        },
+        onShow() {
+            let that=this
+            // 有选择优惠券
+            if(that.$orderData.couponAmount && that.$orderData.couponAmount>0){
+                let data=that.orderDetail
+                let orderData=that.$orderData
+                that.ticketAmount=that.$orderData.couponAmount
+                that.totalAmount=that.comAmount=(data.goodsAmount+data.logisticsAmount-that.ticketAmount).toFixed(2)
+                that.SET_ORDER_DATA({couponAmount:0})
+                // 有选择小费
+                if(orderData.selectTip && orderData.selectTip>0){
+                    that.selectTip=orderData.selectTip
+                    that.totalAmount=(Number(that.totalAmount) + Number(orderData.selectTipMoney) ).toFixed(2)
+                }
+                // 有自定义小费
+                if(orderData.customTip){
+                    that.customTip=orderData.customTip
+                    that.selectTip=''
+                    that.selectTipMoney=orderData.customTip
+                    that.totalAmount=(Number(that.totalAmount) + Number(orderData.customTip) ).toFixed(2)
+                }
+            }
+        },
 		methods:{
+            ...mapMutations(['SET_ORDER_DATA']),
+            // 详情
+            getDetail(ids){
+                let productSkuIdList=ids.split(',')
+                this.$http('api/oms/order/settleAccounts',{productSkuIdList},'post').then(res=>{
+                    this.orderDetail=res
+                    this.SET_ORDER_DATA({goodsAmount:res.goodsAmount})
+                    this.totalAmount=this.comAmount=(res.goodsAmount+res.logisticsAmount).toFixed(2)
+                })
+                this.getMyInfo()
+                this.getPayMethod()
+                this.getAddressList()
+                this.getTipsList()
+            },
+            // 获取支付方式
+            getPayMethod(){
+                this.$http('api/basepayment/payWayList').then(res=>{
+                    
+                })
+            },
+            // 获取个人信息
+            getMyInfo(){
+                this.$http('api/myOneslft/getMyInfo','','post').then(res=>{
+                	this.userInfo=res
+                }) 
+            },
+            // 获取地址
+            getAddressList(){
+                this.queryUrl =this.deliveryTypeId==1? 'api/myOneslft/getCustomerAddrList':'api/bmallpickuppoint/page'
+                this.getList().then(res => {
+                    if(this.deliveryTypeId==1){
+                        this.addressDetail=res.filter(item=>{
+                            return item.id==13
+                        })[0]
+                    }
+                })
+            },
+            // 获取小费
+            getTipsList(){
+                this.$http('api/oms/order/tipsList',{},'post').then(res=>{
+                    this.tipMoney=res
+                })
+            },
+            // 选择小费
 			selectTipHandle(item,index){
+                let money=this.comAmount
 				this.selectTip=index
+                this.selectTipMoney=item.tipsAmount
+                let m=Number(money) + Number(item.tipsAmount) 
+                this.totalAmount=m.toFixed(2)
+                this.SET_ORDER_DATA({selectTipMoney:item.tipsAmount,selectTip:index})
 			},
+            // 选择支付方式
 			selectPayHandle(item,index){
 				this.payList.forEach((el,e)=>{
 					if(e==index){
@@ -166,18 +266,20 @@
 					}
 				})
 			},
+            // 选择日期
 			handleDatePickerConfirm(e){
-				console.log(e)
+                this.shipTime=e
 				this.popupStatus=false
 			},
+            // 弹出配送方式
 			selectDeliType(){
 				this.$refs.jPicker.pickerVisable=true
 			},
-			datePickerClose(){
-				this.popupStatus=false
-			},
+            // 选择配送方式
 			confirm(e){
-				console.log(e)
+                this.shipMethod=e.label
+                this.getAddressList()
+                this.deliveryTypeId=e.value
 			}
 		}
 	}
@@ -287,7 +389,9 @@
 			&:last-child{
 				border:none
 			}
-			
+			.m{
+				color: $base-color;
+			}
 		}
 	}
 	.remark{
