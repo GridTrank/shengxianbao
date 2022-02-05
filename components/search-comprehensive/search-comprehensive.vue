@@ -14,8 +14,12 @@
 			</view>
 		</view>
 		<u-popup :show="showFilter" mode="right" @close="showFilter=false">
-			<filter-page :pageType="pageType" :showStock="showStock" :showDate="showDate" :showClassify="showClassify"
-				@selectFilter="selectFilter">
+			<filter-page 
+            :pageType="pageType" 
+            :showStock="showStock" 
+            :showDate="showDate" 
+            :showClassify="showClassify"
+			@selectFilter="selectFilter">
 			</filter-page>
 		</u-popup>
 	</view>

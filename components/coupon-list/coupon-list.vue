@@ -90,7 +90,7 @@
             useCoupon(item){
                 if(this.pageType=='orderDetail'  ){
                     if(this.$orderData.goodsAmount >item.ticketAmount){
-                        this.SET_ORDER_DATA({couponAmount:item.ruleAmount})
+                        this.SET_ORDER_DATA({couponAmount:item.ruleAmount,ticketId:item.id})
                         this.navTo('back')
                     }else{
                         uni.showToast({

@@ -8,12 +8,12 @@
 				<u-form-item label="手机号码" prop="telephone" borderBottom >
 					<u--input v-model="model.telephone" border="none" placeholder="请输入手机号码"></u--input>
 				</u-form-item>
-				<u-form-item label="邮编" prop="accepter" borderBottom >
+				<!-- <u-form-item label="邮编" prop="accepter" borderBottom >
 					<u--input v-model="model.telephone" border="none"  placeholder="请输入邮编"></u--input>
-				</u-form-item>
-				<u-form-item label="所在地区" prop="accepter" borderBottom >
-					<u--input v-model="model.telephone" border="none" placeholder="请输入所在地区"></u--input>
-				</u-form-item>
+				</u-form-item> -->
+				<!-- <u-form-item label="所在地区" prop="accepter" borderBottom >
+					<u--input v-model="model.addrReference" border="none" placeholder="请输入所在地区"></u--input>
+				</u-form-item> -->
 				<u-form-item label="详细地址" prop="addrDetails" borderBottom >
 					<view class="address row jc_sb">
 						<u--input v-model="model.addrDetails" border="none" placeholder="请输入详细地址或直接定位"></u--input>
@@ -43,7 +43,11 @@
 		data() {
 			return {
 				isAgree: false,
-				model: {},
+				model: {
+                    accepter:'',
+                    telephone:'',
+                    addrDetails:''
+                },
 				rules: {
 					accepter: {
 						type: 'string',
@@ -67,25 +71,38 @@
 				},
 				selectTagIndex: 0,
 				isDefault: true,
-				address: {}
+				address: {},
+                pageType:'',
+                queryId:''
 			};
 		},
-
+        onLoad(e) {
+            this.pageType=e.pageType
+            if(e.id){
+                this.getData(e.id)
+                this.queryId=e.id
+            }
+        },
 		methods: {
-			getData() {
-
+			getData(id) {
+                this.$http('api/myOneslft/customerAddrInfo',{id}).then(res=>{
+                    this.isDefault=res.defaultAddr==1?true:false
+                    this.model=res
+                })
 			},
 			agreeHandle() {
 				this.isAgree = !this.isAgree
 			},
 			login() {
+                
 				this.$refs.form.validate().then(res => {
 					var url = 'api/myOneslft/addCustomerAddr';
-					var data = {dto: this.model};
+					var data = this.model;
 					if(this.pageType=='edit'){
 						url = 'api/myOneslft/updateCustomerAddr'
-						data.id = this.$route.query.id;
+						data.id = this.queryId;
 					}
+                    data.defaultAddr=this.isDefault?'1':'0'
 					this.$http(url,data, 'POST').then(res => {
 						uni.showToast({
 							title:'保存成功',
@@ -94,12 +111,12 @@
 						this.navTo('back');
 					})
 				}).catch(errors => {
-
 				})
 			},
 			//选择地址回调
 			setAddress(e) {
 				this.address = e
+				this.model.addrDetails = e.address+e.room
 			},
 			selectTag(index) {
 				this.selectTagIndex = index

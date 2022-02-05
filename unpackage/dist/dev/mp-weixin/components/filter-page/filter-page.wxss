@@ -25,6 +25,7 @@
   line-height: 56rpx;
   text-align: center;
   border-radius: 32rpx;
+  border: 1px solid #F2F2F2;
   background-color: #F2F2F2;
   color: #333;
   font-size: 24rpx;
@@ -36,7 +37,6 @@
 .filter_wrap .parent_list .child_list .is_check.data-v-617f100e {
   background-color: #fff;
   border: 1px solid #FE5B07;
-  width: 160rpx;
   color: #FE5B07;
 }
 .filter_wrap .date_wrap .date_btn.data-v-617f100e {

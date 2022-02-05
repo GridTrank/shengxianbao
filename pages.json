@@ -582,7 +582,7 @@
 			"network": "all",
 			"packages": ["pagesB"]
 		},
-        "pagesC/Out/Out": {
+        "pagesC/Out/Index": {
         	"network": "all",
         	"packages": ["pagesC"]
         }

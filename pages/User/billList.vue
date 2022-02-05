@@ -4,26 +4,26 @@
 			<view class="bill_item column" @click="navTo('/pagesA/Balance/index')">
 				<view class="txt_wrap">
 					<text class="t_left">￥</text>
-					<text class="t_right">20</text>
+					<text class="t_right">{{userInfo.customerBalance}}</text>
 				</view>
 				<view class="label">账户余额</view>
 			</view>
 			<view class="bill_item column" @click="navTo('/pagesA/Arrearages/index')">
 				<view class="txt_wrap">
 					<text class="t_left">￥</text>
-					<text class="t_right">20</text>
+					<text class="t_right">{{userInfo.debtAmount}}</text>
 				</view>
 				<view class="label">欠款</view>
 			</view>
 			<view class="bill_item column" @click="navTo('/pagesA/Coupon/index')">
 				<view class="txt_wrap">
-					5
+					{{userInfo.couponQuantity}}
 				</view>
 				<view class="label">优惠券</view>
 			</view>
 			<view class="bill_item column" @click="navTo('/pagesA/Integral/detail')">
 				<view class="txt_wrap">
-					20
+					{{userInfo.customerPoint}}
 				</view>
 				<view class="label">我的积分</view>
 			</view>
@@ -33,6 +33,12 @@
 
 <script>
 	export default {
+        props:{
+            userInfo:{
+                type:Object,
+                default:{}
+            }
+        },
 		data() {
 			return {
 				

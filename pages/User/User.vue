@@ -19,7 +19,7 @@
 				</image>
 				<image class="code" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/s4.png" mode="widthFix"></image>
 			</view>
-			<billList></billList>
+			<billList :userInfo="userInfo"></billList>
 		</view>
 		<myOrder></myOrder>
 		<toolList></toolList>

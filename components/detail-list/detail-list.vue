@@ -25,7 +25,7 @@
 						</view>
 						
 						<view class="kucun" v-if="pageType=='inventory'">
-							库存
+							<!-- 库存 -->
 						</view>
 					</view>
 				</view>
@@ -190,7 +190,7 @@
 						type='returnorderNum'
 						break;
 					case 'inventory':
-						type='lossQuantity'
+						type='systemQuantity'
 						break;
 				}
 				if(val=='add'){
@@ -243,7 +243,7 @@
 										url='api/outputBill/saveOutput'
 										break;
 									case 'inventory':
-										url=''
+										url='api/stocktake/savestocktake'
 										break;
 									case 'frmLoss':
 										url='api/Loss/saveLoss'

@@ -5,9 +5,7 @@
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
 .u-input {
-
   display: flex;
-
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -24,18 +22,14 @@
 }
 .u-input__content {
   flex: 1;
-
   display: flex;
-
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 .u-input__content__field {
   position: relative;
-
   display: flex;
-
   flex-direction: row;
   margin: 0;
   line-height: 26px;
@@ -50,9 +44,7 @@
   height: 20px;
   border-radius: 100px;
   background-color: #c6c7cb;
-
   display: flex;
-
   flex-direction: row;
   align-items: center;
   justify-content: center;

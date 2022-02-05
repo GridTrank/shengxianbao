@@ -5,15 +5,11 @@
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
 .u-upload {
-
   display: flex;
-
   flex-direction: row;
 }
 .u-upload__wrap {
-
   display: flex;
-
   flex-direction: row;
 }
 .u-upload__wrap__preview {
@@ -21,9 +17,7 @@
   margin: 0 8px 8px 0;
   position: relative;
   overflow: hidden;
-
   display: flex;
-
   flex-direction: row;
 }
 .u-upload__wrap__preview__image {
@@ -33,9 +27,7 @@
 .u-upload__wrap__preview__other {
   background-color: #f2f2f2;
   flex: 1;
-
   display: flex;
-
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -52,9 +44,7 @@
   background-color: #373737;
   height: 14px;
   width: 14px;
-
   display: flex;
-
   flex-direction: row;
   border-bottom-left-radius: 100px;
   align-items: center;
@@ -72,9 +62,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-
   display: flex;
-
   flex-direction: row;
   border-top-color: transparent;
   border-left-color: transparent;
@@ -98,9 +86,7 @@
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
-
   display: flex;
-
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -115,9 +101,7 @@
   margin-top: 5px;
 }
 .u-upload__button {
-
   display: flex;
-
   flex-direction: column;
   align-items: center;
   justify-content: center;

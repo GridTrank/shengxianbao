@@ -96,6 +96,9 @@
 .page_wrap .expense_detail .dist.data-v-af5aa274:last-child {
   border: none;
 }
+.page_wrap .expense_detail .dist .m.data-v-af5aa274 {
+  color: #FE5B07;
+}
 .page_wrap .remark .left.data-v-af5aa274 {
   margin-right: 80rpx;
 }

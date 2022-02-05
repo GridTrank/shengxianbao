@@ -139,9 +139,44 @@
 					if (this.showStock) {
 						let data = {
 							workhouseId: this.workhouseId,
-							lossDateStart: this.lossDateStart,
-							lossDateEnd: this.lossDateEnd
 						}
+                        switch(this.pageType){
+                        	case 'in':
+                        		data.inputDateStart=this.lossDateStart
+                        		data.inputDateEnd=this.lossDateEnd
+                        		break;
+                        	case 'out':
+                        		data.outputDateStart=this.lossDateStart
+                        		data.outputDateEnd=this.lossDateEnd
+                        		break;
+                        	case 'inventory':
+                        		data.stocktakeDateStart=this.lossDateStart
+                        		data.stocktakeDateEnd=this.lossDateEnd
+                        		break;
+                        	case 'frmLoss':
+                        		data.lossDateStart=this.lossDateStart
+                        		data.lossDateEnd=this.lossDateEnd
+                        		break;
+                        	case 'overflow':
+                        		data.inputDateStart=this.lossDateStart
+                        		data.inputDateEnd=this.lossDateEnd
+                        		break;
+                        	case 'return':
+                        		data.returnorderDateStart=this.lossDateStart
+                        		data.returnorderDateEnd=this.lossDateEnd
+                        		break;
+                        	case 'turnover':
+                        		data.inputDateStart=this.lossDateStart
+                        		data.inputDateEnd=this.lossDateEnd
+                        		break;
+                        	case 'offer':
+                        		data.inputDateStart=this.lossDateStart
+                        		data.inputDateEnd=this.lossDateEnd
+                        		break;
+                        	default:
+                        		url=''
+                        }
+                        console.log(this.pageType)
 						this.$emit('selectFilter', data)
 					} else {
 						// 确定
@@ -154,7 +189,6 @@
 								}
 							}))
 						})
-						console.log(arr);
 						this.$emit('selectFilter', arr)
 					}
 

@@ -76,13 +76,11 @@
 				this.$http('api/bmallshoppingcart/addShoppingCart',
 				{buyQuantity:this.num,productSkuId:this.selectData.productSkuId,remark:this.remark},
 				'post').then(res=>{
+                    this.show=false
 					uni.showToast({
 						title:'添加成功',
 						icon:'none'
 					})
-					setTimeout(()=>{
-						this.show=false
-					},1500)
 				})      
 			}
 		}

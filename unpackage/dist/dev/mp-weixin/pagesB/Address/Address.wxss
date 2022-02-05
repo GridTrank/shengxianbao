@@ -27,6 +27,9 @@
   color: #FD4D00;
   font-size: 24rpx;
 }
+.page_wrap .cus.data-v-346c2c96 {
+  padding: 20rpx;
+}
 .page_wrap .btn_default.data-v-346c2c96 {
   width: 93%;
   position: fixed;

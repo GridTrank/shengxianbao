@@ -2,7 +2,7 @@
 	<view class="page_wrap">
 		<view class="info_list mt20">
             <!-- 有仓库的 -->
-            <template v-if="pageType=='return' || pageType=='frmLoss' || pageType=='out' || pageType=='in' ">
+            <template v-if="pageType=='return' || pageType=='frmLoss' || pageType=='out' || pageType=='in' || pageType=='inventory' ">
                 <view class="item row jc_sb">
                 	<view class="left f28-c333">
                 		{{pageTxt}}仓库
@@ -32,7 +32,7 @@
                 		日期
                 	</view>
                 	<view class="f28-c666">
-						{{pageDetail.lossDate || pageDetail.outputDate || pageDetail.inputDate || pageDetail.returnorderDate}}
+						{{pageDetail.lossDate || pageDetail.outputDate || pageDetail.inputDate || pageDetail.returnorderDate || pageDetail.stocktakeDate}}
                 	</view>
                 </view>
             </template>
@@ -50,7 +50,7 @@
                 </view>
             </template>
             <!-- 状态 -->
-            <template v-if="pageType=='return' || pageType=='frmLoss' || pageType=='out' || pageType=='in'">
+            <template v-if="pageType=='return' || pageType=='frmLoss' || pageType=='out' || pageType=='in' || pageType=='inventory'">
                 <view class="item row jc_sb">
                 	<view class="left f28-c333">
                 		状态
@@ -90,7 +90,7 @@
             </template>
             
             <!-- 备注 -->
-            <template v-if="pageType=='return' || pageType=='offer' || pageType=='frmLoss' || pageType=='in' || pageType=='out'">
+            <template v-if="pageType=='return' || pageType=='offer' || pageType=='frmLoss' || pageType=='in' || pageType=='out' || pageType=='inventory'">
                 <view class="item row jc_sb">
                 	<view class="left f28-c333">
                 		备注
@@ -102,7 +102,7 @@
             </template>
             
             <!-- 操作日志 -->
-            <template v-if="pageType=='return' || pageType=='frmLoss' || pageType=='out' || pageType=='in'">
+            <template v-if="pageType=='return' || pageType=='frmLoss' || pageType=='out' || pageType=='in' || pageType=='inventory'">
                 <view class="item row jc_sb" @click="navTo('./Log?id='+pageDetail.id+'&pageUrl='+pageUrl)">
                 	<view class="left f28-c333">
                 		操作日志

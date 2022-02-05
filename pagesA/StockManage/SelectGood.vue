@@ -40,7 +40,7 @@
 							</view>
 
 							<view class="kucun" v-if="pageType=='inventory'">
-								库存
+								<!-- 库存 -->
 							</view>
 						</view>
 					</view>
@@ -89,9 +89,6 @@
 
 			</view>
 		</view>
-
-
-
 	</view>
 </template>
 
@@ -138,7 +135,7 @@
 			} else if (e.pageType == 'inventory') {
 				barTitle = '新增盘点单'
 				this.pageTxt = '盘点'
-				this.leftNumName = 'lossQuantity'
+				this.leftNumName = 'systemQuantity'
 			} else if (e.pageType == 'frmLoss') {
 				barTitle = '新增报损单'
 				this.leftNumName = 'lossQuantity'
@@ -157,6 +154,9 @@
 		methods: {
 			...mapMutations(['SET_STOCK_MANAGE_INFO']),
 			getProductList() {
+                uni.showLoading({
+                    title:'加载中'
+                })
 				this.queryUrl = 'api/pms/productcategory/getProductList'
 				this.getList().then(res => {
 					res.forEach(el => {
@@ -174,6 +174,15 @@
 				console.log('搜索', value)
 			},
 			selectFilter(value) {
+                let ids=[]
+                value.forEach(item=>{
+                    ids.push(item.id)
+                })
+                this.queryData={
+                    categoryIds:ids.join(',')
+                }
+                this.dataList=[]
+                this.getProductList()
 				console.log('筛选后的数据', value)
 			},
 			// 选择单个商品
@@ -348,6 +357,7 @@
 
 	.data_list {
 		.list {
+            padding-bottom: 100upx;
 			.item {
 				margin-bottom: 30upx;
 

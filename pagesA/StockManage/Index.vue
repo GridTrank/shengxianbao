@@ -28,7 +28,7 @@
 									<text v-if="item.checked==2" class="iconfont icon-xuanze"></text>
 									<text v-else class="iconfont icon-weixuanze"></text>
 								</template>
-								{{item.lossCode || item.outputCode || item.inputCode || item.returnorderCode}}
+								{{item.lossCode || item.outputCode || item.inputCode || item.returnorderCode || item.stocktakeCode}}
 							</view>
 							<view class="status" :class="item.billState==-1?'die':''">
 								{{item.billState==1?'已审核':item.billState==-1?'已作废':'待审核'}}
@@ -62,10 +62,10 @@
 							<view class="label bg_style1">{{item.workhouseName}}</view>
 							<view class="row jc_sb mt30">
 								<text class="date f28-c333">
-									{{item.lossDate || item.outputDate || item.inputDate || item.returnorderDate}}
+									{{item.lossDate || item.outputDate || item.inputDate || item.returnorderDate || item.stocktakeDate}}
 								</text>
 								<text class="price">
-									¥{{item.lossAmount || item.outputAmount || item.inputAmount || item.returnorderAmount || 0}}
+									¥{{item.lossAmount || item.damageAmount || item.outputAmount || item.inputAmount || item.returnorderAmount || 0}}
 								</text>
 							</view>
 						</template>

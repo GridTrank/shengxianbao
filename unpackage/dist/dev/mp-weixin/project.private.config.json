@@ -131,6 +131,11 @@
           "pathName": "pagesA/SubAccount/SubAccount",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "地址列表",
+          "pathName": "pagesB/Address/Address",
+          "scene": null
         }
       ]
     }

@@ -7,17 +7,26 @@
 		<!-- 地址 -->
 		<view class="wrap jc_sb row mt20 second">
 			<text class="f28-c333">{{deliveryTypeId==1?'配送':'自提'}}地址</text>
-			<view class="user_info">
+            <!-- 配送地址 -->
+			<view class="user_info" v-if="isSelectDeliAddress">
 				<view class="row info">
-					<text class="f32-c333 name">{{addressDetail.accepter}}</text>
-					<text class="f28-c999 phone">{{addressDetail.telephone}}</text>
-					<text class="moren">默认</text>
+					<text class="f32-c333 name">{{addressDetail.accepter || addressDetail.pointName}}</text>
+					<text class="f28-c999 phone">{{addressDetail.telephone || addressDetail.contactsPhone}}</text>
+					<!-- <text class="moren">默认</text> -->
 				</view>
 				<view class="address mt20 row jc_sb" @click="navTo('/pagesB/Address/Address?pageType=confirmOrder&type='+deliveryTypeId)">
-					<text class="txt f28-c333">{{addressDetail.addrDetails}}</text>
+					<text class="txt f28-c333">{{addressDetail.addrDetails || addressDetail.pointAddr}}</text>
 					<text class="iconfont icon-jinru"></text>
 				</view>
 			</view>
+            <!-- 自提点 -->
+            <view v-else class="user_info">
+                <view class="row jc_sb" @click="navTo('/pagesB/Address/Address?pageType=confirmOrder&type='+deliveryTypeId)">
+                    <text class="txt f28-c333">请选择自提点</text>
+                    <text class="iconfont icon-jinru"></text>
+                </view>
+                
+            </view>
 		</view>
 		<!-- 配送时间 -->
 		<view class="wrap time mt20">
@@ -25,12 +34,19 @@
 				<text class="f28-c333">配送时间</text>
 				<text class="f28-c333">{{shipTime}}<text class="iconfont icon-jinru"></text> </text>
 			</view>
-			<view class="goods row jc_sb mt30" @click="navTo('./GoodList')">
+			<view class="goods row jc_sb mt30" >
 				<view class="goods_img row">
-					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" mode=""></image>
-					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" mode=""></image>
+					<image 
+                    v-for="(img,i) in orderDetail.orderBillProductImageList" 
+                    :key="i"
+                    :src="img" mode="">
+                    </image>
 				</view>
-				<text class="f28-c999">共2件<text class="iconfont icon-jinru"></text> </text>
+				<text 
+                v-if="orderDetail.orderBillProductImageList" 
+                class="f28-c999">
+                    共{{orderDetail.orderBillProductImageList.length}}件
+                </text>
 			</view>
 		</view>
 		<!-- 小费 -->
@@ -105,7 +121,7 @@
 		<view class="foot wrap row ">
 			<view class="left row"> <text>¥{{totalAmount}}</text> <text class="f24-c333">(含运费)</text></view>
 			<view class=" f24-c333">优惠 <text>¥{{ticketAmount}}</text> </view>
-			<view class="btn_default">支付</view>
+			<view class="btn_default" @click="submitOrder">支付</view>
 		</view>
 		<jPicker
 		ref='jPicker'
@@ -151,10 +167,12 @@
 				selectTip:'',
                 selectTipMoney:'',
                 ticketAmount:0,
+                isSelectDeliAddress:true,
 				payList:[
 					{label:'微信',src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/wx.png',checked:false,type:'weixin'},
 					{label:'支付宝',src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/zfb.png',checked:false,type:'apliay'},
 					{label:'银联',src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/yhk.png',checked:false,type:'card'},
+					{label:'余额',src:'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/yhk.png',checked:false,type:'card'},
 				],
 				remark:'',
                 shipTime:'',
@@ -179,6 +197,8 @@
         onLoad(e) {
             this.getDetail(e.ids)
             this.shipTime=date('Y-m-d H-i',new Date().getTime())
+            // 初始化订单数据
+            this.INIT_ORDER_DATA()
         },
         onShow() {
             let that=this
@@ -202,9 +222,15 @@
                     that.totalAmount=(Number(that.totalAmount) + Number(orderData.customTip) ).toFixed(2)
                 }
             }
+            // 修改了地址
+            if(that.$orderData.addressDetail){
+                that.addressDetail=that.$orderData.addressDetail
+                this.isSelectDeliAddress=true
+            }
+            
         },
 		methods:{
-            ...mapMutations(['SET_ORDER_DATA']),
+            ...mapMutations(['SET_ORDER_DATA','INIT_ORDER_DATA']),
             // 详情
             getDetail(ids){
                 let productSkuIdList=ids.split(',')
@@ -280,7 +306,34 @@
                 this.shipMethod=e.label
                 this.getAddressList()
                 this.deliveryTypeId=e.value
-			}
+                this.isSelectDeliAddress=e.value==1?true:false
+			},
+            // 支付
+            submitOrder(){
+                let that=this
+                let orderData=that.$orderData
+                let data={
+                    "actualAmount":Number(that.totalAmount) ,
+                    "addressId": orderData.id || that.addressDetail.id,   //地址
+                    "deliveryTypeId": that.deliveryTypeId,
+                    "distributionTime": that.shipTime,
+                    "goodsAmount": that.orderDetail.goodsAmount,
+                    "logisticsAmount": that.orderDetail.logisticsAmount,
+                    "orderAmount": that.orderDetail.orderAmount,
+                    "orderWayId": 1,
+                    // "pointTime": that.shipTime,
+                    "productSkuIdList": that.orderDetail.productSkuIdList,
+                    "sumCount": that.orderDetail.productSkuIdList.length,
+                    "taxAmount": 0,
+                    "ticketAmount": that.ticketAmount,
+                    "ticketId": orderData.ticketId,
+                    "tipsAmount":that.selectTipMoney || 0
+                }
+                that.$http('api/oms/order/shoppingCartPay',data,'post').then(res=>{
+                    console.log(res)
+                })
+                console.log(data)
+            }
 		}
 	}
 </script>

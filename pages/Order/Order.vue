@@ -51,6 +51,11 @@
 				data:[]
 			};
 		},
+        onLoad() {
+            this.queryUrl='api/oms/order/pageList'
+            this.getList()
+           
+        },
 		methods:{
 			tabHandle(item,index){
 				this.tabIndex=index

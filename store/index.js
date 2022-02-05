@@ -35,6 +35,9 @@ const store = new Vuex.Store({
 		},
         SET_ORDER_DATA(state,data){
             state.$orderData=Object.assign({},state.$orderData,data)
+        },
+        INIT_ORDER_DATA(state,data){
+            state.$orderData={}
         }
 	}
 })

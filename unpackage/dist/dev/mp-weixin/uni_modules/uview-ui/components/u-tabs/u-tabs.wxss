@@ -5,9 +5,7 @@
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
 .u-tabs__wrapper {
-
   display: flex;
-
   flex-direction: row;
   align-items: center;
 }
@@ -16,23 +14,17 @@
   overflow: auto hidden;
 }
 .u-tabs__wrapper__scroll-view {
-
   display: flex;
-
   flex-direction: row;
   flex: 1;
 }
 .u-tabs__wrapper__nav {
-
   display: flex;
-
   flex-direction: row;
 }
 .u-tabs__wrapper__nav__item {
   padding: 0 11px;
-
   display: flex;
-
   flex-direction: row;
   align-items: center;
   justify-content: center;

@@ -73,6 +73,7 @@
 				selectChildIndex: 0,
 				selectAllIndex:0,
 				page:1,
+                categoryId:'',
 				parentListPop: false,
 				tabInfo: [{
 					name: '常用清单',
@@ -94,6 +95,7 @@
 						item.name = item.categoryName
 					})
 					this.parentList = res
+                    this.categoryId=res[0].id
 					this.selectChild(0)
 				})
 			},
@@ -102,11 +104,15 @@
 				this.selectParentIndex = e.index
 				this.selectChildIndex = 0;
 				this.selectAllIndex=e.index
+                this.categoryId=e.id
 				this.selectChild(0)
 			},
 			async selectChild(id) {
 				this.dataList=[]
 				this.selectChildIndex = id;
+                this.queryData={
+                    categoryId:this.categoryId
+                }
 				if(id == 1){
 					// 最近购买
 					this.queryUrl = 'api/oftenbuy/getCusOftenBuyProductList'

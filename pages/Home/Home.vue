@@ -78,6 +78,7 @@
             this.getBanner()
         },
         onShow() {
+            this.dataList=[]
             if(uni.getStorageSync('token')){
                 this.getLike()
             }

@@ -56,6 +56,9 @@
   font-size: 32rpx;
   color: #fff;
 }
+.data_list .list.data-v-3a0ffc7e {
+  padding-bottom: 100rpx;
+}
 .data_list .list .item.data-v-3a0ffc7e {
   margin-bottom: 30rpx;
 }
