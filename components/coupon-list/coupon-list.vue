@@ -98,10 +98,12 @@
                             icon:'none'
                         })
                     }
+                }else{
+                    this.navTo('/pages/Home/Home','switch')
                 }
             },
 			getCoupon(id){
-				this.$http('api/bmallticketuse/receiveTicket',{id:id}).then((result)=>{
+				this.$http('api/bmallticketuse/receiveTicket',{id:id},'post').then((result)=>{
 					console.log(result);
 					uni.showToast({
 						title:'领取成功',

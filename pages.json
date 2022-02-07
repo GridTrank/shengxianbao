@@ -564,7 +564,48 @@
                 		"navigationBarTitleText": "出库单",
                 		"enablePullDownRefresh": false
                 	}
+                },
+                {
+                	"path": "Out/Detail",
+                	"style": {
+                		// #ifdef H5
+                		"navigationStyle": "custom",
+                		// #endif
+                		"navigationBarTitleText": "出库单详情",
+                		"enablePullDownRefresh": false
+                	}
+                },
+                {
+                	"path": "Out/AddPage",
+                	"style": {
+                		// #ifdef H5
+                		"navigationStyle": "custom",
+                		// #endif
+                		"navigationBarTitleText": "新增出库单",
+                		"enablePullDownRefresh": false
+                	}
+                },
+                {
+                	"path": "Out/SelectGood",
+                	"style": {
+                		// #ifdef H5
+                		"navigationStyle": "custom",
+                		// #endif
+                		"navigationBarTitleText": "新增出库单",
+                		"enablePullDownRefresh": false
+                	}
+                },
+                {
+                	"path": "Out/Log",
+                	"style": {
+                		// #ifdef H5
+                		"navigationStyle": "custom",
+                		// #endif
+                		"navigationBarTitleText": "操作日志",
+                		"enablePullDownRefresh": false
+                	}
                 }
+                
             ]
             
         }

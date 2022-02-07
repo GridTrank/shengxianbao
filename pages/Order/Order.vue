@@ -10,8 +10,10 @@
 			</view>
 		</view>
 		
-		<list></list>
-		
+		<list :list="dataList"></list>
+		<view class="" v-if="dataList.length<=0">
+		    <no-data></no-data>
+		</view>
 	</view>
 </template>
 
@@ -24,41 +26,47 @@
 				tabList:[
 					{
 						label:'全部',
-						status:0
+						status:'',
 					},
 					{
 						label:'待审核',
-						status:1
+						status:0,
 					},
 					{
 						label:'待发货',
-						status:2
+						status:1,
 					},
 					{
 						label:'待收货',
-						status:3
+						status:2,
 					},
 					{
 						label:'已收货',
-						status:4
-					},
-					{
-						label:'自提',
-						status:5
+						status:4,
 					},
 				],
 				tabIndex:0,
 				data:[]
 			};
 		},
-        onLoad() {
+        onLoad(e) {
+            console.log(e)
+            this.tabIndex=e.index
             this.queryUrl='api/oms/order/pageList'
+            this.queryData={
+                billState:e.status
+            }
             this.getList()
            
         },
 		methods:{
 			tabHandle(item,index){
 				this.tabIndex=index
+                this.dataList=[]
+                this.queryData={
+                    billState:item.status
+                }
+                this.getList()
 			}
 		}
 		

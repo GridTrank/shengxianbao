@@ -3,7 +3,7 @@
 		<view class="list mt20">
 			<view class="item row" @click="showPopHandle(1)">
 				<view class="left ">
-					{{pageTxt}}仓库
+					出库仓库
 				</view>
 				<view class="right row">
 					<text class="label">{{queryData.workhouseName}}</text>
@@ -85,33 +85,6 @@
 			};
 		},
 		onLoad(e) {
-			let barTitle
-			if(e.pageType=='out'){
-				barTitle='新增出库单'
-				this.pageTxt='出库'
-			}else if(e.pageType=='in'){
-				barTitle='新增入库单'
-				this.pageTxt='入库'
-			}else if(e.pageType=='overflow'){
-				barTitle='新增报溢单'
-				this.pageTxt='报溢'
-			}else if(e.pageType=='return'){
-				barTitle='新增退货单'
-				this.pageTxt='退货'
-			}else if(e.pageType=='inventory'){
-				barTitle='新增盘点单'
-				this.pageTxt='盘点'
-			}else if(e.pageType=='frmLoss'){
-				barTitle='新增报损单'
-				this.pageTxt='报损'
-			}else if(e.pageType=='offer'){
-                barTitle='新增报价单'
-                this.pageTxt='报价'
-            }
-			this.pageType=e.pageType
-			uni.setNavigationBarTitle({
-				title:barTitle
-			})
 			this.selectDate=date('Y-m-d',new Date().getTime())
 			this.initDate(this.selectDate)
 			if(uni.getStorageSync('stockData')){
@@ -169,27 +142,9 @@
 			// 选择日期
 			dateConfirm(date){
 			    this.selectDate = date;
-				this.initDate(date)
+                this.SET_STOCK_MANAGE_INFO({'outputDate':date})
 			},
-			initDate(date){
-				switch(this.pageType){
-					case 'in':
-						this.SET_STOCK_MANAGE_INFO({'inputDate':date})
-						break;
-					case 'out':
-						this.SET_STOCK_MANAGE_INFO({'outputDate':date})
-						break;
-					case 'frmLoss':
-						this.SET_STOCK_MANAGE_INFO({'lossDate':date})
-						break;
-					case 'return':
-						this.SET_STOCK_MANAGE_INFO({'returnorderDate':date})
-						break;
-					case 'inventory':
-						this.SET_STOCK_MANAGE_INFO({'stocktakeDate':date})
-						break;
-				}
-			},
+			
 			// 选择仓库
 			confirm(e){
 				this.queryData.workhouseName=e.label

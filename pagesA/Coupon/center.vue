@@ -1,7 +1,7 @@
 <template>
 	<view class="page_wrap ">
 		<CouponList type="get" :couponList="dataList"></CouponList>
-		<view class="btn" @click="navTo('/pages/Home/index')">返回商城订货<span class="iconfont icon-jinru"></span></view>
+		<view class="btn" @click="navTo('/pages/Home/Home','switch')">返回商城订货<span class="iconfont icon-jinru"></span></view>
 	</view>
 </template>
 

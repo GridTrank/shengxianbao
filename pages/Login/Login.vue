@@ -71,15 +71,17 @@
 			</view>
 		</view>
 		
+        <view class="btn to code" @click="navTo('./register')">
+               <text class="iconfont icon-tixing mr20"></text> 没有账号？去注册
+        </view>
+        
 		<view class="btn" @click="login">
 			登录
 		</view>
 		<view class="btn code" @click="changeLogin">
 			{{loginType=='account'?'验证码登录':'账号登录'}}
 		</view>
-		<view class="btn code" @click="navTo('./register')">
-			没有账号？去注册
-		</view>
+		
 		
 	</view>
 </template>
@@ -261,6 +263,11 @@
 		background: #fff;
 		border:2upx solid #F87523
 	}
+    .to{
+        border: none;
+        font-size: 28upx;
+        background:transparent;
+    }
 	
 }
 </style>

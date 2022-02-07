@@ -114,7 +114,7 @@
             </template>
 		</view>
 		<view class="add_product row"  v-if="showEdit" @click="addProduct">
-			<text class="iconfont icon-tianjia mr10"></text>添加商品
+			<text class="iconfont icon-tianjiatianchong mr10"></text>添加商品
 		</view>
         
 		<view class="slot_wrap">

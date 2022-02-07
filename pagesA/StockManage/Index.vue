@@ -7,8 +7,10 @@
 		:pageType="pageType"
 		:showStock="true"
 		:showDate="true"
+        @searchInput="searchInput"
 		@selectFilter="selectFilter"
-		></search-comprehensive>
+		>
+        </search-comprehensive>
 		
 		<template v-if="dataList_.length>0">
 			<view class="list">
@@ -60,11 +62,23 @@
 						<!-- 其他 -->
 						<template v-else>
 							<view class="label bg_style1">{{item.workhouseName}}</view>
+                            <!-- 盘点 -->
+                            <template  v-if="pageType=='inventory'">
+                                <view class="ml20 inve ying" v-if="item.overflowAmount>0">
+                                    盘盈
+                                </view>
+                                <view class="ml20 inve kui" v-if="item.damageAmount>0">
+                                    盘亏
+                                </view>
+                            </template>
 							<view class="row jc_sb mt30">
 								<text class="date f28-c333">
 									{{item.lossDate || item.outputDate || item.inputDate || item.returnorderDate || item.stocktakeDate}}
 								</text>
-								<text class="price">
+								<text class="price" >
+                                    <text class="" v-if="pageType=='inventory'">
+                                       {{item.overflowAmount>0?'+':'-'}} 
+                                    </text>
 									¥{{item.lossAmount || item.damageAmount || item.outputAmount || item.inputAmount || item.returnorderAmount || 0}}
 								</text>
 							</view>
@@ -234,6 +248,41 @@
 				this.dataList_=list
 				this.initList=JSON.parse(JSON.stringify(this.dataList_))
 			},
+            // 搜索
+            searchInput(val){
+                switch(this.pageType){
+                	case 'in':
+                		this.queryData={
+                		    inputCode:val
+                		}
+                		break;
+                	case 'out':
+                		this.queryData={
+                		    outputCode:val
+                		}
+                		break;
+                	case 'inventory':
+                        this.queryData={
+                            stocktakeCode:val
+                        }
+                		break;
+                	case 'frmLoss':
+                		this.queryData={
+                		    lossCode:val
+                		}
+                		break;
+                	case 'return':
+                		this.queryData={
+                		    returnorderCode:val
+                		}
+                		break;
+                	default:
+                		url=''
+                }
+                
+                this.dataList=[]
+                this.initData()
+            },
 			tab(item){
 				let billState=''
 				if(item.value==1){
@@ -461,11 +510,27 @@
 					border-radius: 12upx;
 					font-size: 24upx;
 				}
-				
+				.inve{
+                    display: inline-block;
+                    font-size: 24upx;
+                    padding: 4upx 12upx;
+                    border-radius: 12upx;
+                }
+                .ying{
+                    background-color: rgba(7, 254, 19, 0.2);
+                    color: #00B809;
+                }
+                .kui{
+                    background-color: rgba(254, 7, 7, 0.2);
+                    color: #D30000;
+                }
 				.price{
 					color: $base-color;
 					font-size: 36upx;
 				}
+                .hui{
+                    color: #333;
+                }
 			}
 			.handle_wrap{
 				justify-content: flex-end;

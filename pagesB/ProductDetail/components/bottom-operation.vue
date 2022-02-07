@@ -10,7 +10,7 @@
 			</view>
 			<view :class="['nav column center',{'active' : infoData.used == 1}] " @click="addCusOftenBuy">
 				<text class="iconfont icon-jiacy"></text>
-				<text class="tit">加常用</text>
+				<text class="tit">{{infoData.used==1?'常用':'加常用'}}</text>
 			</view>
 			<!-- <view class="nav column center" :class="{active: infoData.favorite === 1}" @click="changeFav">
 				<text class="iconfont" :class="infoData.favorite === 1 ? 'icon-shoucang' : 'icon-shoucang'"></text>
@@ -107,7 +107,7 @@
 					const res = await this.$http('api/usedlist/removeCusOftenBuy', {
 						buyQuantity: 1,
 						productSkuId: this.infoData.productSkuId || 7
-					}, 'post')
+					}, 'delete')
 					this.infoData.used = 0;
 					uni.showToast({
 						title: '移除成功',

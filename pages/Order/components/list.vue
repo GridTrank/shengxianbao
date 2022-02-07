@@ -1,8 +1,8 @@
 <template>
 	<view class="list_wrap">
-		<view class="item mt20" v-for="(item,index) in 8" :key="index">
+		<view class="item mt20" v-for="(item,index) in list" :key="index">
 			<view class="status row jc_sb">
-				<text class="left f28-c333">123466</text>
+				<text class="left f28-c333">{{item.orderCode}}</text>
 				<text class="right">待审核</text>
 			</view>
 			<view class="con row jc_sb">
@@ -12,7 +12,7 @@
 				</view>
 				<view class="value row place">
 					<text class="left ">订货金额：</text>
-					<text class="right">¥639.00</text>
+					<text class="right">¥{{item.orderAmount}}</text>
 				</view>
 			</view>
 			
@@ -35,7 +35,7 @@
 			
 			<view class="btn_wrap">
 				<text class="btn active">审核</text>
-				<text class="btn" @click="navTo('./Detail')">查看</text>
+				<text class="btn" @click="navTo('./Detail?orderCode='+item.orderCode)">查看</text>
 			</view>
 		</view>
 	</view>
@@ -43,6 +43,14 @@
 
 <script>
 	export default{
+        props:{
+            list:{
+                type:Array,
+                default:()=>{
+                    return []
+                }
+            }
+        },
 		data(){
 			return{
 				

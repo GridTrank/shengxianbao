@@ -18,14 +18,14 @@
 					<text class="iconfont icon-jinru"></text>
 				</view>
 			</view>
-			<view class="item row" >
+			<!-- <view class="item row" >
 				<view class="left ">
 					第三方账号管理
 				</view>
 				<view class="right row">
 					<text class="iconfont icon-jinru"></text>
 				</view>
-			</view>
+			</view> -->
 			<view class="item row" >
 				<view class="left ">
 					清理缓存信息提升空间

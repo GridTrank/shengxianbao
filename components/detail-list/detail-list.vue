@@ -19,13 +19,13 @@
 							{{item.productNameAlias }}
 						</view>
 						<view class="price row  mt10">
-							<text class="bao mr10">{{item.productUnit}}</text>
-							<text class="f24-c999 mr10">{{item.auxiliaryUnit}}</text>
+							<text class="bao mr10">{{item.auxiliaryUnit}}</text>
+							<text class="f24-c999 mr10">{{item.productUnit }}</text>
 							<text class="f24-c999">￥{{item.costPrice || item.returnorderPrice}}元/{{item.productUnit}}</text>
 						</view>
 						
 						<view class="kucun" v-if="pageType=='inventory'">
-							<!-- 库存 -->
+							库存：{{item.inventoryQuantity}}{{item.productUnit}}  ({{item.relation}}{{item.auxiliaryunit}})
 						</view>
 					</view>
 				</view>
@@ -35,7 +35,7 @@
 					<view class="row">
 						<change-num
 							:index="index" 
-							:num="item.lossQuantity || item.outputQuantity || item.inputQuantity || item.returnorderNum" 
+							:num="item.lossQuantity || item.outputQuantity || item.inputQuantity || item.returnorderNum || item.actualQuantity" 
 							@changeNumResult="changeNum1">
 						</change-num> 
 						<text class="bg_style1">{{item.auxiliaryUnit}}</text>
@@ -53,7 +53,7 @@
 				<view class="mt10 bottom_wrap row" v-if="showSummary">
 					<text class="f24-c333">{{pageTxt}}：</text>
 					<text class="tip mr10">
-						{{item.lossQuantity || item.outputQuantity || item.inputQuantity || item.returnorderNum}}{{item.auxiliaryUnit}}
+						{{item.lossQuantity || item.outputQuantity || item.inputQuantity || item.returnorderNum || item.actualQuantity}}{{item.auxiliaryUnit}}
 					</text>
 					<text class="tip">
 						({{item.auxiliaryQuantity }}{{item.productUnit}})
@@ -190,7 +190,7 @@
 						type='returnorderNum'
 						break;
 					case 'inventory':
-						type='systemQuantity'
+						type='actualQuantity'
 						break;
 				}
 				if(val=='add'){
@@ -355,6 +355,7 @@
 						position: absolute;
 						right: 0;
 						bottom: 0;
+						font-size: 32upx;
 					}
 				}
 				.bottom_wrap{

@@ -7,15 +7,17 @@
 		:pageType="pageType"
 		:showStock="true"
 		:showDate="true"
+        @searchInput="searchInput"
 		@selectFilter="selectFilter"
-		></search-comprehensive>
+		>
+        </search-comprehensive>
 		
 		<template v-if="dataList_.length>0">
 			<view class="list">
 				<view 
 				class="item model-wrap" 
 				v-for="(item,index) in dataList_" 
-				@click="navTo('./Detail?pageType='+pageType+'&id='+item.id)"
+				@click="navTo('./Detail?id='+item.id)"
 				:key="index">
 					<view class="top row jc_sb">
 						<view class="no f28-c333" @click.stop="checkedHandle(item)">	
@@ -23,45 +25,44 @@
 								<text v-if="item.checked==2" class="iconfont icon-xuanze"></text>
 								<text v-else class="iconfont icon-weixuanze"></text>
 							</template>
-							{{item.outputCode}}
+							{{ item.outputCode}}
 						</view>
 						<view class="status" :class="item.billState==-1?'die':''">
 							{{item.billState==1?'已审核':item.billState==-1?'已作废':'待审核'}}
 						</view>
+					</view>
 					<view class="detail"> 
 						<view class="label bg_style1">{{item.workhouseName}}</view>
 						<view class="row jc_sb mt30">
 							<text class="date f28-c333">
-								{{item.outputDate}}
+								{{item.outputDatee}}
 							</text>
-							<text class="price">
+							<text class="price" >
 								¥{{item.outputAmount || 0}}
 							</text>
 						</view>
 					</view>
+					
 					<!-- 操作选项 -->
 					<view class="handle_wrap row">
-						
-						<!-- 其他 -->
-							<template v-if="item.billState==='0' || !item.billState">
-								<view class="handle_btn h1" @click.stop="submit(item,2)">
-									<text class="iconfont icon-shenhe"></text>审核
-								</view>
-								<view class="handle_btn h1" @click.stop="navTo('./Detail?pageType='+pageType+'&showEdit=true&id='+item.id)">
-									<text class="iconfont icon-bianji"></text>修改
-								</view>
-								<view class="handle_btn h2" @click.stop="submit(item,1)">
-									<text class="iconfont icon-shanchu"></text>作废
-								</view>
-							</template>
-							<template v-else-if="item.billState==1">
-								<view class="handle_btn h1" @click.stop="submit(item,3)">
-									<text class="iconfont icon-shenhe"></text>反审核
-								</view>
-								<view class="handle_btn h1" >
-									<text class="iconfont icon-dayin"></text>打印
-								</view>
-							</template>
+						<template v-if="item.billState==='0' || !item.billState">
+							<view class="handle_btn h1" @click.stop="submit(item,2)">
+								<text class="iconfont icon-shenhe"></text>审核
+							</view>
+							<view class="handle_btn h1" @click.stop="navTo('./Detail?id='+item.id)">
+								<text class="iconfont icon-bianji"></text>修改
+							</view>
+							<view class="handle_btn h2" @click.stop="submit(item,1)">
+								<text class="iconfont icon-shanchu"></text>作废
+							</view>
+						</template>
+						<template v-else-if="item.billState==1">
+							<view class="handle_btn h1" @click.stop="submit(item,3)">
+								<text class="iconfont icon-shenhe"></text>反审核
+							</view>
+							<view class="handle_btn h1" >
+								<text class="iconfont icon-dayin"></text>打印
+							</view>
 						</template>
 					</view>
 				</view>
@@ -71,26 +72,23 @@
 		<template v-else>
 			<no-data></no-data>
 		</template>
-        
-        
-            <view class="foot_btn row jc_sb"> 
-                <view class="nums row">
-                	<view class="left row" >
-                		<view @click="selectAll(2)" v-if="total<dataList_.length || dataList_.length<=0" class="iconfont icon-weixuanze"></view>
-                		<view @click="selectAll(1)" v-else class="iconfont icon-xuanze"></view>
-                		<view>合计</view> 
-                	</view>
-                	<view class="right">{{total}}</view>
-                </view>
-                <view class="btns">
-                	<text class="btn left" @click="submit({},1)">作废</text>
-                	<text class="btn right" @click="submit({},2)">审核</text>
-                </view>
+        <view class="foot_btn row jc_sb"> 
+            <view class="nums row">
+            	<view class="left row" >
+            		<view @click="selectAll(2)" v-if="total<dataList_.length || dataList_.length<=0" class="iconfont icon-weixuanze"></view>
+            		<view @click="selectAll(1)" v-else class="iconfont icon-xuanze"></view>
+            		<view>合计</view> 
+            	</view>
+            	<view class="right">{{total}}</view>
             </view>
+            <view class="btns">
+            	<text class="btn left" @click="submit({},1)">作废</text>
+            	<text class="btn right" @click="submit({},2)">审核</text>
+            </view>
+        </view>
 			
 		<!-- 新增按钮 -->
-		<view 
-        class="add_btn" @click="navTo('./AddPage?pageType='+pageType)">
+		<view class="add_btn" @click="navTo('./AddPage')">
 			+
 		</view>
 	</view>
@@ -122,54 +120,10 @@
 			};
 		},
 		onLoad(e) {
-			let barTitle
-			if(e.pageType=='out'){
-				barTitle='出库单'
-				this.pageTxt='出库'
-				this.queryUrl='api/outputBill/pageList'
-			}else if(e.pageType=='in'){
-				barTitle='入库单'
-				this.pageTxt='入库'
-				this.queryUrl='api/inputBill/pageList'
-			}else if(e.pageType=='inventory'){
-				barTitle='盘点单'
-				this.pageTxt='盘点'
-				this.queryUrl='api/stocktake/pageList'
-			}else if(e.pageType=='frmLoss'){
-				barTitle='报损单'
-				this.pageTxt='报损'
-				this.queryUrl='api/Loss/pageList'
-			}else if(e.pageType=='overflow'){
-				barTitle='报溢单'
-				this.pageTxt='报溢'
-			}else if(e.pageType=='return'){
-				barTitle='退货单'
-				this.pageTxt='退货'
-				this.queryUrl='api/returnorder/pageList'
-			}else if(e.pageType=='turnover'){
-				barTitle='周转框'
-				this.pageTxt='周转'
-                this.list=[
-                    {
-                    	name: '全部',
-                    	vlaue:0
-                    }, {
-                    	name: '待归还',
-                    	vlaue:1
-                    }, {
-                    	name: '已归还',
-                    	vlaue:2
-                    }
-                ]
-			}else if(e.pageType=='offer'){
-                barTitle='报价单'
-                this.pageTxt='报价'
-            }
 			
+			this.queryUrl='api/outputBill/pageList'
 			this.pageType=e.pageType
-			uni.setNavigationBarTitle({
-				title:barTitle
-			})
+			
 			
 		},
 		onShow() {
@@ -194,6 +148,14 @@
 				this.dataList_=list
 				this.initList=JSON.parse(JSON.stringify(this.dataList_))
 			},
+            // 搜索
+            searchInput(val){
+                this.queryData={
+                    outputCode:val
+                }
+                this.dataList=[]
+                this.initData()
+            },
 			tab(item){
 				let billState=''
 				if(item.value==1){
@@ -234,106 +196,20 @@
 			},
 			// 操作
 			submit(item,val){
-				let con='',url='',data={}
+				let con='',url='',data={
+                    id:item.id
+                }
 				if(val==1){
 					con='您正在作废单据，请确认操作'
-					switch(this.pageType){
-						case 'in':
-							url='api/inputBill/updateInvalid'
-							break;
-						case 'out':
-							url='api/outputBill/updateInvalid'
-							break;
-						case 'inventory':
-							url='api/stocktake/updateInvalid'
-							break;
-						case 'frmLoss':
-							url='api/Loss/updateInvalid'
-							break;
-						case 'overflow':
-							url=''
-							break;
-						case 'return':
-							url='api/returnorder/updateInvalid'
-							break;
-						case 'turnover':
-							url=''
-							break;
-						case 'offer':
-							url=''
-							break;
-						default:
-							url=''
-					}
-					data={
-						id:item.id
-					}
+                    url='api/outputBill/updateInvalid'
+					
 				}else if(val==2){
 					con='您正在审核单据，请确认操作'
-					switch(this.pageType){
-						case 'in':
-							url='api/inputBill/updateAudit'
-							break;
-						case 'out':
-							url='api/outputBill/updateAudit'
-							break;
-						case 'inventory':
-							url='api/stocktake/updateAudit'
-							break;
-						case 'frmLoss':
-							url='api/Loss/updateAudit'
-							break;
-						case 'overflow':
-							url=''
-							break;
-						case 'return':
-							url='api/returnorder/updateAudit'
-							break;
-						case 'turnover':
-							url=''
-							break;
-						case 'offer':
-							url=''
-							break;
-						default:
-							url=''
-					}
-					data={
-						id:item.id
-					}
+                    url='api/outputBill/updateAudit'
+					
 				}else{
 					con='您正在反审核单据，请确认操作'
-					switch(this.pageType){
-						case 'in':
-							url='api/inputBill/updateBackAudit'
-							break;
-						case 'out':
-							url='api/outputBill/updateBackAudit'
-							break;
-						case 'inventory':
-							url='api/stocktake/updateBackAudit'
-							break;
-						case 'frmLoss':
-							url='api/Loss/updateBackAudit'
-							break;
-						case 'overflow':
-							url=''
-							break;
-						case 'return':
-							url='api/returnorder/updateBackAudit'
-							break;
-						case 'turnover':
-							url=''
-							break;
-						case 'offer':
-							url=''
-							break;
-						default:
-							url=''
-					}
-					data={
-						id:item.id
-					}
+                    url='api/outputBill/updateBackAudit'
 				}
 				uni.showModal({
 					title:'提示',
@@ -421,11 +297,27 @@
 					border-radius: 12upx;
 					font-size: 24upx;
 				}
-				
+				.inve{
+                    display: inline-block;
+                    font-size: 24upx;
+                    padding: 4upx 12upx;
+                    border-radius: 12upx;
+                }
+                .ying{
+                    background-color: rgba(7, 254, 19, 0.2);
+                    color: #00B809;
+                }
+                .kui{
+                    background-color: rgba(254, 7, 7, 0.2);
+                    color: #D30000;
+                }
 				.price{
 					color: $base-color;
 					font-size: 36upx;
 				}
+                .hui{
+                    color: #333;
+                }
 			}
 			.handle_wrap{
 				justify-content: flex-end;

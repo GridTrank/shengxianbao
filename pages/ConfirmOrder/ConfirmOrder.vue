@@ -78,6 +78,7 @@
 					<view class="left row">
 						<image class="l_img" :src="item.src" mode="widthFix"></image>
 						<text class="f28-c333">{{item.label}}</text>
+                        <text class="ml30 ye" v-if="item.label=='余额'">({{userInfo.customerBalance}})</text>
 					</view>
 					<image class="right" :src="item.checked?'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quanzhong%402x.png':'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quan1%402x.png'" mode=""></image>
 					
@@ -418,6 +419,10 @@
 						height: 48upx;
 						margin-right: 10upx;
 					}
+                    .ye{
+                        color: $base-color;
+                        font-size: 24upx;
+                    }
 				}
 				.right{
 					width: 36upx;

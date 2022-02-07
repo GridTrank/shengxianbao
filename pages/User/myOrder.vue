@@ -1,6 +1,6 @@
 <template>
 	<view class="wrap  mt30">
-		<view class="label row" @click="navTo('/pages/Order/Order?status=0')">
+		<view class="label row" @click="navTo('/pages/Order/Order?index=0')">
 			<text class="label_l">我的订单</text>
 			<view class="label_r row">
 				<text class="txt">全部订单</text>
@@ -8,26 +8,26 @@
 			</view>
 		</view>
 		<view class="list row mt30">
-			<view class="item column" @click="navTo('/pages/Order/Order?status=1')">
+			<view class="item column" @click="navTo('/pages/Order/Order?status=0&index=1')">
 				<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/t1.png" mode="widthFix"></image>
 				<text>待审核</text>
 			</view>
-			<view class="item column" @click="navTo('/pages/Order/Order?status=2')">
+			<view class="item column" @click="navTo('/pages/Order/Order?status=1&index=2')">
 				<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/t4.png" mode="widthFix"></image>
 				<text>待发货</text>
 			</view>
-			<view class="item column" @click="navTo('/pages/Order/Order?status=3')">
+			<view class="item column" @click="navTo('/pages/Order/Order?status=2&index=3')">
 				<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/t2.png" mode="widthFix"></image>
 				<text>待收货</text>
 			</view>
-			<view class="item column" @click="navTo('/pages/Order/Order?status=4')">
+			<view class="item column" @click="navTo('/pages/Order/Order?status=4&index=4')">
 				<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/t3.png" mode="widthFix"></image>
 				<text>已收货</text>
 			</view>
-			<view class="item column" @click="navTo('/pages/Order/Order?status=5')">
+			<!-- <view class="item column" @click="navTo('/pages/Order/Order?status=5')">
 				<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/t3.png" mode="widthFix"></image>
 				<text>自提</text>
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>

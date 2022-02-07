@@ -34,13 +34,13 @@
 								{{item.productNameAlias }}
 							</view>
 							<view class="price row  mt10">
-								<text class="bao mr10">{{item.productUnit}}</text>
-								<text class="f24-c999 mr10">{{item.auxiliaryUnit}}</text>
+								<text class="bao mr10">{{item.auxiliaryUnit}}</text>
+								<text class="f24-c999 mr10">{{item.productUnit }}</text>
 								<text class="f24-c999">￥{{item.unitPrice}}元/{{item.productUnit}}</text>
 							</view>
 
 							<view class="kucun" v-if="pageType=='inventory'">
-								<!-- 库存 -->
+								库存：{{item.inventoryQuantity}}{{item.productUnit}}  {{item.relation}}{{item.auxiliaryunit}}
 							</view>
 						</view>
 					</view>
@@ -135,7 +135,7 @@
 			} else if (e.pageType == 'inventory') {
 				barTitle = '新增盘点单'
 				this.pageTxt = '盘点'
-				this.leftNumName = 'systemQuantity'
+				this.leftNumName = 'actualQuantity'
 			} else if (e.pageType == 'frmLoss') {
 				barTitle = '新增报损单'
 				this.leftNumName = 'lossQuantity'
@@ -414,7 +414,8 @@
 					.kucun {
 						position: absolute;
 						right: 0;
-						bottom: 0;
+						bottom: 14upx;
+                        font-size: 32upx;
 					}
 				}
 

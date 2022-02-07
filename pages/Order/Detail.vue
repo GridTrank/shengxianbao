@@ -119,34 +119,18 @@
 				num:'', 	
 				showPop:false,
 				selectDate:'',
-				pageType:'',
-				pageTxt:'',
 				openSwitch:false
 			};
 		},
 		onLoad(e) {
-			let barTitle
-			if(e.pageType=='inventory'){
-				barTitle='盘点单详情'
-				this.pageTxt='盘点'
-			}else if(e.pageType=='frmLoss'){
-				barTitle='报损单详情'
-				this.pageTxt='报损'
-			}else if(e.pageType=='overflow'){
-				barTitle='报溢单详情'
-				this.pageTxt='报溢'
-			}else if(e.pageType=='return'){
-				barTitle='退货单详情'
-				this.pageTxt='退货'
-			}
-			uni.setNavigationBarTitle({
-				title:barTitle
-			})
-			this.pageType=e.pageType
-			
+			this.getDetail(e.orderCode)
 		},
 		methods:{
-			
+			getDetail(orderCode){
+                this.$http('api/oms/order/salesorderbillInfo',{orderCode}).then(res=>{
+                    
+                })
+            }
 		},
 		
 	}
