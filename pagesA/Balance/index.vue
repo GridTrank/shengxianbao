@@ -1,122 +1,259 @@
 <template>
 	<view class="page_wrap">
-		<view class="top_bg">
-			<view class="txt">当前可用余额（元）</view>
-			<view class="money">100.00</view>
-			<view class="mx" @click="navTo('./detail')">余额明细</view>
+		<view class="integral_info">
+			￥{{userInfo.customerBalance}}
+			<view class="pay" @click="isPay = !isPay">去充值</view>
 		</view>
-		<view class="list_wrap ">
-			<view class="title">请选择充值金额</view>
-			<view class="list">
-				<view class="item" v-for="(item,index) in rechargeList" :key="index">
-					<text class="left">¥</text>
-					<text class="right">{{item.label}}</text>
+		<view class="balance_list">
+
+			<view class="balance_list_wrap">
+				<view class="item " v-for="(item,index) in dataList" :key="index">
+					<view class="money jc_sb row f32-c333">
+						<!-- <view class="b">差额退款</view> -->
+						<view class="b">{{item.recordType == '0' ? '-':'+'}}{{item.amount}}</view>
+					</view>
+					<view class="date jc_sb row ">
+						<view class="f24-c999">{{item.createDate}}</view>
+					</view>
 				</view>
-				<view class="item row" >
-					<text class="left">¥</text>
-					<u-input  placeholder="自定义" v-model="customMoney"></u-input>
+
+			</view>
+		</view>
+		<view :class="['popup_wrap',{'show':isPay}]">
+			<view class="mask" @click="isPay = false"></view>
+			<view class="popup_info">
+				<view class="list_wrap">
+					<view class="title">请选择充值金额</view>
+					<view class="list">
+						<block  v-for="(item,index) in rechargeList" :key="index">
+							<view @click="actived = index" v-if="item.type != 'common'" :class="['item',{'active':index == actived}]" >
+								<text class="left">¥</text>
+								<text class="right">{{item.label}}</text>
+							</view>
+							
+							
+							<view @click="actived = 'common'" v-else :class="['item row',{'active':'common' == actived}]" >
+								<text class="left">¥</text>
+								<u-input border="none"  placeholder="自定义" v-model="customMoney"></u-input>
+							</view>
+						</block>
+						
+					</view>
+				</view>
+				
+				<view class="btn_wrap">
+					<view class="btn"@click="pay">
+						支付
+					</view>
 				</view>
 			</view>
 		</view>
-		
-		<view class="btn_wrap">
-			<view class="btn">
-				支付
-			</view>
-		</view>
+		<!-- <u-action-sheet :actions="payList" :title="title" :show="show"></u-action-sheet> -->
 	</view>
 </template>
 
 <script>
-	export default{
-		data(){
-			return{
-				rechargeList:[
-					{value:100.00,label:'100.00'},
-					{value:200.00,label:'200.00'},
-					{value:300.00,label:'300.00'},
-					{value:400.00,label:'400.00'},
-					{value:500.00,label:'500.00'},
+	export default {
+		data() {
+			return {
+				isPay:false,
+				actived:0,
+				rechargeList: [{
+						value: 100.00,
+						label: '100.00'
+					},
+					{
+						value: 200.00,
+						label: '200.00'
+					},
+					{
+						value: 300.00,
+						label: '300.00'
+					},
+					{
+						value: 400.00,
+						label: '400.00'
+					},
+					{
+						value: 500.00,
+						label: '500.00'
+					},
+					{
+						type:'common',
+					},
 				],
-				customMoney:'',
+				customMoney: '',
+				page: 1,
+				limit: 20,
+				queryData: {},
+				userInfo: {},
+				dataList: [],
+				queryUrl: 'api/cuscustomerpointinfo/page'
 			}
 		},
-		methods:{
-			clickLeft(){
+		created() {
+			this.getData();
+			this.getUserInfo();
+		},
+		methods: {
+			getUserInfo() {
+				this.$http('api/myOneslft/getMyInfo', '', 'post').then(res => {
+					this.userInfo = res
+					// this.getHelpList()
+				})
+			},
+			getData() {
+				this.getList().then(res => {
+					console.log(res)
+					this.dataList = res;
+
+				})
+			},
+			clickLeft() {
 				uni.navigateBack()
 			},
-			clickRight(){
+			clickRight() {
 				this.navTo('./detail')
 			},
+			pay(){
+				if(this.actived == 'common' && !this.customMoney){
+					uni.showToast({
+						title:'请输入自定义充值金额',
+						icon:'none'
+					})
+				}
+				
+			}
 		}
 	}
 </script>
 
 <style scoped lang="scss">
-	.page_wrap{
-		.top_bg{
-			background-image: url('https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/yuebg.png');
-			width: 100%;
-			height: 320upx;
-			background-size: 100% 100%;
-			color: #fff;
-			overflow: hidden;
-			.txt{
+	.page_wrap {
+		.integral_info {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 400upx;
+			margin-bottom: 10upx;
+			color: #FE5B07;
+			font-size: 64upx;
+			background: #fff;
+			position: relative;
+			.pay{
+				position: absolute;
 				font-size: 24upx;
-				margin: 40upx 20upx 20upx 60upx;
-			}
-			.money{
-				font-size: 72upx;
-				margin-left:60upx;
-			}
-			.mx{
-				font-size: 24upx;
-				margin-left:60upx;
+				bottom: 44upx;
+				width: 140upx;
+				color: #fff;
+				height: 54upx;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
+				border-radius: 18px;
 			}
 		}
-		.list_wrap{
-			margin-top:-60upx;
-			background-color: #fff;
-			padding:60upx  40upx  30upx 40upx;
+
+		.balance_list {
+			background: #fff;
+			.item {
+				padding: 26upx 30upx;
+				margin-bottom: 16upx;
+				.minus {
+					color: #FD4D00;
+				}
+
+				.date {
+					margin-top: 20upx;
+				}
+
+				&:last-child {
+					border: none;
+				}
+			}
+		}
+
+		
+
+		.list_wrap {
+			background-color: #F7F7F7;
+			padding: 60upx 40upx 30upx 40upx;
 			border-radius: 46upx 46upx 0upx 0upx;
-			.title{
+
+			.title {
 				font-size: 36upx;
 				color: #333;
 				margin-bottom: 40upx;
 			}
-			.list{
+
+			.list {
 				display: flex;
 				flex-wrap: wrap;
-				.item{
+
+				.item {
 					width: 200upx;
 					height: 200upx;
 					text-align: center;
 					line-height: 200upx;
 					border: 1px solid #ccc;
 					color: #333;
+					background-color: #fff;
 					margin-right: 28upx;
 					margin-top: 30upx;
-					&:nth-child(3n){
+					.u-input{ 
+						padding:0!important;
+						width: 100upx;
+					 }
+					&:nth-child(3n) {
 						margin-right: 0;
 					}
-					.left{
+					&.active{
+						border-color: #FD3615;
+						color: #FD4D00;
+						background-color: rgba($color: #FD4D00, $alpha: 0.04);
+					}
+					.left {
 						font-size: 24upx;
 					}
-					.right{
+
+					.right {
 						font-size: 42upx;
 					}
 				}
-				
+
 			}
 		}
-		.btn_wrap{
-			position: fixed;
+		.popup_wrap{
+			display: none;
+			.mask {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+				z-index: 1;
+			}
+			.popup_info {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				z-index: 2;
+			}
+			&.show{
+				display: block;
+			}
+		}
+		.btn_wrap {
+			position: relative;
 			bottom: 0;
 			padding: 30upx 0;
 			left: 0;
 			width: 100%;
 			background-color: #fff;
-			.btn{
+
+			.btn {
 				background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
 				width: 90%;
 				height: 100upx;

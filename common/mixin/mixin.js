@@ -50,6 +50,7 @@ export default {
 					...this.queryData
 				}
 				this.$http(this.queryUrl, data).then(res => {
+					if(!res) return;
 					this.dataList = this.dataList.concat(Array.isArray(res)?res:  (res.list || res.data || [])); 
 					resolve(this.dataList)
 					// 限制重复请求并且加载完后限制请求
