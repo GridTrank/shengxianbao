@@ -6,6 +6,7 @@
  */
 .info.data-v-f7c039fa {
   display: flex;
+  flex-direction: row;
   padding: 10rpx 30rpx 10rpx 50rpx;
 }
 .info .img.data-v-f7c039fa {
@@ -15,8 +16,14 @@
   flex-shrink: 0;
 }
 .info .detail.data-v-f7c039fa {
-  width: 350rpx;
+  width: 310rpx;
   position: relative;
+}
+.search_page.data-v-f7c039fa {
+  padding: 10rpx 0;
+}
+.search_page .detail.data-v-f7c039fa {
+  width: 580rpx;
 }
 .more_list.data-v-f7c039fa {
   background-color: #FAFAFA;
@@ -92,6 +99,7 @@
 }
 .price .add.data-v-f7c039fa {
   width: 44rpx;
+  height: 44rpx;
 }
 .collect.data-v-f7c039fa {
   position: absolute;

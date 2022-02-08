@@ -62,4 +62,9 @@
   background: #fff;
   border: 2rpx solid #F87523;
 }
+.page_wrap .to.data-v-3a2da0cc {
+  border: none;
+  font-size: 28rpx;
+  background: transparent;
+}
 

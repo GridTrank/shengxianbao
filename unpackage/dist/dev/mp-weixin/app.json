@@ -73,7 +73,11 @@
     {
       "root": "pagesC",
       "pages": [
-        "Out/Index"
+        "Out/Index",
+        "Out/Detail",
+        "Out/AddPage",
+        "Out/SelectGood",
+        "Out/Log"
       ]
     }
   ],
@@ -154,6 +158,5 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

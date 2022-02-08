@@ -1,21 +1,25 @@
 <template>
 	<view class="">
-		<view class="info">
-			<image class="img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/111.png" ></image>
+		<view class="info" :class="pageFrom">
+			<image 
+            @click="navTo('/pagesB/ProductDetail/ProductDetail?id='+info.productId)"
+            class="img" 
+            :src="info.defaultImage" >
+            </image>
 			<view class="detail">
-				<view class="name ">名称</view>
+				<view class="name ">{{info.productName}}</view>
 				<view class="spec ">
-					<text class="s_detail">5斤/10斤/15斤</text>
+					<text class="s_detail">{{info.productModelList.join('/')}}</text>
 				</view>
-				<view class="label ">
+				<view class="label row" v-if="info.productTag">
 					<text class="l1">新品上市</text>
 					<text class="l1">今日特价</text>
 				</view>
 				<view class="price row mt20">
 					<view class="p_wrap">
-						<view class="p_detail">
+						<view class="p_detail row">
 							<text class="p_left">¥</text>
-							<text class="p_right">10.00<text class="unit">/斤</text> </text>
+							<text class="p_right">{{info.productSkuList[0].unitPrice}}<text class="unit">/{{info.productSkuList[0].productUnit}}</text> </text>
 						</view>
 						<view class="sale " >
 							满100减10
@@ -35,32 +39,42 @@
 			</view>
 		</view>
 		<view  class="more_list" v-if="showMore">
-		<view class="price row ">
-			<view class="p_detail">
-				<view class="p_wrap">
-					<text class="circle">4斤</text>
-					<text class="desc">¥10.00/斤（4斤X10）</text>
-					<view class="p_detail">
-						<text class="p_left">¥</text>
-						<text class="p_right">10.00<text class="unit">/斤</text> </text>
-					</view>
-					<view class="sale " >
-						满100减10
+			<view class="price row mt10" v-for="(d,i) in info.productSkuList" :key="i"> 
+				<view class="p_detail">
+					<view class="p_wrap ">
+						<text class="circle">{{d.productModel}}</text>
+						<text class="desc">{{d.productNameAlias}}</text>
+						<view class="p_detail row">
+							<text class="p_left">¥</text>
+							<text class="p_right">{{d.unitPrice}}<text class="unit">/{{d.productUnit}}</text> </text>
+						</view>
+						<view class="sale " >
+							满100减10
+						</view>
 					</view>
 				</view>
-				
+				<image class="add" @click="addGood(d)" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/gwc.png"></image>
 			</view>
-			<image class="add" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/gwc.png" mode="widthFix"></image>
 		</view>
 		
-	</view>
+		<specifications
+		:selectData="selectData" 
+		ref='spec'>
+		</specifications>
 	</view>
 </template>
 
 <script>
 	export default{
 		props:{
+            info:{
+                type:Object
+            },
 			styleType:{
+				type:String,
+				default:''
+			},
+			pageFrom:{
 				type:String,
 				default:''
 			}
@@ -69,12 +83,23 @@
 			return{
 				moreIcon:'icon-xia',
 				showMore:false,
+				selectData:{}
 			}
 		},
 		methods:{
 			moreHandle(){
 				this.showMore=!this.showMore
 				this.moreIcon=this.showMore?'icon-shang':'icon-xia'
+			},
+			addGood(val){
+			    if(this.$util.isLogin()){
+					this.selectData={
+						...val,
+						productName:this.info.productName,
+						imageUrl:this.info.defaultImage
+					}
+			        this.$refs.spec.show=true
+			    }
 			}
 		}
 	}
@@ -83,6 +108,7 @@
 <style scoped lang="scss">
 	.info{
 		display: flex;
+		flex-direction: row;
 		padding:10upx 30upx 10upx 50upx;
 		.img{
 			width: 120upx;
@@ -91,10 +117,16 @@
 			flex-shrink: 0;
 		}
 		.detail{
-			width: 350upx;
+			width: 310upx;
 			position: relative;
 		}
 		
+	}
+	.search_page{
+		padding: 10upx 0;
+		.detail{
+			width: 580upx;
+		}
 	}
 	.more_list{
 		background-color: #FAFAFA;
@@ -173,6 +205,7 @@
 		}
 		.add{
 			width: 44upx;
+			height: 44upx;
 		}
 	}
 	.collect{

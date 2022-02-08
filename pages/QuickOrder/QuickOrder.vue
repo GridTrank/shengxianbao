@@ -27,7 +27,7 @@
 			<template v-if="dataList.length>0">
 				<view  class="right_list">
 					<view  class="list  mt20" v-for="(item,index) in dataList" :key="index">
-						<list></list>
+						<list :info="item"></list>
 					</view>
 				</view>
 			</template>

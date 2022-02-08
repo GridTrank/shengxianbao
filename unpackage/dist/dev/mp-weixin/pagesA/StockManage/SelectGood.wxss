@@ -106,7 +106,8 @@
 .data_list .list .item .info .kucun.data-v-3a0ffc7e {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: 14rpx;
+  font-size: 32rpx;
 }
 .data_list .list .item .bottom_wrap.data-v-3a0ffc7e {
   background-color: #fff;

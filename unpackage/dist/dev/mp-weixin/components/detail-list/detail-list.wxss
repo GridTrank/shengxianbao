@@ -54,6 +54,7 @@
   position: absolute;
   right: 0;
   bottom: 0;
+  font-size: 32rpx;
 }
 .data_list .list .item .bottom_wrap.data-v-73a68aba {
   background-color: #fff;

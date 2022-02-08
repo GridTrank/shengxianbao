@@ -76,6 +76,10 @@
   height: 48rpx;
   margin-right: 10rpx;
 }
+.page_wrap .pay_method .list .item .left .ye.data-v-af5aa274 {
+  color: #FE5B07;
+  font-size: 24rpx;
+}
 .page_wrap .pay_method .list .item .right.data-v-af5aa274 {
   width: 36rpx;
   height: 36rpx;

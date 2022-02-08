@@ -40,9 +40,26 @@
   border-radius: 12rpx;
   font-size: 24rpx;
 }
+.page_wrap .list .item .detail .inve.data-v-6aad16e2 {
+  display: inline-block;
+  font-size: 24rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+}
+.page_wrap .list .item .detail .ying.data-v-6aad16e2 {
+  background-color: rgba(7, 254, 19, 0.2);
+  color: #00B809;
+}
+.page_wrap .list .item .detail .kui.data-v-6aad16e2 {
+  background-color: rgba(254, 7, 7, 0.2);
+  color: #D30000;
+}
 .page_wrap .list .item .detail .price.data-v-6aad16e2 {
   color: #FE5B07;
   font-size: 36rpx;
+}
+.page_wrap .list .item .detail .hui.data-v-6aad16e2 {
+  color: #333;
 }
 .page_wrap .list .item .handle_wrap.data-v-6aad16e2 {
   justify-content: flex-end;

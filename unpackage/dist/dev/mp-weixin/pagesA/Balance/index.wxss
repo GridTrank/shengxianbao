@@ -4,30 +4,49 @@
  * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
-.page_wrap .top_bg.data-v-5b6c643b {
-  background-image: url("https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/yuebg.png");
-  width: 100%;
-  height: 320rpx;
-  background-size: 100% 100%;
+.page_wrap .integral_info.data-v-5b6c643b {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400rpx;
+  margin-bottom: 10rpx;
+  color: #FE5B07;
+  font-size: 64rpx;
+  background: #fff;
+  position: relative;
+}
+.page_wrap .integral_info .pay.data-v-5b6c643b {
+  position: absolute;
+  font-size: 24rpx;
+  bottom: 44rpx;
+  width: 140rpx;
   color: #fff;
-  overflow: hidden;
+  height: 54rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
+  border-radius: 18px;
 }
-.page_wrap .top_bg .txt.data-v-5b6c643b {
-  font-size: 24rpx;
-  margin: 40rpx 20rpx 20rpx 60rpx;
+.page_wrap .balance_list.data-v-5b6c643b {
+  background: #fff;
 }
-.page_wrap .top_bg .money.data-v-5b6c643b {
-  font-size: 72rpx;
-  margin-left: 60rpx;
+.page_wrap .balance_list .item.data-v-5b6c643b {
+  padding: 26rpx 30rpx;
+  margin-bottom: 16rpx;
 }
-.page_wrap .top_bg .mx.data-v-5b6c643b {
-  font-size: 24rpx;
-  margin-left: 60rpx;
+.page_wrap .balance_list .item .minus.data-v-5b6c643b {
+  color: #FD4D00;
+}
+.page_wrap .balance_list .item .date.data-v-5b6c643b {
+  margin-top: 20rpx;
+}
+.page_wrap .balance_list .item.data-v-5b6c643b:last-child {
+  border: none;
 }
 .page_wrap .list_wrap.data-v-5b6c643b {
-  margin-top: -60rpx;
-  background-color: #fff;
-  padding: 60rpx  40rpx  30rpx 40rpx;
+  background-color: #F7F7F7;
+  padding: 60rpx 40rpx 30rpx 40rpx;
   border-radius: 46rpx 46rpx 0rpx 0rpx;
 }
 .page_wrap .list_wrap .title.data-v-5b6c643b {
@@ -46,11 +65,21 @@
   line-height: 200rpx;
   border: 1px solid #ccc;
   color: #333;
+  background-color: #fff;
   margin-right: 28rpx;
   margin-top: 30rpx;
 }
+.page_wrap .list_wrap .list .item .u-input.data-v-5b6c643b {
+  padding: 0 !important;
+  width: 100rpx;
+}
 .page_wrap .list_wrap .list .item.data-v-5b6c643b:nth-child(3n) {
   margin-right: 0;
+}
+.page_wrap .list_wrap .list .item.active.data-v-5b6c643b {
+  border-color: #FD3615;
+  color: #FD4D00;
+  background-color: rgba(253, 77, 0, 0.04);
 }
 .page_wrap .list_wrap .list .item .left.data-v-5b6c643b {
   font-size: 24rpx;
@@ -58,8 +87,29 @@
 .page_wrap .list_wrap .list .item .right.data-v-5b6c643b {
   font-size: 42rpx;
 }
-.page_wrap .btn_wrap.data-v-5b6c643b {
+.page_wrap .popup_wrap.data-v-5b6c643b {
+  display: none;
+}
+.page_wrap .popup_wrap .mask.data-v-5b6c643b {
   position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.page_wrap .popup_wrap .popup_info.data-v-5b6c643b {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+.page_wrap .popup_wrap.show.data-v-5b6c643b {
+  display: block;
+}
+.page_wrap .btn_wrap.data-v-5b6c643b {
+  position: relative;
   bottom: 0;
   padding: 30rpx 0;
   left: 0;

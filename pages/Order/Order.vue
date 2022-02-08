@@ -50,11 +50,10 @@
 			};
 		},
         onLoad(e) {
-            console.log(e)
             this.tabIndex=e.index
             this.queryUrl='api/oms/order/pageList'
             this.queryData={
-                billState:e.status
+                billState:e.status || ''
             }
             this.getList()
            

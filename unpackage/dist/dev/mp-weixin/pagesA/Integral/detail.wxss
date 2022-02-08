@@ -6,6 +6,15 @@
  */
 .page_wrap.data-v-7c283a20 {
   padding: 30rpx 30uxp 0;
+}
+.page_wrap .integral_info.data-v-7c283a20 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400rpx;
+  margin-bottom: 10rpx;
+  color: #FE5B07;
+  font-size: 64rpx;
   background: #fff;
 }
 .page_wrap .integral_list.data-v-7c283a20 {
@@ -15,7 +24,6 @@
 }
 .page_wrap .integral_list .item.data-v-7c283a20 {
   padding: 26rpx 0;
-  border-bottom: .5px solid #E7E7E7;
 }
 .page_wrap .integral_list .item .minus.data-v-7c283a20 {
   color: #FD4D00;
