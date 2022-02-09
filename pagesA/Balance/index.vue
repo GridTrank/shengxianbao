@@ -48,7 +48,19 @@
 				</view>
 			</view>
 		</view>
-		<!-- <u-action-sheet :actions="payList" :title="title" :show="show"></u-action-sheet> -->
+		<view :class="['pay-popup',{'show':payType}]">
+			<view class="mask" @click="payType = false"></view>
+			<view class="pay_list_wrap">
+				<view class="title row ">
+						<view class="tool" @click="payType = false">取消</view>
+						<view>支付方式</view>
+						<view class="tool orange" @click="enterPay">确定</view>
+					</view>
+					<view class="pay_list">
+						<view @click="payId = item.id" :class="['item',{'active':payId == item.id}]" v-for="(item,index) in payList"  :key="index">{{item.paymentName}}</view>
+					</view>
+				</view>
+			</view>
 	</view>
 </template>
 
@@ -56,6 +68,8 @@
 	export default {
 		data() {
 			return {
+				payType:false,
+				payId:0,
 				isPay:false,
 				actived:0,
 				rechargeList: [{
@@ -88,14 +102,21 @@
 				queryData: {},
 				userInfo: {},
 				dataList: [],
-				queryUrl: 'api/cuscustomerpointinfo/page'
+				queryUrl: 'api/cuscustomerpointinfo/page',
+				payList:[]
 			}
 		},
 		created() {
 			this.getData();
 			this.getUserInfo();
+			this.getPay()
 		},
 		methods: {
+			getPay(){
+				this.$http('api/basepayment/topUpPayWayList','','get').then(res=>{
+					this.payList = res;
+				})
+			},
 			getUserInfo() {
 				this.$http('api/myOneslft/getMyInfo', '', 'post').then(res => {
 					this.userInfo = res
@@ -109,6 +130,9 @@
 
 				})
 			},
+			enterPay(){
+				
+			},
 			clickLeft() {
 				uni.navigateBack()
 			},
@@ -121,6 +145,8 @@
 						title:'请输入自定义充值金额',
 						icon:'none'
 					})
+				}else{
+					this.payType = true;
 				}
 				
 			}
@@ -224,16 +250,63 @@
 
 			}
 		}
+		.pay-popup {
+			display: none;
+			&.show{
+				display: block;
+			}
+			.pay_list_wrap{
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				z-index: 2;
+				background: #fff;
+				.title{
+					justify-content: space-between;
+					font-size: 30upx;
+					height: 100upx;
+					font-weight: 600;
+				}
+				.tool {
+					font-weight: 400;
+					color: #aaa;
+					font-size: 28upx;
+					width: 100upx;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					&.orange{
+						color: #FD4D00;
+					}
+				}
+				.pay_list{
+					min-height: 400upx;
+					.item{
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						font-size: 30upx;
+						color: #aaa;
+						height: 60upx;
+						&.active{
+							color: #000;
+						}
+					}
+				}
+			}
+		}
+		.mask {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			z-index: 1;
+		}
 		.popup_wrap{
 			display: none;
-			.mask {
-				position: fixed;
-				width: 100%;
-				height: 100%;
-				left: 0;
-				top: 0;
-				z-index: 1;
-			}
+			
 			.popup_info {
 				position: fixed;
 				bottom: 0;
