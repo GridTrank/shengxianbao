@@ -112,6 +112,9 @@
 		}, {
 			"path": "pages/ConfirmOrder/ConfirmOrder",
 			"style": {
+				// #ifdef H5
+				"navigationStyle": "custom",
+				// #endif
 				"navigationBarTitleText": "确认订单",
 				"enablePullDownRefresh": false
 			}

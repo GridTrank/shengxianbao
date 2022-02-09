@@ -54,7 +54,6 @@
 									<text class="t2 ml30 f28-c333">1231</text>
 									<text class="t2-1 ml30 f28-dc ">¥2000.29</text>
 								</view>
-								
 								<text class="t3 f24-c999">归还：123</text>
 							</view>
 						</template>

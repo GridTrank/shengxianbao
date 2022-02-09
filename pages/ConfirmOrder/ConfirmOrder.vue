@@ -1,6 +1,6 @@
 <template>
 	<view class="page_wrap">
-		<view class="wrap jc_sb row mt20" @click="selectDeliType">
+		<view class="wrap jc_sb row " @click="selectDeliType">
 			<text class="f28-c333">配送方式</text>
 			<text class="f28-c999 ">{{shipMethod}}<text class="iconfont icon-jinru"></text></text>
 		</view>
@@ -31,8 +31,8 @@
 		<!-- 配送时间 -->
 		<view class="wrap time mt20">
 			<view class="dist row jc_sb" @click="popupStatus=true">
-				<text class="f28-c333">配送时间</text>
-				<text class="f28-c333">{{shipTime}}<text class="iconfont icon-jinru"></text> </text>
+				<text class="f28-c333">{{deliveryTypeId==1?'配送':'自提'}}时间</text>
+				<text class=" f28-dc">{{shipTime || '请选择配送时间'}}<text class="iconfont icon-jinru f28-c333"></text> </text>
 			</view>
 			<view class="goods row jc_sb mt30" >
 				<view class="goods_img row">
@@ -77,8 +77,8 @@
 				>
 					<view class="left row">
 						<image class="l_img" :src="item.src" mode="widthFix"></image>
-						<text class="f28-c333">{{item.label}}</text>
-                        <text class="ml30 ye" v-if="item.label=='余额'">({{userInfo.customerBalance}})</text>
+						<text class="f28-c333">{{item.paymentName}}</text>
+                        <text class="ml30 ye" v-if="item.id==6">({{userInfo.customerBalance}})</text>
 					</view>
 					<image class="right" :src="item.checked?'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quanzhong%402x.png':'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quan1%402x.png'" mode=""></image>
 					
@@ -167,6 +167,7 @@
 				customTip:'',
 				selectTip:'',
                 selectTipMoney:'',
+				selectPayId:'',
                 ticketAmount:0,
                 isSelectDeliAddress:true,
 				payList:[
@@ -197,7 +198,7 @@
         },
         onLoad(e) {
             this.getDetail(e.ids)
-            this.shipTime=date('Y-m-d H-i',new Date().getTime())
+            // this.shipTime=date('Y-m-d H-i',new Date().getTime())
             // 初始化订单数据
             this.INIT_ORDER_DATA()
         },
@@ -248,7 +249,10 @@
             // 获取支付方式
             getPayMethod(){
                 this.$http('api/basepayment/payWayList').then(res=>{
-                    
+					res.forEach(item=>{
+						item.checked=false
+					})
+					this.payList=res
                 })
             },
             // 获取个人信息
@@ -285,6 +289,7 @@
 			},
             // 选择支付方式
 			selectPayHandle(item,index){
+				this.selectPayId=item.id
 				this.payList.forEach((el,e)=>{
 					if(e==index){
 						item.checked=!item.checked
@@ -312,29 +317,62 @@
             // 支付
             submitOrder(){
                 let that=this
+				if(!that.shipTime){
+					uni.showToast({
+						title:'请选择配送时间',
+						icon:'none'
+					})
+					return
+				}
+				if(!that.selectPayId){
+					uni.showToast({
+						title:'请选择支付方式',
+						icon:'none'
+					})
+					return
+				}
                 let orderData=that.$orderData
+				
                 let data={
                     "actualAmount":Number(that.totalAmount) ,
                     "addressId": orderData.id || that.addressDetail.id,   //地址
-                    "deliveryTypeId": that.deliveryTypeId,
-                    "distributionTime": that.shipTime,
-                    "goodsAmount": that.orderDetail.goodsAmount,
-                    "logisticsAmount": that.orderDetail.logisticsAmount,
-                    "orderAmount": that.orderDetail.orderAmount,
-                    "orderWayId": 1,
-                    // "pointTime": that.shipTime,
-                    "productSkuIdList": that.orderDetail.productSkuIdList,
-                    "sumCount": that.orderDetail.productSkuIdList.length,
-                    "taxAmount": 0,
-                    "ticketAmount": that.ticketAmount,
-                    "ticketId": orderData.ticketId,
-                    "tipsAmount":that.selectTipMoney || 0
+                    "deliveryTypeId": that.deliveryTypeId, //配送方式
+                    "distributionTime": that.deliveryTypeId==1?that.shipTime:'',  //配送时间
+                    "goodsAmount": that.orderDetail.goodsAmount,  //商品金额
+                    "logisticsAmount": that.orderDetail.logisticsAmount,  //运费
+                    "orderAmount": that.orderDetail.orderAmount,   //订单金额
+                    "orderWayId": that.selectPayId,   //支付方式
+                    "pointTime": that.deliveryTypeId==2?that.shipTime:'',   //自提时间段
+                    "productSkuIdList": that.orderDetail.productSkuIdList,   //商品列表
+                    "sumCount": that.orderDetail.productSkuIdList.length,   //商品数量
+                    "taxAmount": 0,    //商品总税额
+                    "ticketAmount": that.ticketAmount,   //优惠券抵扣金额
+                    "ticketId": orderData.ticketId,   //	优惠券id
+                    "tipsAmount":that.selectTipMoney || 0   //	小费
                 }
                 that.$http('api/oms/order/shoppingCartPay',data,'post').then(res=>{
-                    console.log(res)
+					if(that.selectPayId==6){
+						let balanceData={
+							"orderCode":res.orderCode,
+							"addressId": data.addressId,   //地址
+							"deliveryPatternId": data.deliveryTypeId,
+							"deliveryDateTime": that.shipTime,
+							"payPwd":'',
+							"shippingFee":data.logisticsAmount,
+							"ticketAmount":data.ticketAmount,
+							"ticketId":data.ticketId,
+							"tipsAmount":data.tipsAmount,
+						}
+						this.payBybalance(balanceData)
+					}
                 })
-                console.log(data)
-            }
+            },
+			// 余额支付
+			payBybalance(data){
+				this.$http('api/alipay/balancePay',data,'post').then(res=>{
+					console.log(res)
+				})
+			}
 		}
 	}
 </script>

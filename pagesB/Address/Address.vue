@@ -37,11 +37,11 @@
             	<view class="item cus" @click="confirmAddress(item)" v-for="(item,index) in dataList" :key="index">
                     <view class="">
                         <view class="f28-c333">{{item.pointName}}</view>
-                        <view class="f28-c999 mt10">{{item.pointAddr}}</view>
+                        <view class="f28-c999 mt10 row" @click.stop="navigation(item)"> <text class="iconfont icon-shouhuodizhi"></text> {{item.pointAddr}}</view>
                     </view>
                     <view class="mt10 row">
-                        <text class="f24-c333 mr20">联系电话{{item.contactsPhone}}</text>
-                        <text class="f24-c333">营业时间{{item.pickupTime}}</text>
+                        <view class="f24-c333 mr20 row"><text class="iconfont icon-dianhua"></text>联系电话{{item.contactsPhone}}</view>
+                        <view class="f24-c333 row"><text class="iconfont icon-shijian_o"></text>营业时间{{item.pickupTime}}</view>
                     </view>
             	</view>
             </view>
@@ -61,6 +61,10 @@
 		onLoad(e) {
 			this.pageType = e.pageType
 			this.type = e.type || 1
+			
+		},
+		onShow() {
+			this.dataList=[]
 			this.getData()
 		},
         computed:{
@@ -71,7 +75,6 @@
 			getData() {
 				this.queryUrl =this.type==1? 'api/myOneslft/getCustomerAddrList':'api/bmallpickuppoint/page'
 				this.getList().then(res => {
-					console.log(res)
 				})
 			},
 			del(id) {
@@ -80,8 +83,9 @@
 					content: '确定要删除吗？',
 					success: (res) => {
 						if (res.confirm) {
-							this.$http('api/myOneslft/deleteCustomerAdd',{ids:[id]},'DELETE').then(res=>{
+							this.$http('api/myOneslft/deleteCustomerAdd',[Number(id)],'DELETE').then(res=>{
 								uni.$u.toast('删除成功');
+								this.dataList=[]
 								this.getData()
 							})
 							
@@ -97,6 +101,19 @@
                     this.SET_ORDER_DATA({addressDetail:item})
                     this.navTo('back')
 				}
+			},
+			navigation(item){
+				uni.openLocation({
+					latitude:Number(item.pointLatitude) ,
+					longitude:Number(item.pointLongitude) ,
+					scale: 18,
+					success: (res) => {
+						console.log(111,res)
+					},
+					fail: (err) => {
+						console.log(222,err)
+					}
+				})
 			}
 		}
 	}

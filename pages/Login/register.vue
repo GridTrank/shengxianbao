@@ -168,10 +168,6 @@
 
 <style scoped lang="scss">
 	.page_wrap {
-		/* #ifdef MP-WEIXIN */
-		margin-top: 30upx;
-		/* #endif */ 
-
 		.input_wrap {
 			padding: 30upx;
 			background-color: #fff;

@@ -1,6 +1,5 @@
 <template>
 	<view class="page_wrap">
-
 		<view class="input_wrap">
 			<u-form ref='form' :model="model" :rules="rules">
 				<u-form-item prop="accountName">
@@ -166,8 +165,6 @@
 
 <style scoped lang="scss">
 	.page_wrap {
-		margin-top: 30upx;
-
 		.input_wrap {
 			padding: 30upx;
 			background-color: #fff;

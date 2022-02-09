@@ -31,7 +31,9 @@
 .u-icon__icon {
   font-family: uicon-iconfont;
   position: relative;
+
   display: flex;
+
   flex-direction: row;
   align-items: center;
 }

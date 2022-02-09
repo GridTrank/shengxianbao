@@ -5,7 +5,9 @@
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
 .u-cell__body {
+
   display: flex;
+
   flex-direction: row;
   box-sizing: border-box;
   padding: 10px 15px;
@@ -14,7 +16,9 @@
   align-items: center;
 }
 .u-cell__body__content {
+
   display: flex;
+
   flex-direction: row;
   align-items: center;
   flex: 1;
@@ -24,7 +28,9 @@
   padding-bottom: 13px;
 }
 .u-cell__left-icon-wrap, .u-cell__right-icon-wrap {
+
   display: flex;
+
   flex-direction: row;
   align-items: center;
   font-size: 16px;

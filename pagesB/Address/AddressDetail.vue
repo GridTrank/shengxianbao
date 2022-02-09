@@ -108,7 +108,9 @@
 							title:'保存成功',
 							icon:'none'
 						})
-						this.navTo('back');
+						setTimeout(()=>{
+							this.navTo('back');
+						},1500)
 					})
 				}).catch(errors => {
 				})

@@ -208,9 +208,9 @@ page{
 }
 @font-face {
   font-family: "iconfont"; /* Project id 2986659 */
-  src: url('//at.alicdn.com/t/font_2986659_5ur5sgw7b2g.woff2?t=1644140568378') format('woff2'),
-       url('//at.alicdn.com/t/font_2986659_5ur5sgw7b2g.woff?t=1644140568378') format('woff'),
-       url('//at.alicdn.com/t/font_2986659_5ur5sgw7b2g.ttf?t=1644140568378') format('truetype');
+  src: url('//at.alicdn.com/t/font_2986659_h1kv3hu4o3g.woff2?t=1644321106747') format('woff2'),
+       url('//at.alicdn.com/t/font_2986659_h1kv3hu4o3g.woff?t=1644321106747') format('woff'),
+       url('//at.alicdn.com/t/font_2986659_h1kv3hu4o3g.ttf?t=1644321106747') format('truetype');
 }
 .iconfont {
   font-family: "iconfont" !important;
@@ -218,6 +218,15 @@ page{
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.icon-dianhua:before {
+  content: "\e600";
+}
+.icon-shouhuodizhi:before {
+  content: "\e64e";
+}
+.icon-shijian_o:before {
+  content: "\ebb1";
 }
 .icon-tixing:before {
   content: "\e716";
@@ -301,11 +310,23 @@ page{
   content: "\e8c4";
 }
 .u-line-1 {
+
+
+
+
+
+
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 .u-line-2 {
+
+
+
+
+
+
   display: -webkit-box !important;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -314,6 +335,12 @@ page{
   -webkit-box-orient: vertical !important;
 }
 .u-line-3 {
+
+
+
+
+
+
   display: -webkit-box !important;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -322,6 +349,12 @@ page{
   -webkit-box-orient: vertical !important;
 }
 .u-line-4 {
+
+
+
+
+
+
   display: -webkit-box !important;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -330,6 +363,12 @@ page{
   -webkit-box-orient: vertical !important;
 }
 .u-line-5 {
+
+
+
+
+
+
   display: -webkit-box !important;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -337,9 +376,42 @@ page{
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical !important;
 }
+.u-border {
+  border-width: 0.5px !important;
+  border-color: #dadbde !important;
+  border-style: solid;
+}
+.u-border-top {
+  border-top-width: 0.5px !important;
+  border-color: #dadbde !important;
+  border-top-style: solid;
+}
+.u-border-left {
+  border-left-width: 0.5px !important;
+  border-color: #dadbde !important;
+  border-left-style: solid;
+}
+.u-border-right {
+  border-right-width: 0.5px !important;
+  border-color: #dadbde !important;
+  border-right-style: solid;
+}
+.u-border-bottom {
+  border-bottom-width: 0.5px !important;
+  border-color: #dadbde !important;
+  border-bottom-style: solid;
+}
+.u-border-top-bottom {
+  border-top-width: 0.5px !important;
+  border-bottom-width: 0.5px !important;
+  border-color: #dadbde !important;
+  border-top-style: solid;
+  border-bottom-style: solid;
+}
 .u-reset-button {
   padding: 0;
   background-color: transparent;
+
   font-size: inherit;
   line-height: inherit;
   color: inherit;

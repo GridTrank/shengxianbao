@@ -124,7 +124,12 @@
 			},
 			// 删除
 			delect(e) {
-				let judge = this.judgeSelect()
+				let judge = []
+				this.dataList.find((item,index)=>{
+					if(item.checked == 2){
+						judge.push(Number(item.id) )
+					}
+				})
 				if(judge.length){
 					// 删除
 					uni.showModal({
