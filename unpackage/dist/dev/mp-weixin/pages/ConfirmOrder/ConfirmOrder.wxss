@@ -74,6 +74,7 @@
 .page_wrap .pay_method .list .item .left .l_img.data-v-af5aa274 {
   width: 48rpx;
   height: 48rpx;
+  border-radius: 50%;
   margin-right: 10rpx;
 }
 .page_wrap .pay_method .list .item .left .ye.data-v-af5aa274 {

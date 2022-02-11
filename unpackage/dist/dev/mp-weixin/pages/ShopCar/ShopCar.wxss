@@ -32,14 +32,16 @@
 .empty-shop-car .empty-shop-car-btn.data-v-70a53ac4 {
   width: 240rpx;
   height: 90rpx;
-  background: #FBBC02;
+  background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
   border-radius: 200rpx;
   margin-top: 40rpx;
   text-align: center;
   line-height: 90rpx;
   font-size: 30rpx;
   font-weight: 400;
-  color: #313133;
+}
+.empty-shop-car .empty-shop-car-btn text.data-v-70a53ac4 {
+  color: #fff;
 }
 .shop-car.data-v-70a53ac4 {
   width: 750rpx;

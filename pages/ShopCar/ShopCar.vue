@@ -154,7 +154,6 @@
 							}
 						}
 					})
-					
 				}else{
 					uni.showToast({
 						title:'您当前未选择任何商品,删除失败',
@@ -296,14 +295,16 @@
 		.empty-shop-car-btn {
 			width: 240upx;
 			height: 90upx;
-			background: #FBBC02;
+			background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
 			border-radius: 200upx;
 			margin-top: 40upx;
 			text-align: center;
 			line-height: 90upx;
 			font-size: 30upx;
 			font-weight: 400;
-			color: #313133;
+			text{
+				color: #fff;
+			}
 		}
 	}
 

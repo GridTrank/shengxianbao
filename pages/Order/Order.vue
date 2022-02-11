@@ -42,7 +42,7 @@
 					},
 					{
 						label:'已收货',
-						status:4,
+						status:3,
 					},
 				],
 				tabIndex:0,

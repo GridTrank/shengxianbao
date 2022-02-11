@@ -1,6 +1,6 @@
 <template>
 	<view class="page_wrap">
-        <template v-if="type==1">
+        <template v-if="type==4">
             <view class="address_wrap pt20">
                 <view class="item" @click="confirmAddress(item)" v-for="(item,index) in dataList" :key="index">
                     <u-cell-group :border="false">
@@ -60,8 +60,7 @@
 		},
 		onLoad(e) {
 			this.pageType = e.pageType
-			this.type = e.type || 1
-			
+			this.type = e.type
 		},
 		onShow() {
 			this.dataList=[]
@@ -73,7 +72,7 @@
 		methods: {
             ...mapMutations(['SET_ORDER_DATA']),
 			getData() {
-				this.queryUrl =this.type==1? 'api/myOneslft/getCustomerAddrList':'api/bmallpickuppoint/page'
+				this.queryUrl =this.type==4? 'api/myOneslft/getCustomerAddrList':'api/bmallpickuppoint/page'
 				this.getList().then(res => {
 				})
 			},

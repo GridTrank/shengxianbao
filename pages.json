@@ -324,6 +324,15 @@
 						"enablePullDownRefresh": false
 					}
 				}, {
+					"path": "Set/AccountSafe/payPwd",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "修改支付密码",
+						"enablePullDownRefresh": false
+					}
+				},{
 					"path": "StockQuery/index",
 					"style": {
 						// #ifdef H5

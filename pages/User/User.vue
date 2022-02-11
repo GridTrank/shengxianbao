@@ -45,8 +45,10 @@
 			};
 		},
 		onLoad() {
-			this.getUserInfo()
 			
+		},
+		onShow() {
+			this.getUserInfo()
 		},
 		methods:{
 			getUserInfo(){

@@ -9,9 +9,18 @@
 					<text class="iconfont icon-jinru"></text>
 				</view>
 			</view>
-			<view class="item row" @click="navTo('./AccountSafe/index')">
+			<view class="item row" @click="navTo('/pages/Login/find')">
 				<view class="left ">
 					账户与安全
+				</view>
+				<view class="right row">
+					<text class="label">可修改密码</text>
+					<text class="iconfont icon-jinru"></text>
+				</view>
+			</view>
+			<view class="item row" @click="navTo('./AccountSafe/payPwd')">
+				<view class="left ">
+					支付密码
 				</view>
 				<view class="right row">
 					<text class="label">可修改密码</text>
