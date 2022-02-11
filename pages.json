@@ -468,6 +468,24 @@
 						"navigationBarTitleText": "合同详情",
 						"enablePullDownRefresh": false
 					}
+				}, {
+					"path": "Quote/List",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "报价单列表",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Quote/Detail",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "报价单详情",
+						"enablePullDownRefresh": false
+					}
 				}
 			]
 		},
