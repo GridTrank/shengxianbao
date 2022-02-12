@@ -11,7 +11,7 @@
 		<!-- #endif -->
 		<view class="container">
 			<!-- #ifdef MP -->
-			<view class="search_wrap" @click="navTo('/pages/Search/Search')">
+			<view class="search_wrap" @click="navTo('/pagesB/Search/Search')">
 				<text class="iconfont icon-sousuo"></text>搜索
 			</view>
 			<!-- #endif -->
