@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup",
-    "itmister-date-picker": "/components/itmister-date-picker/itmister-date-picker"
-  }
-}

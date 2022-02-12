@@ -1,1 +1,0 @@
-<view class="page_wrap"><block wx:for="{{text}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="text_wrap"><block wx:for="{{item.p}}" wx:for-item="i" wx:for-index="j" wx:key="j"><view class="p"><label class="_span">{{i}}</label></view></block></view></block></view>

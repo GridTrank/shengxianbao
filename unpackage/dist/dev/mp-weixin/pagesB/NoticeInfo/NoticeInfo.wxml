@@ -1,1 +1,0 @@
-<view class="page_wrap data-v-09b7baec"><view class="info model-wrap data-v-09b7baec"><view class="t  data-v-09b7baec">{{''+detail.noteTitle+''}}</view><view class="c mt30 data-v-09b7baec">{{''+detail.noteContent+''}}</view></view></view>
