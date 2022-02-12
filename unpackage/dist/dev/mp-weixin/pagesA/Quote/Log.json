@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "报价单日志",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "no-data": "/components/no-data/no-data"
+  }
+}

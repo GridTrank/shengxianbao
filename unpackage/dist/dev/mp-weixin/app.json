@@ -53,7 +53,10 @@
         "Statistics/List",
         "Statistics/Screen",
         "Contract/Index",
-        "Contract/Detail"
+        "Contract/Detail",
+        "Quote/List",
+        "Quote/Detail",
+        "Quote/Log"
       ]
     },
     {
@@ -78,7 +81,8 @@
         "Out/Detail",
         "Out/AddPage",
         "Out/SelectGood",
-        "Out/Log"
+        "Out/Log",
+        "Service/Service"
       ]
     }
   ],

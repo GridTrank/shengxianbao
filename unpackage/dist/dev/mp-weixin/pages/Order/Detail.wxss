@@ -59,6 +59,12 @@
   align-items: flex-start;
   padding: 30rpx;
 }
+.page_wrap .goods .list .item .item_wrap .iconfont {
+  color: #999;
+}
+.page_wrap .goods .list .item .item_wrap .icon-xuanze {
+  color: #FE5F0E;
+}
 .page_wrap .goods .list .item .img {
   width: 120rpx;
   margin-right: 20rpx;
@@ -101,7 +107,7 @@
   position: fixed;
   width: 100%;
   background-color: #fff;
-  padding: 30rpx 0;
+  padding: 20rpx 0;
   bottom: 0;
   left: 0;
   border-top: 1px solid #f1f1f1;
@@ -123,5 +129,11 @@
 }
 .page_wrap .btn_wrap .right {
   background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
+}
+.page_wrap .btn_wrap .return {
+  width: 88%;
+}
+.page_wrap .btn_wrap .return .icon-xuanze {
+  color: #FE5F0E;
 }
 

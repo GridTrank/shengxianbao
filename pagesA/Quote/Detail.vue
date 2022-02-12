@@ -58,7 +58,7 @@
             </view>
             
             <!-- 操作日志 -->
-            <view class="item row jc_sb" @click="navTo('./Log?id='+pageDetail.id+'&pageUrl='+pageUrl)">
+            <view class="item row jc_sb" @click="navTo('./Log?id='+pageDetail.id+'&pageUrl=api/salesofferPrice/info')">
             	<view class="left f28-c333">
             		操作日志
             	</view>
@@ -95,6 +95,7 @@
 			};
 		},
 		onLoad(e) {
+			this.id=e.id
 			this.getDetail()
 			
 		},
@@ -102,17 +103,13 @@
 			...mapState(['$StockManageInfo'])
 		},
 		onShow() {
-			if(this.pageDetail.infoInfoVoList){
-				this.pageDetail.infoInfoVoList=this.$StockManageInfo.infoInfoVoList 
-			}else{
-				this.pageDetail.infoVoList=this.$StockManageInfo.infoInfoVoList 
-			}
+			
 		},
 		methods:{
 			...mapMutations(['SET_STOCK_MANAGE_INFO']),
 			// 获取详情
 			getDetail(){
-				this.$http(this.pageUrl,{id:this.id}).then(res=>{
+				this.$http('api/salesofferPrice/info',{id:this.id}).then(res=>{
 					this.pageDetail=res
 				})
 			},

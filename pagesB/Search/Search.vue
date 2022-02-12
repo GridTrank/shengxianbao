@@ -13,7 +13,7 @@
 			<historyList @search="search"  ref='history' @delHistory='delHistory' ></historyList>
 		</view>
 		<view v-else v-for="(item,index) in dataList" :key="index">
-			<list pageFrom='search_page' class="mt20" ></list>
+			<list pageFrom='search_page' :info="item" class="mt20" ></list>
 		</view>
 		
 		<view v-if="dataList.length<=0 && !isEmpty">

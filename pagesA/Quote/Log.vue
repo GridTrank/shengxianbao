@@ -1,6 +1,6 @@
 <template>
     <view class="page_wrap">
-        <view class="list" v-if="list.length>0">
+        <view class="list" >
             <view class="item row jc_sa">
                 <text class="f24-c333">操作内容</text>
                 <text class="f24-c333">操作人</text>
@@ -13,7 +13,7 @@
             </view>
         </view>
 		
-		<template v-else>
+		<template v-if="list.length<=0">
 			<no-data></no-data>
 		</template>
     </view>
@@ -31,8 +31,9 @@
 		},
 		methods:{
 			getData(id,url){
-				this.$http(url,{id}).then(res=>{
-					this.list=res.infologList
+				let that=this
+				that.$http(url,{id}).then(res=>{
+					that.list=res.infoLogList
 				})
 			}
 		}
