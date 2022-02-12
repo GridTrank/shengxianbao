@@ -9,6 +9,13 @@
   background-color: #fff;
   min-height: 100vh;
 }
+.page_wrap .voice_btn.data-v-4fab062c {
+  width: 60rpx;
+  height: 60rpx;
+}
+.page_wrap .voice_btn image.data-v-4fab062c {
+  width: 100%;
+}
 .page_wrap .search_wrap.data-v-4fab062c {
   justify-content: space-between;
   position: fixed;

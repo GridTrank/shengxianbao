@@ -2,7 +2,7 @@
 	<u-popup :show="isShow" @close="isShow=false">
 		<view class="password_wrap">
 			<view class="title">
-				<view class="close"><</view>
+				<view class="close"><image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/jiantou.png"></image></view>
 				<view>请输入支付密码</view>
 			</view>
 			<view class="password">

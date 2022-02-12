@@ -135,6 +135,13 @@
         {
           "name": "地址列表",
           "pathName": "pagesB/Address/Address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pagesB/Search/Search",
+          "pathName": "pagesB/Search/Search",
+          "query": "",
           "scene": null
         }
       ]

@@ -5,7 +5,7 @@
             :showScreen="true"
             >
             </search-comprehensive>
-			<list></list>
+			<list :list='dataList'></list>
 		</view>
 		
 		<u-popup :show="showFilter" mode="right" @close="showFilter=false">
@@ -21,11 +21,16 @@
 		data() {
 			return {
 				pageType:'search',
-				showFilter:false
+				showFilter:false,
+				queryUrl:'api/inventory/page',
+				queryData:{},
+				dataList:[],
+				isContinue:true,
 			};
 		},
 		onLoad(e) {
 			// this.pageType=e.pageType
+			this.getList()
 		},
 		methods:{
 			clickLeft(){

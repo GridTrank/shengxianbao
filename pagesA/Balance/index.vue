@@ -107,7 +107,7 @@
 			}
 		},
 		created() {
-			this.getData();
+			this.getList()
 			this.getUserInfo();
 			this.getPay()
 		},
@@ -123,13 +123,7 @@
 					// this.getHelpList()
 				})
 			},
-			getData() {
-				this.getList().then(res => {
-					console.log(res)
-					this.dataList = res;
-
-				})
-			},
+			
 			enterPay(){
 				
 			},
