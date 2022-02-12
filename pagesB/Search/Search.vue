@@ -3,17 +3,21 @@
 		<view class="search_wrap row">
 			<view class="input_wrap row">
 				<image class="search_img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/search.png"></image>
-				<u-input type="text" border="none" clearable v-model="keyWord" placeholder="搜索商品" />
+				<u-input type="text" border="none" clearable v-model="keyWord" @confirm="search(keyWord)" placeholder="搜索商品" />
 			</view>
 			<text class="btn" v-if='keyWord' @click="search(keyWord)">搜索</text>
 			<text class="btn" v-else  @click="navTo('back')">取消</text>
 		</view>
 		
-		<view v-if="isEmpty" class="">
+		<view v-if="isEmpty" >
 			<historyList @search="search"  ref='history' @delHistory='delHistory' ></historyList>
 		</view>
-		<view v-else v-for="(item,index) in searchList" :key="index">
+		<view v-else v-for="(item,index) in dataList" :key="index">
 			<list pageFrom='search_page' class="mt20" ></list>
+		</view>
+		
+		<view v-if="dataList.length<=0 && !isEmpty">
+		    <no-data></no-data>
 		</view>
 	</view>
 </template>
@@ -35,9 +39,15 @@
 		methods:{
 			search(val){
 				this.keyWord=val
-				this.saveKey(val)
-				this.searchList=[1,2,3]
-				this.isEmpty=false
+				this.queryUrl='api/pms/productcategory/getProductList'
+				this.queryData={
+					productName:val
+				}
+				this.getList().then(res=>{
+					this.saveKey(val)
+					this.isEmpty=false
+				})
+				
 			},
 			saveKey(keyName){
 				this.$http('api/searchrecord/saveSearchRecord',{keyName},'post').then(res=>{})

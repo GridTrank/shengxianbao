@@ -48,7 +48,7 @@
 			</view>
 		</view>
 		<!-- 小费 -->
-		<view class="wrap jc_sb row mt20">
+		<view class="wrap jc_sb row mt20" v-if="deliveryTypeId==4">
 			<view class="tip">
 				<view class="f28-c333">司机小费</view>
 				<view class="f24-c999 mt10">您所给的小费100%归司机所有</view>
@@ -93,7 +93,7 @@
 				<text class="f28-c333">运费</text>
 				<text class="f28-c333">¥{{orderDetail.logisticsAmount}}</text>
 			</view>
-			<view class="dist row jc_sb">
+			<view class="dist row jc_sb" v-if="deliveryTypeId==4">
 				<text class="f28-c333">司机小费</text>
 				<text class="f28-c333">¥{{selectTipMoney || 0}}</text>
 			</view>

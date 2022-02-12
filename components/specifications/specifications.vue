@@ -9,8 +9,8 @@
 				<view class="info row">
 					<image :src="selectData.imageUrl" mode="widthFix"></image>
 					<view class="">
-						<text class="f32-c333 mr20">{{selectData.productName}}</text>
-						<text class="f24-c999 mt10">{{selectData.productModel}}</text>
+						<view class="f32-c333 mr20">{{selectData.productName}}</view>
+						<view class="f24-c999 mt10">{{selectData.productModel}}</view>
 					</view>
 				</view>
 				<view class="detail row jc_sb">

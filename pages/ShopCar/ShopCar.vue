@@ -18,7 +18,7 @@
 					<text class="left_txt">满100减7</text>
 					<text class="right_txt">订货满100减7元</text>
 				</view>
-				<view class="sale_right row">
+				<view class="sale_right row" @click="navTo('/pages/Home/Home','switch')">
 					去逛逛 <text class="iconfont icon-jinru"></text>
 				</view>
 			</view>

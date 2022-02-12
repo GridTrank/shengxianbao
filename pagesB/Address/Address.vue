@@ -17,10 +17,10 @@
                                 <block v-if="index===0">[默认]</block>
                             </text>
                             <view class="row">
-                                <view class="row mr20" @click="edit(item.id)">
+                                <view class="row mr20" @click.stop="edit(item.id)">
                                     <u-icon name="edit-pen" color="#FD4D00" size="24"></u-icon>编辑
                                 </view>
-                                <view class="row" @click="del(item.id)">
+                                <view class="row" @click.stop="del(item.id)">
                                     <u-icon name="trash" color="#FD4D00" size="24"></u-icon>删除
                                 </view>
                             </view>
@@ -60,7 +60,7 @@
 		},
 		onLoad(e) {
 			this.pageType = e.pageType
-			this.type = e.type
+			this.type = e.type || 4
 		},
 		onShow() {
 			this.dataList=[]

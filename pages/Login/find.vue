@@ -60,7 +60,7 @@
 		<view class="btn" @click="submit">
 			保存
 		</view>
-		<view class="btn code" @click="navTo('./Login')">
+		<view class="btn code" @click="navTo('/pagesC/Service/Service')">
 			联系客服
 		</view>
 	</view>
@@ -119,11 +119,15 @@
 					}],
 				},
 				tips: '',
-				isAgree: false
+				isAgree: false,
+				userInfo:{}
 			};
 		},
 		onReady() {
 			this.$refs.form.setRules(this.rules);
+		},
+		onLoad() {
+			this.getUserInfo()
 		},
 		methods:{
 			agreeHandle(){
@@ -131,6 +135,14 @@
 			},
 			codeChange(text) {
 				this.tips = text;
+			},
+			// 获取个人信息
+			getUserInfo(){
+				this.$http('api/myOneslft/getMyInfo','','post').then(res=>{
+					this.userInfo=res
+					this.model.accountName=res.customerName
+					// this.getHelpList()
+				}) 
 			},
 			getCode() {
 			    if (this.$refs.uCode.canGetCode) {

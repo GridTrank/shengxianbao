@@ -624,8 +624,7 @@
                 		"navigationBarTitleText": "新增出库单",
                 		"enablePullDownRefresh": false
                 	}
-                },
-                {
+                }, {
                 	"path": "Out/Log",
                 	"style": {
                 		// #ifdef H5
@@ -634,8 +633,16 @@
                 		"navigationBarTitleText": "操作日志",
                 		"enablePullDownRefresh": false
                 	}
+                } ,{
+                    "path" : "Service/Service",
+                    "style" : {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "联系客服",
+						"enablePullDownRefresh": false
+					}
                 }
-                
             ]
             
         }

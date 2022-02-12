@@ -23,7 +23,7 @@
 				<text>输入关键字搜索</text>
 			</view>
 			<!-- #ifndef MP -->
-			<view class="btn center" @click="scanCode" v-if="showTel">
+			<view class="btn center" @click="toKefu" v-if="showTel">
 				<image  class="dizhi" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/dianhua.png" mode="widthFix"></image>
 			</view>
 			<!-- #endif -->
@@ -95,11 +95,11 @@
 							})
 							return;
 						}
-						//这里处理自定义逻辑
-						
-						
 					}
 				})
+			},
+			toKefu(){
+				this.navTo('/pagesC/Service/Service')
 			}
 		}
 	}

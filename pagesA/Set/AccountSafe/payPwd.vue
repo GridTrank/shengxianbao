@@ -60,7 +60,7 @@
 		<view class="btn" @click="submit">
 			保存
 		</view>
-		<view class="btn code" @click="navTo('./Login')">
+		<view class="btn code" @click="navTo('/pagesC/Service/Service')">
 			联系客服
 		</view>
 	</view>
@@ -125,7 +125,16 @@
 		onReady() {
 			this.$refs.form.setRules(this.rules);
 		},
+		onLoad() {
+			this.getUserInfo()
+		},
 		methods:{
+			// 获取个人信息
+			getUserInfo(){
+				this.$http('api/myOneslft/getMyInfo','','post').then(res=>{
+					this.model.accountName=res.customerName
+				}) 
+			},
 			agreeHandle(){
 				this.isAgree=!this.isAgree
 			},
