@@ -1,0 +1,61 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.mix-page-header.data-v-25492656 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 90;
+  justify-content: space-between;
+  width: 100%;
+}
+.btn.data-v-25492656 {
+  width: 80rpx;
+}
+.icon-zuojiantou.data-v-25492656 {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 100rpx;
+  font-size: 36rpx;
+  color: #333;
+  text-align: center;
+  line-height: 52rpx;
+}
+.icon-zuojiantou.dark.data-v-25492656 {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+.cen.data-v-25492656 {
+  flex: 1;
+  height: 100%;
+  position: relative;
+}
+.cen .cen-item.data-v-25492656 {
+  width: 50px;
+  height: 36px;
+  font-size: 15px;
+  color: #333;
+  text-align: center;
+  line-height: 36px;
+  position: relative;
+}
+.cen .active.data-v-25492656 {
+  font-size: 17px;
+  font-weight: 700;
+}
+.cen .active.data-v-25492656:after {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  content: '';
+  width: 30px;
+  height: 2px;
+  background-color: #FE5B07;
+  border-radius: 10rpx;
+}
+

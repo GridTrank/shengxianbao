@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "我的",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "bill-list": "/pages/User/billList",
+    "my-order": "/pages/User/myOrder",
+    "tool-list": "/pages/User/toolList",
+    "help-center": "/pages/User/helpCenter"
+  }
+}

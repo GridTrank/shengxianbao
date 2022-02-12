@@ -7,7 +7,7 @@
 					报价单号
 				</view>
 				<view class="f28-c666">
-					123456
+					{{pageDetail.offerpriceCode}}
 				</view>
 			</view>
        
@@ -26,7 +26,7 @@
             		价格组
             	</view>
             	<view class="f28-c666">
-            		价格组A
+            		{{pageDetail.customerlevelName}}
             	</view>
             </view>
             <view class="item row jc_sb">
@@ -34,7 +34,7 @@
             		报价时间
             	</view>
             	<view class="f28-c666">
-            		查看 <text class="iconfont icon-jinru"></text>
+					{{pageDetail.createDate}}
             	</view>
             </view>
             <view class="item row jc_sb">
@@ -42,7 +42,7 @@
             		报价时间段
             	</view>
             	<view class="f28-c666">
-            		查看 <text class="iconfont icon-jinru"></text>
+            		{{pageDetail.startDate}}到{{pageDetail.endDate}}
             	</view>
             </view>
             
@@ -67,14 +67,33 @@
             </view>
 		</view>
         
-		<view class="slot_wrap">
-			
+		<view class="slot_wrap mt20">
+			<view class="item " v-for="(item,index) in pageDetail.infoInfoVoList" :key="index">
+				<view class="item_wrap row">
+					<view class="row">
+						<image class="img" :src="item.defaultImage" mode="widthFix"></image>
+					</view>
+					<view class="info">
+						<view class="row jc_sb">
+							<text class="f28-c333">{{item.productName}}</text>
+							<text class="f24-c999">商品编号：{{item.productCode}}</text>
+						</view>
+						<view class="desc mt10 f24-c999">
+							{{item.productNameAlias }}
+						</view>
+						<view class="price row  mt10">
+							<text class="bao mr10">{{item.auxiliaryUnit}}</text>
+							<text class="f24-c999 mr10">{{item.productUnit }}</text>
+							<text class="f24-c999">￥{{item.costPrice || item.returnorderPrice}}元/{{item.productUnit}}</text>
+						</view>
+					</view>
+				</view>
+				
+			</view>
 		</view>
         
-		<view class="foot_btn row jc_sb" >
-			<view class="btns">
-				<text class="btn right" @click="submit(5)">打印</text>
-			</view>
+		<view class="foot_btn  " >
+			<text class="btn" @click="submit(5)">打印</text>
 		</view>
 		
 	</view>
@@ -112,180 +131,13 @@
 					this.pageDetail=res
 				})
 			},
-			
-			// 提交
-			submit(val){
-				// console.log(this.pageDetail)
-				let con='',url='',data={}
-				if(val===1){
-					con='库存即将调整，请确认操作'
-					switch(this.pageType){
-						case 'in':
-							url='api/inputBill/update'
-							break;
-						case 'out':
-							url='api/outputBill/update'
-							break;
-						case 'inventory':
-							url='api/stocktake/update'
-							break;
-						case 'frmLoss':
-							url='api/Loss/update'
-							break;
-						case 'overflow':
-							url=''
-							break;
-						case 'return':
-							url='api/returnorder/update'
-							break;
-						case 'turnover':
-							url=''
-							break;
-						case 'offer':
-							url=''
-							break;
-						default:
-							url=''
-					}
-					data=this.pageDetail
-				}else if(val===2){
-					con='您正在作废单据，请确认操作'
-					switch(this.pageType){
-						case 'in':
-							url='api/inputBill/updateInvalid'
-							break;
-						case 'out':
-							url='api/outputBill/updateInvalid'
-							break;
-						case 'inventory':
-							url='api/stocktake/updateInvalid'
-							break;
-						case 'frmLoss':
-							url='api/Loss/updateInvalid'
-							break;
-						case 'overflow':
-							url=''
-							break;
-						case 'return':
-							url='api/returnorder/updateInvalid'
-							break;
-						case 'turnover':
-							url=''
-							break;
-						case 'offer':
-							url=''
-							break;
-						default:
-							url=''
-					}
-					data={
-						id:this.pageDetail.id
-					}
-				}else if(val==3){
-					con='您正在审核单据，请确认操作'
-					switch(this.pageType){
-						case 'in':
-							url='api/inputBill/updateAudit'
-							break;
-						case 'out':
-							url='api/outputBill/updateAudit'
-							break;
-						case 'inventory':
-							url='api/stocktake/updateAudit'
-							break;
-						case 'frmLoss':
-							url='api/Loss/updateAudit'
-							break;
-						case 'overflow':
-							url=''
-							break;
-						case 'return':
-							url='api/returnorder/updateAudit'
-							break;
-						case 'turnover':
-							url=''
-							break;
-						case 'offer':
-							url=''
-							break;
-						default:
-							url=''
-					}
-					data={
-						id:this.pageDetail.id
-					}
-				}else if(val==4){
-					con='您正在反审核单据，请确认操作'
-					switch(this.pageType){
-						case 'in':
-							url='api/inputBill/updateBackAudit'
-							break;
-						case 'out':
-							url='api/outputBill/updateBackAudit'
-							break;
-						case 'inventory':
-							url='api/stocktake/updateBackAudit'
-							break;
-						case 'frmLoss':
-							url='api/Loss/updateBackAudit'
-							break;
-						case 'overflow':
-							url=''
-							break;
-						case 'return':
-							url='api/returnorder/updateBackAudit'
-							break;
-						case 'turnover':
-							url=''
-							break;
-						case 'offer':
-							url=''
-							break;
-						default:
-							url=''
-					}
-					data={
-						id:this.pageDetail.id
-					}
-				}
-				uni.showModal({
-					title:'提示',
-					content:con,
-					success:(res)=> {
-						if(res.confirm){
-							this.$http(url,data,'put').then(res=>{
-								this.showEdit=false
-								if(val==2){
-									uni.showToast({
-										title:'报废-成功',
-										icon:'none'
-									})
-								}else if(val==3){
-									uni.showToast({
-										title:'审核-成功',
-										icon:'none'
-									})
-								}else if(val==4){
-									uni.showToast({
-										title:'反审核-成功',
-										icon:'none'
-									})
-								}
-							})
-							setTimeout(()=>{
-								this.getDetail()
-							},1500)
-						}
-					}
-				})
-			}
 		}
 	}
 </script>
 
 <style scoped lang="scss">
 .page_wrap{
-	padding-bottom: 200upx;
+	padding-bottom: 30upx;
 	.info_list{
 		background-color: #fff;
 		padding:0 30upx;
@@ -294,6 +146,39 @@
 			border-bottom: 2upx solid #f1f1f1;
 			&:last-child{
 				border: none;
+			}
+		}
+	}
+	.slot_wrap{
+		.item{
+			margin-bottom: 30upx;
+			.item_wrap{
+				background-color: #fff;
+				align-items: flex-start;
+				padding: 30upx;
+				.row{
+					.img{
+						width: 100upx;
+						height: 100upx;
+					}
+				}
+			}
+			.img{
+				width: 120upx;
+				margin-right: 30upx;
+			}
+			.info{
+				flex:1;
+				position: relative;
+				.bao{
+					background-color:#fff4ed;
+					color: $base-color;
+					font-size: 20upx;
+					border-radius: 2upx;
+					padding:0 4upx;
+					margin-right: 10upx;
+				}
+				
 			}
 		}
 	}
@@ -307,56 +192,19 @@
 		background-color: #fff;
 		border-top: 1px solid #f1f1f1;
 		z-index: 111;
-		.nums{
-			margin-left: 30upx;
-			.left{
-				color: #333;
-				font-size: 22upx;
-				margin-right: 20upx;
-				.iconfont{
-					color: #D7D7D7;
-					margin-right: 10upx;
-				}
-			}
-			.right{
-				color: $base-color;
-				font-size: 40upx;
-			}
-		}
-		.btns{
-			margin-right: 30upx;
-			.edit{
-				margin-right: 60upx;
-				color: $base-color;
-				font-size: 28upx;
-			}
-			.btn{
-				width: 156upx;
-				height: 60upx;
-				line-height: 60upx;
-				text-align: center;
-				border-radius: 30upx;
-				font-size: 28upx;
-				display: inline-block;
-			}
-			.left{
-				border: 1px solid $base-color;
-				color: $base-color;
-				margin-right: 20upx;
-			}
-			.right{
-				background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
-				color: #fff;
-			}
-		}
-	}
-	.add_product{
-		padding:30upx 30upx 0 30upx ;
 		text-align: right;
-		color: $base-color;
-		font-size: 28upx;
-		justify-content: flex-end;
+		.btn{
+			width: 156upx;
+			height: 60upx;
+			line-height: 60upx;
+			text-align: center;
+			border-radius: 30upx;
+			font-size: 28upx;
+			display: inline-block;
+			background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
+			color: #fff;
+			margin-right: 30upx;
+		}
 	}
-	
 }
 </style>
