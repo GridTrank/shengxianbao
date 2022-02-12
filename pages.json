@@ -118,16 +118,6 @@
 				"navigationBarTitleText": "确认订单",
 				"enablePullDownRefresh": false
 			}
-
-		}, {
-			"path": "pages/ConfirmOrder/GoodList",
-			"style": {
-				// #ifdef H5
-				"navigationStyle": "custom",
-				// #endif
-				"navigationBarTitleText": "商品列表",
-				"enablePullDownRefresh": false
-			}
 		}
 	],
 	"subPackages": [{
@@ -484,6 +474,15 @@
 						"navigationStyle": "custom",
 						// #endif
 						"navigationBarTitleText": "报价单详情",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Quote/Log",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "报价单日志",
 						"enablePullDownRefresh": false
 					}
 				}

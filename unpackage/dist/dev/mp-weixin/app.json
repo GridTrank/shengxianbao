@@ -1,0 +1,172 @@
+{
+  "pages": [
+    "pages/Home/Home",
+    "pages/Classify/Classify",
+    "pages/QuickOrder/QuickOrder",
+    "pages/ShopCar/ShopCar",
+    "pages/User/User",
+    "pages/Login/Login",
+    "pages/Login/register",
+    "pages/Login/find",
+    "pages/Order/Order",
+    "pages/Order/Detail",
+    "pages/ConfirmOrder/ConfirmOrder"
+  ],
+  "subPackages": [
+    {
+      "root": "pagesA",
+      "pages": [
+        "SubAccount/SubAccount",
+        "SubAccount/AddOrEdit",
+        "AddGood/AddGood",
+        "AddGood/fillIn1",
+        "AddGood/fillIn2",
+        "Balance/index",
+        "Balance/detail",
+        "Arrearages/index",
+        "Coupon/index",
+        "Coupon/center",
+        "Integral/detail",
+        "Help/about",
+        "Help/afterRules",
+        "Help/businessLicense",
+        "Help/userAgreement",
+        "Help/feedback",
+        "Help/rule",
+        "Clientele/index",
+        "Set/Set",
+        "Set/AccountSafe/index",
+        "Set/AccountSafe/changePhone",
+        "Set/AccountSafe/payPwd",
+        "StockQuery/index",
+        "StockQuery/Detail",
+        "StockManage/Index",
+        "StockManage/Detail",
+        "StockManage/AddPage",
+        "StockManage/SelectGood",
+        "StockManage/Log",
+        "SourceManage/Index",
+        "SourceManage/List",
+        "SourceManage/Detail",
+        "Statistics/Index",
+        "Statistics/List",
+        "Statistics/Screen",
+        "Contract/Index",
+        "Contract/Detail",
+        "Quote/List",
+        "Quote/Detail",
+        "Quote/Log"
+      ]
+    },
+    {
+      "root": "pagesB",
+      "pages": [
+        "RecommendPage/RecommendPage",
+        "Address/Address",
+        "Address/AddressDetail",
+        "ChooseAddress/index",
+        "ChooseAddress/search",
+        "ChooseAddress/cityList",
+        "AllBrand/AllBrand",
+        "NoticeInfo/NoticeInfo",
+        "ProductDetail/ProductDetail",
+        "Search/Search"
+      ],
+      "plugins": {
+        "WechatSI": {
+          "version": "0.0.7",
+          "provider": "wx069ba97219f66d99"
+        }
+      }
+    },
+    {
+      "root": "pagesC",
+      "pages": [
+        "Out/Index",
+        "Out/Detail",
+        "Out/AddPage",
+        "Out/SelectGood",
+        "Out/Log",
+        "Service/Service"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uView",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#FE5B07",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/Home/Home",
+        "iconPath": "static/icon/tab1.png",
+        "selectedIconPath": "static/icon/tab1-a.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/Classify/Classify",
+        "iconPath": "static/icon/tab2.png",
+        "selectedIconPath": "static/icon/tab2-a.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/QuickOrder/QuickOrder",
+        "iconPath": "static/icon/tab3.png",
+        "selectedIconPath": "static/icon/tab3-a.png",
+        "text": "快捷下单"
+      },
+      {
+        "pagePath": "pages/ShopCar/ShopCar",
+        "iconPath": "static/icon/tab4.png",
+        "selectedIconPath": "static/icon/tab4-a.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/User/User",
+        "iconPath": "static/icon/tab5.png",
+        "selectedIconPath": "static/icon/tab5-a.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "preloadRule": {
+    "pages/Home/Home": {
+      "network": "all",
+      "packages": [
+        "pagesA",
+        "pagesB",
+        "pagesC"
+      ]
+    },
+    "pagesA/SubAccount/SubAccount": {
+      "network": "all",
+      "packages": [
+        "pagesA"
+      ]
+    },
+    "pagesB/RecommendPage/RecommendPage": {
+      "network": "all",
+      "packages": [
+        "pagesB"
+      ]
+    },
+    "pagesC/Out/Index": {
+      "network": "all",
+      "packages": [
+        "pagesC"
+      ]
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "usingComponents": {}
+}

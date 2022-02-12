@@ -9,23 +9,20 @@
 				:key="index">
 					<view class="top row jc_sb">
 						<view class="no f28-c333" @click.stop="checkedHandle(item)">	
-							{{item.lossCode || item.outputCode || item.inputCode || item.returnorderCode || item.stocktakeCode}}
+							{{item.offerpriceCode}}
 						</view>
 						<view class="status" :class="item.billState==-1?'die':''">
 							{{item.billState==1?'已审核':item.billState==-1?'已作废':'待审核'}}
 						</view>
 					</view>
 					<view class="detail"> 
-						<view class="label bg_style1">{{item.workhouseName}}</view>
+						<view class="label bg_style1">{{item.customerlevelName}}</view>
 						<view class="row jc_sb mt30">
 							<text class="date f28-c333">
-								{{item.lossDate || item.outputDate || item.inputDate || item.returnorderDate || item.stocktakeDate}}
+								{{item.createDate}}
 							</text>
 							<text class="price" >
-                                <text class="" v-if="pageType=='inventory'">
-                                   {{item.overflowAmount>0?'+':'-'}} 
-                                </text>
-								¥{{item.lossAmount || item.damageAmount || item.outputAmount || item.inputAmount || item.returnorderAmount || 0}}
+								{{item.createName}}
 							</text>
 						</view>
 					</view>
