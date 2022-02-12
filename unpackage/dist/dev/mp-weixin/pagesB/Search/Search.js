@@ -239,6 +239,7 @@ var voicManager = plugin.getRecordRecognitionManager();var _default =
         }
 
         // 这里得到完整识别内容就可以去翻译了
+        _this.keyWord = text;
         _this.search(text);
       };
     },

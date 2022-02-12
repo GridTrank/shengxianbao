@@ -81,6 +81,7 @@
 					}
 
 					// 这里得到完整识别内容就可以去翻译了
+					this.keyWord = text
 					this.search(text);
 				}
 			},
