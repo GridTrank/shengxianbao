@@ -6,57 +6,8 @@
   "setting": {
     "urlCheck": false,
     "es6": false,
-<<<<<<< HEAD
-    "enhance": true,
-=======
-    "enhance": false,
->>>>>>> 7e05ba3f76043d38757baba1f35b685678ca0a08
-    "postcss": false,
-    "preloadBackgroundData": false,
     "minified": false,
-    "newFeature": false,
-    "coverView": true,
-    "nodeModules": false,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-<<<<<<< HEAD
-    "lazyloadPlaceholderEnable": false,
-=======
->>>>>>> 7e05ba3f76043d38757baba1f35b685678ca0a08
-    "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "enableEngineNative": false,
-<<<<<<< HEAD
-    "useIsolateContext": false,
-    "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "disableUseStrict": false,
-    "showES6CompileOption": false,
-    "useCompilerPlugins": false,
-    "minifyWXML": true
-=======
-    "useIsolateContext": true,
-    "useCompilerModule": true,
-    "userConfirmedUseCompilerModuleSwitch": false,
-    "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true
->>>>>>> 7e05ba3f76043d38757baba1f35b685678ca0a08
+    "postcss": false
   },
   "compileType": "miniprogram",
   "libVersion": "",
@@ -64,15 +15,19 @@
   "projectname": "shengxianbao",
   "condition": {
     "search": {
+      "current": -1,
       "list": []
     },
     "conversation": {
+      "current": -1,
       "list": []
     },
     "game": {
+      "current": -1,
       "list": []
     },
     "miniprogram": {
+      "current": -1,
       "list": []
     }
   }

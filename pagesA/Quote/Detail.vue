@@ -20,7 +20,6 @@
             		{{pageDetail.billState==-1?'已作废':pageDetail.billState==1?'已审核':'待审核'}}
             	</view>
             </view>
-            
             <!-- 报价单 -->
             <view class="item row jc_sb">
             	<view class="left f28-c333">

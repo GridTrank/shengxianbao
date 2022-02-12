@@ -118,16 +118,6 @@
 				"navigationBarTitleText": "确认订单",
 				"enablePullDownRefresh": false
 			}
-
-		}, {
-			"path": "pages/ConfirmOrder/GoodList",
-			"style": {
-				// #ifdef H5
-				"navigationStyle": "custom",
-				// #endif
-				"navigationBarTitleText": "商品列表",
-				"enablePullDownRefresh": false
-			}
 		}
 	],
 	"subPackages": [{

@@ -10,8 +10,7 @@
     "pages/Login/find",
     "pages/Order/Order",
     "pages/Order/Detail",
-    "pages/ConfirmOrder/ConfirmOrder",
-    "pages/ConfirmOrder/GoodList"
+    "pages/ConfirmOrder/ConfirmOrder"
   ],
   "subPackages": [
     {
