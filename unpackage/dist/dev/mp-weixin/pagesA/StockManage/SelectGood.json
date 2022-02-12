@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "选择商品",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "search-comprehensive": "/components/search-comprehensive/search-comprehensive",
-    "change-num": "/components/change-num/change-num"
-  }
-}

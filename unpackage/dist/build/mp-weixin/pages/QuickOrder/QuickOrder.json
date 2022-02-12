@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "快捷下单",
-  "navigationStyle": "custom",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "search": "/pages/QuickOrder/search",
-    "list": "/pages/QuickOrder/list"
-  }
-}

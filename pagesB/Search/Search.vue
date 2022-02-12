@@ -46,7 +46,9 @@
 				isSpeaking: false,
 			};
 		},
-		onLoad() {},
+		onLoad() {
+			this.initRecord()
+		},
 		methods: {
 			streamRecord() {
 			 voicManager.start({
@@ -65,16 +67,22 @@
 				//  let text = res.result
 				//  this.currentText=text;
 				// }
+				console.log('initRecord')
 				// 识别结束事件
 				voicManager.onStop = (res) => {
 					console.log(res)
 					let text = res.result
 					if (text == '') { // 用户没有说话，可以做一下提示处理...
+					uni.showToast({
+						title:'请大声说出你要搜索的内容',
+						icon:'none'
+					})
 						return
 					}
-					this.currentText = text;
+
 					// 这里得到完整识别内容就可以去翻译了
-					this.translateTextAction();
+					this.keyWord = text
+					this.search(text);
 				}
 			},
 			search(val) {

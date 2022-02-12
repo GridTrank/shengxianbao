@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "关于我们",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "u-cell": "/uni_modules/uview-ui/components/u-cell/u-cell"
-  }
-}
