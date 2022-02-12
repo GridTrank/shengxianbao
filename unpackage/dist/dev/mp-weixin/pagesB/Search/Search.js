@@ -204,7 +204,9 @@ var voicManager = plugin.getRecordRecognitionManager();var _default =
       isSpeaking: false };
 
   },
-  onLoad: function onLoad() {},
+  onLoad: function onLoad() {
+    this.initRecord();
+  },
   methods: {
     streamRecord: function streamRecord() {
       voicManager.start({
@@ -223,16 +225,21 @@ var voicManager = plugin.getRecordRecognitionManager();var _default =
       //  let text = res.result
       //  this.currentText=text;
       // }
+      console.log('initRecord');
       // 识别结束事件
       voicManager.onStop = function (res) {
         console.log(res);
         var text = res.result;
         if (text == '') {// 用户没有说话，可以做一下提示处理...
+          uni.showToast({
+            title: '请大声说出你要搜索的内容',
+            icon: 'none' });
+
           return;
         }
-        _this.currentText = text;
+
         // 这里得到完整识别内容就可以去翻译了
-        _this.translateTextAction();
+        _this.search(text);
       };
     },
     search: function search(val) {var _this2 = this;
