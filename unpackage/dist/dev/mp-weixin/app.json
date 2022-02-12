@@ -71,7 +71,13 @@
         "NoticeInfo/NoticeInfo",
         "ProductDetail/ProductDetail",
         "Search/Search"
-      ]
+      ],
+      "plugins": {
+        "WechatSI": {
+          "version": "0.0.7",
+          "provider": "wx069ba97219f66d99"
+        }
+      }
     },
     {
       "root": "pagesC",
@@ -157,16 +163,11 @@
       ]
     }
   },
-  "plugins": {
-    "WechatSI": {
-      "version": "0.0.7",
-      "provider": "wx069ba97219f66d99"
-    }
-  },
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }
