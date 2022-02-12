@@ -1,6 +1,7 @@
 <template>
 	<view class="page_wrap ">
-		<u-tabs class="coupon_tab"  lineColor="#FE5B07" :activeStyle="{color: '#FE5B07',}" :list="list" @click="tab"></u-tabs>
+		<u-tabs class="coupon_tab" lineColor="#FE5B07" :activeStyle="{color: '#FE5B07',}" :list="list" @click="tab">
+		</u-tabs>
 		<CouponList :pageType="pageType" :state="activeTab" :type="type" :couponList="dataList"></CouponList>
 		<view class="btn" @click="navTo('/pagesA/Coupon/center')">领券中心<span class="iconfont icon-jinru"></span></view>
 	</view>
@@ -13,52 +14,46 @@
 			return {
 				list: [{
 					name: '未使用',
-					value:'list',
-					type:'0'
+					value: 'list',
+					type: '0'
 				}, {
 					name: '已使用',
-					value:'used',
-					type:'1'
+					value: 'used',
+					type: '1'
 				}, {
 					name: '已过期',
-					value:'used',
-					type:'2'
+					value: 'used',
+					type: '2'
 				}],
-				isRequestState:false,
-				page:1,
-				limit:20,
-				type:'list',
-				queryData:{ticketStatus:0},
-				activeTab:'use',
-				dataList:[],
-				queryUrl:'api/bmallticketuse/pageCusList',
-                pageType:''
+				isRequestState: false,
+				page: 1,
+				limit: 20,
+				type: 'list',
+				queryData: {
+					ticketStatus: 0
+				},
+				activeTab: 'use',
+				dataList: [],
+				queryUrl: 'api/bmallticketuse/pageCusList',
+				pageType: '',
+				isContinue:true,
 			}
 		},
-		components:{
+		components: {
 			CouponList
 		},
-        onLoad(e){
-            this.pageType=e.pageType
-        },
-		created(){
+		onLoad(e) {
+			this.pageType = e.pageType
+		},
+		created() {
 			this.getList()
 		},
-		onReachBottom(){
-			console.log(this.isRequestState)
-			if(!this.isRequestState){
-				this.isRequestState = true;
-				this.page++;
-				this.getList();
-			}
-			
-		},
 		methods: {
-			onNavigationBarButtonTap(){
+			onNavigationBarButtonTap() {
 				this.navTo('/pagesA/Coupon/loseEfficacy')
 			},
-			
-			tab(item){
+
+			tab(item) {
 				this.queryData.ticketStatus = item.type;
 				this.activeTab = item.name;
 				this.dataList = [];
@@ -71,10 +66,12 @@
 <style scoped lang="scss">
 	.page_wrap {
 		padding-bottom: 120upx;
+
 		.coupon_tab {
 			background-color: #fff;
 		}
-		.btn{
+
+		.btn {
 			width: 100%;
 			position: fixed;
 			bottom: -.5px;
@@ -86,7 +83,8 @@
 			background: #FFFFFF;
 			z-index: 2;
 			box-shadow: 0px 0px 14upx 0px rgba(187, 187, 187, 0.5);
-			.icon-jinru{
+
+			.icon-jinru {
 				font-size: 48upx;
 			}
 		}

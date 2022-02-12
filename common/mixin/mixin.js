@@ -63,9 +63,9 @@ export default {
 	},
 	// 上拉加载
 	onReachBottom(){
-		// if(this.isContinue){
-		// 	this.queryData.current++
-		// 	this.getData()
-		// }
+		if(this.isContinue){
+			this.queryData.current++
+			this.getData() || this.getList()
+		}
 	},
 }

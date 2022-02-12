@@ -3,7 +3,7 @@
 		<view class="list " >
 			<view class="item row " 
             @click="navTo('./Detail')"
-            v-for="(item,index) in 2" :key="index">
+            v-for="(item,index) in list" :key="index">
 				<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/taocan.png" mode="widthFix"></image>
 				<view class="info">
 					<view class="row jc_sb">
@@ -28,6 +28,9 @@
 
 <script>
 	export default{
+		props:{
+			list:Array
+		},
 		data(){
 			return{
 				
