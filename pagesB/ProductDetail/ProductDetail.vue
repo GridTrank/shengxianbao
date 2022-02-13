@@ -66,8 +66,7 @@
 			<view class="d-header center">
 				<text>图文详情</text>
 			</view>
-			
-			<!-- <rich-text :nodes="data.content"></rich-text> -->
+			<view class="content" v-html="data.appContent"></view>
 		</view>
 		<!-- 底部操作菜单 -->
 		<bottom-operation 
@@ -130,6 +129,17 @@
 					productId: this.id || 7,
 					productSkuId:this.skuId || ''
 				})
+				data.appContent = data.appContent.replace(/&(amp|gt|lt|quot|#39|nbsp);/g, (a) => {
+				    return {
+				        "&lt;": "<",
+				        "&amp;": "&",
+				        "&quot;": '"',
+				        "&gt;": ">",
+				        "&#39;": "'",
+				        "&nbsp;": " ",
+				    }[a];
+				});
+				data.appContent=this.imgTagAddStyle(data.appContent)
 				data.productImageVoList.forEach(item=>{
 					item.src=item.imageUrl
 				})
@@ -147,6 +157,12 @@
 				this.$nextTick(()=>{
 					this.calcAnchor();//计算锚点参数
 				})
+			},
+			// 图文添加样式
+			imgTagAddStyle(htmlstr){
+				var regex = new RegExp("(i?)(\<img)(?!(.*?style=['\"](.*)['\"])[^\>]+\>)","gmi");
+				htmlstr = htmlstr.replace(regex, "$2 style=width:100% $3")
+				return htmlstr
 			},
 			//加载评价
 			async loadRating(){
@@ -450,20 +466,24 @@
 	.detail-desc{
 		margin-top: 12rpx;
 		background: #fff;
-		
 		.d-header{
-			height: 80rpx;
-			font-size: 30rpx;
+			height: 80upx;
+			font-size: 30upx;
 			color: #333;
-				
 			text{
 				margin: 0 20rpx;
 			}
 			&:before, &:after{
 				content: '';
-				width: 60rpx;
+				width: 60upx;
 				border-bottom: 1px solid #ccc; 
 			}
 		}
+		.content{
+			img{
+				width: 100%;
+			}
+		}
+		
 	}
 </style>
