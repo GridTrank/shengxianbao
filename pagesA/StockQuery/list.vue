@@ -2,13 +2,13 @@
 	<view class="list_wrap">
 		<view class="list " >
 			<view class="item row " 
-            @click="navTo('./Detail')"
+            @click="navTo('./Detail?id='+item.id)"
             v-for="(item,index) in list" :key="index">
 				<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/taocan.png" mode="widthFix"></image>
 				<view class="info">
 					<view class="row jc_sb">
-						<text class="f28-c333">名称</text>
-						<text class="f24-c999">商品编码:123</text>
+						<text class="f28-c333">{{item.productName}}</text>
+						<text class="f24-c999">商品编码:{{item.productCode}}</text>
 					</view>
 					<view class="row jc_sb f24-c999 mt20">
 						一包约1斤

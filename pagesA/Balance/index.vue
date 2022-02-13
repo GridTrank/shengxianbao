@@ -5,7 +5,6 @@
 			<view class="pay" @click="isPay = !isPay">去充值</view>
 		</view>
 		<view class="balance_list">
-
 			<view class="balance_list_wrap">
 				<view class="item " v-for="(item,index) in dataList" :key="index">
 					<view class="money jc_sb row f32-c333">
@@ -30,8 +29,6 @@
 								<text class="left">¥</text>
 								<text class="right">{{item.label}}</text>
 							</view>
-							
-							
 							<view @click="actived = 'common'" v-else :class="['item row',{'active':'common' == actived}]" >
 								<text class="left">¥</text>
 								<u-input border="none"  placeholder="自定义" v-model="customMoney"></u-input>
@@ -42,25 +39,22 @@
 				</view>
 				
 				<view class="btn_wrap">
-					<view class="btn"@click="pay">
+					<view class="btn" @click="pay">
 						支付
 					</view>
 				</view>
 			</view>
 		</view>
-		<view :class="['pay-popup',{'show':payType}]">
-			<view class="mask" @click="payType = false"></view>
-			<view class="pay_list_wrap">
-				<view class="title row ">
-						<view class="tool" @click="payType = false">取消</view>
-						<view>支付方式</view>
-						<view class="tool orange" @click="enterPay">确定</view>
-					</view>
-					<view class="pay_list">
-						<view @click="payId = item.id" :class="['item',{'active':payId == item.id}]" v-for="(item,index) in payList"  :key="index">{{item.paymentName}}</view>
-					</view>
-				</view>
-			</view>
+		<!-- 弹出框 -->
+		<jPicker
+		ref='jPicker'
+		title='支付方式'
+		:options="payList" 
+		valKey='id'
+		showKey="paymentName"
+		@sure='confirm'
+		>
+		</jPicker>
 	</view>
 </template>
 
@@ -102,8 +96,9 @@
 				queryData: {},
 				userInfo: {},
 				dataList: [],
-				queryUrl: 'api/cuscustomerpointinfo/page',
-				payList:[]
+				queryUrl: 'api/cuscustomerBalanceinfo/page',
+				payList:[],
+				payWay:''
 			}
 		},
 		created() {
@@ -133,6 +128,9 @@
 			clickRight() {
 				this.navTo('./detail')
 			},
+			confirm(e){
+				console.log(e)
+			},
 			pay(){
 				if(this.actived == 'common' && !this.customMoney){
 					uni.showToast({
@@ -140,7 +138,7 @@
 						icon:'none'
 					})
 				}else{
-					this.payType = true;
+					this.$refs.jPicker.pickerVisable=true
 				}
 				
 			}
@@ -193,9 +191,6 @@
 				}
 			}
 		}
-
-		
-
 		.list_wrap {
 			background-color: #F7F7F7;
 			padding: 60upx 40upx 30upx 40upx;
@@ -242,52 +237,6 @@
 					}
 				}
 
-			}
-		}
-		.pay-popup {
-			display: none;
-			&.show{
-				display: block;
-			}
-			.pay_list_wrap{
-				position: fixed;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				z-index: 2;
-				background: #fff;
-				.title{
-					justify-content: space-between;
-					font-size: 30upx;
-					height: 100upx;
-					font-weight: 600;
-				}
-				.tool {
-					font-weight: 400;
-					color: #aaa;
-					font-size: 28upx;
-					width: 100upx;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					&.orange{
-						color: #FD4D00;
-					}
-				}
-				.pay_list{
-					min-height: 400upx;
-					.item{
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						font-size: 30upx;
-						color: #aaa;
-						height: 60upx;
-						&.active{
-							color: #000;
-						}
-					}
-				}
 			}
 		}
 		.mask {

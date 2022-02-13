@@ -173,8 +173,6 @@
                         		data.inputDateStart=this.lossDateStart
                         		data.inputDateEnd=this.lossDateEnd
                         		break;
-                        	default:
-                        		url=''
                         }
                         console.log(this.pageType)
 						this.$emit('selectFilter', data)
