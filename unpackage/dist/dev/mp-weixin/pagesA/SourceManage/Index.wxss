@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.page_wrap.data-v-d3778cd2 {
+  background-image: url("https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/sy-bg1.png");
+  background-size: cover;
+  height: 100vh;
+  padding: 30rpx;
+}
+.page_wrap.data-v-d3778cd2 .u-input__content {
+  background: #fff;
+  height: 100rpx;
+  border: 2rpx solid #F87523;
+  border-radius: 16rpx;
+  padding-left: 20rpx;
+  margin-top: 400rpx;
+}
+.page_wrap .sancode.data-v-d3778cd2 {
+  background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
+  border-radius: 50rpx;
+  color: #fff;
+  font-size: 36rpx;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-top: 50rpx;
+}
+.page_wrap .record.data-v-d3778cd2 {
+  color: #FE5B07;
+  font-size: 36rpx;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-top: 50rpx;
+  border-radius: 50rpx;
+  border: 2rpx solid #FE5B07;
+  background: #fff;
+}
+.page_wrap .img.data-v-d3778cd2 {
+  width: 274rpx;
+  height: 176rpx;
+  display: block;
+  margin: 60rpx auto;
+}
+

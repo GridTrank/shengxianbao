@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "change-num": "/components/change-num/change-num"
+  }
+}

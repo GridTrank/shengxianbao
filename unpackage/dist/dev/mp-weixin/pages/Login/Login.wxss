@@ -1,0 +1,67 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.page_wrap .input_wrap.data-v-3a2da0cc {
+  padding: 30rpx;
+  background-color: #fff;
+}
+.page_wrap .input_wrap.data-v-3a2da0cc .u-input {
+  padding: 12rpx 0 !important;
+}
+.page_wrap .input_wrap.data-v-3a2da0cc .input_item {
+  width: 100% !important;
+}
+.page_wrap .input_wrap.data-v-3a2da0cc .u-form-item__body__right__message {
+  margin: 0 !important;
+}
+.page_wrap .input_wrap .input_item .label.data-v-3a2da0cc {
+  color: #333;
+  font-size: 32rpx;
+  margin-right: 80rpx;
+}
+.page_wrap .input_wrap .input_item .forget.data-v-3a2da0cc {
+  color: #FE5B07;
+  font-size: 28rpx;
+}
+.page_wrap .input_wrap .input_item .get_code.data-v-3a2da0cc {
+  color: #FD4D00;
+  font-size: 28rpx;
+}
+.page_wrap .agreement.data-v-3a2da0cc {
+  margin-top: 80rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+.page_wrap .agreement image.data-v-3a2da0cc {
+  width: 34rpx;
+  margin-right: 10rpx;
+}
+.page_wrap .agreement .link.data-v-3a2da0cc {
+  color: #FE5B07;
+}
+.page_wrap .btn.data-v-3a2da0cc {
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 36rpx;
+  border-radius: 50rpx;
+  background: linear-gradient(136deg, #F87523 0%, #FD1D20 100%);
+  margin: auto;
+  margin-top: 50rpx;
+  width: 90%;
+}
+.page_wrap .code.data-v-3a2da0cc {
+  color: #F87523;
+  background: #fff;
+  border: 2rpx solid #F87523;
+}
+.page_wrap .to.data-v-3a2da0cc {
+  border: none;
+  font-size: 28rpx;
+  background: transparent;
+}
+

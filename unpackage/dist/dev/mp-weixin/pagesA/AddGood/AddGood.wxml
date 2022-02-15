@@ -1,0 +1,1 @@
+<view class="page_wrap column data-v-4774d5ae"><image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/noshopping.png" mode="widthFix" class="data-v-4774d5ae"></image><view class="f28-c999 mt30 data-v-4774d5ae">没找到想要的商品？告诉我们您需要什么</view><view data-event-opts="{{[['tap',[['navTo',['./fillIn1']]]]]}}" class="btn_default data-v-4774d5ae" bindtap="__e">提报新品</view></view>

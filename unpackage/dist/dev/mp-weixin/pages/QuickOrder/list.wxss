@@ -1,0 +1,122 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.info.data-v-f7c039fa {
+  display: flex;
+  flex-direction: row;
+  padding: 10rpx 30rpx 10rpx 50rpx;
+}
+.info .img.data-v-f7c039fa {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 40rpx;
+  flex-shrink: 0;
+}
+.info .detail.data-v-f7c039fa {
+  width: 310rpx;
+  position: relative;
+}
+.search_page.data-v-f7c039fa {
+  padding: 10rpx 0;
+}
+.search_page .detail.data-v-f7c039fa {
+  width: 580rpx;
+}
+.more_list.data-v-f7c039fa {
+  background-color: #FAFAFA;
+  padding: 40rpx 30rpx 30rpx 80rpx;
+}
+.name.data-v-f7c039fa {
+  font-size: 32rpx;
+  color: #333;
+}
+.desc.data-v-f7c039fa {
+  font-size: 24rpx;
+  color: #999;
+}
+.label .l1.data-v-f7c039fa {
+  background: #fff4ed;
+  padding: 4rpx 8rpx;
+  color: #FE5B07;
+  font-size: 20rpx;
+  border-radius: 8rpx;
+  margin-right: 10rpx;
+}
+.spec .s_tit.data-v-f7c039fa {
+  background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
+  padding: 4rpx 10rpx;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 2px 0px 0px 2px;
+}
+.spec .s_detail.data-v-f7c039fa {
+  color: #999;
+  font-size: 22rpx;
+}
+.price.data-v-f7c039fa {
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+.price .p_detail.data-v-f7c039fa {
+  color: #FE5B07;
+}
+.price .p_detail .circle.data-v-f7c039fa {
+  background-color: #FBCEAA;
+  padding: 6rpx;
+  color: #8F5231;
+  font-size: 20rpx;
+  border-radius: 4rpx;
+  margin-right: 20rpx;
+}
+.price .p_detail .p_left.data-v-f7c039fa {
+  font-size: 16rpx;
+}
+.price .p_detail .p_right.data-v-f7c039fa {
+  font-size: 32rpx;
+}
+.price .p_detail .p_right .unit.data-v-f7c039fa {
+  font-size: 20rpx;
+}
+.price .select_btn.data-v-f7c039fa {
+  background: #FF6304;
+  border-radius: 30rpx;
+  color: #fff;
+  font-size: 24rpx;
+  padding: 8rpx 20rpx;
+}
+.price .show_more.data-v-f7c039fa {
+  color: #FE5B07;
+  font-size: 20rpx;
+  position: absolute;
+  right: 50rpx;
+}
+.price .show_more .iconfont.data-v-f7c039fa {
+  font-size: 20rpx;
+}
+.price .add.data-v-f7c039fa {
+  width: 44rpx;
+  height: 44rpx;
+}
+.collect.data-v-f7c039fa {
+  position: absolute;
+  font-size: 20rpx;
+  color: #999;
+  top: 0;
+  right: 0;
+}
+.collect .coll_img.data-v-f7c039fa {
+  width: 28rpx;
+}
+.sale.data-v-f7c039fa {
+  padding: 4rpx 10rpx;
+  color: #FE5B07;
+  border: 1px solid #FE5B07;
+  font-size: 20rpx;
+  border-radius: 8rpx;
+  display: inline-block;
+}
+
