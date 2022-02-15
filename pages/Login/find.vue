@@ -147,7 +147,8 @@
 			getCode() {
 			    if (this.$refs.uCode.canGetCode) {
 			        this.$http('api/customer/getSmsCode', {
-			        	mobile: this.model.mobile
+			        	mobile: this.model.mobile,
+						type:3
 			        }, 'post').then(res => {
 						this.$refs.uCode.start();
 			        })

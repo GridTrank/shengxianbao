@@ -155,7 +155,8 @@
 			},
 			getCode() {
 				this.$http('api/customer/getSmsCode', {
-					mobile: this.model.mobile
+					mobile: this.model.mobile,
+					type:1
 				}, 'post').then(res => {
 
 				})

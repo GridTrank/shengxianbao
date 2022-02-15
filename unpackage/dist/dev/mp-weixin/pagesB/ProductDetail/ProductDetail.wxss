@@ -166,4 +166,7 @@ page{
   width: 60rpx;
   border-bottom: 1px solid #ccc;
 }
+.detail-desc .content ._img.data-v-957eeea4 {
+  width: 100%;
+}
 

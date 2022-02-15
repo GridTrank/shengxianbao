@@ -5,7 +5,7 @@
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
 .page_wrap.data-v-d58a4b90 {
-  padding-bottom: 200rpx;
+  padding-bottom: 30rpx;
 }
 .page_wrap .info_list.data-v-d58a4b90 {
   background-color: #fff;
@@ -18,6 +18,34 @@
 .page_wrap .info_list .item.data-v-d58a4b90:last-child {
   border: none;
 }
+.page_wrap .slot_wrap .item.data-v-d58a4b90 {
+  margin-bottom: 30rpx;
+}
+.page_wrap .slot_wrap .item .item_wrap.data-v-d58a4b90 {
+  background-color: #fff;
+  align-items: flex-start;
+  padding: 30rpx;
+}
+.page_wrap .slot_wrap .item .item_wrap .row .img.data-v-d58a4b90 {
+  width: 100rpx;
+  height: 100rpx;
+}
+.page_wrap .slot_wrap .item .img.data-v-d58a4b90 {
+  width: 120rpx;
+  margin-right: 30rpx;
+}
+.page_wrap .slot_wrap .item .info.data-v-d58a4b90 {
+  flex: 1;
+  position: relative;
+}
+.page_wrap .slot_wrap .item .info .bao.data-v-d58a4b90 {
+  background-color: #fff4ed;
+  color: #FE5B07;
+  font-size: 20rpx;
+  border-radius: 2rpx;
+  padding: 0 4rpx;
+  margin-right: 10rpx;
+}
 .page_wrap .foot_btn.data-v-d58a4b90 {
   width: 100%;
   position: fixed;
@@ -27,32 +55,9 @@
   background-color: #fff;
   border-top: 1px solid #f1f1f1;
   z-index: 111;
+  text-align: right;
 }
-.page_wrap .foot_btn .nums.data-v-d58a4b90 {
-  margin-left: 30rpx;
-}
-.page_wrap .foot_btn .nums .left.data-v-d58a4b90 {
-  color: #333;
-  font-size: 22rpx;
-  margin-right: 20rpx;
-}
-.page_wrap .foot_btn .nums .left .iconfont.data-v-d58a4b90 {
-  color: #D7D7D7;
-  margin-right: 10rpx;
-}
-.page_wrap .foot_btn .nums .right.data-v-d58a4b90 {
-  color: #FE5B07;
-  font-size: 40rpx;
-}
-.page_wrap .foot_btn .btns.data-v-d58a4b90 {
-  margin-right: 30rpx;
-}
-.page_wrap .foot_btn .btns .edit.data-v-d58a4b90 {
-  margin-right: 60rpx;
-  color: #FE5B07;
-  font-size: 28rpx;
-}
-.page_wrap .foot_btn .btns .btn.data-v-d58a4b90 {
+.page_wrap .foot_btn .btn.data-v-d58a4b90 {
   width: 156rpx;
   height: 60rpx;
   line-height: 60rpx;
@@ -60,21 +65,8 @@
   border-radius: 30rpx;
   font-size: 28rpx;
   display: inline-block;
-}
-.page_wrap .foot_btn .btns .left.data-v-d58a4b90 {
-  border: 1px solid #FE5B07;
-  color: #FE5B07;
-  margin-right: 20rpx;
-}
-.page_wrap .foot_btn .btns .right.data-v-d58a4b90 {
   background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
   color: #fff;
-}
-.page_wrap .add_product.data-v-d58a4b90 {
-  padding: 30rpx 30rpx 0 30rpx;
-  text-align: right;
-  color: #FE5B07;
-  font-size: 28rpx;
-  justify-content: flex-end;
+  margin-right: 30rpx;
 }
 

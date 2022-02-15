@@ -186,7 +186,7 @@
 			  this.tips = text;
 			},
 			getCode() {
-                this.$http('api/customer/getSmsCode',{mobile:this.model.mobile},'post').then(res=>{
+                this.$http('api/customer/getSmsCode',{mobile:this.model.mobile,type:2},'post').then(res=>{
                     console.log(res)
                 })
                 return
