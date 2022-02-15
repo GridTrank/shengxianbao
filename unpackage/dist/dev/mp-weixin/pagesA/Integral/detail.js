@@ -165,7 +165,7 @@ var _default =
       queryData: {},
       userInfo: {},
       dataList: [],
-      queryUrl: 'api/cuscustomerpointinfo/page' };
+      queryUrl: 'api/myOneslft/getCustomerPointInfoPage' };
 
   },
   created: function created() {

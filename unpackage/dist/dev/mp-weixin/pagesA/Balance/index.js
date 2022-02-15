@@ -97,6 +97,9 @@ try {
   components = {
     uInput: function() {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-input/u-input.vue */ 813))
+    },
+    jPicker: function() {
+      return __webpack_require__.e(/*! import() | components/jPicker/jPicker */ "components/jPicker/jPicker").then(__webpack_require__.bind(null, /*! @/components/jPicker/jPicker.vue */ 836))
     }
   }
 } catch (e) {
@@ -142,24 +145,6 @@ var render = function() {
     _vm.e3 = function($event) {
       _vm.actived = "common"
     }
-
-    _vm.e4 = function($event) {
-      _vm.payType = false
-    }
-
-    _vm.e5 = function($event) {
-      _vm.payType = false
-    }
-
-    _vm.e6 = function($event, item) {
-      var _temp3 = arguments[arguments.length - 1].currentTarget.dataset,
-        _temp4 = _temp3.eventParams || _temp3["event-params"],
-        item = _temp4.item
-
-      var _temp3, _temp4
-
-      _vm.payId = item.id
-    }
   }
 }
 var recyclableRender = false
@@ -195,12 +180,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -298,8 +277,9 @@ var _default =
       queryData: {},
       userInfo: {},
       dataList: [],
-      queryUrl: 'api/cuscustomerpointinfo/page',
-      payList: [] };
+      queryUrl: 'api/cuscustomerBalanceinfo/page',
+      payList: [],
+      payWay: '' };
 
   },
   created: function created() {
@@ -329,6 +309,9 @@ var _default =
     clickRight: function clickRight() {
       this.navTo('./detail');
     },
+    confirm: function confirm(e) {
+      console.log(e);
+    },
     pay: function pay() {
       if (this.actived == 'common' && !this.customMoney) {
         uni.showToast({
@@ -336,7 +319,7 @@ var _default =
           icon: 'none' });
 
       } else {
-        this.payType = true;
+        this.$refs.jPicker.pickerVisable = true;
       }
 
     } } };exports.default = _default;

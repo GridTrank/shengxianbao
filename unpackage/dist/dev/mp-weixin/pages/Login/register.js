@@ -319,7 +319,8 @@ var _default = { data: function data() {var _this = this;return { tips: '', mode
     },
     getCode: function getCode() {
       this.$http('api/customer/getSmsCode', {
-        mobile: this.model.mobile },
+        mobile: this.model.mobile,
+        type: 1 },
       'post').then(function (res) {
 
       });

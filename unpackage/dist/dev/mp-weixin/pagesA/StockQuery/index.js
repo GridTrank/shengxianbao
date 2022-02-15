@@ -182,6 +182,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 {
   components: { list: list },
   data: function data() {
@@ -195,10 +198,23 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   onLoad: function onLoad(e) {
-    // this.pageType=e.pageType
     this.getList();
   },
   methods: {
+    searchInput: function searchInput(val) {
+      this.dataList = [];
+      this.queryData = {
+        productName: val };
+
+      this.getList();
+    },
+    selectFilter: function selectFilter(val) {
+      this.dataList = [];
+      this.queryData = {
+        workhouseId: val.workhouseId };
+
+      this.getList();
+    },
     clickLeft: function clickLeft() {
       uni.navigateBack();
     },

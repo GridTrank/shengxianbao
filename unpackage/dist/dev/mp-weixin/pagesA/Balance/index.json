@@ -2,6 +2,7 @@
   "navigationBarTitleText": "余额",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "u-input": "/uni_modules/uview-ui/components/u-input/u-input"
+    "u-input": "/uni_modules/uview-ui/components/u-input/u-input",
+    "j-picker": "/components/jPicker/jPicker"
   }
 }

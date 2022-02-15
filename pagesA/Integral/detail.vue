@@ -33,7 +33,7 @@
 				queryData: {},
 				userInfo:{},
 				dataList: [],
-				queryUrl: 'api/cuscustomerpointinfo/page'
+				queryUrl: 'api/myOneslft/getCustomerPointInfoPage'
 			}
 		},
 		created() {

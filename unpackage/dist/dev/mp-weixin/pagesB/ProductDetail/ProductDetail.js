@@ -216,7 +216,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 //底部栏
 var _anchorList = [];var _default =
 {
@@ -264,6 +263,17 @@ var _anchorList = [];var _default =
                     productId: _this.id || 7,
                     productSkuId: _this.skuId || '' }));case 2:data = _context.sent;
 
+                data.appContent = data.appContent.replace(/&(amp|gt|lt|quot|#39|nbsp);/g, function (a) {
+                  return {
+                    "&lt;": "<",
+                    "&amp;": "&",
+                    "&quot;": '"',
+                    "&gt;": ">",
+                    "&#39;": "'",
+                    "&nbsp;": " " }[
+                  a];
+                });
+                data.appContent = _this.imgTagAddStyle(data.appContent);
                 data.productImageVoList.forEach(function (item) {
                   item.src = item.imageUrl;
                 });
@@ -280,7 +290,13 @@ var _anchorList = [];var _default =
                 _this.data = data;
                 _this.$nextTick(function () {
                   _this.calcAnchor(); //计算锚点参数
-                });case 10:case "end":return _context.stop();}}}, _callee);}))();
+                });case 12:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    // 图文添加样式
+    imgTagAddStyle: function imgTagAddStyle(htmlstr) {
+      var regex = new RegExp("(i?)(\<img)(?!(.*?style=['\"](.*)['\"])[^\>]+\>)", "gmi");
+      htmlstr = htmlstr.replace(regex, "$2 style=width:100% $3");
+      return htmlstr;
     },
     //加载评价
     loadRating: function loadRating() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (

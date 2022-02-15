@@ -311,7 +311,8 @@ var _default = { data: function data() {var _this = this;return { model: { newPa
     getCode: function getCode() {var _this3 = this;
       if (this.$refs.uCode.canGetCode) {
         this.$http('api/customer/getSmsCode', {
-          mobile: this.model.mobile },
+          mobile: this.model.mobile,
+          type: 3 },
         'post').then(function (res) {
           _this3.$refs.uCode.start();
         });

@@ -130,7 +130,26 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -243,175 +262,7 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
       this.$http('api/salesofferPrice/info', { id: this.id }).then(function (res) {
         _this.pageDetail = res;
       });
-    },
-
-    // 提交
-    submit: function submit(val) {var _this2 = this;
-      // console.log(this.pageDetail)
-      var con = '',url = '',data = {};
-      if (val === 1) {
-        con = '库存即将调整，请确认操作';
-        switch (this.pageType) {
-          case 'in':
-            url = 'api/inputBill/update';
-            break;
-          case 'out':
-            url = 'api/outputBill/update';
-            break;
-          case 'inventory':
-            url = 'api/stocktake/update';
-            break;
-          case 'frmLoss':
-            url = 'api/Loss/update';
-            break;
-          case 'overflow':
-            url = '';
-            break;
-          case 'return':
-            url = 'api/returnorder/update';
-            break;
-          case 'turnover':
-            url = '';
-            break;
-          case 'offer':
-            url = '';
-            break;
-          default:
-            url = '';}
-
-        data = this.pageDetail;
-      } else if (val === 2) {
-        con = '您正在作废单据，请确认操作';
-        switch (this.pageType) {
-          case 'in':
-            url = 'api/inputBill/updateInvalid';
-            break;
-          case 'out':
-            url = 'api/outputBill/updateInvalid';
-            break;
-          case 'inventory':
-            url = 'api/stocktake/updateInvalid';
-            break;
-          case 'frmLoss':
-            url = 'api/Loss/updateInvalid';
-            break;
-          case 'overflow':
-            url = '';
-            break;
-          case 'return':
-            url = 'api/returnorder/updateInvalid';
-            break;
-          case 'turnover':
-            url = '';
-            break;
-          case 'offer':
-            url = '';
-            break;
-          default:
-            url = '';}
-
-        data = {
-          id: this.pageDetail.id };
-
-      } else if (val == 3) {
-        con = '您正在审核单据，请确认操作';
-        switch (this.pageType) {
-          case 'in':
-            url = 'api/inputBill/updateAudit';
-            break;
-          case 'out':
-            url = 'api/outputBill/updateAudit';
-            break;
-          case 'inventory':
-            url = 'api/stocktake/updateAudit';
-            break;
-          case 'frmLoss':
-            url = 'api/Loss/updateAudit';
-            break;
-          case 'overflow':
-            url = '';
-            break;
-          case 'return':
-            url = 'api/returnorder/updateAudit';
-            break;
-          case 'turnover':
-            url = '';
-            break;
-          case 'offer':
-            url = '';
-            break;
-          default:
-            url = '';}
-
-        data = {
-          id: this.pageDetail.id };
-
-      } else if (val == 4) {
-        con = '您正在反审核单据，请确认操作';
-        switch (this.pageType) {
-          case 'in':
-            url = 'api/inputBill/updateBackAudit';
-            break;
-          case 'out':
-            url = 'api/outputBill/updateBackAudit';
-            break;
-          case 'inventory':
-            url = 'api/stocktake/updateBackAudit';
-            break;
-          case 'frmLoss':
-            url = 'api/Loss/updateBackAudit';
-            break;
-          case 'overflow':
-            url = '';
-            break;
-          case 'return':
-            url = 'api/returnorder/updateBackAudit';
-            break;
-          case 'turnover':
-            url = '';
-            break;
-          case 'offer':
-            url = '';
-            break;
-          default:
-            url = '';}
-
-        data = {
-          id: this.pageDetail.id };
-
-      }
-      uni.showModal({
-        title: '提示',
-        content: con,
-        success: function success(res) {
-          if (res.confirm) {
-            _this2.$http(url, data, 'put').then(function (res) {
-              _this2.showEdit = false;
-              if (val == 2) {
-                uni.showToast({
-                  title: '报废-成功',
-                  icon: 'none' });
-
-              } else if (val == 3) {
-                uni.showToast({
-                  title: '审核-成功',
-                  icon: 'none' });
-
-              } else if (val == 4) {
-                uni.showToast({
-                  title: '反审核-成功',
-                  icon: 'none' });
-
-              }
-            });
-            setTimeout(function () {
-              _this2.getDetail();
-            }, 1500);
-          }
-        } });
-
     } }) };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

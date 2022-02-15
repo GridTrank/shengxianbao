@@ -299,13 +299,8 @@ var _util = __webpack_require__(/*! @/common/js/util */ 16); //
 //
 //
 //
-var _default = { data: function data() {var _this = this;return { model: { newPassword: '', accountName: '', mobile: '', smsCode: '' }, rules: { accountName: [{ required: true, message: '请输入账号', trigger: 'blur' }], newPassword: [{ required: true, message: '请输入新密码', trigger: 'blur' }, { validator: function validator(rule, value, callback) {return (0, _util.checkStr)(value, 'pwd');}, message: '密码为8-16位，须包含数字、字母、符号', trigger: ['change', 'blur'] }], mobile: [{ required: true, message: '请输入手机号', trigger: ['change', 'blur'] }, { validator: function validator(rule, value, callback) {return _this.$u.test.mobile(value);}, message: '手机号码不正确', trigger: ['change', 'blur'] }], smsCode: [{ required: true, message: '请输入验证码', trigger: 'blur' }] }, tips: '', isAgree: false };}, onReady: function onReady() {this.$refs.form.setRules(this.rules);}, onLoad: function onLoad() {this.getUserInfo();}, methods: { // 获取个人信息
-    getUserInfo: function getUserInfo() {var _this2 = this;this.$http('api/myOneslft/getMyInfo', '', 'post').then(function (res) {_this2.model.accountName = res.customerName;});}, agreeHandle: function agreeHandle() {this.isAgree = !this.isAgree;
-    },
-    codeChange: function codeChange(text) {
-      this.tips = text;
-    },
-    getCode: function getCode() {var _this3 = this;
+var _default = { data: function data() {var _this = this;return { accountName: '', model: { payPasword: '', mobile: '', smsCode: '' }, rules: { payPasword: [{ required: true, message: '请输入支付密码', trigger: 'blur' }, { validator: function validator(rule, value, callback) {return (0, _util.payPwd)(value, 'pwd');}, message: '密码为6位数', trigger: ['change', 'blur'] }], mobile: [{ required: true, message: '请输入手机号', trigger: ['change', 'blur'] }, { validator: function validator(rule, value, callback) {return _this.$u.test.mobile(value);}, message: '手机号码不正确', trigger: ['change', 'blur'] }], smsCode: [{ required: true, message: '请输入验证码', trigger: 'blur' }] }, tips: '', isAgree: false };}, onReady: function onReady() {this.$refs.form.setRules(this.rules);}, onLoad: function onLoad() {this.getUserInfo();}, methods: { // 获取个人信息
+    getUserInfo: function getUserInfo() {var _this2 = this;this.$http('api/myOneslft/getMyInfo', '', 'post').then(function (res) {_this2.accountName = res.customerName;});}, agreeHandle: function agreeHandle() {this.isAgree = !this.isAgree;}, codeChange: function codeChange(text) {this.tips = text;}, getCode: function getCode() {var _this3 = this;
       if (this.$refs.uCode.canGetCode) {
         this.$http('api/customer/getSmsCode', {
           mobile: this.model.mobile },
@@ -319,13 +314,13 @@ var _default = { data: function data() {var _this = this;return { model: { newPa
     },
     submit: function submit() {var _this4 = this;
       this.$refs.form.validate().then(function (res) {
-        _this4.$http('api/customer/updatePassword', _this4.model, 'post').then(function (res) {
+        _this4.$http('api/myOneslft/updatePayPasword', _this4.model, 'post').then(function (res) {
           uni.showToast({
-            title: '修改成功，跳转登录',
+            title: '修改成功',
             icon: 'none' });
 
           setTimeout(function () {
-            _this4.navTo('./Login');
+            _this4.navTo('back');
           }, 2000);
         });
       }).catch(function (errors) {

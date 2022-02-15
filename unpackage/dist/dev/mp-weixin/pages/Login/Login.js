@@ -350,7 +350,7 @@ var _default = { data: function data() {var _this = this;return { isAgree: false
       this.tips = text;
     },
     getCode: function getCode() {
-      this.$http('api/customer/getSmsCode', { mobile: this.model.mobile }, 'post').then(function (res) {
+      this.$http('api/customer/getSmsCode', { mobile: this.model.mobile, type: 2 }, 'post').then(function (res) {
         console.log(res);
       });
       return;

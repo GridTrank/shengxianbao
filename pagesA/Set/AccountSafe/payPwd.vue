@@ -2,9 +2,9 @@
 	<view class="page_wrap">
 		<view class="input_wrap">
 			<u-form ref='form' :model="model" :rules="rules">
-				<u-form-item prop="accountName">
+				<u-form-item >
 					<view class="input_item ">
-						<u-input class="mt10" placeholder='请输入当前账号' border='bottom' v-model="model.accountName">
+						<u-input class="mt10" disabled placeholder='请输入当前账号' border='bottom' v-model="accountName">
 							<template slot="prefix">
 								<text class="label">账号</text>
 							</template>
@@ -38,9 +38,9 @@
 				</u-form-item>
 
 
-				<u-form-item prop="newPassword">
+				<u-form-item prop="payPasword">
 					<view class="input_item ">
-						<u-input class="mt10" placeholder='请输入支付密码' border='none' v-model="model.newPassword">
+						<u-input class="mt10" placeholder='请输入支付密码' border='none' v-model="model.payPasword">
 							<template slot="prefix">
 								<text class="label">支付密码</text>
 							</template>
@@ -68,33 +68,28 @@
 
 <script>
 	import {
-		checkStr
+		payPwd
 	} from '@/common/js/util'
 	export default {
 		data() {
 			return {
+				accountName:'',
 				model:{
-					newPassword: '',
-					accountName: '',
+					payPasword: '',
 					mobile: '',
 					smsCode: '',
 				},
 				rules: {
-					accountName: [{
-						required: true,
-						message: '请输入账号',
-						trigger: 'blur'
-					}],
-					newPassword: [{
+					payPasword: [{
 							required: true,
-							message: '请输入新密码',
+							message: '请输入支付密码',
 							trigger: 'blur'
 						},
 						{
 							validator: (rule, value, callback) => {
-								return checkStr(value, 'pwd');
+								return payPwd(value, 'pwd');
 							},
-							message: '密码为8-16位，须包含数字、字母、符号',
+							message: '密码为6位数',
 							trigger: ['change', 'blur'],
 						}
 					],
@@ -132,7 +127,7 @@
 			// 获取个人信息
 			getUserInfo(){
 				this.$http('api/myOneslft/getMyInfo','','post').then(res=>{
-					this.model.accountName=res.customerName
+					this.accountName=res.customerName
 				}) 
 			},
 			agreeHandle(){
@@ -155,13 +150,13 @@
 			},
 			submit() {
 				this.$refs.form.validate().then(res => {
-					this.$http('api/customer/updatePassword', this.model, 'post').then(res => {
+					this.$http('api/myOneslft/updatePayPasword', this.model, 'post').then(res => {
 						uni.showToast({
-							title: '修改成功，跳转登录',
+							title: '修改成功',
 							icon: 'none'
 						})
 						setTimeout(() => {
-							this.navTo('./Login')
+							this.navTo('back')
 						}, 2000)
 					})
 				}).catch(errors => {

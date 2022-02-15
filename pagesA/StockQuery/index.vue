@@ -3,6 +3,9 @@
 		<view class="container mt20">
 			<search-comprehensive
             :showScreen="true"
+			@searchInput="searchInput"
+			@selectFilter="selectFilter"
+			:showStock="true"
             >
             </search-comprehensive>
 			<list :list='dataList'></list>
@@ -29,10 +32,23 @@
 			};
 		},
 		onLoad(e) {
-			// this.pageType=e.pageType
 			this.getList()
 		},
 		methods:{
+			searchInput(val){
+				this.dataList=[]
+				this.queryData={
+					productName:val
+				}
+				this.getList()
+			},
+			selectFilter(val){
+				this.dataList=[]
+				this.queryData={
+					workhouseId:val.workhouseId
+				}
+				this.getList()
+			},
 			clickLeft(){
 				uni.navigateBack()
 			},

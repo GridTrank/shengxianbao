@@ -316,9 +316,7 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function ownKeys(object, enumera
             case 'offer':
               data.inputDateStart = this.lossDateStart;
               data.inputDateEnd = this.lossDateEnd;
-              break;
-            default:
-              url = '';}
+              break;}
 
           console.log(this.pageType);
           this.$emit('selectFilter', data);
