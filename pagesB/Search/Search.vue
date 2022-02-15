@@ -3,7 +3,7 @@
 		<view class="search_wrap row">
 			<view class="input_wrap row">
 				<image class="search_img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/search.png"></image>
-				<input @focus="searchFocus" @blur="searchFocus" type="text" border="none" clearable v-model="keyWord"
+				<input @focus="searchFocus" @blur="searchBlur" type="text" border="none" clearable v-model="keyWord"
 					@confirm="search(keyWord)" placeholder="搜索商品" />
 				<!-- 语音 -->
 				<view :class="['voice_btn',{'green':isSpeaking},{'fixed':isFocus}]" :style="'bottom:'+(isFocus ? (focusHeight+10) : 0)+'px'" @touchstart="streamRecord"
@@ -33,8 +33,10 @@
 <script>
 	import historyList from './histotyList.vue'
 	import list from '@/pages/Classify/list.vue'
+	// #ifdef MP-WEIXIN
 	var plugin = requirePlugin('WechatSI')
-	let voicManager = plugin.getRecordRecognitionManager()
+	let voicManager = plugin.getRecordRecognitionManager();
+	// #endif
 	export default {
 		components: {
 			historyList,
@@ -67,13 +69,13 @@
 				this.isSpeaking = false;
 			},
 			searchFocus(e) {
-				this.isFocus = true;
+				console.log(e)
 				if (e.detail.height) {
 					this.isFocus = true;
 					this.focusHeight = e.detail.height;
 				}
 			},
-			searchFocus(){
+			searchBlur(){
 				this.isFocus = false;
 				this.focusHeight = 0;
 			},
@@ -132,6 +134,7 @@
 		.voice_btn {
 			position: relative;
 			height: 60upx;
+			width: 60upx;
 			image {
 				position: absolute;
 				top: 0upx;
@@ -185,6 +188,7 @@
 
 				/deep/ input {
 					padding-left: 20upx;
+					flex:2;
 				}
 			}
 

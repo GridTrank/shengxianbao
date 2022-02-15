@@ -153,7 +153,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _methods;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var historyList = function historyList() {__webpack_require__.e(/*! require.ensure | pagesB/Search/histotyList */ "pagesB/Search/histotyList").then((function () {return resolve(__webpack_require__(/*! ./histotyList.vue */ 1024));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var list = function list() {__webpack_require__.e(/*! require.ensure | pages/Classify/list */ "pages/Classify/list").then((function () {return resolve(__webpack_require__(/*! @/pages/Classify/list.vue */ 754));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var historyList = function historyList() {__webpack_require__.e(/*! require.ensure | pagesB/Search/histotyList */ "pagesB/Search/histotyList").then((function () {return resolve(__webpack_require__(/*! ./histotyList.vue */ 1024));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var list = function list() {__webpack_require__.e(/*! require.ensure | pages/Classify/list */ "pages/Classify/list").then((function () {return resolve(__webpack_require__(/*! @/pages/Classify/list.vue */ 754));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+
 
 
 
@@ -190,6 +191,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var plugin = requirePlugin('WechatSI');
 var voicManager = plugin.getRecordRecognitionManager();var _default =
+
 {
   components: {
     historyList: historyList,
@@ -208,7 +210,7 @@ var voicManager = plugin.getRecordRecognitionManager();var _default =
   onLoad: function onLoad() {
     this.initRecord();
   },
-  methods: (_methods = {
+  methods: {
     streamRecord: function streamRecord() {
       voicManager.start({
         lang: 'zh_CN' });
@@ -222,59 +224,59 @@ var voicManager = plugin.getRecordRecognitionManager();var _default =
       this.isSpeaking = false;
     },
     searchFocus: function searchFocus(e) {
-      this.isFocus = true;
+      console.log(e);
       if (e.detail.height) {
         this.isFocus = true;
         this.focusHeight = e.detail.height;
       }
-    } }, _defineProperty(_methods, "searchFocus", function searchFocus()
-  {
-    this.isFocus = false;
-    this.focusHeight = 0;
-  }), _defineProperty(_methods, "initRecord", function initRecord()
-  {var _this = this; //有新的识别内容返回，则会调用此事件
-    // voicManager.onRecognize = (res) => {
-    //  let text = res.result
-    //  this.currentText=text;
-    // }
-    console.log('initRecord');
-    // 识别结束事件
-    voicManager.onStop = function (res) {
-      console.log(res);
-      var text = res.result;
-      if (text == '') {// 用户没有说话，可以做一下提示处理...
-        uni.showToast({
-          title: '请大声说出你要搜索的内容',
-          icon: 'none' });
+    },
+    searchBlur: function searchBlur() {
+      this.isFocus = false;
+      this.focusHeight = 0;
+    },
+    initRecord: function initRecord() {var _this = this; //有新的识别内容返回，则会调用此事件
+      // voicManager.onRecognize = (res) => {
+      //  let text = res.result
+      //  this.currentText=text;
+      // }
+      console.log('initRecord');
+      // 识别结束事件
+      voicManager.onStop = function (res) {
+        console.log(res);
+        var text = res.result;
+        if (text == '') {// 用户没有说话，可以做一下提示处理...
+          uni.showToast({
+            title: '请大声说出你要搜索的内容',
+            icon: 'none' });
 
-        return;
-      }
+          return;
+        }
 
-      // 这里得到完整识别内容就可以去翻译了
-      _this.keyWord = text;
-      _this.search(text);
-    };
-  }), _defineProperty(_methods, "search", function search(
-  val) {var _this2 = this;
-    this.keyWord = val;
-    this.queryUrl = 'api/pms/productcategory/getProductList';
-    this.queryData = {
-      productName: val };
+        // 这里得到完整识别内容就可以去翻译了
+        _this.keyWord = text;
+        _this.search(text);
+      };
+    },
+    search: function search(val) {var _this2 = this;
+      this.keyWord = val;
+      this.queryUrl = 'api/pms/productcategory/getProductList';
+      this.queryData = {
+        productName: val };
 
-    this.getList().then(function (res) {
-      _this2.saveKey(val);
-      _this2.isEmpty = false;
-    });
+      this.getList().then(function (res) {
+        _this2.saveKey(val);
+        _this2.isEmpty = false;
+      });
 
-  }), _defineProperty(_methods, "saveKey", function saveKey(
-  keyName) {
-    this.$http('api/searchrecord/saveSearchRecord', {
-      keyName: keyName },
-    'post').then(function (res) {});
-  }), _defineProperty(_methods, "delHistory", function delHistory()
-  {
-    this.keyWord = '';
-  }), _methods) };exports.default = _default;
+    },
+    saveKey: function saveKey(keyName) {
+      this.$http('api/searchrecord/saveSearchRecord', {
+        keyName: keyName },
+      'post').then(function (res) {});
+    },
+    delHistory: function delHistory() {
+      this.keyWord = '';
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
