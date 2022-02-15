@@ -6,10 +6,10 @@
   "setting": {
     "urlCheck": false,
     "es6": false,
+    "enhance": false,
+    "postcss": false,
+    "preloadBackgroundData": false,
     "minified": false,
-<<<<<<< HEAD
-    "postcss": false
-=======
     "newFeature": false,
     "coverView": true,
     "nodeModules": false,
@@ -21,7 +21,6 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "lazyloadPlaceholderEnable": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
     "useApiHostProcess": true,
@@ -31,16 +30,13 @@
       "outputPath": ""
     },
     "enableEngineNative": false,
-    "useIsolateContext": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "disableUseStrict": false,
-    "showES6CompileOption": false,
-    "useCompilerPlugins": false,
-    "minifyWXML": true
->>>>>>> 3c0e66d30cc2db641e4114134e1202b59c50bcba
+    "minifyWXSS": true
   },
   "compileType": "miniprogram",
   "libVersion": "",
@@ -48,19 +44,15 @@
   "projectname": "shengxianbao",
   "condition": {
     "search": {
-      "current": -1,
       "list": []
     },
     "conversation": {
-      "current": -1,
       "list": []
     },
     "game": {
-      "current": -1,
       "list": []
     },
     "miniprogram": {
-      "current": -1,
       "list": []
     }
   }

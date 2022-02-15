@@ -3,11 +3,13 @@
 		<view class="search_wrap row">
 			<view class="input_wrap row">
 				<image class="search_img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/search.png"></image>
-				<u-input type="text" border="none" clearable v-model="keyWord" @confirm="search(keyWord)"
-					placeholder="搜索商品" />
-				<view class="voice_btn" :class="isSpeaking?'orange':'green'" @touchstart="streamRecord"
+				<input @focus="searchFocus" @blur="searchFocus" type="text" border="none" clearable v-model="keyWord"
+					@confirm="search(keyWord)" placeholder="搜索商品" />
+				<!-- 语音 -->
+				<view :class="['voice_btn',{'green':isSpeaking},{'fixed':isFocus}]" :style="'bottom:'+(isFocus ? (focusHeight+10) : 0)+'px'" @touchstart="streamRecord"
 					@touchend="streamRecordEnd">
 					<image mode="widthFix" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/play.png"></image>
+					<view v-if="isFocus">按住 说出你要的商品</view>
 				</view>
 
 			</view>
@@ -19,7 +21,7 @@
 			<historyList @search="search" ref='history' @delHistory='delHistory'></historyList>
 		</view>
 		<view v-else v-for="(item,index) in dataList" :key="index">
-			<list pageFrom='search_page' :info="item" class="mt20" ></list>
+			<list pageFrom='search_page' :info="item" class="mt20"></list>
 		</view>
 
 		<view v-if="dataList.length<=0 && !isEmpty">
@@ -40,6 +42,8 @@
 		},
 		data() {
 			return {
+				isFocus:false,
+				focusHeight:0,
 				keyWord: '',
 				searchList: [],
 				isEmpty: true,
@@ -51,7 +55,7 @@
 		},
 		methods: {
 			streamRecord() {
-			 voicManager.start({
+				voicManager.start({
 					lang: 'zh_CN',
 				})
 				uni.vibrateShort();
@@ -61,6 +65,17 @@
 				voicManager.stop();
 				uni.vibrateShort();
 				this.isSpeaking = false;
+			},
+			searchFocus(e) {
+				this.isFocus = true;
+				if (e.detail.height) {
+					this.isFocus = true;
+					this.focusHeight = e.detail.height;
+				}
+			},
+			searchFocus(){
+				this.isFocus = false;
+				this.focusHeight = 0;
 			},
 			initRecord() { //有新的识别内容返回，则会调用此事件
 				// voicManager.onRecognize = (res) => {
@@ -73,10 +88,10 @@
 					console.log(res)
 					let text = res.result
 					if (text == '') { // 用户没有说话，可以做一下提示处理...
-					uni.showToast({
-						title:'请大声说出你要搜索的内容',
-						icon:'none'
-					})
+						uni.showToast({
+							title: '请大声说出你要搜索的内容',
+							icon: 'none'
+						})
 						return
 					}
 
@@ -115,11 +130,32 @@
 		min-height: 100vh;
 
 		.voice_btn {
-			width: 60upx;
+			position: relative;
 			height: 60upx;
-
 			image {
-				width: 100%;
+				position: absolute;
+				top: 0upx;
+				width: 60upx;
+				height: 60upx;
+				display: block;
+			}
+			&.fixed {
+				position: fixed;
+				left: 50%;
+				margin-left: -250upx;
+				background-color: #F3F3F3;
+				border-radius: 100upx;
+				bottom: 0;
+				height: 80upx;
+				width: 500upx;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				box-sizing: border-box;
+				image{
+					position: relative;
+					margin-right: 20upx;
+				}
 			}
 		}
 
@@ -138,8 +174,10 @@
 				width: 75%;
 				background-color: #F6F6F6;
 				border-radius: 40upx;
-				padding: 20upx 30upx;
-
+				padding: 0upx 30upx;
+				display: flex;
+				align-items: center;
+				height: 80upx;
 				.search_img {
 					width: 26upx;
 					height: 26upx;
