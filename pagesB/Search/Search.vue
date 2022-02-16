@@ -80,15 +80,9 @@
 				this.focusHeight = 0;
 			},
 			initRecord() { //有新的识别内容返回，则会调用此事件
-				// voicManager.onRecognize = (res) => {
-				//  let text = res.result
-				//  this.currentText=text;
-				// }
-				console.log('initRecord')
 				// 识别结束事件
 				voicManager.onStop = (res) => {
-					console.log(res)
-					let text = res.result
+					let text = res.result.slice(0,res.result.length-1)
 					if (text == '') { // 用户没有说话，可以做一下提示处理...
 						uni.showToast({
 							title: '请大声说出你要搜索的内容',
@@ -96,7 +90,6 @@
 						})
 						return
 					}
-
 					// 这里得到完整识别内容就可以去翻译了
 					this.keyWord = text
 					this.search(text);

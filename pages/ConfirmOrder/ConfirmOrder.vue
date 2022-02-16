@@ -332,14 +332,12 @@
 			},
 			// 选择配送方式
 			confirm(e) {
-				console.log(e)
 				this.shipMethod = e.dictLabel
 				this.getAddressList()
 				this.deliveryTypeId = e.dictValue
 				this.isSelectDeliAddress = e.dictValue == 4 ? true : false
 			},
 			passwordSub(password){
-				console.log(password)
 				this.balancePsw = password;
 				this.submitOrder();
 			},
@@ -366,10 +364,6 @@
 					return;
 					
 				}
-
-				
-				
-				
 				uni.showModal({
 					title: '提示',
 					content: '确认支付吗？',

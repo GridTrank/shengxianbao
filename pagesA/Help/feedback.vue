@@ -1,6 +1,6 @@
 <template>
 	<view class="page_wrap">
-		<u--form labelPosition="top" labelWidth="auto" :model="userInfo" :rules="rules" ref="feedback">
+		<u-form labelPosition="top" labelWidth="auto" :model="userInfo" :rules="rules" ref="feedback">
 			<u-form-item labelPosition="top" label="请描述您遇到的问题（必填）" prop="userInfo.content"
 				ref="content">
 				<u--textarea class="mt10 textarea" height="100" border="none" count maxlength="20"  v-model="userInfo.content" placeholder="描述你的问题"></u--textarea>
@@ -14,15 +14,15 @@
 					</view>
 				</u-upload>
 			</u-form-item>
-		</u--form>
-		<u--form class="mt20" labelPosition="left" labelWidth="auto" :labelStyle="{height:'60upx'}" :model="userInfo" :rules="rules" ref="feedback">
+		</u-form>
+		<u-form class="mt20" labelPosition="left" labelWidth="auto" :labelStyle="{height:'60upx'}" :model="userInfo" :rules="rules" ref="feedback">
 			<u-form-item label="联系人（必填）" prop="userInfo.name" borderBottom ref="name">
 				<u--input class="item" v-model="userInfo.name" placeholder="请输入联系人" border="none"></u--input>
 			</u-form-item>
 			<u-form-item label="联系电话（必填）" prop="userInfo.phone" @click="" ref="item1">
 				<u--input class="item" v-model="userInfo.phone" placeholder="请输入联系电话" border="none"></u--input>
 			</u-form-item>
-		</u--form>
+		</u-form>
 		<view class="btn_wrap">
 			<view class="btn">提交</view>
 		</view>
@@ -104,6 +104,9 @@
 				padding: 0 30upx;
 				.u-form-item__body{
 					padding: 0 30upx;
+					/* #ifdef MP-WEIXIN */
+					padding: 30upx 0;
+					/* #endif */ 
 				}
 			}
 			.textarea{

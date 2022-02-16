@@ -17,6 +17,7 @@
 }
 .search_wrap .input_wrap image.data-v-0a264038 {
   width: 26rpx;
+  height: 26rpx;
   margin-right: 10rpx;
 }
 .search_wrap .input_wrap .iconfont.data-v-0a264038 {

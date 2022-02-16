@@ -25,6 +25,7 @@
 }
 .data_list .list .item .img.data-v-73a68aba {
   width: 120rpx;
+  height: 120rpx;
   margin-right: 30rpx;
 }
 .data_list .list .item .info.data-v-73a68aba {

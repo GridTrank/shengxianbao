@@ -1,6 +1,6 @@
 {
+  "component": true,
   "usingComponents": {
     "specifications": "/components/specifications/specifications"
-  },
-  "component": true
+  }
 }

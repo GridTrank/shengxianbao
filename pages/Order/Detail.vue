@@ -10,6 +10,7 @@
 					orderDetail.billState==3?'已收货':
 					'待审核'
 				}}
+				<text v-if="orderDetail.billState==0" class="ml20">({{orderDetail.paymentState==0 ? '待支付' :'' }})</text>
 			</view>
 			<view class="info mt20">
 				<view class="name_p row">

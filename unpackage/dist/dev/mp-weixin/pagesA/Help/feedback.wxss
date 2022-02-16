@@ -36,6 +36,7 @@
 }
 .page_wrap .u-form .u-form-item .u-form-item__body {
   padding: 0 30rpx;
+  padding: 30rpx 0;
 }
 .page_wrap .u-form .textarea {
   padding: 0;

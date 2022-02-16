@@ -8,7 +8,7 @@
 							<view v-if="item.checked==1" class="iconfont icon-weixuanze"></view>
 							<view v-else class="iconfont icon-xuanze"></view>
 						</view>
-						<image class="img" :src="item.defaultImage" mode="widthFix"></image>
+						<image class="img" :src="item.defaultImage"></image>
 					</view>
 					<view class="info">
 						<view class="row jc_sb">
@@ -327,6 +327,7 @@
 				}
 				.img{
 					width: 120upx;
+					height: 120upx;
 					margin-right: 30upx;
 				}
 				.info{

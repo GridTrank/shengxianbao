@@ -2,7 +2,7 @@
 	<view class="">
 		<view class="search_wrap row jc_sb">
 			<view v-if="showInput" class="input_wrap row">
-				<image class="search" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/search.png" mode="widthFix">
+				<image class="search" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/search.png">
 				</image>
 				<u-input type="text" border='none' v-model="keyWrod" :placeholder="placeholder" @confirm='bindConfirm'>
 
@@ -99,16 +99,15 @@
 	.search_wrap {
 		background-color: #fff;
 		padding: 30upx;
-
 		.input_wrap {
 			background-color: #F6F6F6;
 			padding: 14upx 30upx;
 			border-radius: 40upx;
 			flex: 1;
 			margin-right: 20upx;
-
 			image {
 				width: 26upx;
+				height: 26upx;
 				margin-right: 10upx;
 			}
 
