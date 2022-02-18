@@ -34,8 +34,8 @@
 								{{item.productNameAlias }}
 							</view>
 							<view class="price row  mt10">
-								<text class="bao mr10">{{item.auxiliaryUnit}}</text>
 								<text class="f24-c999 mr10">{{item.productUnit }}</text>
+								<text class="bao mr10">{{item.auxiliaryUnit}}</text>
 								<text class="f24-c999">￥{{item.unitPrice}}元/{{item.productUnit}}</text>
 							</view>
 
@@ -47,17 +47,19 @@
 
 
 					<view class="mt10 bottom_wrap change row" v-if='item.showEdit'>
-
+						
 						<view class="row">
-							<change-num :index="index" :num="item[leftNumName]" @changeNumResult="changeNum1">
-							</change-num>
-							<text class="bg_style1">{{item.auxiliaryUnit || item.auxiliaryunit}}</text>
-						</view>
-						<view class="row">
-							<change-num :index="index" :num="item.auxiliaryQuantity" @changeNumResult="changeNum2">
+							<change-num ref='changeNum2' :index="index" :num="item.auxiliaryQuantity" @changeNumResult="changeNum2">
 							</change-num>
 							<text class="bg_style1">{{item.productUnit}}</text>
 						</view>
+						
+						<view class="row">
+							<change-num ref='changeNum1' :index="index" :num="item[leftNumName]" @changeNumResult="changeNum1">
+							</change-num>
+							<text class="bg_style1">{{item.auxiliaryUnit || item.auxiliaryunit}}</text>
+						</view>
+						
 
 					</view>
 				</view>
@@ -231,6 +233,7 @@
 				} else {
 					this.pageList[index][this.leftNumName] = Number(num)
 				}
+				// this.pageList[index].auxiliaryQuantity=Math.ceil(this.pageList[index][this.leftNumName]/this.pageList[index].relation)
 				this.$forceUpdate()
 			},
 			changeNum2(val, index, num) {
@@ -241,6 +244,7 @@
 				} else {
 					this.pageList[index].auxiliaryQuantity = Number(num)
 				}
+				// this.pageList[index][this.leftNumName]=this.pageList[index].auxiliaryQuantity*this.pageList[index].relation
 				this.$forceUpdate()
 			},
 			submit(val) {

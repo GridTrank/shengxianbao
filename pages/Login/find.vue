@@ -127,7 +127,7 @@
 			this.$refs.form.setRules(this.rules);
 		},
 		onLoad() {
-			if(uni.getStorageInfoSync('token')){
+			if(uni.getStorageSync('token')){
 				this.getUserInfo()
 			}
 		},

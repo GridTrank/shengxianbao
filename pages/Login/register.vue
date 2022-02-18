@@ -154,12 +154,16 @@
 				this.tips = text;
 			},
 			getCode() {
-				this.$http('api/customer/getSmsCode', {
-					mobile: this.model.mobile,
-					type:1
-				}, 'post').then(res => {
-
-				})
+				if (this.$refs.uCode.canGetCode) {
+				    this.$http('api/customer/getSmsCode', {
+				    	mobile: this.model.mobile,
+						type:1
+				    }, 'post').then(res => {
+						this.$refs.uCode.start();
+				    })
+				} else {
+					uni.$u.toast('倒计时结束后再发送');
+				}
 
 			},
 		}

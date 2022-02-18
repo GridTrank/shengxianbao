@@ -19,8 +19,8 @@
 							{{item.productNameAlias }}
 						</view>
 						<view class="price row  mt10">
-							<text class="bao mr10">{{item.auxiliaryUnit}}</text>
 							<text class="f24-c999 mr10">{{item.productUnit }}</text>
+							<text class="bao mr10">{{item.auxiliaryUnit}}</text>
 							<text class="f24-c999">￥{{item.costPrice || item.returnorderPrice}}元/{{item.productUnit}}</text>
 						</view>
 						
@@ -35,29 +35,32 @@
 					<view class="row">
 						<change-num
 							:index="index" 
-							:num="item.lossQuantity || item.outputQuantity || item.inputQuantity || item.returnorderNum || item.actualQuantity" 
-							@changeNumResult="changeNum1">
-						</change-num> 
-						<text class="bg_style1">{{item.auxiliaryUnit}}</text>
-					</view>
-					<view class="row">
-						<change-num
-							:index="index" 
 							:num="item.auxiliaryQuantity" 
 							@changeNumResult="changeNum2">
 						</change-num> 
 						<text class="bg_style1">{{item.productUnit }}</text>
 					</view>
+					
+					<view class="row">
+						<change-num
+							:index="index" 
+							:num="item.lossQuantity || item.outputQuantity || item.inputQuantity || item.returnorderNum || item.actualQuantity" 
+							@changeNumResult="changeNum1">
+						</change-num> 
+						<text class="bg_style1">{{item.auxiliaryUnit}}</text>
+					</view>
+					
 				</view>
 				
 				<view class="mt10 bottom_wrap row" v-if="showSummary">
 					<text class="f24-c333">{{pageTxt}}：</text>
-					<text class="tip mr10">
-						{{item.lossQuantity || item.outputQuantity || item.inputQuantity || item.returnorderNum || item.actualQuantity}}{{item.auxiliaryUnit}}
-					</text>
 					<text class="tip">
-						({{item.auxiliaryQuantity }}{{item.productUnit}})
+						{{item.auxiliaryQuantity }}{{item.productUnit}}
 					</text>
+					<text class="tip mr10">
+						({{item.lossQuantity || item.outputQuantity || item.inputQuantity || item.returnorderNum || item.actualQuantity}}{{item.auxiliaryUnit}})
+					</text>
+					
 				</view>
 			</view>
 		</view>
@@ -165,6 +168,24 @@
 		methods:{
 			...mapMutations(['SET_STOCK_MANAGE_INFO']),
 			changeNum2(val,index,num){
+				let type=''
+				switch(this.pageType){
+					case 'in':
+						type='inputQuantity'
+						break;
+					case 'out':
+						type='outputQuantity'
+						break;
+					case 'frmLoss':
+						type='lossQuantity'
+						break;
+					case 'return':
+						type='returnorderNum'
+						break;
+					case 'inventory':
+						type='actualQuantity'
+						break;
+				}
 				if(val=='add'){
 					this.resultList[index].auxiliaryQuantity+=1
 				}else if(val=='sub'){
@@ -172,6 +193,7 @@
 				}else{
 					this.resultList[index].auxiliaryQuantity=Number(num)
 				}
+				// this.resultList[index][type]=(this.resultList[index].auxiliaryQuantity*this.resultList[index].relation)
 				this.$forceUpdate()
 			},
 			changeNum1(val,index,num){
@@ -200,6 +222,7 @@
 				}else{
 					this.resultList[index][type]= Number(num)
 				}
+				// this.resultList[index].auxiliaryQuantity=Math.ceil(this.resultList[index][type]/this.resultList[index].relation)
 				this.$forceUpdate()
 			},
 			checkHandle(item,index){

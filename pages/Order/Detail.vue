@@ -8,6 +8,7 @@
 					orderDetail.billState==1?'待发货':
 					orderDetail.billState==2?'待收货':
 					orderDetail.billState==3?'已收货':
+					orderDetail.billState==4?'已支付':
 					'待审核'
 				}}
 				<text v-if="orderDetail.billState==0" class="ml20">({{orderDetail.paymentState==0 ? '待支付' :'' }})</text>
@@ -44,7 +45,7 @@
 			</view>
 			<view class="detail_item row jc_sb">
 				<text class="label f28-c999">配送方式</text>
-				<text class="val  f28-c333">123456</text>
+				<text class="val  f28-c333">{{orderDetail.deliveryType}}</text>
 			</view>
 			<view class="detail_item row jc_sb"  >
 				<text class="label f28-c999">支付方式</text>
