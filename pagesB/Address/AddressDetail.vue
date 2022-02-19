@@ -102,7 +102,7 @@
 						url = 'api/myOneslft/updateCustomerAddr'
 						data.id = this.queryId;
 					}
-                    data.defaultAddr=this.isDefault?'1':'0'
+                    data.defaultAddr=this.isDefault?1:0
 					this.$http(url,data, 'POST').then(res => {
 						uni.showToast({
 							title:'保存成功',

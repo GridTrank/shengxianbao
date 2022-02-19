@@ -287,7 +287,7 @@
 				this.getList().then(res => {
 					if (this.deliveryTypeId == 4) {
 						this.addressDetail = res.filter(item => {
-							return item.id == 13
+							return item.defaultAddr == 1
 						})[0]
 					}
 				})

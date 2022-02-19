@@ -74,7 +74,7 @@
 				model: {
 					accountPasword: '',
 					accountName: '',
-					sourceType: 1,
+					sourceType: 2,
 					mobile: '',
 					smsCode: '',
 				},
