@@ -72,6 +72,7 @@
 		<bottom-operation 
 		:infoData="data" 
 		:selectData="selectData" 
+		:carNum="carNum"
 		@onOprationClick="onOprationClick">
 		</bottom-operation>
 		<!-- 规格面板 -->
@@ -101,6 +102,7 @@
 				ratingData: {}, //评价
 				id:'',
 				skuId:'',
+				carNum:0
 			};
 		},
 		onLoad(options){
@@ -110,6 +112,7 @@
 		},
 		onShow() {
 			this.loadData();
+			
 		},
 		onPageScroll(e) {
 			this.$refs.pageHeader && this.$refs.pageHeader.pageScroll(e);
@@ -157,6 +160,7 @@
 				this.$nextTick(()=>{
 					this.calcAnchor();//计算锚点参数
 				})
+				this.getShopCar()
 			},
 			// 图文添加样式
 			imgTagAddStyle(htmlstr){
@@ -172,6 +176,12 @@
 				this.ratingData = res;
 				this.$nextTick(()=>{
 					this.calcAnchor();//计算锚点参数
+				})
+			},
+			// 获取购物车数量
+			getShopCar(){
+				this.$http('api/bmallshoppingcart/getShoppingCartQuantity').then(res=>{
+					this.carNum=res.totalBuyQuantity
 				})
 			},
 			// 选择规格

@@ -4,8 +4,8 @@
 			<view class="nav column center" @click="navTo('/pages/ShopCar/ShopCar','switch')">
 				<text class="iconfont icon-gouwuche"></text>
 				<text class="tit">购物车</text>
-				<view v-if="cartCount > 0" class="number center">
-					<text>{{ cartCount }}</text>
+				<view v-if="carNum > 0" class="number center">
+					<text>{{ carNum }}</text>
 				</view>
 			</view>
 			<view :class="['nav column center',{'active' : infoData.used == 1}] " @click="addCusOftenBuy">
@@ -53,6 +53,9 @@
 				default () {
 					return {}
 				}
+			},
+			carNum:{
+				type:Number
 			},
 			selectData: {
 				type: Object,
@@ -173,7 +176,7 @@
 		.number {
 			position: absolute;
 			right: 16rpx;
-			top: 2rpx;
+			top: -5rpx;
 			min-width: 24rpx;
 			height: 24rpx;
 			padding: 0 8rpx;

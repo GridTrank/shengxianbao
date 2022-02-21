@@ -98,7 +98,6 @@
 		.con{
 			padding: 30upx;
 			.info{
-				justify-content: center;
 				margin-bottom: 120upx;
 				image{
 					margin-right: 30upx;

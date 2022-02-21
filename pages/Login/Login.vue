@@ -19,7 +19,7 @@
 									<text class="label" >密码</text>
 								</template>
 								<template slot="suffix">
-									<text class="forget" @click="navTo('./find')">忘记密码？</text>
+									<text class="forget" @click="navTo('./find?pageType=find')">忘记密码？</text>
 								</template>
 							</u-input>
 						</view>

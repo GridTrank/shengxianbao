@@ -23,6 +23,12 @@
           "pathName": "pagesA/Help/feedback",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "客户认证",
+          "pathName": "pagesA/Clientele/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

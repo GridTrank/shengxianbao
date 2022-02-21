@@ -23,16 +23,16 @@
 				</view>
 			</view>
 			<view class="store-box" >
-				<view class="goodsInfo " v-for="(itemw,indexw) in dataList" :key="indexw" @click="toDetail(itemw)">
+				<view class="goodsInfo " v-for="(itemw,indexw) in dataList" :key="indexw">
 					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quanzhong%402x.png" v-if="itemw.checked == 2" class="checked-image"
 						mode="" @click.stop="goodsCheck(indexw,itemw.checked)"></image>
 					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quan1%402x.png" v-else class="checked-image" mode=""
 						@click.stop="goodsCheck(indexw,itemw.checked)"></image>
 					<view class="goodsInfo-right">
-						<image :src="itemw.productImage" class="goods-image" mode=""></image>
+						<image  @click="toDetail(itemw)" :src="itemw.productImage" class="goods-image" mode=""></image>
 						<view class="goodsInfo-box">
-							<text class="goods-name">{{itemw.productName}} ({{itemw.productNameAlias}})</text>
-							<text class="spe">规格：{{itemw.productUnit}}</text>
+							<text  @click="toDetail(itemw)" class="goods-name">{{itemw.productName}} ({{itemw.productNameAlias}})</text>
+							<text  @click="toDetail(itemw)" class="spe">规格：{{itemw.productUnit}}</text>
 							<view class="goods-box">
 								<text class="goods-price">¥{{itemw.unitPrice}}</text>
 								<view class="goods-num-box">
@@ -40,7 +40,8 @@
 										<text>-</text>
 									</view>
 									<view class="goods-num">
-										<text>{{itemw.buyQuantity}}</text>
+										<!-- <text>{{itemw.buyQuantity}}</text> -->
+										<u-input @click.stop="true" v-model="itemw.buyQuantity"></u-input>
 									</view>
 									<view class="goods-image" @click.stop="add(indexw,itemw.buyQuantity)">
 										<text>+</text>
@@ -481,6 +482,10 @@
 									color: #666666;
 									border-top: 1px solid #CFCFCF;
 									border-bottom: 1px solid #CFCFCF;
+									/deep/ .u-input--radius{
+										padding: 0 !important;
+										border: none;
+									}
 								}
 							}
 						}

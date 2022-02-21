@@ -34,6 +34,10 @@ export default {
 					uni.switchTab({
 						url: url
 					})
+				}else if(type=='redirectTo'){
+					uni.redirectTo({
+						url: url
+					})
 				} else {
 					uni.navigateTo({
 						url: url

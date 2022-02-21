@@ -91,9 +91,9 @@
 						},
 						{
 							validator: (rule, value, callback) => {
-								return checkStr(value, 'pwd');
+								return checkStr(value, 'pwdLength');
 							},
-							message: '密码为8-16位，须包含数字、字母、符号',
+							message: '密码6位数以上',
 							trigger: ['change', 'blur'],
 						}
 					],
@@ -141,6 +141,7 @@
 							title: '注册成功，跳转认证',
 							icon: 'none'
 						})
+						uni.setStorageSync('token',res.token)
 						setTimeout(() => {
 							this.navTo('/pagesA/Clientele/index')
 						}, 2000)

@@ -150,6 +150,8 @@ export const checkStr = (str, type) => {
 			return /^[A-Z]+$/.test(str);
 		case 'HTML': //HTML标记
 			return /<("[^"]*"|'[^']*'|[^'">])*>/.test(str);
+		case 'pwdLength': //HTML标记
+			return str.length>=6;
 		default:
 			return true;
 	}

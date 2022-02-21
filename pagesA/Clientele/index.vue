@@ -42,7 +42,7 @@
 					placeholder="请选择收货时间" border="none"></u--input>
 				<u-icon slot="right" name="arrow-right"></u-icon>
 			</u-form-item>
-			<u-form-item class="mt20" labelPosition="top" prop="customerBusinessLicenseUrl" ref="item1">
+			<u-form-item class="mt20" labelPosition="top" prop="customerBusinessLicenseUrl" ref="item1" borderBottom>
 				<view class="upload_wrap">
 					<view class="f28-c333">上传营业执照</view>
 					<view class="column">
@@ -57,7 +57,7 @@
 				</view>
 			</u-form-item>
 			<u-form-item class="mt20" label="邀请码" prop="inviteCode" ref="item1">
-				<u--input class="from_item" v-model="userInfo.inviteCode" border="none" placeholder="请输入邀请码（选填）">
+				<u--input class="from_item" v-model="userInfo.inviteCode" border="none" placeholder="请输入邀请码">
 				</u--input>
 			</u-form-item>
 		</u--form>
@@ -125,6 +125,12 @@
 						message: '请上传营业执照',
 						trigger: ['blur', 'change']
 					},
+					inviteCode:{
+						type: 'string',
+						required: true,
+						message: '请填写邀请码',
+						trigger: ['blur', 'change']
+					}
 				},
 				userInfo: {
 					"addrDetails": "",

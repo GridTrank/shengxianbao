@@ -94,7 +94,6 @@
 				this.isAgree = !this.isAgree
 			},
 			login() {
-                
 				this.$refs.form.validate().then(res => {
 					var url = 'api/myOneslft/addCustomerAddr';
 					var data = this.model;

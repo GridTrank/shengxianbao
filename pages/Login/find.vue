@@ -4,7 +4,7 @@
 			<u-form ref='form' :model="model" :rules="rules">
 				<u-form-item prop="accountName">
 					<view class="input_item ">
-						<u-input class="mt10" placeholder='请输入当前账号' border='bottom' v-model="model.accountName">
+						<u-input class="mt10" :disabled="pageType!=='find'" placeholder='请输入当前账号' border='bottom' v-model="model.accountName">
 							<template slot="prefix">
 								<text class="label">账号</text>
 							</template>
@@ -92,9 +92,9 @@
 						},
 						{
 							validator: (rule, value, callback) => {
-								return checkStr(value, 'pwd');
+								return checkStr(value, 'pwdLength');
 							},
-							message: '密码为8-16位，须包含数字、字母、符号',
+							message: '密码6位数以上',
 							trigger: ['change', 'blur'],
 						}
 					],
@@ -120,16 +120,21 @@
 				},
 				tips: '',
 				isAgree: false,
-				userInfo:{}
+				userInfo:{},
+				pageType:'',
 			};
 		},
 		onReady() {
 			this.$refs.form.setRules(this.rules);
 		},
-		onLoad() {
+		onLoad(e) {
 			if(uni.getStorageSync('token')){
 				this.getUserInfo()
 			}
+			this.pageType=e.pageType
+			uni.setNavigationBarTitle({
+				title:e.pageType=='find'?'忘记密码':'修改密码'
+			})
 		},
 		methods:{
 			agreeHandle(){

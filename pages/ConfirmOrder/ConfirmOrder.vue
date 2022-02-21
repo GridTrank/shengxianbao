@@ -68,7 +68,7 @@
 				<view v-for="(item,index) in payList" :key='index' class="item row jc_sb "
 					@click="selectPayHandle(item,index)">
 					<view class="left row">
-						<image class="l_img" :src="item.paymentUrl" mode="widthFix"></image>
+						<image class="l_img" :src="item.paymentUrl || 'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/payDef.png'" mode="widthFix"></image>
 						<text class="f28-c333">{{item.paymentName}}</text>
 						<text class="ml30 ye" v-if="item.id==6">({{userInfo.customerBalance}})</text>
 					</view>
@@ -377,7 +377,7 @@
 								"distributionTime": that.deliveryTypeId == 4 ? that.shipTime : '', //配送时间
 								"goodsAmount": that.orderDetail.goodsAmount, //商品金额
 								"logisticsAmount": that.orderDetail.logisticsAmount, //运费
-							 "orderAmount": that.orderDetail.orderAmount, //订单金额
+								"orderAmount": that.orderDetail.orderAmount, //订单金额
 								"orderWayId": that.selectPayId, //支付方式
 								"pointTime": that.deliveryTypeId == 3 ? that.shipTime : '', //自提时间段
 								"productSkuIdList": that.orderDetail.productSkuIdList, //商品列表
@@ -395,6 +395,14 @@
 										"orderAmount": that.orderDetail.orderAmount
 									}
 									this.payBybalance(balanceData)
+								}else if(that.selectPayId == 3){
+									uni.showToast({
+										title:'操作成功',
+										icon:'none'
+									})
+									setTimeout(() => {
+										this.navTo('/pages/Order/Order?index=0','redirectTo')
+									}, 1500)
 								}
 							})
 						}

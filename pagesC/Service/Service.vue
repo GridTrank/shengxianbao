@@ -6,7 +6,7 @@
 				<view class="f28-c333">手机</view>
 			</view>
 			<view class="right f28-c333">
-				15382353715
+				{{info.mobile}}
 			</view>
 		</view>
 		<view class="item row jc_sb mt20">
@@ -15,7 +15,7 @@
 				<view class="f28-c333">邮箱</view>
 			</view>
 			<view class="right f28-c333">
-				15382353715
+				{{info.email}}
 			</view>
 		</view>
 		<view class="item row jc_sb mt20">
@@ -24,7 +24,7 @@
 				<view class="f28-c333">微信</view>
 			</view>
 			<view class="right f28-dc">
-				直接联系
+				{{info.wechat}}
 			</view>
 		</view>
 		<view class="item row jc_sb mt20">
@@ -33,7 +33,7 @@
 				<view class="f28-c333">QQ</view>
 			</view>
 			<view class="right f28-c333">
-				15382353715
+				{{info.qq}}
 			</view>
 		</view>
 	</view>
@@ -43,11 +43,18 @@
 	export default {
 		data() {
 			return {
-				
+				info:{}
 			}
 		},
+		onLoad(){
+			this.getDetail()
+		},
 		methods: {
-			
+			getDetail(){
+				this.$http('api/customer/forgetPassword',{},'post').then(res=>{
+					this.info=res
+				})
+			}
 		}
 	}
 </script>
