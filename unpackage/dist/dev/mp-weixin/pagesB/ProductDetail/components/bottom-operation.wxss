@@ -41,7 +41,7 @@
 .nav-group .number.data-v-62ca0168 {
   position: absolute;
   right: 16rpx;
-  top: 2rpx;
+  top: -5rpx;
   min-width: 24rpx;
   height: 24rpx;
   padding: 0 8rpx;

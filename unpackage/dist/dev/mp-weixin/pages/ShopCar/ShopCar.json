@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "购物车",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "u-input": "/uni_modules/uview-ui/components/u-input/u-input"
+  }
 }

@@ -6,11 +6,12 @@
 				<input @focus="searchFocus" @blur="searchBlur" type="text" border="none" clearable v-model="keyWord"
 					@confirm="search(keyWord)" placeholder="搜索商品" />
 				<!-- 语音 -->
-				<view :class="['voice_btn',{'green':isSpeaking},{'fixed':isFocus}]" :style="'bottom:'+(isFocus ? (focusHeight+10) : 0)+'px'" @touchstart="streamRecord"
+				<voice :isFocus="isFocus"></voice>
+				<!-- <view :class="['voice_btn',{'fixed':isFocus}]" :style="'bottom:'+(isFocus ? (focusHeight+10) : 0)+'px'" @touchstart="streamRecord"
 					@touchend="streamRecordEnd">
 					<image mode="widthFix" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/play.png"></image>
 					<view v-if="isFocus">按住 说出你要的商品</view>
-				</view>
+				</view> -->
 
 			</view>
 			<text class="btn" v-if='keyWord' @click="search(keyWord)">搜索</text>
@@ -31,16 +32,15 @@
 </template>
 
 <script>
+	import voice from '@/components/voice/voice'
 	import historyList from './histotyList.vue'
 	import list from '@/pages/Classify/list.vue'
-	// #ifdef MP-WEIXIN
-	var plugin = requirePlugin('WechatSI')
-	let voicManager = plugin.getRecordRecognitionManager();
-	// #endif
+
 	export default {
 		components: {
 			historyList,
-			list
+			list,
+			voice
 		},
 		data() {
 			return {
@@ -53,21 +53,9 @@
 			};
 		},
 		onLoad() {
-			this.initRecord()
 		},
 		methods: {
-			streamRecord() {
-				voicManager.start({
-					lang: 'zh_CN',
-				})
-				uni.vibrateShort();
-				this.isSpeaking = true;
-			},
-			streamRecordEnd() {
-				voicManager.stop();
-				uni.vibrateShort();
-				this.isSpeaking = false;
-			},
+			
 			searchFocus(e) {
 				console.log(e)
 				if (e.detail.height) {
@@ -79,22 +67,7 @@
 				this.isFocus = false;
 				this.focusHeight = 0;
 			},
-			initRecord() { //有新的识别内容返回，则会调用此事件
-				// 识别结束事件
-				voicManager.onStop = (res) => {
-					let text = res.result.slice(0,res.result.length-1)
-					if (text == '') { // 用户没有说话，可以做一下提示处理...
-						uni.showToast({
-							title: '请大声说出你要搜索的内容',
-							icon: 'none'
-						})
-						return
-					}
-					// 这里得到完整识别内容就可以去翻译了
-					this.keyWord = text
-					this.search(text);
-				}
-			},
+			
 			search(val) {
 				this.keyWord = val
 				this.queryUrl = 'api/pms/productcategory/getProductList'
@@ -124,36 +97,7 @@
 		background-color: #fff;
 		min-height: 100vh;
 
-		.voice_btn {
-			position: relative;
-			height: 60upx;
-			width: 60upx;
-			image {
-				position: absolute;
-				top: 0upx;
-				width: 60upx;
-				height: 60upx;
-				display: block;
-			}
-			&.fixed {
-				position: fixed;
-				left: 50%;
-				margin-left: -250upx;
-				background-color: #F3F3F3;
-				border-radius: 100upx;
-				bottom: 0;
-				height: 80upx;
-				width: 500upx;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				box-sizing: border-box;
-				image{
-					position: relative;
-					margin-right: 20upx;
-				}
-			}
-		}
+		
 
 		.search_wrap {
 			justify-content: space-between;

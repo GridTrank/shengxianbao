@@ -61,7 +61,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		},  {
+		}, {
 			"path": "pages/Login/Login",
 			"style": {
 				// #ifdef H5
@@ -322,7 +322,7 @@
 						"navigationBarTitleText": "修改支付密码",
 						"enablePullDownRefresh": false
 					}
-				},{
+				}, {
 					"path": "StockQuery/index",
 					"style": {
 						// #ifdef H5
@@ -561,14 +561,14 @@
 					"navigationBarTitleText": "通知详情",
 					"enablePullDownRefresh": false
 				}
-			},{
+			}, {
 				"path": "ProductDetail/ProductDetail",
 				"style": {
 					"navigationBarTitleText": "",
 					"navigationStyle": "custom",
 					"enablePullDownRefresh": false
 				}
-			
+
 			}, {
 				"path": "Search/Search",
 				"style": {
@@ -578,84 +578,76 @@
 					// #endif
 					"enablePullDownRefresh": false
 				}
-			}
-			],
-			"plugins": {
-				"WechatSI": {
-					"version": "0.0.7",
-					"provider": "wx069ba97219f66d99"
-				}
-			}
+			}]
 		},
-        {
-            "root":"pagesC",
-            "pages":[
-                {
-                	"path": "Out/Index",
-                	"style": {
-                		// #ifdef H5
-                		"navigationStyle": "custom",
-                		// #endif
-                		"navigationBarTitleText": "出库单",
-                		"enablePullDownRefresh": false
-                	}
-                },
-                {
-                	"path": "Out/Detail",
-                	"style": {
-                		// #ifdef H5
-                		"navigationStyle": "custom",
-                		// #endif
-                		"navigationBarTitleText": "出库单详情",
-                		"enablePullDownRefresh": false
-                	}
-                },
-                {
-                	"path": "Out/AddPage",
-                	"style": {
-                		// #ifdef H5
-                		"navigationStyle": "custom",
-                		// #endif
-                		"navigationBarTitleText": "新增出库单",
-                		"enablePullDownRefresh": false
-                	}
-                },
-                {
-                	"path": "Out/SelectGood",
-                	"style": {
-                		// #ifdef H5
-                		"navigationStyle": "custom",
-                		// #endif
-                		"navigationBarTitleText": "新增出库单",
-                		"enablePullDownRefresh": false
-                	}
-                }, {
-                	"path": "Out/Log",
-                	"style": {
-                		// #ifdef H5
-                		"navigationStyle": "custom",
-                		// #endif
-                		"navigationBarTitleText": "操作日志",
-                		"enablePullDownRefresh": false
-                	}
-                } ,{
-                    "path" : "Service/Service",
-                    "style" : {
+		{
+			"root": "pagesC",
+			"pages": [{
+					"path": "Out/Index",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "出库单",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "Out/Detail",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "出库单详情",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "Out/AddPage",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "新增出库单",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "Out/SelectGood",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "新增出库单",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Out/Log",
+					"style": {
+						// #ifdef H5
+						"navigationStyle": "custom",
+						// #endif
+						"navigationBarTitleText": "操作日志",
+						"enablePullDownRefresh": false
+					}
+				}, {
+					"path": "Service/Service",
+					"style": {
 						// #ifdef H5
 						"navigationStyle": "custom",
 						// #endif
 						"navigationBarTitleText": "联系客服",
 						"enablePullDownRefresh": false
 					}
-                }
-            ]
-            
-        }
+				}
+			]
+
+		}
 	],
 	"preloadRule": {
 		"pages/Home/Home": {
 			"network": "all",
-			"packages": ["pagesA", "pagesB","pagesC"]
+			"packages": ["pagesA", "pagesB", "pagesC"]
 		},
 		"pagesA/SubAccount/SubAccount": {
 			"network": "all",
@@ -665,10 +657,10 @@
 			"network": "all",
 			"packages": ["pagesB"]
 		},
-        "pagesC/Out/Index": {
-        	"network": "all",
-        	"packages": ["pagesC"]
-        }
+		"pagesC/Out/Index": {
+			"network": "all",
+			"packages": ["pagesC"]
+		}
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
