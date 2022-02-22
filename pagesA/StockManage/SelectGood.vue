@@ -272,9 +272,20 @@
 					})
 					uni.setStorageSync("stockData", infoInfoVoList)
 					if (this.fromPage == 'Detail') {
+						// 两个数组覆盖相同的数据
+						let newArr=[]
+						this.$StockManageInfo.infoInfoVoList.forEach((el,ei)=>{
+							infoInfoVoList.forEach((e,i)=>{
+								if(e.productCode==el.productCode){
+									this.$StockManageInfo.infoInfoVoList.splice(ei,1,e)
+								}
+							})
+						})
 						let list = this.$StockManageInfo.infoInfoVoList.concat(infoInfoVoList)
+						let r=new Map()
+						let newList = list.filter((arr) => !r.has(arr.productCode) && r.set(arr.productCode, 1))
 						this.SET_STOCK_MANAGE_INFO({
-							infoInfoVoList: list
+							infoInfoVoList: newList
 						})
 						this.navTo('back')
 					} else {

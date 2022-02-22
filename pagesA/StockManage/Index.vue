@@ -123,7 +123,7 @@
 			<no-data></no-data>
 		</template>
         
-        <template v-if="pageType=='out' || pageType=='in' || pageType=='inventory' || pageType=='frmLoss' || pageType=='overflow' || pageType=='return'">
+        <template v-if="(pageType=='out' || pageType=='in' || pageType=='inventory' || pageType=='frmLoss' || pageType=='overflow' || pageType=='return') && selectTabIndex!=3">
             <view class="foot_btn row jc_sb"> 
                 <view class="nums row">
                 	<view class="left row" >
@@ -133,9 +133,10 @@
                 	</view>
                 	<view class="right">{{total}}</view>
                 </view>
-                <view class="btns">
+                <view class="btns" >
                 	<text class="btn left" @click="submit({},1)">作废</text>
-                	<text class="btn right" @click="submit({},2)">审核</text>
+                	<text v-if='selectTabIndex==0 || selectTabIndex==1' class="btn right" @click="submit({},2)">审核</text>
+                	<text v-if='selectTabIndex==2' class="btn right" @click="submit({},3)">反审核</text>
                 </view>
             </view>
         </template>
@@ -171,7 +172,8 @@
 				}],
 				dataList_:[],
 				initList:[],
-				total:0
+				total:0,
+				selectTabIndex:0
 			};
 		},
 		onLoad(e) {
@@ -293,6 +295,8 @@
 				}else{
 					billState=''
 				}
+				this.selectTabIndex=item.value
+				this.total=0
 				this.queryData={
 					billState
 				}
@@ -310,14 +314,27 @@
 				this.total=nums
 			},
 			selectAll(val){
+				let num=0
 				if(val==1){
 					this.total=0
 				}else{
-					this.total=this.dataList_.length
+					if(this.selectTabIndex==0){
+						this.dataList_.forEach(item=>{
+							if(item.billState==0){
+								item.checked=val
+								num+=1
+							}
+						})
+						this.total=num
+					}else{
+						this.dataList_.forEach(item=>{
+							item.checked=val
+						})
+						this.total=this.dataList_.length
+					}
+					
 				}
-				this.dataList_.forEach(item=>{
-					item.checked=val
-				})
+				
 				
 			},
 			// 操作

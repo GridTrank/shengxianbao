@@ -220,6 +220,7 @@
 			...mapState(['$StockManageInfo'])
 		},
 		onShow() {
+			console.log('详情页',this.$StockManageInfo.infoInfoVoList )
 			if(this.pageDetail.infoInfoVoList){
 				this.pageDetail.infoInfoVoList=this.$StockManageInfo.infoInfoVoList 
 			}else{

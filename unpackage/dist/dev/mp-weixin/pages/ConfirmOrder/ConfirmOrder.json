@@ -4,7 +4,8 @@
   "usingComponents": {
     "u-input": "/uni_modules/uview-ui/components/u-input/u-input",
     "j-picker": "/components/jPicker/jPicker",
-    "bz-date-picker": "/components/bz-date-picker/bz-date-picker",
+    "itmister-date-picker": "/components/itmister-date-picker/itmister-date-picker",
+    "u-action-sheet": "/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet",
     "password": "/components/password/password"
   }
 }

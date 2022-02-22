@@ -126,6 +126,9 @@
 				loginType:'account'
 			};
 		},
+		onLoad() {
+			uni.hideHomeButton()
+		},
         onReady() {
 	        this.$refs.form.setRules(this.rules);
 	    },
@@ -152,7 +155,7 @@
 								icon:'none'
 							})
 							setTimeout(()=>{
-							    uni.navigateBack()
+								 this.navTo('/pages/Home/Home','switch')
 							},2000)
 						}).catch((err)=>{
 							uni.showToast({

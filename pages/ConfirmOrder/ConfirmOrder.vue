@@ -30,11 +30,31 @@
 
 			</view>
 		</view>
+		<image class="fg_img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/dzfg.png" ></image>
+		<!-- 配送日期 -->
+		<view class="wrap time ">
+			<view class="dist row jc_sb">
+				<text class="f28-c333">{{deliveryTypeId==4?'配送':'自提'}}日期</text>
+				<view class="date_list row">
+					<view 
+					:class="['date_item',{active:dateIndex===index}]"
+					@click="selectDelDate(item,index)"
+					v-for="(item,index) in dateList" 
+					:key="index">
+						<text class="date">{{item.date}}</text>
+						<text class="week">{{index==0?'明天':index==1?'后天':item.week}}</text>
+					</view>
+					<text class="iconfont icon-jinru f28-c333"  @click="showDate(1)"></text>
+				</view>
+				
+			</view>
+		</view>
+		
 		<!-- 配送时间 -->
 		<view class="wrap time mt20">
-			<view class="dist row jc_sb" @click="popupStatus=true">
+			<view class="dist row jc_sb" @click="showDate(2)">
 				<text class="f28-c333">{{deliveryTypeId==4?'配送':'自提'}}时间</text>
-				<text class=" f28-dc">{{shipTime || '请选择配送时间'}}<text class="iconfont icon-jinru f28-c333"></text>
+				<text class=" f28-dc">{{shipTime || '请选择配送时间'}}<text v-if="!isSelfMethod" class="iconfont icon-jinru f28-c333"></text>
 				</text>
 			</view>
 			<view class="goods row jc_sb mt30">
@@ -122,9 +142,16 @@
 		<jPicker ref='jPicker' title='配送方式' :options="columns" valKey='dictValue' showKey="dictLabel" @sure='confirm'>
 		</jPicker>
 
-		<bz-date-picker :value="popupStatus" title="请选择时间" minuteStep="10" days="17" minHour="6" maxHour="22"
-			minMinute="0" maxMinute="59" @close="popupStatus=false" @confirm="handleDatePickerConfirm">
-		</bz-date-picker>
+		<!-- 时间日期选择 -->
+		<itmister-date-picker ref="dateEl" @dateConfirm="dateConfirm"></itmister-date-picker>
+		<!-- 配送时间段 -->
+		<u-action-sheet 
+		title="请选择时间段"
+		:show="showSheet" 
+		:actions="customerTime"
+			@close="showSheet = false"
+			@select="selectTimeList">
+		</u-action-sheet>
 		<password ref="password" @passwordSub="passwordSub"></password>
 	</view>
 </template>
@@ -142,7 +169,6 @@
 		data() {
 			return {
 				showPicker: true,
-				popupStatus: false,
 				shipMethod: '',
 				deliveryTypeId: '4',
 				columns: [],
@@ -183,10 +209,16 @@
 				],
 				balancePsw:'',//余额密码
 				remark: '',
-				shipTime: '',
+				shipDay:'',
+				shipDate:'',
 				userInfo: {},
 				totalAmount: 0,
 				comAmount: '',
+				dateList:[],
+				dateIndex:0,
+				showSheet:false,
+				customerTime:[],
+				isSelfMethod:false
 			};
 		},
 		components:{
@@ -206,12 +238,17 @@
 		},
 		computed: {
 			...mapState(['$orderData']),
+			shipTime(){
+				return this.shipDay+' '+this.shipDate
+			}
 		},
 		onLoad(e) {
 			this.getDetail(e.ids)
-			// this.shipTime=date('Y-m-d H-i',new Date().getTime())
+			
 			// 初始化订单数据
 			this.INIT_ORDER_DATA()
+			this.getDateList()
+			this.getDelTimeList()
 		},
 		onShow() {
 			let that = this
@@ -241,6 +278,9 @@
 			// 修改了地址
 			if (that.$orderData.addressDetail) {
 				that.addressDetail = that.$orderData.addressDetail
+				if(that.deliveryTypeId!=4){
+					that.shipDate=that.addressDetail.pickupTime
+				}
 				this.isSelectDeliAddress = true
 			}
 
@@ -264,6 +304,85 @@
 				this.getAddressList()
 				this.getTipsList()
 				this.getDictData()
+			},
+			// 配送日期
+			getDateList(){
+				let time=new Date().getTime()
+				let d1=date('m/d ',new Date().getTime()+(24*60*60*1000))
+				let y1=date('Y-m-d ',new Date().getTime()+(24*60*60*1000))
+				
+				let d2=date('m/d ',new Date().getTime()+(24*60*60*1000)*2)
+				let y2=date('Y-m-d ',new Date().getTime()+(24*60*60*1000)*2)
+				
+				let d3=date('m/d ',new Date().getTime()+(24*60*60*1000)*3)
+				let y3=date('Y-m-d ',new Date().getTime()+(24*60*60*1000)*3)
+				
+				let d4=date('m/d ',new Date().getTime()+(24*60*60*1000)*4)
+				let y4=date('Y-m-d ',new Date().getTime()+(24*60*60*1000)*4)
+				
+				let d5=date('m/d ',new Date().getTime()+(24*60*60*1000)*5)
+				let y5=date('Y-m-d ',new Date().getTime()+(24*60*60*1000)*5)
+				
+				let w1=this.getWeek(new Date(y1))
+				let w2=this.getWeek(new Date(y2))
+				let w3=this.getWeek(new Date(y3))
+				let w4=this.getWeek(new Date(y4))
+				let w5=this.getWeek(new Date(y5))
+				this.shipDay=y1
+				this.dateList=[
+					{date:d1,week:w1,year:y1},
+					{date:d2,week:w2,year:y2},
+					{date:d3,week:w3,year:y3},
+					{date:d4,week:w4,year:y4},
+					{date:d5,week:w5,year:y5},
+				]
+			},
+			getWeek(timedat) {  //timedat参数格式：   getWeek（new Date("2017-10-27" )）
+			    var week;
+			    if(timedat.getDay() == 0) week = "周日"
+			    if(timedat.getDay() == 1) week = "周一"
+			    if(timedat.getDay() == 2) week = "周二"
+			    if(timedat.getDay() == 3) week = "周三"
+			    if(timedat.getDay() == 4) week = "周四"
+			    if(timedat.getDay() == 5) week = "周五"
+			    if(timedat.getDay() == 6) week = "周六"
+			    return week;  
+			},
+			// 选择日期
+			selectDelDate(item,index){
+				this.dateIndex=index
+				this.shipDay=item.year
+			},
+			showDate(val){
+				if(val==1){
+					this.$refs.dateEl.show();
+				}else{
+					if(this.deliveryTypeId==4){
+						this.showSheet=true
+					}
+				}
+			},
+			// 选择更多日期
+			dateConfirm(date){
+				this.shipDay=date
+				this.dateIndex=''
+			},
+			
+			// 选择配送时间段
+			selectTimeList(e){
+				this.shipDate=e.name
+			},
+			// 获取配送时间段
+			getDelTimeList(){
+				this.$http('api/getReceivingTimeList').then(res => {
+					res = res || [];
+					this.customerTime = res.map(item => {
+						return {
+							name: item.startDate + '-' + item.endDate
+						}
+					});
+					this.shipDate=this.customerTime[0].name
+				})
 			},
 			// 获取支付方式
 			getPayMethod() {
@@ -321,11 +440,7 @@
 					}
 				})
 			},
-			// 选择日期
-			handleDatePickerConfirm(e) {
-				this.shipTime = e
-				this.popupStatus = false
-			},
+			
 			// 弹出配送方式
 			selectDeliType() {
 				this.$refs.jPicker.pickerVisable = true
@@ -336,6 +451,7 @@
 				this.getAddressList()
 				this.deliveryTypeId = e.dictValue
 				this.isSelectDeliAddress = e.dictValue == 4 ? true : false
+				this.isSelfMethod=e.dictValue == 4 ? false : true
 			},
 			passwordSub(password){
 				this.balancePsw = password;
@@ -360,7 +476,6 @@
 				}else if(that.selectPayId == 6 && that.balancePsw.length < 6){
 					// 余额支付
 					this.$refs.password.open();
-					console.log('余额支付')
 					return;
 					
 				}
@@ -387,6 +502,7 @@
 								"ticketId": orderData.ticketId, //	优惠券id
 								"tipsAmount": that.selectTipMoney || 0 //	小费
 							}
+							console.log(data)
 							that.$http('api/oms/order/shoppingCartPay', data, 'post').then(res => {
 								if (that.selectPayId == 6) {
 									let balanceData = {
@@ -487,7 +603,23 @@
 					font-size: 20upx;
 				}
 			}
-
+			.date_list{
+				.date_item{
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					font-size: 20upx;
+					color: #aaa;
+					padding:0 6upx;
+					background-color: rgba(158, 158, 158, 0.06);
+					border-radius: 6upx;
+					margin-right: 20upx;
+				}
+				.active{
+					background-color: rgba(255, 99, 4, 0.06);
+					color: $base-color;
+				}
+			}
 			.money {
 				.n {
 					background-color: #f8f8f8;
@@ -613,5 +745,10 @@
 				right: 30upx;
 			}
 		}
+	}
+	.fg_img{
+		width: 100%;
+		height: 6upx;
+		display: block;
 	}
 </style>
