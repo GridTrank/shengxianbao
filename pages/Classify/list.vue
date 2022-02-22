@@ -7,7 +7,7 @@
             :src="info.defaultImage" >
             </image>
 			<view class="detail">
-				<view class="name ">{{info.productName}}</view>
+				<view class="name ">{{info.productName}} ({{info.subtitle}})</view>
 				<view class="spec ">
 					<text class="s_detail">{{info.productModelList.join('/')}}</text>
 				</view>
