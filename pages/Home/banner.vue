@@ -11,7 +11,7 @@
 				<image 
 					class="pic" 
 					:class="{current: current === index}"
-					src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2221182985,1875035766&fm=26&gp=0.jpg" 
+					:src="item.bannerImage" 
 					mode="aspectFill"
 					@click="navTo('/'+item.bannerUrl)"
 				></image>
