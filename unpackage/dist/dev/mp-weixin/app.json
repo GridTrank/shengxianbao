@@ -71,13 +71,7 @@
         "NoticeInfo/NoticeInfo",
         "ProductDetail/ProductDetail",
         "Search/Search"
-      ],
-      "plugins": {
-        "WechatSI": {
-          "version": "0.0.7",
-          "provider": "wx069ba97219f66d99"
-        }
-      }
+      ]
     },
     {
       "root": "pagesC",
@@ -161,6 +155,12 @@
       "packages": [
         "pagesC"
       ]
+    }
+  },
+  "plugins": {
+    "WechatSI": {
+      "version": "0.0.7",
+      "provider": "wx069ba97219f66d99"
     }
   },
   "permission": {

@@ -8,7 +8,7 @@
 		:circular="true"
 		:duration="duration">
 			<swiper-item 
-			@click="navTo('/pagesB/NoticeInfo/NoticeInfo?id='+item.id)"
+			@click="navTo('/pagesB/NoticeInfo/NoticeInfo?id='+item.id+'&index='+index)"
 			class="swiper-item" v-for="(item,index) in list" :key="index">
 				<view class=" uni-bg-red">{{item.noteTitle}}</view>
 			</swiper-item>

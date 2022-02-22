@@ -15,4 +15,20 @@
   color: #333;
   text-align: center;
 }
+.page_wrap .tool.data-v-09b7baec {
+  margin-top: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page_wrap .tool .item.data-v-09b7baec {
+  width: 278rpx;
+  height: 70rpx;
+  font-size: 32rpx;
+  background: linear-gradient(113deg, #F87523 0%, #FF6C00 0%, #FD1D20 100%);
+  color: #FFFFFF;
+  line-height: 70rpx;
+  text-align: center;
+  border-radius: 100rpx;
+}
 
