@@ -22,6 +22,7 @@
 }
 .search_wrap .input_wrap .iconfont.data-v-0a264038 {
   color: #FE5B07;
+  font-size: 46rpx;
 }
 .search_wrap .screen.data-v-0a264038 {
   color: #333;

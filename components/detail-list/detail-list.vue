@@ -319,6 +319,9 @@
 					success: (res) => {
 						if(res.confirm){
 							this.resultList.splice(index,1)
+							this.SET_STOCK_MANAGE_INFO({
+								infoInfoVoList:this.resultList
+							})
 						}
 					}
 				})

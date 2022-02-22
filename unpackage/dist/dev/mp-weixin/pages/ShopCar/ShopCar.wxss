@@ -209,6 +209,10 @@
   border-top: 1px solid #CFCFCF;
   border-bottom: 1px solid #CFCFCF;
 }
+.shop-car .store-box .goodsInfo .goodsInfo-right .goodsInfo-box .goods-box .goods-num-box .goods-num.data-v-70a53ac4 .u-input--radius {
+  padding: 0 !important;
+  border: none;
+}
 .shop-car .store-box .goodsInfo .goodsInfo-right .goodsInfo-box .remark.data-v-70a53ac4 {
   padding: 20rpx 0;
   color: #999;

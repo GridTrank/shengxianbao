@@ -7,7 +7,11 @@
 					this.initSize(e);
 				}
 			})
-			// this.initWareHouseList();
+			if(!uni.getStorageSync('token')){
+				uni.redirectTo({
+					url: '/pages/Login/Login'
+				})
+			}
 		},
 		methods: {
 			//登录状态

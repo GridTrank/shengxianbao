@@ -81,7 +81,13 @@
 				uni.scanCode({
 					success: (res) => {
 						uni.showToast({
-							title: res,
+							title: '扫码成功',
+							icon: 'none'
+						})
+					},
+					fail: (err) => {
+						uni.showToast({
+							title: '扫码失败',
 							icon: 'none'
 						})
 					}
@@ -113,6 +119,7 @@
 
 			.iconfont {
 				color: $base-color;
+				font-size: 46upx;
 			}
 		}
 

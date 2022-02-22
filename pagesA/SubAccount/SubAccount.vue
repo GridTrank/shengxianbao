@@ -31,8 +31,9 @@
 					<text>编辑</text>
 				</view>
 				<view class="btn row" @click="disable(item)">
-					<image src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/shanchu.png" mode="widthFix"></image>
-					<text>禁用</text>
+					<image  v-if="item.enabled==1" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/shanchu.png" mode="widthFix"></image>
+					<image v-else src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/qiyong.png" mode="widthFix"></image>
+					<text>{{item.enabled==1?'禁用':'启用'}}</text>
 				</view>
 			</view>
 		</view>
@@ -75,16 +76,17 @@
 						accountTag:res.accountTag,
 						accountPasword:res.accountPasword,
 						mobile:res.mobile,
-						enabled:'0',
+						enabled:res.enabled=='1'?'0':'1',
 						showPrice:res.showPrice,
 						id:res.id
 					}
-					this.$http('api/account/update',data,'put').then(res=>{
+					this.$http('api/account/update',data,'put').then(r=>{
 						uni.showToast({
-							title:'已禁用',
+							title:data.enabled=='1'?'已启用':'已禁用',
 							icon:'none'
 						})
-						item.enabled='0'
+						item.enabled=item.enabled=='1'?'0':'1'
+						this.$forceUpdate()
 					})
 				})
 				
