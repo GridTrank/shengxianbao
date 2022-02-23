@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "u-input": "/uni_modules/uview-ui/components/u-input/u-input",
-    "voice": "/components/voice/voice"
-  }
-}

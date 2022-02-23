@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "出库单详情",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "detail-list": "/components/detail-list/detail-list"
-  }
-}

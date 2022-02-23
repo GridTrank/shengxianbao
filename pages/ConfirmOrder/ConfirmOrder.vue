@@ -135,7 +135,6 @@
 		</view>
 		<jPicker ref='jPicker' title='配送方式' :options="columns" valKey='dictValue' showKey="dictLabel" @sure='confirm'>
 		</jPicker>
-
 		<!-- 时间日期选择 -->
 		<itmister-date-picker ref="dateEl" @dateConfirm="dateConfirm"></itmister-date-picker>
 		<!-- 配送时间段 -->
