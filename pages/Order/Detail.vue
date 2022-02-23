@@ -23,8 +23,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="detail mt30" :class="openSwitch && 'h_auto'">
-			
+		<view class="detail mt30" :class="openSwitch && 'h_auto'">		
 			<view class="detail_item row jc_sb">
 				<text class="f32-c333">订单信息</text>
 				<text class="f28-c999" @click="openSwitch=!openSwitch">{{openSwitch?'收起':'展开'}} 
@@ -87,11 +86,33 @@
 								<text class="f24-c999">x{{item.preNum}}</text>
 							</view>
 							<view class="num row jc_sb mt10">
-								<text class="f24-c999">订货金额：￥{{item.sendoutAmount}}</text>
+								<text class="f24-c999">实发：x{{item.sendoutNum}}</text>
+							</view>
+							<view class="num row jc_sb mt10">
+								<text class="f24-c999">订货金额：￥{{item.preMoney}}</text>
+							</view>
+							<view class="num row jc_sb mt10">
+								<text class="f24-c999">发货金额：￥{{item.sendoutAmount}}</text>
 							</view>
 							<!-- <view class="num row f24-c999 mt30">
 								备注：<text>123123</text>
 							</view> -->
+							
+							<view class="num row jc_sb mt10" v-if="item.isChange && changStep!='three'">
+								<view class="f24-c999 row">退货数量：
+									<change-num
+										:index="index" 
+										:num="item.returnNum" 
+										@changeNumResult="changeNum">
+									</change-num> 
+								</view>
+							</view>
+							<view class="num row jc_sb mt10" v-if="item.isChange">
+								<text class="f24-c999">退货金额：￥{{item.returnNum * item.unitPrice}}</text>
+							</view>
+							<view class="num row jc_sb mt10 return" v-if="item.isChange && changStep=='three'">
+								<text class="f24-c999 r">退货：<text class="mr20">{{item.returnNum}}</text>  ￥{{item.returnNum * item.unitPrice}}</text>
+							</view>
 						</view>
 					</view>
 				</view>
@@ -114,9 +135,9 @@
 				</view>
 			</view>
 		</view>
-		<view class="btn_wrap row">
-			<text class="btn left" v-if="orderDetail.billState==0">作废</text>
-			<text class="btn right" v-if="orderDetail.billState==0">审核</text>
+		<view class="btn_wrap row" v-if="orderDetail.billState!=-1 && orderDetail.billState!=1">
+			<text class="btn left" v-if="orderDetail.billState==0 || orderDetail.billState==2">取消</text>
+			<text class="btn right" v-if="orderDetail.billState==0 && orderDetail.paymentState==0">支付</text>
 			<text class="btn right" v-if="orderDetail.billState==2">收货</text>
 			<view class="row jc_sb return" v-if="orderDetail.billState==3">
 				<view class="f24-c333 row" >
@@ -125,9 +146,8 @@
 					:class="['iconfont',allChecked==2?'icon-xuanze':'icon-weixuanze','mr10']">
 					</text>
 					<text>全选</text>
-					
 				</view>
-				<text class="btn right" >退货</text>
+				<text class="btn right" @click="changeReturn">{{changStep=='one'?'退货':changStep=='two'?'保存':'确认退货'}}</text>
 			</view>
 			
 		</view>
@@ -144,7 +164,8 @@
 				selectDate:'',
 				openSwitch:false,
 				orderDetail:{},
-				allChecked:1
+				allChecked:1,
+				changStep:'one'
 			};
 		},
 		onLoad(e) {
@@ -154,11 +175,35 @@
 			getDetail(orderCode){
                 this.$http('api/oms/order/salesorderbillInfo',{orderCode}).then(res=>{
 					res.orderBillProductVoList.forEach(item=>{
-						item.checked=1
+						item.checked=1,
+						item.returnNum=0,
+						item.isChange=false
 					})
                     this.orderDetail=res
                 })
             },
+			changeReturn(){
+				if(this.changStep=='one'){
+					let r=this.orderDetail.orderBillProductVoList.some(el=>{
+						return el.checked==2
+					})
+					if(!r){
+						uni.showToast({
+							title:'请先选择商品',
+							icon:'none'
+						})
+						return
+					}
+					this.changStep='two'
+					this.orderDetail.orderBillProductVoList.forEach(item=>{
+						if(item.checked==2){
+							item.isChange=true
+						} 
+					})
+				}else if(this.changStep=='two'){
+					this.changStep='three'
+				}
+			},
 			// 选择商品
 			productHandle(val,item){
 				if(val=='one'){
@@ -170,7 +215,15 @@
 					})
 				}
 				this.$forceUpdate()
-				
+			},
+			changeNum(val,index,num){
+				if(val=='add'){
+					this.orderDetail.orderBillProductVoList[index].returnNum+=1
+				}else if(val=='sub'){
+					this.orderDetail.orderBillProductVoList[index].returnNum-=1
+				}else{
+					this.orderDetail.orderBillProductVoList[index].returnNum=Number(num)
+				}
 			}
 		},
 		
@@ -205,6 +258,7 @@
 					margin-right: 20upx;
 				}
 			}
+			
 		}
 	}
 	.detail{
@@ -242,6 +296,9 @@
 					.icon-xuanze{
 						color: #FE5F0E;
 					}
+					.return .r{
+						color: #F10000;
+					}
 				}
 				.img{
 					width: 120upx;
@@ -262,6 +319,7 @@
 					.num_util{
 						color: $base-color;
 					}
+					
 					.total{
 						color: #D30000;
 						font-size: 24upx;

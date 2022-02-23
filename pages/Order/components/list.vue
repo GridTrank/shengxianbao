@@ -11,6 +11,7 @@
 						item.billState==3?'已收货':
 						'待审核'
 					}}
+					<text v-if="item.billState==0" class="ml20">({{item.paymentState==0 ? '待支付' :'' }})</text>
 				</text>
 			</view>
 			<view class="con row jc_sb">
@@ -53,8 +54,8 @@
 			</view>
 			
 			<view class="btn_wrap">
-				<text class="btn active" v-if="item.billState==0">审核</text>
-				<text class="btn active" v-else-if="item.billState==3">退货</text>
+				<text class="btn active" @click="navTo('./Detail?orderCode='+item.orderCode)" v-if="item.paymentState==0 && item.billState==0">支付</text>
+				<text class="btn active" @click="navTo('./Detail?orderCode='+item.orderCode)" v-if="item.billState==3">退货</text>
 				<text class="btn" @click="navTo('./Detail?orderCode='+item.orderCode)">查看</text>
 			</view>
 		</view>

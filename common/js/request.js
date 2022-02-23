@@ -34,6 +34,7 @@ export const request = (url,data,method,cacheName,time)=>{
 						title: '登录过期，请重新登录',
 						icon: 'none'
 					})
+					uni.clearStorageSync()
 					setTimeout(() => {
 						uni.navigateTo({
 							url: '/pages/Login/Login'
