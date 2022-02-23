@@ -6,12 +6,12 @@
 				<input @focus="searchFocus" @blur="searchBlur" type="text" border="none" clearable v-model="keyWord"
 					@confirm="search(keyWord)" placeholder="搜索商品" />
 				<!-- 语音 -->
-				<!-- <voice :isFocus="isFocus"></voice> -->
-				<view :class="['voice_btn',{'fixed':isFocus}]" :style="'bottom:'+(isFocus ? (focusHeight+10) : 0)+'px'" @touchstart="streamRecord"
+				<voice :isFocus="isFocus"></voice>
+				<!-- <view :class="['voice_btn',{'fixed':isFocus}]" :style="'bottom:'+(isFocus ? (focusHeight+10) : 0)+'px'" @touchstart="streamRecord"
 					@touchend="streamRecordEnd">
 					<image mode="widthFix" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/play.png"></image>
 					<view v-if="isFocus">按住 说出你要的商品</view>
-				</view>
+				</view> -->
 
 			</view>
 			<text class="btn" v-if='keyWord' @click="search(keyWord)">搜索</text>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-	// import voice from '@/components/voice/voice'
+	import voice from '@/components/voice/voice'
 	import historyList from './histotyList.vue'
 	import list from '@/pages/Classify/list.vue'
 
@@ -40,7 +40,7 @@
 		components: {
 			historyList,
 			list,
-			// voice
+			voice
 		},
 		data() {
 			return {

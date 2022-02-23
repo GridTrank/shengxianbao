@@ -7,17 +7,17 @@
 						mode="widthFix"></image>
 					<u-input type="text" border="none" placeholder="输入关键字搜索" v-model="keyWord" />
 				</view>
-				<!-- <voice></voice> -->
+				<voice></voice>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	// import voice from '@/components/voice/voice'
+	import voice from '@/components/voice/voice'
 	export default {
 		components: {
-			// voice
+			voice
 		},
 		data() {
 			return {

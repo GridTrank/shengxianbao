@@ -27,7 +27,6 @@
 					<text class="txt f28-c333">请选择自提点</text>
 					<text class="iconfont icon-jinru"></text>
 				</view>
-
 			</view>
 		</view>
 		<image class="fg_img" src="https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/dzfg.png" ></image>
@@ -46,10 +45,8 @@
 					</view>
 					<text class="iconfont icon-jinru f28-c333"  @click="showDate(1)"></text>
 				</view>
-				
 			</view>
 		</view>
-		
 		<!-- 配送时间 -->
 		<view class="wrap time mt20">
 			<view class="dist row jc_sb" @click="showDate(2)">
@@ -95,14 +92,12 @@
 					<image class="right"
 						:src="item.checked?'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quanzhong%402x.png':'https://b2bmall2022.oss-cn-hangzhou.aliyuncs.com/quan1%402x.png'"
 						mode=""></image>
-
 				</view>
 			</view>
 			<view class="arrears row" v-if="userInfo.debtAmount>0">
 				欠款：<text class="m">-￥{{userInfo.debtAmount}}</text>
 			</view>
 		</view>
-
 		<!-- 费用明细 -->
 		<view class="wrap expense_detail mt20">
 			<view class="dist row jc_sb">
@@ -125,7 +120,6 @@
 				</text>
 			</view>
 		</view>
-
 		<!-- 备注 -->
 		<view class="wrap remark mt20">
 			<view class="row jc_sb">
@@ -440,7 +434,6 @@
 					}
 				})
 			},
-			
 			// 弹出配送方式
 			selectDeliType() {
 				this.$refs.jPicker.pickerVisable = true
